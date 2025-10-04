@@ -47,7 +47,7 @@ const Paper = () => {
 
   if (query.isError || !query.data) {
     return (
-      <div className="rounded-[22px] border border-red/40 bg-black/60 p-6 text-red text-sm">
+      <div className="rounded-[22px] border border-red/40 bg-[#0b0d0f]/60 p-6 text-red text-sm">
         Dossier retrieval failed. <Link className="underline" to="/">Return to archive</Link>
       </div>
     );
@@ -62,11 +62,11 @@ const Paper = () => {
 
   return (
     <div className="space-y-8">
-      <header className="relative overflow-hidden rounded-[28px] border border-white/12 bg-panel/80 p-6 shadow-panel">
+      <header className="relative overflow-hidden rounded-[28px] border border-[#d6e3e0]/12 bg-panel/80 p-6 shadow-panel">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Dossier {id}</p>
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.24em] text-white">{title}</h1>
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.24em] text-[#d6e3e0]">{title}</h1>
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-mid">{authors.join(', ')}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -88,7 +88,7 @@ const Paper = () => {
               sublabel="Module Alpha"
               active={activeSection === 'abstract'}
               actions={
-                <button type="button" onClick={() => handleCopyLink('abstract')} className="text-dim hover:text-white/80">
+                <button type="button" onClick={() => handleCopyLink('abstract')} className="text-dim hover:text-[#d6e3e0]">
                   Copy link
                 </button>
               }
@@ -102,7 +102,7 @@ const Paper = () => {
               sublabel="Module Beta"
               active={activeSection === 'methods'}
               actions={
-                <button type="button" onClick={() => handleCopyLink('methods')} className="text-dim hover:text-white/80">
+                <button type="button" onClick={() => handleCopyLink('methods')} className="text-dim hover:text-[#d6e3e0]">
                   Copy link
                 </button>
               }
@@ -116,7 +116,7 @@ const Paper = () => {
               sublabel="Module Gamma"
               active={activeSection === 'results'}
               actions={
-                <button type="button" onClick={() => handleCopyLink('results')} className="text-dim hover:text-white/80">
+                <button type="button" onClick={() => handleCopyLink('results')} className="text-dim hover:text-[#d6e3e0]">
                   Copy link
                 </button>
               }
@@ -130,7 +130,7 @@ const Paper = () => {
               sublabel="Module Delta"
               active={activeSection === 'conclusion'}
               actions={
-                <button type="button" onClick={() => handleCopyLink('conclusion')} className="text-dim hover:text-white/80">
+                <button type="button" onClick={() => handleCopyLink('conclusion')} className="text-dim hover:text-[#d6e3e0]">
                   Copy link
                 </button>
               }
@@ -146,7 +146,7 @@ const Paper = () => {
         </div>
 
         <aside className="space-y-6">
-          <div className="rounded-[24px] border border-white/12 bg-panel/75 p-5 shadow-panel">
+          <div className="rounded-[24px] border border-[#d6e3e0]/12 bg-panel/75 p-5 shadow-panel">
             <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Meta</header>
             <dl className="space-y-3 text-[0.82rem]">
               <MetaRow label="Year" value={year.toString()} />
@@ -167,7 +167,7 @@ const Paper = () => {
                 {keywords.map((keyword) => (
                   <span
                     key={keyword}
-                    className="rounded-full border border-white/15 bg-black/40 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] text-mid"
+                    className="rounded-full border border-[#d6e3e0]/15 bg-[#0b0d0f]/40 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] text-mid"
                   >
                     {keyword}
                   </span>
@@ -178,7 +178,7 @@ const Paper = () => {
               <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Entities</p>
               <ul className="grid gap-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-mid">
                 {entities.map((entity) => (
-                  <li key={entity} className="rounded border border-white/10 bg-black/30 px-3 py-2">
+                  <li key={entity} className="rounded border border-[#d6e3e0]/10 bg-[#0b0d0f]/30 px-3 py-2">
                     {entity}
                   </li>
                 ))}
@@ -189,14 +189,14 @@ const Paper = () => {
               <ul className="space-y-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-amber">
                 {links.taskbook ? (
                   <li>
-                    <a className="hover:text-white" href={links.taskbook} target="_blank" rel="noreferrer">
+                    <a className="hover:text-[#d6e3e0]" href={links.taskbook} target="_blank" rel="noreferrer">
                       Taskbook dossier
                     </a>
                   </li>
                 ) : null}
                 {links.osdr ? (
                   <li>
-                    <a className="hover:text-white" href={links.osdr} target="_blank" rel="noreferrer">
+                    <a className="hover:text-[#d6e3e0]" href={links.osdr} target="_blank" rel="noreferrer">
                       OSDR record
                     </a>
                   </li>
@@ -213,9 +213,9 @@ const Paper = () => {
 };
 
 const MetaRow = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex items-center justify-between border-b border-white/10 pb-2 last:border-none last:pb-0">
+  <div className="flex items-center justify-between border-b border-[#d6e3e0]/10 pb-2 last:border-none last:pb-0">
     <span className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">{label}</span>
-    <span className="text-sm text-white">{value}</span>
+    <span className="text-sm text-[#d6e3e0]">{value}</span>
   </div>
 );
 

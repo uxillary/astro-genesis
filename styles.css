@@ -1,14 +1,14 @@
 :root {
-  --bg-color: #050608;
-  --grid-color: rgba(0, 255, 255, 0.03);
-  --primary: #00f6ff;
-  --accent: #ff4d4d;
-  --secondary: #fbc02d;
-  --text: #d3f8ff;
-  --muted: rgba(211, 248, 255, 0.6);
-  --card-bg: rgba(9, 18, 26, 0.88);
-  --border: rgba(0, 255, 255, 0.35);
-  --module-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  --bg-color: #0b0d0f;
+  --grid-color: rgba(26, 31, 36, 0.08);
+  --primary: #00b3ff;
+  --accent: #55e6a5;
+  --secondary: #55e6a5;
+  --text: #d6e3e0;
+  --muted: rgba(214, 227, 224, 0.6);
+  --card-bg: rgba(16, 22, 29, 0.88);
+  --border: rgba(26, 31, 36, 0.55);
+  --module-shadow: 0 0 20px rgba(0, 179, 255, 0.18);
   --font-family: 'Share Tech Mono', 'Roboto Mono', monospace;
 }
 
@@ -41,7 +41,7 @@ body {
   padding: 1.5rem 3rem;
   text-align: center;
   border-bottom: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(10, 14, 18, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   overflow: hidden;
@@ -51,13 +51,13 @@ body {
   margin: 0;
   font-size: 1.5rem;
   color: var(--primary);
-  text-shadow: 0 0 12px rgba(0, 246, 255, 0.6);
+  text-shadow: 0 0 12px rgba(0, 179, 255, 0.55);
 }
 
 .top-header p {
   margin: 0.4rem 0 0;
   font-size: 0.85rem;
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 .scanline {
@@ -69,9 +69,9 @@ body {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 246, 255, 0.05) 45%,
-    rgba(0, 246, 255, 0.2) 50%,
-    rgba(0, 246, 255, 0.05) 55%,
+    rgba(0, 179, 255, 0.05) 45%,
+    rgba(0, 179, 255, 0.18) 50%,
+    rgba(0, 179, 255, 0.05) 55%,
     transparent 100%
   );
   animation: scanline 6s linear infinite;

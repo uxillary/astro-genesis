@@ -24,7 +24,7 @@ module.exports = {
         hud: '18px'
       },
       boxShadow: {
-        hud: '0 0 0 1px rgba(255, 74, 79, 0.2), 0 0 32px rgba(255, 138, 0, 0.25)',
+        hud: '0 0 0 1px rgba(0, 179, 255, 0.25), 0 0 32px rgba(85, 230, 165, 0.25)',
         panel: '0 18px 46px rgba(0, 0, 0, 0.35)'
       },
       animation: {
@@ -38,8 +38,8 @@ module.exports = {
           '100%': { strokeDashoffset: 0 }
         },
         glow: {
-          '0%, 100%': { boxShadow: '0 0 0 rgba(255, 74, 79, 0.2)' },
-          '50%': { boxShadow: '0 0 18px rgba(255, 138, 0, 0.45)' }
+          '0%, 100%': { boxShadow: '0 0 0 rgba(0, 179, 255, 0.2)' },
+          '50%': { boxShadow: '0 0 18px rgba(85, 230, 165, 0.4)' }
         },
         float: {
           '0%, 100%': { transform: 'translate3d(0, 0, 0)' },

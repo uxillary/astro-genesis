@@ -9,10 +9,10 @@ type HudBadgeProps = {
 };
 
 const toneClass: Record<NonNullable<HudBadgeProps['tone']>, string> = {
-  amber: 'text-amber border-amber/50 shadow-[0_0_18px_rgba(255,131,94,0.22)]',
-  red: 'text-red border-red/60 shadow-[0_0_18px_rgba(255,86,72,0.25)]',
-  cyan: 'text-cyan border-cyan/50 shadow-[0_0_18px_rgba(85,255,180,0.28)]',
-  mono: 'text-white border-white/40 shadow-[0_0_18px_rgba(236,245,240,0.14)]'
+  amber: 'text-amber border-amber/50 shadow-[0_0_18px_rgba(0,179,255,0.24)]',
+  red: 'text-red border-red/60 shadow-[0_0_18px_rgba(255,59,59,0.28)]',
+  cyan: 'text-cyan border-cyan/50 shadow-[0_0_18px_rgba(85,230,165,0.28)]',
+  mono: 'text-[#d6e3e0] border-[#d6e3e0]/40 shadow-[0_0_18px_rgba(214,227,224,0.16)]'
 };
 
 const HudBadge = ({ label, value, tone = 'amber', compact }: HudBadgeProps) => {
