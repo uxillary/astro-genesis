@@ -76,10 +76,10 @@ const Home = () => {
 
   return (
     <div className="relative z-10 space-y-10">
-      <section className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
+      <section className="grid gap-8 rounded-[28px] border border-[#123025]/60 bg-[#050f0d]/70 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
         <div className="space-y-6">
           <header className="space-y-4">
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.42em] text-dim">BioArchive Intelligence</p>
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.42em] text-[#55ffb4]">BioArchive Intelligence</p>
             <h1 className="text-4xl font-semibold uppercase tracking-[0.3em] text-white">
               Classified Ops Console
             </h1>
@@ -94,11 +94,11 @@ const Home = () => {
               {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
             </div>
           </header>
-          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-mid">
+          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-[#6d8179]">
             Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
           </p>
           <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
-          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-dim">
+          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-[#6d8179]">
             <span>Need help?</span>
             <kbd className="rounded border border-white/20 px-2 py-1 text-white/80">?</kbd>
             <span>Open console reference</span>
@@ -107,15 +107,15 @@ const Home = () => {
         <Filters {...filterOptions} />
       </section>
 
-      <section className="space-y-4">
-        <header className="flex items-center justify-between">
+      <section className="space-y-4 rounded-[28px] border border-[#123025]/60 bg-[#050f0d]/70 p-6 lg:p-8">
+        <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Results</p>
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55ffb4]">Results</p>
             <h2 className="text-xl font-semibold tracking-[0.22em] text-white">Stacked Dossiers</h2>
           </div>
           <Link
             to="/tactical"
-            className="rounded-full border border-white/20 px-4 py-2 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim hover:text-white/90"
+            className="rounded-full border border-[#123025] bg-[#06120f]/70 px-4 py-2 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#6d8179] transition hover:border-[#55ffb4]/60 hover:text-white/90"
           >
             Tactical map
           </Link>

@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0b0e10;
-  --panel: #0f1316;
-  --stroke: #1c2427;
-  --grid: #101519;
-  --amber: #ffb020;
-  --red: #ff4d4f;
-  --cyan: #55e6a5;
-  --white: #e8f2ef;
-  --mid: #a3b8b1;
-  --dim: #6a7b76;
+  --bg: #020705;
+  --panel: rgba(7, 17, 15, 0.78);
+  --stroke: #19352c;
+  --grid: #0b1915;
+  --amber: #ff835e;
+  --red: #ff5648;
+  --cyan: #55ffb4;
+  --white: #ecf5f0;
+  --mid: #b0c9c0;
+  --dim: #6d8179;
   --font-heading: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
@@ -36,8 +36,9 @@ body {
 
 body {
   min-height: 100vh;
-  background-image: radial-gradient(circle at top, rgba(255, 74, 79, 0.12), transparent 45%),
-    radial-gradient(circle at 20% 80%, rgba(85, 230, 165, 0.08), transparent 55%);
+  background-image: radial-gradient(circle at 15% 18%, rgba(74, 173, 126, 0.18), transparent 50%),
+    radial-gradient(circle at 82% 78%, rgba(255, 88, 70, 0.15), transparent 52%),
+    linear-gradient(135deg, rgba(5, 12, 10, 0.9) 0%, rgba(2, 6, 5, 0.9) 45%, rgba(7, 19, 16, 0.92) 100%);
   background-attachment: fixed;
 }
 
@@ -61,13 +62,13 @@ a:focus-visible {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(85, 230, 165, 0.35);
+  background: rgba(85, 255, 180, 0.35);
   border-radius: 999px;
 }
 
 ::selection {
-  background: rgba(255, 61, 46, 0.55);
-  color: var(--white);
+  background: rgba(85, 255, 180, 0.4);
+  color: #03231a;
 }
 
 @layer base {
