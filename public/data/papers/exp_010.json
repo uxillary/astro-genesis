@@ -1,0 +1,26 @@
+{
+  "id": "exp_010",
+  "title": "Bioadaptive Study 10",
+  "authors": [
+    "Dr. J. Vega",
+    "Lt. V. Orion"
+  ],
+  "year": 2025,
+  "organism": "Saccharomyces cerevisiae",
+  "platform": "Deep Space Habitat",
+  "keywords": [
+    "circadian rhythm",
+    "microgravity",
+    "radiation response"
+  ],
+  "sections": {
+    "abstract": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics.",
+    "methods": "Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
+    "results": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers.",
+    "conclusion": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers."
+  },
+  "links": {
+    "taskbook": "https://example.com/taskbook/exp_010",
+    "osdr": "https://example.com/osdr/exp_010"
+  }
+}

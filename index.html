@@ -1,114 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AstroGenesis - Habitable Map Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="grid-overlay"></div>
-  <header class="top-header">
-    <div class="scanline"></div>
-    <h1>CLASSIFIED ACCESS: EARTH SCIENCE DIVISION</h1>
-    <p>Habitable Map &middot; AstroGenesis Bioscience Intelligence Console</p>
-  </header>
-
-  <main class="layout">
-    <section class="sidebar" aria-label="Filters and search">
-      <div class="module module--sidebar">
-        <h2>Publication Access</h2>
-        <div class="search-control">
-          <label for="search" class="label">Search</label>
-          <input id="search" type="search" placeholder="Begin typing title or keyword" list="search-suggestions" />
-          <datalist id="search-suggestions"></datalist>
-        </div>
-        <div class="filters">
-          <div class="filter">
-            <label for="filter-organism" class="label">Organism</label>
-            <select id="filter-organism">
-              <option value="">All</option>
-            </select>
-          </div>
-          <div class="filter">
-            <label for="filter-experiment" class="label">Experiment Type</label>
-            <select id="filter-experiment">
-              <option value="">All</option>
-            </select>
-          </div>
-          <div class="filter">
-            <label for="filter-year" class="label">Year</label>
-            <select id="filter-year">
-              <option value="">All</option>
-            </select>
-          </div>
-          <div class="filter">
-            <label for="filter-platform" class="label">Platform</label>
-            <select id="filter-platform">
-              <option value="">All</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="module module--sidebar publication-list">
-        <h3>Declassified Results</h3>
-        <ul id="publication-list"></ul>
-      </div>
-    </section>
-
-    <section class="main-panel" aria-label="Publication visualization">
-      <div class="main-node" id="main-node">
-        <div class="main-node__title" id="publication-title">Select a publication to initiate briefing</div>
-        <div class="main-node__meta" id="publication-meta"></div>
-      </div>
-      <svg class="branching-lines" id="branch-lines" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true"></svg>
-      <div class="data-modules">
-        <article class="module module--data" id="abstract-panel">
-          <h3>Abstract</h3>
-          <p class="module__content" id="abstract-content">Awaiting selection&hellip;</p>
-        </article>
-        <article class="module module--data" id="methods-panel">
-          <h3>Methods</h3>
-          <p class="module__content" id="methods-content">Awaiting selection&hellip;</p>
-        </article>
-        <article class="module module--data" id="results-panel">
-          <h3>Results</h3>
-          <p class="module__content" id="results-content">Awaiting selection&hellip;</p>
-        </article>
-        <article class="module module--data" id="conclusion-panel">
-          <h3>Conclusion</h3>
-          <p class="module__content" id="conclusion-content">Awaiting selection&hellip;</p>
-        </article>
-        <article class="module module--data module--graph" id="graph-panel">
-          <h3>Keyword Trend Signal</h3>
-          <svg id="trend-graph" viewBox="0 0 300 140" aria-hidden="true"></svg>
-          <p class="module__note">Telemetry derived from mission archives. Values simulated for prototype.</p>
-        </article>
-      </div>
-    </section>
-
-    <aside class="metadata" aria-label="Metadata">
-      <div class="module module--meta" id="metadata-panel">
-        <h2>Mission Dossier</h2>
-        <dl id="metadata-list"></dl>
-      </div>
-    </aside>
-  </main>
-
-  <footer class="footer" aria-label="AI analysis and links">
-    <div class="module module--footer">
-      <h2>AI Synthesis Feed</h2>
-      <p id="ai-summary">AI summarization uplink offline. Awaiting integration.</p>
-    </div>
-    <div class="module module--footer">
-      <h2>External Links</h2>
-      <ul id="external-links"></ul>
-    </div>
-  </footer>
-
-  <script src="app.js" type="module"></script>
-</body>
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro Genesis BioArchive</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" />
+  </head>
+  <body class="bg-background text-slate-100 font-mono">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,0 +1,161 @@
+[
+  {
+    "id": "exp_001",
+    "title": "Bioadaptive Study 1",
+    "authors": [
+      "Dr. A. Vega",
+      "Lt. M. Orion"
+    ],
+    "year": 2016,
+    "organism": "Mus musculus",
+    "platform": "ISS - Kubik",
+    "keywords": [
+      "gene expression",
+      "immune modulation",
+      "cell differentiation"
+    ]
+  },
+  {
+    "id": "exp_002",
+    "title": "Bioadaptive Study 2",
+    "authors": [
+      "Dr. B. Vega",
+      "Lt. N. Orion"
+    ],
+    "year": 2017,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS - Veggie",
+    "keywords": [
+      "metabolomics",
+      "cell differentiation",
+      "transcriptomics"
+    ]
+  },
+  {
+    "id": "exp_003",
+    "title": "Bioadaptive Study 3",
+    "authors": [
+      "Dr. C. Vega",
+      "Lt. O. Orion"
+    ],
+    "year": 2018,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS - Kubik",
+    "keywords": [
+      "transcriptomics",
+      "microgravity",
+      "photosynthesis"
+    ]
+  },
+  {
+    "id": "exp_004",
+    "title": "Bioadaptive Study 4",
+    "authors": [
+      "Dr. D. Vega",
+      "Lt. P. Orion"
+    ],
+    "year": 2019,
+    "organism": "Caenorhabditis elegans",
+    "platform": "ISS - Kubik",
+    "keywords": [
+      "gene expression",
+      "circadian rhythm",
+      "metabolomics"
+    ]
+  },
+  {
+    "id": "exp_005",
+    "title": "Bioadaptive Study 5",
+    "authors": [
+      "Dr. E. Vega",
+      "Lt. Q. Orion"
+    ],
+    "year": 2020,
+    "organism": "Caenorhabditis elegans",
+    "platform": "ISS - Kubik",
+    "keywords": [
+      "radiation response",
+      "transcriptomics",
+      "cell differentiation"
+    ]
+  },
+  {
+    "id": "exp_006",
+    "title": "Bioadaptive Study 6",
+    "authors": [
+      "Dr. F. Vega",
+      "Lt. R. Orion"
+    ],
+    "year": 2021,
+    "organism": "Saccharomyces cerevisiae",
+    "platform": "ISS - Kubik",
+    "keywords": [
+      "gene expression",
+      "circadian rhythm",
+      "microgravity"
+    ]
+  },
+  {
+    "id": "exp_007",
+    "title": "Bioadaptive Study 7",
+    "authors": [
+      "Dr. G. Vega",
+      "Lt. S. Orion"
+    ],
+    "year": 2022,
+    "organism": "Caenorhabditis elegans",
+    "platform": "Deep Space Habitat",
+    "keywords": [
+      "transcriptomics",
+      "photosynthesis",
+      "cell differentiation"
+    ]
+  },
+  {
+    "id": "exp_008",
+    "title": "Bioadaptive Study 8",
+    "authors": [
+      "Dr. H. Vega",
+      "Lt. T. Orion"
+    ],
+    "year": 2023,
+    "organism": "Saccharomyces cerevisiae",
+    "platform": "Deep Space Habitat",
+    "keywords": [
+      "photosynthesis",
+      "circadian rhythm",
+      "gene expression"
+    ]
+  },
+  {
+    "id": "exp_009",
+    "title": "Bioadaptive Study 9",
+    "authors": [
+      "Dr. I. Vega",
+      "Lt. U. Orion"
+    ],
+    "year": 2024,
+    "organism": "Mus musculus",
+    "platform": "ISS - WetLab-2",
+    "keywords": [
+      "root morphology",
+      "photosynthesis"
+    ]
+  },
+  {
+    "id": "exp_010",
+    "title": "Bioadaptive Study 10",
+    "authors": [
+      "Dr. J. Vega",
+      "Lt. V. Orion"
+    ],
+    "year": 2025,
+    "organism": "Saccharomyces cerevisiae",
+    "platform": "Deep Space Habitat",
+    "keywords": [
+      "circadian rhythm",
+      "microgravity",
+      "radiation response"
+    ]
+  }
+]

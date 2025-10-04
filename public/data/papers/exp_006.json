@@ -1,0 +1,26 @@
+{
+  "id": "exp_006",
+  "title": "Bioadaptive Study 6",
+  "authors": [
+    "Dr. F. Vega",
+    "Lt. R. Orion"
+  ],
+  "year": 2021,
+  "organism": "Saccharomyces cerevisiae",
+  "platform": "ISS - Kubik",
+  "keywords": [
+    "gene expression",
+    "circadian rhythm",
+    "microgravity"
+  ],
+  "sections": {
+    "abstract": "Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
+    "methods": "Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
+    "results": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
+    "conclusion": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems."
+  },
+  "links": {
+    "taskbook": "https://example.com/taskbook/exp_006",
+    "osdr": "https://example.com/osdr/exp_006"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "exp_005",
+  "title": "Bioadaptive Study 5",
+  "authors": [
+    "Dr. E. Vega",
+    "Lt. Q. Orion"
+  ],
+  "year": 2020,
+  "organism": "Caenorhabditis elegans",
+  "platform": "ISS - Kubik",
+  "keywords": [
+    "radiation response",
+    "transcriptomics",
+    "cell differentiation"
+  ],
+  "sections": {
+    "abstract": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers.",
+    "methods": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers.",
+    "results": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure.",
+    "conclusion": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers."
+  },
+  "links": {
+    "taskbook": "https://example.com/taskbook/exp_005",
+    "osdr": "https://example.com/osdr/exp_005"
+  }
+}

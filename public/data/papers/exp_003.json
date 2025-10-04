@@ -1,0 +1,26 @@
+{
+  "id": "exp_003",
+  "title": "Bioadaptive Study 3",
+  "authors": [
+    "Dr. C. Vega",
+    "Lt. O. Orion"
+  ],
+  "year": 2018,
+  "organism": "Arabidopsis thaliana",
+  "platform": "ISS - Kubik",
+  "keywords": [
+    "transcriptomics",
+    "microgravity",
+    "photosynthesis"
+  ],
+  "sections": {
+    "abstract": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics.",
+    "methods": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers.",
+    "results": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure.",
+    "conclusion": "Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers."
+  },
+  "links": {
+    "taskbook": "https://example.com/taskbook/exp_003",
+    "osdr": "https://example.com/osdr/exp_003"
+  }
+}
