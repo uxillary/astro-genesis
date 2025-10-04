@@ -131,3 +131,213 @@ a:focus-visible {
     stroke-dashoffset: 0;
   }
 }
+
+/* Splash screen visuals */
+.splash-wrap {
+  --bg: #0b0e10;
+  --panel: #0e1418;
+  --stroke: #1f2a2e;
+  --amber: #ffb020;
+  --yellow: #ffd666;
+  --cyan: #55e6a5;
+  --white: #e8f2ef;
+  --dim: #7a8a86;
+
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 600px at 50% 45%, #0f1519 0%, var(--bg) 60%, #06090b 100%);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  z-index: 999;
+}
+
+.splash-wrap .scanlines,
+.splash-wrap .vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.splash-wrap .scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.25;
+  animation: sl 6s linear infinite;
+}
+
+@keyframes sl {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+}
+
+.splash-wrap .vignette {
+  box-shadow: inset 0 0 200px 60px rgba(0, 0, 0, 0.8);
+}
+
+.splash-wrap .ticks {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  opacity: 0.55;
+}
+
+.splash-wrap .ticks.tl {
+  left: 24px;
+  top: 24px;
+  border-left: 1px solid #39464a;
+  border-top: 1px solid #39464a;
+}
+
+.splash-wrap .ticks.tr {
+  right: 24px;
+  top: 24px;
+  border-right: 1px solid #39464a;
+  border-top: 1px solid #39464a;
+}
+
+.splash-wrap .ticks.bl {
+  left: 24px;
+  bottom: 24px;
+  border-left: 1px solid #39464a;
+  border-bottom: 1px solid #39464a;
+}
+
+.splash-wrap .ticks.br {
+  right: 24px;
+  bottom: 24px;
+  border-right: 1px solid #39464a;
+  border-bottom: 1px solid #39464a;
+}
+
+.splash-wrap .pane {
+  position: relative;
+  width: min(720px, 86vw);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(24, 33, 38, 0.6), rgba(13, 19, 22, 0.6));
+  backdrop-filter: blur(3px) saturate(120%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.splash-wrap .pane-glow {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 12px;
+  box-shadow: 0 0 24px 2px rgba(255, 186, 57, 0.25);
+  pointer-events: none;
+  filter: saturate(120%);
+}
+
+.splash-wrap .pane-inner {
+  padding: 32px 36px 28px;
+  position: relative;
+}
+
+.splash-wrap .eyebrow {
+  letter-spacing: 0.22em;
+  font-size: 12px;
+  color: var(--amber);
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0 0 12px;
+}
+
+.splash-wrap .title {
+  font-size: 34px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  text-shadow: 0 0 10px rgba(255, 186, 57, 0.18);
+}
+
+.splash-wrap .title.granted {
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(85, 230, 165, 0.25);
+}
+
+.splash-wrap .sub {
+  color: var(--dim);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+
+.splash-wrap .sub.ok {
+  color: var(--cyan);
+}
+
+.splash-wrap .auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--amber);
+  color: var(--white);
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+  box-shadow: 0 0 0 2px rgba(255, 186, 57, 0.1) inset, 0 0 12px rgba(255, 186, 57, 0.15);
+}
+
+.splash-wrap .auth-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 186, 57, 0.08);
+}
+
+.splash-wrap .auth-btn.is-busy {
+  border-color: #eaa502;
+  box-shadow: 0 0 0 2px rgba(234, 165, 2, 0.18) inset;
+}
+
+.splash-wrap .hint {
+  margin-top: 12px;
+  font-size: 11px;
+  color: #94a39f;
+  opacity: 0.7;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.splash-wrap .blink::after {
+  content: '_';
+  margin-left: 4px;
+  animation: blink 1.05s steps(1, end) infinite;
+  color: var(--yellow);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-wrap .scanlines {
+    animation: none;
+  }
+
+  .splash-wrap .blink::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}
