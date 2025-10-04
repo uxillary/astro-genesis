@@ -5,6 +5,7 @@ import BranchMap, { BranchKey } from '../components/BranchMap';
 import Panel from '../components/Panel';
 import TrendMini from '../components/TrendMini';
 import HudBadge from '../components/HudBadge';
+import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
 import { withBase } from '../lib/paths';
@@ -204,6 +205,8 @@ const Paper = () => {
               </ul>
             </div>
           </div>
+
+          <DossierGlyphs />
 
           <TrendMini data={citations_by_year} />
         </aside>
