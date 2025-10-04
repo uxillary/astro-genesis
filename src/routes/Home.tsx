@@ -5,6 +5,8 @@ import { seedIndex, listPaperIndex } from '../lib/db';
 import type { PaperIndex } from '../lib/types';
 import Filters from '../components/Filters';
 import SearchBox from '../components/SearchBox';
+import CardStack from '../components/CardStack';
+import HudBadge from '../components/HudBadge';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
 
@@ -57,85 +59,73 @@ const Home = () => {
 
   const filterOptions = useMemo(() => {
     const records = getCachedRecords();
-    const unique = <T,>(items: T[]) => Array.from(new Set(items)).filter(Boolean) as T[];
+    const toCounts = <T extends string | number>(values: T[]) => {
+      return Array.from(values.reduce((map, value) => map.set(value, (map.get(value) ?? 0) + 1), new Map<T, number>()).entries())
+        .sort((a, b) => (typeof a[0] === 'number' ? Number(b[0]) - Number(a[0]) : String(a[0]).localeCompare(String(b[0]))))
+        .map(([value, count]) => ({ label: String(value), value, count }));
+    };
+
     return {
-      organisms: unique(records.map((item) => item.organism)).map((value) => ({ label: value, value })),
-      platforms: unique(records.map((item) => item.platform)).map((value) => ({ label: value, value })),
-      years: unique(records.map((item) => item.year))
-        .sort((a, b) => b - a)
-        .map((value) => ({ label: String(value), value }))
+      organisms: toCounts(records.map((item) => item.organism)),
+      platforms: toCounts(records.map((item) => item.platform)),
+      years: toCounts(records.map((item) => item.year))
     };
   }, [papersQuery.data]);
 
   return (
-    <div className="space-y-6">
-      <section className="flex flex-col lg:flex-row gap-6">
-        <div className="flex-1 space-y-4">
-          <h1 className="text-2xl sm:text-3xl uppercase tracking-[0.4em] text-accent-cyan/90">BioArchive Intelligence</h1>
-          <p className="text-sm text-slate-300 max-w-2xl">
-            Browse NASA-style bioscience dossiers cached for offline operations. Search across mission logs and filter by
-            organism, platform, and mission year.
+    <div className="relative z-10 space-y-10">
+      <section className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
+        <div className="space-y-6">
+          <header className="space-y-4">
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.42em] text-dim">BioArchive Intelligence</p>
+            <h1 className="text-4xl font-semibold uppercase tracking-[0.3em] text-white">
+              Classified Ops Console
+            </h1>
+            <div className="flex flex-wrap items-center gap-3">
+              <HudBadge label="Dossiers" tone="amber" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
+              <HudBadge label="Offline" tone="cyan" value={<span>Dexie cache</span>} />
+              {indexQuery.isLoading ? <HudBadge label="Sync" tone="cyan" value={<span>Updating</span>} /> : null}
+              {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
+            </div>
+          </header>
+          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-mid">
+            Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
           </p>
           <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
-          {indexQuery.isLoading ? <StatusBadge text="Synchronizing index" tone="cyan" /> : null}
-          {indexQuery.isError ? <StatusBadge text="Index sync failed" tone="red" /> : null}
+          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-dim">
+            <span>Need help?</span>
+            <kbd className="rounded border border-white/20 px-2 py-1 text-white/80">?</kbd>
+            <span>Open console reference</span>
+          </div>
         </div>
-        <div className="w-full lg:w-[320px] shrink-0">
-          <Filters {...filterOptions} />
-        </div>
+        <Filters {...filterOptions} />
       </section>
 
-      <section className="border border-white/10 rounded-xl bg-black/40 backdrop-blur-sm p-4">
-        <header className="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.3em] text-slate-400 mb-4">
-          <span>Results</span>
-          <span className="text-accent-amber">{results.length.toString().padStart(2, '0')} dossiers</span>
+      <section className="space-y-4">
+        <header className="flex items-center justify-between">
+          <div>
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Results</p>
+            <h2 className="text-xl font-semibold tracking-[0.22em] text-white">Stacked Dossiers</h2>
+          </div>
+          <Link
+            to="/tactical"
+            className="rounded-full border border-white/20 px-4 py-2 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim hover:text-white/90"
+          >
+            Tactical map
+          </Link>
         </header>
-        <div className="grid gap-4">
-          {results.map((paper) => (
-            <Link
-              key={paper.id}
-              to={`/paper/${paper.id}`}
-              className="group border border-white/10 rounded-lg px-4 py-3 bg-black/60 hover:border-accent-cyan/60 transition shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <div>
-                  <h2 className="text-lg text-accent-cyan group-hover:text-white transition">{paper.title}</h2>
-                  <p className="text-xs uppercase tracking-[0.25em] text-slate-400">{paper.authors.join(', ')}</p>
-                </div>
-                <div className="flex gap-3 text-[0.6rem] uppercase tracking-[0.3em] text-slate-400">
-                  <span>{paper.year}</span>
-                  <span>{paper.organism}</span>
-                  <span>{paper.platform}</span>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-2 text-[0.55rem] uppercase tracking-[0.2em] text-slate-300">
-                {paper.keywords.map((keyword) => (
-                  <span key={keyword} className="px-2 py-1 border border-accent-cyan/40 rounded-full bg-accent-cyan/10">
-                    {keyword}
-                  </span>
-                ))}
-              </div>
-            </Link>
-          ))}
-          {results.length === 0 ? (
-            <div className="text-sm text-slate-400 border border-dashed border-white/10 rounded-lg p-6 text-center">
-              No dossiers match the current filters.
-            </div>
-          ) : null}
-        </div>
+        {results.length > 0 ? <CardStack items={results} /> : <EmptyState />}
       </section>
     </div>
   );
 };
 
-const StatusBadge = ({ text, tone }: { text: string; tone: 'cyan' | 'red' }) => (
-  <div
-    className={`inline-flex items-center gap-2 text-[0.6rem] uppercase tracking-[0.3em] px-3 py-2 border rounded-lg bg-black/60 ${
-      tone === 'cyan' ? 'border-accent-cyan/60 text-accent-cyan' : 'border-accent-red/60 text-accent-red'
-    }`}
-  >
-    <span className="inline-block h-2 w-2 rounded-full animate-pulse" style={{ backgroundColor: tone === 'cyan' ? '#55e6a5' : '#ff4d4f' }} />
-    {text}
+const EmptyState = () => (
+  <div className="flex h-60 flex-col items-center justify-center rounded-[26px] border border-dashed border-white/15 bg-black/50 text-center">
+    <p className="font-mono text-[0.62rem] uppercase tracking-[0.32em] text-dim">No dossiers match the current filters.</p>
+    <p className="mt-2 font-mono text-[0.58rem] uppercase tracking-[0.3em] text-mid">
+      Adjust organism, platform, or mission year to widen the search.
+    </p>
   </div>
 );
 

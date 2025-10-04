@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import BranchMap from '../components/BranchMap';
+import BranchMap, { BranchKey } from '../components/BranchMap';
 import Panel from '../components/Panel';
 import TrendMini from '../components/TrendMini';
+import HudBadge from '../components/HudBadge';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
 
@@ -22,7 +23,7 @@ const fetchPaper = async (id: string): Promise<PaperDetail> => {
 const Paper = () => {
   const params = useParams();
   const id = params.id as string;
-  const [activeSection, setActiveSection] = useState<'abstract' | 'methods' | 'results' | 'conclusion'>('abstract');
+  const [activeSection, setActiveSection] = useState<BranchKey>('abstract');
 
   const query = useQuery({
     queryKey: ['paper', id],
@@ -30,99 +31,190 @@ const Paper = () => {
     enabled: Boolean(id)
   });
 
+  useEffect(() => {
+    if (window.location.hash) {
+      const hash = window.location.hash.replace('#', '') as BranchKey;
+      if (hash === 'abstract' || hash === 'methods' || hash === 'results' || hash === 'conclusion') {
+        setActiveSection(hash);
+      }
+    }
+  }, []);
+
   if (query.isLoading) {
-    return <div className="text-sm text-slate-400">Synchronizing dossier…</div>;
+    return <div className="text-sm text-dim">Synchronizing dossier…</div>;
   }
 
   if (query.isError || !query.data) {
     return (
-      <div className="border border-accent-red/40 rounded-lg p-6 bg-black/60 text-accent-red text-sm">
+      <div className="rounded-[22px] border border-red/40 bg-black/60 p-6 text-red text-sm">
         Dossier retrieval failed. <Link className="underline" to="/">Return to archive</Link>
       </div>
     );
   }
 
-  const { title, sections, authors, year, organism, platform, keywords, links } = query.data;
+  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = query.data;
+
+  const handleCopyLink = (section: BranchKey) => {
+    const url = `${window.location.origin}/paper/${id}#${section}`;
+    navigator.clipboard.writeText(url).catch(() => undefined);
+  };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-      <div className="space-y-6">
-        <div className="border border-white/10 rounded-xl p-6 bg-black/50 backdrop-blur-sm space-y-4">
-          <div className="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.3em] text-slate-400">
-            <span>Dossier</span>
-            <span className="text-accent-cyan">{id}</span>
+    <div className="space-y-8">
+      <header className="relative overflow-hidden rounded-[28px] border border-white/12 bg-panel/80 p-6 shadow-panel">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="space-y-2">
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Dossier {id}</p>
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.24em] text-white">{title}</h1>
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-mid">{authors.join(', ')}</p>
           </div>
-          <h1 className="text-2xl text-accent-cyan leading-snug">{title}</h1>
-          <p className="text-xs uppercase tracking-[0.3em] text-slate-400">{authors.join(', ')}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <HudBadge label="Confidence" tone="amber" value={<span>{Math.round(confidence * 100)}%</span>} />
+            <HudBadge label="Keywords" tone="cyan" value={<span>{keywords.length}</span>} />
+            <HudBadge label="Entities" tone="cyan" value={<span>{entities.length}</span>} />
+          </div>
+        </div>
+      </header>
+
+      <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+        <div className="space-y-6">
+          <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Panel
+              id="abstract"
+              title="Abstract"
+              sublabel="Module Alpha"
+              active={activeSection === 'abstract'}
+              actions={
+                <button type="button" onClick={() => handleCopyLink('abstract')} className="text-dim hover:text-white/80">
+                  Copy link
+                </button>
+              }
+              variant="dossier"
+            >
+              {sections.abstract}
+            </Panel>
+            <Panel
+              id="methods"
+              title="Methods"
+              sublabel="Module Beta"
+              active={activeSection === 'methods'}
+              actions={
+                <button type="button" onClick={() => handleCopyLink('methods')} className="text-dim hover:text-white/80">
+                  Copy link
+                </button>
+              }
+              variant="dossier"
+            >
+              {sections.methods}
+            </Panel>
+            <Panel
+              id="results"
+              title="Results"
+              sublabel="Module Gamma"
+              active={activeSection === 'results'}
+              actions={
+                <button type="button" onClick={() => handleCopyLink('results')} className="text-dim hover:text-white/80">
+                  Copy link
+                </button>
+              }
+              variant="dossier"
+            >
+              {sections.results}
+            </Panel>
+            <Panel
+              id="conclusion"
+              title="Conclusion"
+              sublabel="Module Delta"
+              active={activeSection === 'conclusion'}
+              actions={
+                <button type="button" onClick={() => handleCopyLink('conclusion')} className="text-dim hover:text-white/80">
+                  Copy link
+                </button>
+              }
+              variant="dossier"
+            >
+              {sections.conclusion}
+            </Panel>
+          </div>
+
+          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-dim">LLM uplink pending</span>}>
+            Synthetic analyst summary channel pending activation. Placeholder text demonstrating panel chrome and typographic hierarchy for future LLM integration.
+          </Panel>
         </div>
 
-        <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+        <aside className="space-y-6">
+          <div className="rounded-[24px] border border-white/12 bg-panel/75 p-5 shadow-panel">
+            <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Meta</header>
+            <dl className="space-y-3 text-[0.82rem]">
+              <MetaRow label="Year" value={year.toString()} />
+              <MetaRow label="Organism" value={organism} />
+              <MetaRow label="Platform" value={platform} />
+            </dl>
+            <div className="mt-4 space-y-2">
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Access Flags</p>
+              <div className="flex flex-wrap gap-2">
+                {access.map((flag) => (
+                  <HudBadge key={flag} label={flag} tone="red" compact />
+                ))}
+              </div>
+            </div>
+            <div className="mt-5 space-y-2">
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Keywords</p>
+              <div className="flex flex-wrap gap-2">
+                {keywords.map((keyword) => (
+                  <span
+                    key={keyword}
+                    className="rounded-full border border-white/15 bg-black/40 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] text-mid"
+                  >
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-5 space-y-2">
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Entities</p>
+              <ul className="grid gap-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-mid">
+                {entities.map((entity) => (
+                  <li key={entity} className="rounded border border-white/10 bg-black/30 px-3 py-2">
+                    {entity}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-5 space-y-2">
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">External Links</p>
+              <ul className="space-y-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-amber">
+                {links.taskbook ? (
+                  <li>
+                    <a className="hover:text-white" href={links.taskbook} target="_blank" rel="noreferrer">
+                      Taskbook dossier
+                    </a>
+                  </li>
+                ) : null}
+                {links.osdr ? (
+                  <li>
+                    <a className="hover:text-white" href={links.osdr} target="_blank" rel="noreferrer">
+                      OSDR record
+                    </a>
+                  </li>
+                ) : null}
+              </ul>
+            </div>
+          </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <Panel title="Abstract" active={activeSection === 'abstract'}>
-            {sections.abstract}
-          </Panel>
-          <Panel title="Methods" active={activeSection === 'methods'}>
-            {sections.methods}
-          </Panel>
-          <Panel title="Results" active={activeSection === 'results'}>
-            {sections.results}
-          </Panel>
-          <Panel title="Conclusion" active={activeSection === 'conclusion'}>
-            {sections.conclusion}
-          </Panel>
-        </div>
-
-        <Panel title="AI Summary (placeholder)" active>
-          Synthetic analyst summary channel pending activation. Placeholder text demonstrating panel chrome and typographic
-          hierarchy for future LLM integration.
-        </Panel>
+          <TrendMini data={citations_by_year} />
+        </aside>
       </div>
-
-      <aside className="space-y-6">
-        <div className="border border-white/10 rounded-xl p-6 bg-black/50 backdrop-blur-sm">
-          <header className="text-[0.6rem] uppercase tracking-[0.3em] text-slate-400 mb-3">Meta</header>
-          <dl className="space-y-2 text-sm">
-            <MetaRow label="Year" value={year.toString()} />
-            <MetaRow label="Organism" value={organism} />
-            <MetaRow label="Platform" value={platform} />
-          </dl>
-          <div className="mt-4 text-[0.6rem] uppercase tracking-[0.3em] text-slate-400">Keywords</div>
-          <div className="flex flex-wrap gap-2 mt-2 text-[0.55rem] uppercase tracking-[0.2em] text-slate-300">
-            {keywords.map((keyword) => (
-              <span key={keyword} className="px-2 py-1 border border-accent-cyan/40 rounded-full bg-accent-cyan/10">
-                {keyword}
-              </span>
-            ))}
-          </div>
-          <div className="mt-4 text-[0.6rem] uppercase tracking-[0.3em] text-slate-400">External Links</div>
-          <ul className="mt-2 space-y-2 text-xs">
-            {links.taskbook ? (
-              <li>
-                <a className="text-accent-amber hover:text-white" href={links.taskbook} target="_blank" rel="noreferrer">
-                  Taskbook dossier
-                </a>
-              </li>
-            ) : null}
-            {links.osdr ? (
-              <li>
-                <a className="text-accent-amber hover:text-white" href={links.osdr} target="_blank" rel="noreferrer">
-                  OSDR record
-                </a>
-              </li>
-            ) : null}
-          </ul>
-        </div>
-        <TrendMini />
-      </aside>
     </div>
   );
 };
 
 const MetaRow = ({ label, value }: { label: string; value: string }) => (
   <div className="flex items-center justify-between border-b border-white/10 pb-2 last:border-none last:pb-0">
-    <span className="text-slate-500 uppercase tracking-[0.3em] text-[0.6rem]">{label}</span>
-    <span className="text-slate-200 text-xs">{value}</span>
+    <span className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">{label}</span>
+    <span className="text-sm text-white">{value}</span>
   </div>
 );
 

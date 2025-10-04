@@ -22,5 +22,42 @@
   "links": {
     "taskbook": "https://example.com/taskbook/exp_006",
     "osdr": "https://example.com/osdr/exp_006"
-  }
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "GROUND-ANALOG"
+  ],
+  "citations_by_year": [
+    {
+      "y": 2018,
+      "c": 3
+    },
+    {
+      "y": 2019,
+      "c": 4
+    },
+    {
+      "y": 2020,
+      "c": 2
+    },
+    {
+      "y": 2021,
+      "c": 5
+    },
+    {
+      "y": 2022,
+      "c": 5
+    },
+    {
+      "y": 2023,
+      "c": 6
+    }
+  ],
+  "confidence": 0.8,
+  "entities": [
+    "yeast colony",
+    "nutrient uptake",
+    "vacoule",
+    "ion channel"
+  ]
 }

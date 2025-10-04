@@ -22,5 +22,43 @@
   "links": {
     "taskbook": "https://example.com/taskbook/exp_010",
     "osdr": "https://example.com/osdr/exp_010"
-  }
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "DEEP-SPACE",
+    "ANIMAL"
+  ],
+  "citations_by_year": [
+    {
+      "y": 2018,
+      "c": 3
+    },
+    {
+      "y": 2019,
+      "c": 4
+    },
+    {
+      "y": 2020,
+      "c": 2
+    },
+    {
+      "y": 2021,
+      "c": 5
+    },
+    {
+      "y": 2022,
+      "c": 5
+    },
+    {
+      "y": 2023,
+      "c": 6
+    }
+  ],
+  "confidence": 0.94,
+  "entities": [
+    "microbiome",
+    "radiation belt",
+    "spore load",
+    "holoenzyme"
+  ]
 }

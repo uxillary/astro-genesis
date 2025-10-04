@@ -12,7 +12,11 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const next = typeahead(query).map((item) => ({ id: String(item.id), title: String(item.title) }));
+    const next = typeahead(query).map((item) => ({
+      id: String(item.id),
+      title: String(item.title),
+      year: Number((item as any).year ?? 0)
+    }));
     setSuggestions(next);
   }, [query, setSuggestions]);
 
@@ -22,22 +26,25 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
   };
 
   return (
-    <div className="relative">
-      <form onSubmit={handleSubmit} className="flex items-center gap-3">
-        <label className="sr-only" htmlFor="archive-search">
-          Search papers
+    <div className="relative w-full max-w-xl">
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center gap-3 rounded-[28px] border border-white/10 bg-black/60 px-5 py-3 shadow-panel"
+      >
+        <label className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim" htmlFor="archive-search">
+          Query
         </label>
         <input
           id="archive-search"
           type="search"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          className="w-full sm:w-[420px] bg-black/60 border border-white/15 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-cyan/80 focus:ring-2 focus:ring-accent-cyan/40 transition"
-          placeholder="Type to search title, authors, keywords"
+          className="flex-1 bg-transparent font-mono text-[0.85rem] uppercase tracking-[0.28em] text-white placeholder:text-dim focus:outline-none"
+          placeholder="Title / authors / keywords"
         />
         <button
           type="submit"
-          className="px-4 py-2 text-xs uppercase tracking-[0.3em] border border-accent-cyan/80 text-accent-cyan rounded-lg hover:bg-accent-cyan/10 transition"
+          className="rounded-full border border-amber/60 px-4 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-amber hover:bg-amber/10"
         >
           Execute
         </button>
@@ -45,19 +52,20 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
       {suggestions.length > 0 && query.length > 0 ? (
         <ul
           ref={listRef}
-          className="absolute mt-2 w-full sm:w-[420px] bg-black/80 border border-white/10 rounded-lg shadow-glow text-xs uppercase tracking-[0.2em] text-slate-200 divide-y divide-white/5"
+          className="absolute z-20 mt-2 w-full overflow-hidden rounded-[20px] border border-white/12 bg-panel/90 backdrop-blur-xl text-left shadow-panel"
         >
           {suggestions.map((item) => (
             <li key={item.id}>
               <button
                 type="button"
-                className="w-full text-left px-3 py-2 hover:bg-accent-cyan/10 focus:bg-accent-cyan/10 focus:outline-none"
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 font-mono text-[0.62rem] uppercase tracking-[0.26em] text-mid hover:bg-amber/10 hover:text-white"
                 onClick={() => {
                   setQuery(item.title);
                   onSearch(item.title);
                 }}
               >
-                {item.title}
+                <span className="truncate text-left">{item.title}</span>
+                <span className="text-dim">{item.year || '—'}</span>
               </button>
             </li>
           ))}
