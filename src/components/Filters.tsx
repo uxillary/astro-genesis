@@ -22,14 +22,14 @@ const Filters = ({ organisms, platforms, years }: FilterProps) => {
   }));
 
   return (
-    <aside className="rounded-[28px] border border-[#123025]/70 bg-[#04100d]/80 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
+    <aside className="rounded-[28px] border border-[#1a1f24]/70 bg-[#10161d]/80 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
       <header className="mb-4 flex items-center justify-between">
         <div>
-          <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55ffb4]">Filters</p>
-          <h3 className="text-lg font-semibold tracking-[0.18em] text-white">Operational Scope</h3>
+          <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Filters</p>
+          <h3 className="text-lg font-semibold tracking-[0.18em] text-[#d6e3e0]">Operational Scope</h3>
         </div>
         <button
-          className="rounded-full border border-[#123025] bg-[#061a14]/80 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.3em] text-[#6d8179] transition hover:border-[#55ffb4]/60 hover:text-white/90"
+          className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.3em] text-[#7a8b94] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
           onClick={() => resetFilters()}
           type="button"
         >
@@ -70,7 +70,7 @@ type FilterGroupProps = {
 const FilterGroup = ({ label, options, activeValue, onSelect }: FilterGroupProps) => (
   <div className="space-y-3">
     <div className="flex items-center justify-between">
-      <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#6d8179]">{label}</p>
+      <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#7a8b94]">{label}</p>
       <HudBadge label="Count" tone="cyan" compact value={<span>{options.reduce((acc, option) => acc + option.count, 0)}</span>} />
     </div>
     <div className="flex flex-wrap gap-2">
@@ -81,13 +81,13 @@ const FilterGroup = ({ label, options, activeValue, onSelect }: FilterGroupProps
           className={clsx(
             'group flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] transition-colors duration-200',
             activeValue === option.value
-              ? 'border-[#55ffb4]/70 bg-[#0b1f19]/80 text-[#55ffb4] shadow-[0_0_18px_rgba(85,255,180,0.35)]'
-              : 'border-[#123025] text-[#6d8179] hover:border-[#55ffb4]/50 hover:text-white'
+              ? 'border-[#55e6a5]/70 bg-[#142027]/80 text-[#55e6a5] shadow-[0_0_18px_rgba(85,230,165,0.35)]'
+              : 'border-[#1a1f24] text-[#7a8b94] hover:border-[#55e6a5]/50 hover:text-[#d6e3e0]'
           )}
           onClick={() => onSelect(option.value)}
         >
           <span>{option.label}</span>
-          <span className="rounded-sm bg-black/40 px-1.5 py-0.5 text-[0.55rem] text-[#6d8179] group-hover:text-white">{option.count}</span>
+          <span className="rounded-sm bg-[#0b0d0f]/40 px-1.5 py-0.5 text-[0.55rem] text-[#7a8b94] group-hover:text-[#d6e3e0]">{option.count}</span>
         </button>
       ))}
     </div>
