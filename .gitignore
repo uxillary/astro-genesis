@@ -68,3 +68,9 @@ logs/
 # any temporary downloads or scraped HTML
 resources/temp/
 resources/cache/
+
+# --- Prototype assets kept under version control ---
+!data/
+!data/**/*.json
+!data_min/
+!data_min/**/*.json
