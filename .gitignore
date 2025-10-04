@@ -6,3 +6,74 @@ dist
 *.tsbuildinfo
 .DS_Store
 package-lock.json
+
+# --- Python build and runtime ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+*.env
+*.venv
+Scripts/
+bin/
+
+# --- Dependencies / installs ---
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# --- Data & outputs ---
+# raw and processed data files (you can whitelist later)
+data/
+datasets/
+*.csv
+*.json
+*.xml
+*.xlsx
+*.tsv
+*.log
+
+# --- IDE / Editor settings ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Jupyter / analysis notebooks ---
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# --- OS / Misc ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Cache / temporary files ---
+*.tmp
+*.bak
+*.swp
+*.lock
+__pypackages__/
+.cache/
+.mypy_cache/
+pytest_cache/
+.tox/
+.coverage
+htmlcov/
+
+# --- Logs and progress bars ---
+logs/
+*.log
+*.out
+*.err
+
+# --- Project specific (astro-genesis) ---
+# any temporary downloads or scraped HTML
+resources/temp/
+resources/cache/
