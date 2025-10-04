@@ -57,9 +57,9 @@ const GridBg = () => {
         <text x="18" y="26" fill="#55e6a5" fontFamily="'IBM Plex Mono', monospace" fontSize="16" letterSpacing={6}>
           LINE CALLOUT
         </text>
-        <CalloutPanel x={60} y={60} width={260} label="TEXT" />
-        <CalloutPanel x={368} y={112} width={300} label="TEXT" flip />
-        <CalloutPanel x={704} y={68} width={260} label="TEXT" skew />
+        <CalloutPanel x={60} y={60} width={260} label="ACCESS DENIED" />
+        <CalloutPanel x={368} y={112} width={300} label="CLASSIFIED DOSSIER" flip />
+        <CalloutPanel x={704} y={68} width={260} label="TARGET IDENT" skew />
       </svg>
 
       <svg
