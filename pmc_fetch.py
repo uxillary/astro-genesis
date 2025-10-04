@@ -249,12 +249,17 @@ def iter_pmcids_from_csv(csv_path: Path, limit: Optional[int]) -> List[Dict]:
         raise RuntimeError("pandas is required to read CSV. pip install pandas")
     df = pd.read_csv(csv_path)
     pmc_col = None
-    for cand in ["PMCID", "pmcid", "Pmcid"]:
-        if cand in df.columns:
-            pmc_col = cand
+    normalized = {
+        col: re.sub(r"[^a-z0-9]", "", str(col).lower()) for col in df.columns
+    }
+    for col, norm in normalized.items():
+        if norm == "pmcid":
+            pmc_col = col
             break
     if not pmc_col:
-        raise RuntimeError("CSV must contain a PMCID column (PMCID/pmcid/Pmcid).")
+        raise RuntimeError(
+            "CSV must contain a PMCID column (e.g., PMCID, pmcid, 'PMCID #')."
+        )
     rows = []
     for _, row in df.iterrows():
         pmcid = str(row[pmc_col]).strip()
