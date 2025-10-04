@@ -57,23 +57,25 @@ const App = () => {
       <HelpOverlay open={showHelp} onClose={() => setHelp(false)} />
       <CredentialOverlay open={credentialOpen} onClose={() => setCredential(false)} />
       <div className="relative z-10 flex min-h-screen flex-col">
-        <header className="px-6 py-4 border-b border-white/10 backdrop-blur-sm bg-black/40">
+        <header className="px-6 py-4 border-b border-[#123025]/70 bg-[#050d0b]/80 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="rounded-full border border-red/60 px-4 py-1 text-[0.55rem] font-mono uppercase tracking-[0.32em] text-red">
+              <div className="rounded-full border border-red/50 bg-red/10 px-4 py-1 text-[0.55rem] font-mono uppercase tracking-[0.32em] text-red shadow-[0_0_14px_rgba(255,86,72,0.25)]">
                 BioArchive Intelligence
               </div>
-              <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim">
+              <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#6ab89a]">
                 Offline-first classified ops console
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <nav className="flex gap-4 text-[0.6rem] font-mono uppercase tracking-[0.28em] text-dim">
+              <nav className="flex gap-4 text-[0.6rem] font-mono uppercase tracking-[0.28em] text-[#6d8179]">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
                     `rounded-full border px-3 py-1 transition-colors ${
-                      isActive ? 'border-amber/70 text-amber' : 'border-transparent hover:text-white/80'
+                      isActive
+                        ? 'border-[#55ffb4]/70 bg-[#0b1f19]/80 text-[#55ffb4] shadow-[0_0_18px_rgba(85,255,180,0.35)]'
+                        : 'border-transparent hover:border-[#123025] hover:text-white/80'
                     }`
                   }
                   end
@@ -84,7 +86,9 @@ const App = () => {
                   to="/tactical"
                   className={({ isActive }) =>
                     `rounded-full border px-3 py-1 transition-colors ${
-                      isActive ? 'border-amber/70 text-amber' : 'border-transparent hover:text-white/80'
+                      isActive
+                        ? 'border-[#55ffb4]/70 bg-[#0b1f19]/80 text-[#55ffb4] shadow-[0_0_18px_rgba(85,255,180,0.35)]'
+                        : 'border-transparent hover:border-[#123025] hover:text-white/80'
                     }`
                   }
                 >
@@ -93,7 +97,7 @@ const App = () => {
               </nav>
               <button
                 type="button"
-                className="rounded-full border border-white/20 px-4 py-1 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim hover:text-white/90"
+                className="rounded-full border border-[#123025] bg-[#06120f]/80 px-4 py-1 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#6d8179] shadow-[0_0_22px_rgba(0,0,0,0.45)] transition-colors hover:text-white/90"
                 onClick={() => toggleMode()}
               >
                 {mode === 'hud' ? 'Switch to MONO' : 'Switch to HUD'}
@@ -110,7 +114,7 @@ const App = () => {
             </Routes>
           </Suspense>
         </main>
-        <footer className="px-6 py-4 text-[0.55rem] font-mono uppercase tracking-[0.3em] text-dim border-t border-white/10">
+        <footer className="px-6 py-4 border-t border-[#123025]/70 bg-[#040c0a]/80 text-[0.55rem] font-mono uppercase tracking-[0.3em] text-[#6d8179]">
           Signal integrity nominal // Press C for credentials · Press ? for help overlay
         </footer>
       </div>
