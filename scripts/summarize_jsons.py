@@ -8,8 +8,7 @@ import os
 from pathlib import Path
 from typing import Dict, Iterable, List
 
-from openai import OpenAI
-from openai.error import OpenAIError
+from openai import OpenAI, OpenAIError
 
 
 PROMPT_TEMPLATE = (
