@@ -1,0 +1,19 @@
+{
+  "id": "exp_002",
+  "title": "Radiation Shielding Efficiency in Lunar Simulant",
+  "authors": ["L. Chen", "R. Ortega"],
+  "year": 2021,
+  "organism": "N/A",
+  "experiment_type": "Material Science",
+  "platform": "Lunar Gateway Prototype",
+  "keywords": ["radiation", "shielding", "regolith"],
+  "sections": {
+    "abstract": "The experiment benchmarks radiation attenuation factors using compacted lunar regolith simulant.",
+    "methods": "Lunar simulant slabs were layered with composite polymers and exposed to proton spectra in a vacuum chamber.",
+    "results": "Composite-regolith laminates reduced proton flux by up to 47% compared to regolith-only shielding.",
+    "conclusion": "Hybrid shielding strategies combining in-situ resources with lightweight polymers can protect future Gateway crews."
+  },
+  "links": {
+    "ntrs": "https://ntrs.nasa.gov/"
+  }
+}

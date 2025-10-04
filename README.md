@@ -63,5 +63,23 @@ This workflow turns scattered datasets into an intelligent exploration tool that
 
 ## Credits
 
-Developed for the NASA Space Apps Challenge 2025  
+Developed for the NASA Space Apps Challenge 2025
 by Adam Johnston
+
+## Habitable Map Dashboard Prototype
+
+The repository now includes a sci-fi inspired interface for browsing sample bioscience publications. Launch `index.html` in a browser (or serve the project with `python -m http.server`) to explore the prototype.
+
+### Prototype Highlights
+
+- Neon HUD aesthetic with animated scanline header and grid overlay.
+- Filters for organism, experiment type, year, and platform with typeahead search.
+- Branching SVG connectors linking the central publication node to modular Abstract, Methods, Results, Conclusion, and Keyword Trend panels.
+- Metadata dossier and AI summary placeholder ready for future model integration.
+
+### Static Asset Map
+
+- `index.html` – layout scaffold and modules.
+- `styles.css` – custom HUD visual language.
+- `app.js` – data loading, filter logic, connector rendering, and dummy trend graph.
+- `data/` – sample publication index and individual records (mirrored in `data_min/clean/`).

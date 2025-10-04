@@ -1,0 +1,20 @@
+{
+  "id": "exp_003",
+  "title": "Yeast Stress Responses During Mars Transit",
+  "authors": ["S. Patel", "M. Svensson"],
+  "year": 2022,
+  "organism": "Saccharomyces cerevisiae",
+  "experiment_type": "Microbial Genomics",
+  "platform": "Deep Space Habitat",
+  "keywords": ["yeast", "oxidative stress", "transcriptomics"],
+  "sections": {
+    "abstract": "Yeast cultures were monitored to characterize transcriptional drift during simulated Mars transit radiation exposure.",
+    "methods": "Cryo-preserved cultures were cycled through radiation bursts and microgravity clinostat rotation while RNA-seq snapshots were collected.",
+    "results": "Stress response genes including MSN2/4 and HSP family members were upregulated with persistent ROS accumulation.",
+    "conclusion": "Long-duration transit missions require antioxidant supplementation and shielded storage to maintain yeast biomanufacturing stability."
+  },
+  "links": {
+    "gene_lab": "https://genelab.nasa.gov/",
+    "publication": "https://doi.org/10.1000/zenodo.fake"
+  }
+}
