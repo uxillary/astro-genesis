@@ -7,18 +7,33 @@ import TrendMini from '../components/TrendMini';
 import HudBadge from '../components/HudBadge';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
+import { createFallbackPaper } from '../lib/fallback';
 import { withBase } from '../lib/paths';
 
-const fetchPaper = async (id: string): Promise<PaperDetail> => {
+type PaperQueryResult = {
+  paper: PaperDetail;
+  isFallback: boolean;
+};
+
+const fetchPaper = async (id: string): Promise<PaperQueryResult> => {
   const cached = await getPaperFromCache(id);
   if (cached && cached.sections && cached.links) {
-    return cached as PaperDetail;
+    return { paper: cached as PaperDetail, isFallback: false };
   }
-  const response = await fetch(withBase(`data/papers/${id}.json`));
-  if (!response.ok) throw new Error('Failed to fetch dossier');
-  const data = (await response.json()) as PaperDetail;
-  await upsertPaperDetail(data);
-  return data;
+
+  try {
+    const response = await fetch(withBase(`data/papers/${id}.json`));
+    if (!response.ok) {
+      throw new Error(`Failed to fetch dossier: ${response.status}`);
+    }
+    const data = (await response.json()) as PaperDetail;
+    await upsertPaperDetail(data);
+    return { paper: data, isFallback: false };
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn('[Archive] dossier retrieval failed, supplying fallback stub.', error);
+    return { paper: createFallbackPaper(id), isFallback: true };
+  }
 };
 
 const Paper = () => {
@@ -26,7 +41,7 @@ const Paper = () => {
   const id = params.id as string;
   const [activeSection, setActiveSection] = useState<BranchKey>('abstract');
 
-  const query = useQuery({
+  const query = useQuery<PaperQueryResult>({
     queryKey: ['paper', id],
     queryFn: () => fetchPaper(id),
     enabled: Boolean(id)
@@ -53,7 +68,8 @@ const Paper = () => {
     );
   }
 
-  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = query.data;
+  const { paper, isFallback } = query.data;
+  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
 
   const handleCopyLink = (section: BranchKey) => {
     const url = `${window.location.origin}/paper/${id}#${section}`;
@@ -62,6 +78,11 @@ const Paper = () => {
 
   return (
     <div className="space-y-8">
+      {isFallback ? (
+        <div className="rounded-[22px] border border-amber/40 bg-black/70 p-6 text-[0.75rem] uppercase tracking-[0.32em] text-amber">
+          Archive uplink unstable. Displaying placeholder dossier shell until synchronization completes.
+        </div>
+      ) : null}
       <header className="relative overflow-hidden rounded-[28px] border border-white/12 bg-panel/80 p-6 shadow-panel">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
