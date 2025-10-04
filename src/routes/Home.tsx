@@ -9,9 +9,10 @@ import CardStack from '../components/CardStack';
 import HudBadge from '../components/HudBadge';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
+import { withBase } from '../lib/paths';
 
 const fetchIndex = async (): Promise<PaperIndex[]> => {
-  const response = await fetch('/data/index.json');
+  const response = await fetch(withBase('data/index.json'));
   if (!response.ok) throw new Error('Failed to load index');
   return response.json();
 };
