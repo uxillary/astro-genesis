@@ -1,0 +1,57 @@
+
+Install dependencies:
+
+pip install pandas requests beautifulsoup4 lxml openai
+
+
+Run the script:
+python scripts/pmc_ingest.py --limit 5
+
+Use --limit 5 for a small test.
+Add --force to re-download articles if needed.
+
+Check your outputs:
+data/raw_pmc/ → HTML copies
+data/papers/ → Clean structured JSONs
+
+Each JSON should include all fields for your UI.
+
+--
+
+python scripts/pmc_ingest.py --csv resources/SB_publication_PMC.csv --limit 5 --out data
+
+python pmc_fetch.py --csv SB_publication_PMC.csv --limit 2 --dry-run
+
+python summarize_jsons.py
+
+
+.\.venv\Scripts\Activate.ps1 
+
+python pmc_fetch.py --csv SB_publication_PMC.csv --out data --limit 200 --workers 6a
+
+
+
+
+
+
+--
+
+metadata
+
+id – a unique identifier (e.g. exp_001)
+title – name of the experiment
+authors – list of author names
+year – publication or experiment year
+organism – what living thing or material was studied
+experiment_type – type or field of study (e.g. Microgravity Botany)
+platform – where it happened (ISS, Shuttle, etc.)
+keywords – short list of key topics
+sections – main text parts:
+abstract
+methods
+results
+conclusion
+links – URLs to NASA data or publications
+
+summary – short AI-generated overview
+graph / metrics – data for charts (year trends, related studies, etc.) - if necessary for that specific publication
