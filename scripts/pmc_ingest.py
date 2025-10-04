@@ -43,6 +43,48 @@ else:
     _PANDAS_IMPORT_ERROR = None
 
 
+def _load_local_env() -> None:
+    """Load variables from a nearby .env file if present.
+
+    The ingestion script is often run locally where developers keep secrets such
+    as ``OPENAI_API_KEY`` in a ``.env`` file that is not committed to version
+    control.  We perform a minimal parse of the file, populating ``os.environ``
+    for any keys that are not already set in the current process.
+    """
+
+    # Candidate locations, prioritising the current working directory and then
+    # the repository roots relative to this script. ``setdefault`` ensures we do
+    # not override an environment variable that is already defined externally.
+    script_dir = Path(__file__).resolve().parent
+    candidates = [
+        Path.cwd() / ".env",
+        script_dir / ".env",
+        script_dir.parent / ".env",
+    ]
+
+    for env_path in candidates:
+        if not env_path.is_file():
+            continue
+
+        try:
+            for raw_line in env_path.read_text().splitlines():
+                line = raw_line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+
+                key, value = line.split("=", 1)
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key:
+                    os.environ.setdefault(key, value)
+        except OSError:
+            # Non-fatal: continue to the next candidate location.
+            continue
+
+
+_load_local_env()
+
+
 PMC_BASE = "https://pmc.ncbi.nlm.nih.gov"
 USER_AGENT = "AstroGenesis-Ingestor/1.0 (+https://github.com/NASA-SpaceApps-Challenge)"
 STOPWORDS = {
