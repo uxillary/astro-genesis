@@ -7,13 +7,14 @@ import TrendMini from '../components/TrendMini';
 import HudBadge from '../components/HudBadge';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
+import { withBase } from '../lib/paths';
 
 const fetchPaper = async (id: string): Promise<PaperDetail> => {
   const cached = await getPaperFromCache(id);
   if (cached && cached.sections && cached.links) {
     return cached as PaperDetail;
   }
-  const response = await fetch(`/data/papers/${id}.json`);
+  const response = await fetch(withBase(`data/papers/${id}.json`));
   if (!response.ok) throw new Error('Failed to fetch dossier');
   const data = (await response.json()) as PaperDetail;
   await upsertPaperDetail(data);
