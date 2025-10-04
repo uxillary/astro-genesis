@@ -30,13 +30,7 @@ build/
 
 # --- Data & outputs ---
 # raw and processed data files (you can whitelist later)
-data/
 datasets/
-*.csv
-*.json
-*.xml
-*.xlsx
-*.tsv
 *.log
 
 # --- IDE / Editor settings ---
