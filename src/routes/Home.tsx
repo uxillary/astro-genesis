@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { seedIndex, listPaperIndex } from '../lib/db';
+import { seedIndex, listPaperIndex, isDexieAvailable } from '../lib/db';
 import type { PaperIndex } from '../lib/types';
 import Filters from '../components/Filters';
 import SearchBox from '../components/SearchBox';
@@ -24,6 +24,7 @@ const Home = () => {
     setResults: state.setResults,
     results: state.results
   }));
+  const dexieReady = isDexieAvailable();
 
   const indexQuery = useQuery({
     queryKey: ['index'],
@@ -83,7 +84,11 @@ const Home = () => {
             </h1>
             <div className="flex flex-wrap items-center gap-3">
               <HudBadge label="Dossiers" tone="amber" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
-              <HudBadge label="Offline" tone="cyan" value={<span>Dexie cache</span>} />
+              <HudBadge
+                label="Cache"
+                tone={dexieReady ? 'cyan' : 'red'}
+                value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>}
+              />
               {indexQuery.isLoading ? <HudBadge label="Sync" tone="cyan" value={<span>Updating</span>} /> : null}
               {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
             </div>
