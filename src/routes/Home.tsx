@@ -80,7 +80,7 @@ const Home = () => {
         <div className="space-y-6">
           <header className="space-y-4">
             <p className="font-mono text-[0.58rem] uppercase tracking-[0.42em] text-[#55e6a5]">BioArchive Intelligence</p>
-            <h1 className="text-4xl font-semibold uppercase tracking-[0.3em] text-[#d6e3e0]">
+            <h1 className="text-4xl font-semibold uppercase tracking-[0.26em] text-[#f3f8f6]">
               Classified Ops Console
             </h1>
             <div className="flex flex-wrap items-center gap-3">
@@ -94,14 +94,14 @@ const Home = () => {
               {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
             </div>
           </header>
-          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-[#7a8b94]">
-            Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
+          <p className="max-w-2xl font-mono text-[0.72rem] uppercase tracking-[0.24em] text-[#9fb4bc]">
+            Search the NASA bioscience archive. Filter dossiers by organism, platform, or year to get the right mission intel fast.
           </p>
           <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
-          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-[#7a8b94]">
+          <div className="flex items-center gap-3 text-[0.56rem] font-mono uppercase tracking-[0.28em] text-[#5f6c75]">
             <span>Need help?</span>
-            <kbd className="rounded border border-[#d6e3e0]/20 px-2 py-1 text-[#d6e3e0]/80">?</kbd>
-            <span>Open console reference</span>
+            <kbd className="rounded border border-[#d6e3e0]/25 bg-[#0b1116]/70 px-2 py-1 text-[#d6e3e0]/85">?</kbd>
+            <span>Press for console reference</span>
           </div>
         </div>
         <Filters {...filterOptions} />
@@ -127,10 +127,10 @@ const Home = () => {
 };
 
 const EmptyState = () => (
-  <div className="flex h-60 flex-col items-center justify-center rounded-[26px] border border-dashed border-[#d6e3e0]/15 bg-[#0b0d0f]/50 text-center">
-    <p className="font-mono text-[0.62rem] uppercase tracking-[0.32em] text-dim">No dossiers match the current filters.</p>
-    <p className="mt-2 font-mono text-[0.58rem] uppercase tracking-[0.3em] text-mid">
-      Adjust organism, platform, or mission year to widen the search.
+  <div className="flex h-60 flex-col items-center justify-center rounded-[26px] border border-dashed border-[#d6e3e0]/18 bg-[#0b0d0f]/55 text-center">
+    <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-[#b5c5cc]">No dossiers match the current filters.</p>
+    <p className="mt-2 font-mono text-[0.56rem] uppercase tracking-[0.26em] text-mid">
+      Try another organism, platform, or mission year.
     </p>
   </div>
 );
