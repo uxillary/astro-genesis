@@ -1,0 +1,26 @@
+{
+  "id": "exp_004",
+  "title": "Bioadaptive Study 4",
+  "authors": [
+    "Dr. D. Vega",
+    "Lt. P. Orion"
+  ],
+  "year": 2019,
+  "organism": "Caenorhabditis elegans",
+  "platform": "ISS - Kubik",
+  "keywords": [
+    "gene expression",
+    "circadian rhythm",
+    "metabolomics"
+  ],
+  "sections": {
+    "abstract": "Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure. Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers.",
+    "methods": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers.",
+    "results": "Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
+    "conclusion": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Radiation shielding strategies were evaluated alongside transcriptomic profiling to identify mission-critical biomarkers. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics."
+  },
+  "links": {
+    "taskbook": "https://example.com/taskbook/exp_004",
+    "osdr": "https://example.com/osdr/exp_004"
+  }
+}

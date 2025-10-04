@@ -1,0 +1,26 @@
+{
+  "id": "exp_008",
+  "title": "Bioadaptive Study 8",
+  "authors": [
+    "Dr. H. Vega",
+    "Lt. T. Orion"
+  ],
+  "year": 2023,
+  "organism": "Saccharomyces cerevisiae",
+  "platform": "Deep Space Habitat",
+  "keywords": [
+    "photosynthesis",
+    "circadian rhythm",
+    "gene expression"
+  ],
+  "sections": {
+    "abstract": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics.",
+    "methods": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
+    "results": "Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics.",
+    "conclusion": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems."
+  },
+  "links": {
+    "taskbook": "https://example.com/taskbook/exp_008",
+    "osdr": "https://example.com/osdr/exp_008"
+  }
+}
