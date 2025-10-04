@@ -5,7 +5,8 @@
     "moduleResolution": "Bundler",
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "lib": ["DOM", "DOM.Iterable", "ES2020", "WebWorker"]
+    "lib": ["DOM", "DOM.Iterable", "ES2020", "WebWorker"],
+    "types": ["node"]
   },
   "include": ["vite.config.ts", "scripts"]
 }

@@ -13,6 +13,44 @@
       "gene expression",
       "immune modulation",
       "cell differentiation"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "IN-VITRO"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 2
+      },
+      {
+        "y": 2019,
+        "c": 3
+      },
+      {
+        "y": 2020,
+        "c": 1
+      },
+      {
+        "y": 2021,
+        "c": 4
+      },
+      {
+        "y": 2022,
+        "c": 4
+      },
+      {
+        "y": 2023,
+        "c": 5
+      }
+    ],
+    "confidence": 0.62,
+    "entities": [
+      "gravitropism",
+      "auxin",
+      "root cap",
+      "phototropism"
     ]
   },
   {
@@ -29,6 +67,43 @@
       "metabolomics",
       "cell differentiation",
       "transcriptomics"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ANIMAL"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 3
+      },
+      {
+        "y": 2019,
+        "c": 4
+      },
+      {
+        "y": 2020,
+        "c": 2
+      },
+      {
+        "y": 2021,
+        "c": 5
+      },
+      {
+        "y": 2022,
+        "c": 5
+      },
+      {
+        "y": 2023,
+        "c": 6
+      }
+    ],
+    "confidence": 0.66,
+    "entities": [
+      "telomere integrity",
+      "microtubule",
+      "ion gradient",
+      "oxidative load"
     ]
   },
   {
@@ -45,6 +120,44 @@
       "transcriptomics",
       "microgravity",
       "photosynthesis"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "ANIMAL"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 4
+      },
+      {
+        "y": 2019,
+        "c": 5
+      },
+      {
+        "y": 2020,
+        "c": 3
+      },
+      {
+        "y": 2021,
+        "c": 6
+      },
+      {
+        "y": 2022,
+        "c": 6
+      },
+      {
+        "y": 2023,
+        "c": 7
+      }
+    ],
+    "confidence": 0.69,
+    "entities": [
+      "chloroplast",
+      "signal cascade",
+      "gene silencing",
+      "hypergravity"
     ]
   },
   {
@@ -61,6 +174,43 @@
       "gene expression",
       "circadian rhythm",
       "metabolomics"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "IN-VITRO"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 5
+      },
+      {
+        "y": 2019,
+        "c": 6
+      },
+      {
+        "y": 2020,
+        "c": 4
+      },
+      {
+        "y": 2021,
+        "c": 7
+      },
+      {
+        "y": 2022,
+        "c": 7
+      },
+      {
+        "y": 2023,
+        "c": 8
+      }
+    ],
+    "confidence": 0.72,
+    "entities": [
+      "circadian gate",
+      "metabolic flux",
+      "RNA-seq",
+      "cryoprotection"
     ]
   },
   {
@@ -77,6 +227,43 @@
       "radiation response",
       "transcriptomics",
       "cell differentiation"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 2
+      },
+      {
+        "y": 2019,
+        "c": 3
+      },
+      {
+        "y": 2020,
+        "c": 1
+      },
+      {
+        "y": 2021,
+        "c": 4
+      },
+      {
+        "y": 2022,
+        "c": 4
+      },
+      {
+        "y": 2023,
+        "c": 5
+      }
+    ],
+    "confidence": 0.76,
+    "entities": [
+      "dosimetry",
+      "stress kinase",
+      "metabolite array",
+      "cytoskeleton"
     ]
   },
   {
@@ -93,6 +280,43 @@
       "gene expression",
       "circadian rhythm",
       "microgravity"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "GROUND-ANALOG"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 3
+      },
+      {
+        "y": 2019,
+        "c": 4
+      },
+      {
+        "y": 2020,
+        "c": 2
+      },
+      {
+        "y": 2021,
+        "c": 5
+      },
+      {
+        "y": 2022,
+        "c": 5
+      },
+      {
+        "y": 2023,
+        "c": 6
+      }
+    ],
+    "confidence": 0.8,
+    "entities": [
+      "yeast colony",
+      "nutrient uptake",
+      "vacoule",
+      "ion channel"
     ]
   },
   {
@@ -109,6 +333,44 @@
       "transcriptomics",
       "photosynthesis",
       "cell differentiation"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "ANIMAL"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 4
+      },
+      {
+        "y": 2019,
+        "c": 5
+      },
+      {
+        "y": 2020,
+        "c": 3
+      },
+      {
+        "y": 2021,
+        "c": 6
+      },
+      {
+        "y": 2022,
+        "c": 6
+      },
+      {
+        "y": 2023,
+        "c": 7
+      }
+    ],
+    "confidence": 0.83,
+    "entities": [
+      "symbiosis",
+      "biofilm",
+      "tissue analog",
+      "mission clock"
     ]
   },
   {
@@ -125,6 +387,43 @@
       "photosynthesis",
       "circadian rhythm",
       "gene expression"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "DEEP-SPACE"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 5
+      },
+      {
+        "y": 2019,
+        "c": 6
+      },
+      {
+        "y": 2020,
+        "c": 4
+      },
+      {
+        "y": 2021,
+        "c": 7
+      },
+      {
+        "y": 2022,
+        "c": 7
+      },
+      {
+        "y": 2023,
+        "c": 8
+      }
+    ],
+    "confidence": 0.86,
+    "entities": [
+      "bioluminescence",
+      "quantum yield",
+      "chlorophyll",
+      "habitat deck"
     ]
   },
   {
@@ -140,6 +439,44 @@
     "keywords": [
       "root morphology",
       "photosynthesis"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "IN-VITRO"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 2
+      },
+      {
+        "y": 2019,
+        "c": 3
+      },
+      {
+        "y": 2020,
+        "c": 1
+      },
+      {
+        "y": 2021,
+        "c": 4
+      },
+      {
+        "y": 2022,
+        "c": 4
+      },
+      {
+        "y": 2023,
+        "c": 5
+      }
+    ],
+    "confidence": 0.9,
+    "entities": [
+      "genome stability",
+      "root sheath",
+      "apical growth",
+      "auxin flow"
     ]
   },
   {
@@ -156,6 +493,44 @@
       "circadian rhythm",
       "microgravity",
       "radiation response"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "DEEP-SPACE",
+      "ANIMAL"
+    ],
+    "citations_by_year": [
+      {
+        "y": 2018,
+        "c": 3
+      },
+      {
+        "y": 2019,
+        "c": 4
+      },
+      {
+        "y": 2020,
+        "c": 2
+      },
+      {
+        "y": 2021,
+        "c": 5
+      },
+      {
+        "y": 2022,
+        "c": 5
+      },
+      {
+        "y": 2023,
+        "c": 6
+      }
+    ],
+    "confidence": 0.94,
+    "entities": [
+      "microbiome",
+      "radiation belt",
+      "spore load",
+      "holoenzyme"
     ]
   }
 ]

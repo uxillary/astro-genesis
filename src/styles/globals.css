@@ -3,15 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --accent-cyan: #55e6a5;
-  --accent-amber: #ffb020;
-  --accent-red: #ff4d4f;
+  --bg: #0b0e10;
+  --panel: #0f1316;
+  --stroke: #1c2427;
+  --grid: #101519;
+  --amber: #ffb020;
+  --red: #ff4d4f;
+  --cyan: #55e6a5;
+  --white: #e8f2ef;
+  --mid: #a3b8b1;
+  --dim: #6a7b76;
+  --font-heading: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+[data-mode='mono'] {
+  --white: #ffffff;
+  --mid: #bdbdbd;
+  --dim: #7a7a7a;
+  --amber: #e0e0e0;
+  --red: #e0e0e0;
+  --cyan: #e0e0e0;
 }
 
 html,
 body {
-  background-color: #05070c;
-  color: #e2e8f0;
+  background-color: var(--bg);
+  color: var(--white);
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+
+body {
+  min-height: 100vh;
+  background-image: radial-gradient(circle at top, rgba(255, 74, 79, 0.12), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(85, 230, 165, 0.08), transparent 55%);
+  background-attachment: fixed;
 }
 
 a {
@@ -20,7 +47,7 @@ a {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 1px solid var(--cyan);
   outline-offset: 2px;
 }
 
@@ -30,10 +57,70 @@ a:focus-visible {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(12, 16, 21, 0.75);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(85, 230, 165, 0.4);
-  border-radius: 9999px;
+  background: rgba(85, 230, 165, 0.35);
+  border-radius: 999px;
+}
+
+::selection {
+  background: rgba(255, 61, 46, 0.55);
+  color: var(--white);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  .hud-glow {
+    box-shadow: 0 0 0 1px rgba(255, 61, 46, 0.35), 0 0 24px rgba(255, 138, 0, 0.2);
+  }
+
+  .mono-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background-image: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 3px);
+    opacity: 0.6;
+  }
+}
+
+.react-flow__edge-path.animated-edge {
+  stroke-dasharray: 6 6;
+  animation: dash 6s linear infinite;
+}
+
+.react-flow__node.default.selected .react-flow__node-default {
+  outline: none;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 16;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }

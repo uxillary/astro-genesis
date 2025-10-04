@@ -3,8 +3,20 @@ import type { PaperRecord } from './db';
 import type { FilterState } from './types';
 
 const miniSearch = new MiniSearch<PaperRecord>({
-  fields: ['title', 'authors', 'keywords'],
-  storeFields: ['id', 'title', 'authors', 'year', 'organism', 'platform', 'keywords'],
+  fields: ['title', 'authors', 'keywords', 'organism', 'platform', 'entities'],
+  storeFields: [
+    'id',
+    'title',
+    'authors',
+    'year',
+    'organism',
+    'platform',
+    'keywords',
+    'confidence',
+    'access',
+    'citations_by_year',
+    'entities'
+  ],
   searchOptions: {
     prefix: true,
     fuzzy: 0.1

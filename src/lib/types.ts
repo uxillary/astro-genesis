@@ -1,3 +1,8 @@
+export type CitationPoint = {
+  y: number;
+  c: number;
+};
+
 export type PaperIndex = {
   id: string;
   title: string;
@@ -6,6 +11,10 @@ export type PaperIndex = {
   organism: string;
   platform: string;
   keywords: string[];
+  confidence: number;
+  access: string[];
+  citations_by_year: CitationPoint[];
+  entities: string[];
 };
 
 export type PaperDetail = PaperIndex & {
