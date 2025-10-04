@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BioArchive // ACCESS GRANTED</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0f1e; --surface:#0f162b; --accent:#55e6a5; --muted:#93a0b4; --border:rgba(85,230,165,.25);
+  }
+  html,body{height:100%;margin:0;background:var(--bg);color:#e6eefb;font:14px/1.5 Inter,system-ui,Segoe UI,Roboto,sans-serif;}
+  .wrap{max-width:1100px;margin:0 auto;padding:20px;}
+  h1{margin:0 0 8px;letter-spacing:.15em;color:var(--accent);font-weight:700;font-size:20px}
+  .subtitle{color:var(--muted);letter-spacing:.2em;font-size:11px;margin-bottom:16px}
+  .bar{display:flex;gap:8px;align-items:center;margin:12px 0 16px}
+  input[type="search"]{flex:1;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:#e6eefb;outline:none}
+  .btn{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--accent);cursor:pointer}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.2));
+        border:1px solid var(--border);border-radius:16px;padding:14px;position:relative;overflow:hidden}
+  .card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(85,230,165,.06),transparent);
+              transform:translateY(-100%);animation:sweep 2.4s linear infinite}
+  @keyframes sweep{to{transform:translateY(100%)}}
+  .row{display:flex;justify-content:space-between;gap:12px}
+  .title{margin:0;font-weight:600}
+  .meta{color:var(--muted);font-size:12px}
+  .badges{margin:6px 0}
+  .badge{display:inline-block;padding:2px 8px;margin:0 6px 6px 0;border:1px solid var(--border);border-radius:999px;color:var(--accent);font-size:11px;letter-spacing:.04em}
+  .abs{color:var(--muted);margin:8px 0 0}
+  .topline{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .counter{color:var(--muted);font-size:12px}
+  .gate{height:22vh;display:grid;place-items:center;margin:8px 0 16px}
+  .gate .panel{ text-align:center;border:1px solid var(--border); border-radius:16px; padding:16px; background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.15));}
+  .hexbg{position:fixed;inset:0;pointer-events:none;background:
+      radial-gradient(1200px 600px at 50% 10%, rgba(85,230,165,.06), transparent 60%),
+      repeating-linear-gradient(60deg, transparent 0 22px, rgba(85,230,165,.04) 22px 24px);}
+  .hidden{display:none}
+  a{color:var(--accent);text-decoration:none}
+  .controls{display:flex;gap:8px;align-items:center}
+  select{padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:#e6eefb}
+</style>
+</head>
+<body>
+<div class="hexbg"></div>
+<div class="wrap">
+  <div class="topline">
+    <div>
+      <div class="subtitle">BIOLOGICAL & PHYSICAL SCIENCES DIVISION</div>
+      <h1>BIOARCHIVE // ACCESS GRANTED</h1>
+    </div>
+    <div class="counter" id="counter">0 results</div>
+  </div>
+
+  <div class="gate">
+    <div class="panel">
+      <div class="subtitle">CLASSIFIED ARCHIVE</div>
+      <div style="color:var(--accent);letter-spacing:.18em;margin-bottom:8px">DECRYPTING INDEX…</div>
+      <button class="btn" id="tryLoad">Load Built-in CSV</button>
+      <div style="margin-top:8px;color:var(--muted)">or</div>
+      <input type="file" id="fileInput" accept=".csv" class="btn" />
+    </div>
+  </div>
+
+  <div class="bar hidden" id="controls">
+    <input id="search" type="search" placeholder="Search classified records (title / abstract / journal / DOI)…" />
+    <div class="controls">
+      <select id="sortSel" title="Sort">
+        <option value="year-desc">Year ↓</option>
+        <option value="year-asc">Year ↑</option>
+        <option value="title-asc">Title A→Z</option>
+      </select>
+      <button class="btn" id="clear">Clear</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+/* ----------------------- helper: CSV → records ----------------------- */
+function normalizeRow(row){
+  // Make header lookup case-insensitive and tolerant to slight naming changes.
+  const get = (needleList) => {
+    const keys = Object.keys(row);
+    const foundKey = keys.find(k => needleList.some(n => k.toLowerCase().includes(n)));
+    return foundKey ? row[foundKey] : "";
+  };
+  const title = get(["title"]);
+  const yearRaw = get(["year","date","pub","publication"]);
+  const year = (yearRaw||"").match(/\b(19|20)\d{2}\b/)?.[0] ?? "";
+  const doi = get(["doi"]);
+  const pmc = get(["pmc","pmcid"]);
+  const journal = get(["journal"]);
+  const abstract = get(["abstract","summary"]);
+  return {
+    id: (pmc || doi || title || Math.random().toString(36).slice(2)).replace(/\s+/g,"_"),
+    title: String(title || "(untitled)").trim(),
+    year: year ? Number(year) : null,
+    doi: String(doi||"").trim(),
+    pmcid: String(pmc||"").trim(),
+    journal: String(journal||"").trim(),
+    abstract: String(abstract||"").trim()
+  };
+}
+
+/* ----------------------- render ----------------------- */
+const elGrid = document.getElementById("grid");
+const elCounter = document.getElementById("counter");
+const elSearch = document.getElementById("search");
+const elSort = document.getElementById("sortSel");
+const elGate = document.querySelector(".gate");
+const elControls = document.getElementById("controls");
+
+let ALL = [];     // all records
+let VIEW = [];    // filtered/sorted
+
+function render(){
+  const q = (elSearch.value || "").toLowerCase().trim();
+  const sortMode = elSort.value;
+  VIEW = ALL.filter(s => {
+    if (!q) return true;
+    const hay = (s.title+" "+s.abstract+" "+s.journal+" "+s.doi+" "+s.pmcid).toLowerCase();
+    return hay.includes(q);
+  });
+  VIEW.sort((a,b)=>{
+    if (sortMode==="year-desc") return (b.year||0)-(a.year||0);
+    if (sortMode==="year-asc")  return (a.year||0)-(b.year||0);
+    if (sortMode==="title-asc") return a.title.localeCompare(b.title);
+    return 0;
+  });
+
+  elCounter.textContent = VIEW.length + " results";
+  elGrid.innerHTML = VIEW.slice(0, 200).map(cardHTML).join("");
+}
+
+function cardHTML(s){
+  const badges = [
+    s.year ? `<span class="badge">YEAR ${s.year}</span>` : "",
+    s.journal ? `<span class="badge">${escapeHTML(s.journal)}</span>` : ""
+  ].join("");
+  const links = [
+    s.doi ? `<a href="https://doi.org/${encodeURIComponent(s.doi)}" target="_blank" rel="noopener">DOI</a>` : "",
+    s.pmcid ? `<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/${encodeURIComponent(s.pmcid)}/" target="_blank" rel="noopener">PMC</a>` : ""
+  ].filter(Boolean).join(" • ");
+  const abs = s.abstract ? truncate(s.abstract, 420) : "<em>No abstract available.</em>";
+  return `
+    <div class="card">
+      <div class="row">
+        <h3 class="title">${escapeHTML(s.title)}</h3>
+        <div class="meta">${links}</div>
+      </div>
+      <div class="badges">${badges}</div>
+      <p class="abs">${escapeHTML(abs)}</p>
+    </div>
+  `;
+}
+
+function truncate(t, n){ return t.length>n ? t.slice(0,n-1)+"…" : t; }
+function escapeHTML(s){ return s.replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m])); }
+
+/* ----------------------- load CSV ----------------------- */
+async function loadCSVFromURL(url){
+  return new Promise((resolve,reject)=>{
+    Papa.parse(url, {
+      header:true, download:true, skipEmptyLines:true,
+      complete: res => resolve(res.data.map(normalizeRow)),
+      error: err => reject(err)
+    });
+  });
+}
+
+async function loadCSVFromFile(file){
+  return new Promise((resolve,reject)=>{
+    Papa.parse(file, {
+      header:true, skipEmptyLines:true,
+      complete: res => resolve(res.data.map(normalizeRow)),
+      error: err => reject(err)
+    });
+  });
+}
+
+/* ----------------------- wire up ----------------------- */
+document.getElementById("tryLoad").addEventListener("click", async ()=>{
+  try{
+    // If your CSV is named differently, change the string below.
+    ALL = await loadCSVFromURL("./SB_publication_PMC.csv");
+    elGate.classList.add("hidden");
+    elControls.classList.remove("hidden");
+    render();
+  }catch(e){
+    alert("Couldn't load CSV from this page. Use the 'Choose CSV' button instead.");
+  }
+});
+
+document.getElementById("fileInput").addEventListener("change", async (e)=>{
+  const file = e.target.files?.[0];
+  if(!file) return;
+  ALL = await loadCSVFromFile(file);
+  elGate.classList.add("hidden");
+  elControls.classList.remove("hidden");
+  render();
+});
+
+elSearch.addEventListener("input", render);
+elSort.addEventListener("change", render);
+document.getElementById("clear").addEventListener("click", ()=>{
+  elSearch.value = "";
+  elSort.value = "year-desc";
+  render();
+});
+
+// Optional: auto-attempt load on page open (comment out if you prefer manual)
+window.addEventListener("DOMContentLoaded", ()=> {
+  // Try to auto-load if the CSV is present.
+  fetch("./SB_publication_PMC.csv", {method:"HEAD"})
+    .then(r => r.ok ? document.getElementById("tryLoad").click() : null)
+    .catch(()=>{});
+});
+</script>
+</body>
+</html>
