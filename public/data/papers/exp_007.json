@@ -22,5 +22,43 @@
   "links": {
     "taskbook": "https://example.com/taskbook/exp_007",
     "osdr": "https://example.com/osdr/exp_007"
-  }
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "ISS",
+    "ANIMAL"
+  ],
+  "citations_by_year": [
+    {
+      "y": 2018,
+      "c": 4
+    },
+    {
+      "y": 2019,
+      "c": 5
+    },
+    {
+      "y": 2020,
+      "c": 3
+    },
+    {
+      "y": 2021,
+      "c": 6
+    },
+    {
+      "y": 2022,
+      "c": 6
+    },
+    {
+      "y": 2023,
+      "c": 7
+    }
+  ],
+  "confidence": 0.83,
+  "entities": [
+    "symbiosis",
+    "biofilm",
+    "tissue analog",
+    "mission clock"
+  ]
 }

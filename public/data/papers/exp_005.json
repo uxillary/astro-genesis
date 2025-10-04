@@ -22,5 +22,42 @@
   "links": {
     "taskbook": "https://example.com/taskbook/exp_005",
     "osdr": "https://example.com/osdr/exp_005"
-  }
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "ISS"
+  ],
+  "citations_by_year": [
+    {
+      "y": 2018,
+      "c": 2
+    },
+    {
+      "y": 2019,
+      "c": 3
+    },
+    {
+      "y": 2020,
+      "c": 1
+    },
+    {
+      "y": 2021,
+      "c": 4
+    },
+    {
+      "y": 2022,
+      "c": 4
+    },
+    {
+      "y": 2023,
+      "c": 5
+    }
+  ],
+  "confidence": 0.76,
+  "entities": [
+    "dosimetry",
+    "stress kinase",
+    "metabolite array",
+    "cytoskeleton"
+  ]
 }

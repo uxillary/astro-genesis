@@ -6,12 +6,25 @@ type SearchStore = {
   query: string;
   filters: FilterState;
   results: PaperRecord[];
-  suggestions: { id: string; title: string }[];
+  suggestions: { id: string; title: string; year?: number }[];
   setQuery: (query: string) => void;
   setFilters: (filters: Partial<FilterState>) => void;
   resetFilters: () => void;
   setResults: (records: PaperRecord[]) => void;
-  setSuggestions: (items: { id: string; title: string }[]) => void;
+  setSuggestions: (items: { id: string; title: string; year?: number }[]) => void;
+};
+
+type UiMode = 'hud' | 'mono';
+
+type UiStore = {
+  mode: UiMode;
+  showHelp: boolean;
+  credentialOpen: boolean;
+  branchLayout: 'layered' | 'radial';
+  toggleMode: () => void;
+  setHelp: (open: boolean) => void;
+  setCredential: (open: boolean) => void;
+  setBranchLayout: (layout: 'layered' | 'radial') => void;
 };
 
 const defaultFilters: FilterState = {
@@ -33,4 +46,18 @@ export const useSearchStore = create<SearchStore>((set) => ({
   resetFilters: () => set({ filters: defaultFilters }),
   setResults: (records) => set({ results: records }),
   setSuggestions: (items) => set({ suggestions: items })
+}));
+
+export const useUiStore = create<UiStore>((set) => ({
+  mode: 'hud',
+  showHelp: false,
+  credentialOpen: false,
+  branchLayout: 'layered',
+  toggleMode: () =>
+    set((state) => ({
+      mode: state.mode === 'hud' ? 'mono' : 'hud'
+    })),
+  setHelp: (open) => set({ showHelp: open }),
+  setCredential: (open) => set({ credentialOpen: open }),
+  setBranchLayout: (layout) => set({ branchLayout: layout })
 }));

@@ -22,5 +22,42 @@
   "links": {
     "taskbook": "https://example.com/taskbook/exp_004",
     "osdr": "https://example.com/osdr/exp_004"
-  }
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "IN-VITRO"
+  ],
+  "citations_by_year": [
+    {
+      "y": 2018,
+      "c": 5
+    },
+    {
+      "y": 2019,
+      "c": 6
+    },
+    {
+      "y": 2020,
+      "c": 4
+    },
+    {
+      "y": 2021,
+      "c": 7
+    },
+    {
+      "y": 2022,
+      "c": 7
+    },
+    {
+      "y": 2023,
+      "c": 8
+    }
+  ],
+  "confidence": 0.72,
+  "entities": [
+    "circadian gate",
+    "metabolic flux",
+    "RNA-seq",
+    "cryoprotection"
+  ]
 }

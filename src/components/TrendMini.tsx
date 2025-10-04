@@ -1,37 +1,44 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import type { CitationPoint } from '../lib/types';
 
-const TrendMini = () => {
-  const data = Array.from({ length: 8 }, (_, index) => ({
-    year: 2016 + index,
-    value: Math.round(30 + Math.sin(index) * 12 + index * 3)
-  }));
+const TrendMini = ({ data }: { data: CitationPoint[] }) => {
+  const chartData = data.map((entry) => ({ year: entry.y, count: entry.c }));
 
   return (
-    <div className="border border-white/10 rounded-xl p-4 bg-black/40 backdrop-blur-sm">
-      <header className="flex items-center justify-between text-[0.65rem] uppercase tracking-[0.3em] text-slate-400 mb-3">
-        <span>Keyword Trajectory</span>
-        <span className="text-accent-amber">Telemetry</span>
+    <div className="relative overflow-hidden rounded-[22px] border border-white/12 bg-panel/70 p-5 shadow-panel">
+      <header className="mb-3 flex items-center justify-between text-[0.58rem] font-mono uppercase tracking-[0.32em] text-dim">
+        <span>Telemetry // Citations</span>
+        <span className="text-amber">Live Feed</span>
       </header>
       <div className="h-40">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
-            <XAxis dataKey="year" stroke="rgba(226,232,240,0.35)" tick={{ fontSize: 10 }} tickLine={false} axisLine={{ stroke: 'rgba(226,232,240,0.15)' }} />
-            <YAxis hide domain={[0, 'dataMax + 10']} />
+          <LineChart data={chartData} margin={{ left: 0, right: 0, top: 16, bottom: 0 }}>
+            <XAxis
+              dataKey="year"
+              stroke="rgba(255,255,255,0.25)"
+              tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-mono)' }}
+              tickLine={false}
+              axisLine={{ stroke: 'rgba(255,255,255,0.15)' }}
+            />
+            <YAxis hide domain={[0, 'dataMax + 1']} />
             <Tooltip
               contentStyle={{
-                background: 'rgba(7,12,18,0.95)',
-                border: '1px solid rgba(85,230,165,0.4)',
-                borderRadius: 8,
+                background: 'rgba(11, 14, 16, 0.92)',
+                border: '1px solid rgba(255, 138, 0, 0.35)',
+                borderRadius: 12,
+                fontFamily: 'var(--font-mono)',
                 fontSize: 11,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                letterSpacing: '0.18em'
               }}
-              labelStyle={{ color: 'rgba(226,232,240,0.8)' }}
+              labelStyle={{ color: 'var(--white)' }}
+              formatter={(value: number) => [`${value} cites`, '']} // label suppressed
             />
-            <Line type="monotone" dataKey="value" stroke="#55e6a5" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="count" stroke="var(--amber)" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
+      <div className="pointer-events-none absolute inset-0 border border-dashed border-white/5" />
     </div>
   );
 };
