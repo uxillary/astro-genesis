@@ -140,8 +140,12 @@ const Paper = () => {
             </Panel>
           </div>
 
-          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-dim">LLM uplink pending</span>}>
-            Synthetic analyst summary channel pending activation. Placeholder text demonstrating panel chrome and typographic hierarchy for future LLM integration.
+          <Panel
+            title="Analyst Summary"
+            sublabel="AI Channel"
+            actions={<span className="text-white/50">Uplink offline</span>}
+          >
+            Analyst uplink is offline. The briefing summary will appear here once the channel activates.
           </Panel>
         </div>
 

@@ -94,14 +94,14 @@ const Home = () => {
               {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
             </div>
           </header>
-          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-[#6d8179]">
-            Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
+          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-white/60">
+            Search the offline NASA bioscience archive. Filter dossiers by organism, platform, or year to jump straight to the intel you need.
           </p>
           <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
-          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-[#6d8179]">
+          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-white/50">
             <span>Need help?</span>
-            <kbd className="rounded border border-white/20 px-2 py-1 text-white/80">?</kbd>
-            <span>Open console reference</span>
+            <kbd className="rounded border border-white/20 px-2 py-1 text-white/70">?</kbd>
+            <span>Press for console reference</span>
           </div>
         </div>
         <Filters {...filterOptions} />
