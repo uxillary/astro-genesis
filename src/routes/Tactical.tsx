@@ -3,11 +3,11 @@ import ExclusionMap from '../components/ExclusionMap';
 const Tactical = () => {
   return (
     <div className="space-y-6">
-      <header className="rounded-[28px] border border-[#d6e3e0]/12 bg-panel/80 p-6 shadow-panel">
-        <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Mission Planning</p>
-        <h1 className="mt-2 text-3xl font-semibold uppercase tracking-[0.24em] text-[#d6e3e0]">Tactical Map Placeholder</h1>
-        <p className="mt-3 max-w-2xl font-mono text-[0.65rem] uppercase tracking-[0.28em] text-mid">
-          Offline static snapshot demonstrating hatch overlays and exclusion zone rendering. Future iterations will wire geospatial layers to mission feeds.
+      <header className="rounded-[28px] border border-[#d6e3e0]/14 bg-panel/85 p-6 shadow-panel">
+        <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Mission Planning</p>
+        <h1 className="mt-2 text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">Tactical Map</h1>
+        <p className="mt-3 max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[#9fb4bc]">
+          Static preview of exclusion overlays and hazard zones. Live geospatial data hooks are coming next.
         </p>
       </header>
       <ExclusionMap />
