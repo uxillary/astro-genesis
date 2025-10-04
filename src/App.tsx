@@ -1,16 +1,46 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import GridBg from './components/GridBg';
 import InstallPrompt from './components/InstallPrompt';
 import HelpOverlay from './components/HelpOverlay';
 import CredentialOverlay from './components/CredentialOverlay';
+import SplashScreen from './components/SplashScreen';
 import { useUiStore } from './lib/state';
 
 const Home = lazy(() => import('./routes/Home'));
 const Paper = lazy(() => import('./routes/Paper'));
 const Tactical = lazy(() => import('./routes/Tactical'));
 
+const ENTRY_STORAGE_KEY = 'astro-genesis-entered';
+
 const App = () => {
+  const [entered, setEntered] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return window.localStorage.getItem(ENTRY_STORAGE_KEY) === 'true';
+    } catch (error) {
+      console.warn('Unable to access localStorage', error);
+      return false;
+    }
+  });
+
+  const handleProceed = useCallback(() => {
+    try {
+      window.localStorage.setItem(ENTRY_STORAGE_KEY, 'true');
+    } catch (error) {
+      console.warn('Unable to persist entry state', error);
+    }
+    setEntered(true);
+  }, []);
+
+  if (!entered) {
+    return <SplashScreen onProceed={handleProceed} />;
+  }
+
+  return <AppContent />;
+};
+
+const AppContent = () => {
   const mode = useUiStore((state) => state.mode);
   const toggleMode = useUiStore((state) => state.toggleMode);
   const showHelp = useUiStore((state) => state.showHelp);
