@@ -33,6 +33,7 @@ from typing import Dict, Iterable, List, Optional, Tuple
 import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter, Retry
+from urllib.parse import urljoin
 
 try:  # Optional dependency for CSV parsing
     import pandas as pd
@@ -362,7 +363,7 @@ def extract_meta_from_html(pmcid: str, html: str) -> Tuple[Dict[str, Optional[st
             if match:
                 year = int(match.group(0))
 
-    pmc_url = f"{PMC_BASE}/{pmcid}/"
+    pmc_url = canonical_pmc_url(pmcid)
     pdf_tag = soup.find("meta", attrs={"name": "citation_pdf_url"})
     links = {"pmc_html": pmc_url}
     if pdf_tag and pdf_tag.get("content"):
@@ -386,6 +387,44 @@ def heuristic_keywords(text: str, limit: int = 8) -> List[str]:
     counts = Counter(filtered)
     most_common = [word for word, _ in counts.most_common(limit)]
     return most_common
+
+
+def canonical_pmc_url(pmcid: str) -> str:
+    return f"{PMC_BASE}/articles/{pmcid}/"
+
+
+def normalise_pmc_url(pmcid: str, candidate: Optional[str]) -> str:
+    if candidate:
+        url = str(candidate).strip()
+        if url:
+            if url.startswith("//"):
+                return "https:" + url
+            if url.startswith("http://") or url.startswith("https://"):
+                return url
+            return urljoin(PMC_BASE + "/", url.lstrip("/"))
+    return canonical_pmc_url(pmcid)
+
+
+def extract_pmc_url_from_row(row: Dict[str, object]) -> Optional[str]:
+    preferred_keys = [
+        "pmc_url",
+        "PMC URL",
+        "pmc link",
+        "PMC Link",
+        "Link",
+        "link",
+        "URL",
+        "url",
+    ]
+    for key in preferred_keys:
+        if key in row and isinstance(row[key], str) and row[key].strip():
+            return row[key].strip()
+    for value in row.values():
+        if isinstance(value, str):
+            lowered = value.lower()
+            if "pmc" in lowered and "http" in lowered:
+                return value.strip()
+    return None
 
 
 def detect_platform(text: str) -> Optional[str]:
@@ -457,12 +496,18 @@ def derive_pmcid(row: Dict[str, object]) -> Optional[str]:
     return candidates[0] if candidates else None
 
 
-def fetch_raw_html(pmcid: str, raw_dir: Path, session: requests.Session, force: bool = False) -> str:
+def fetch_raw_html(
+    pmcid: str,
+    raw_dir: Path,
+    session: requests.Session,
+    force: bool = False,
+    source_url: Optional[str] = None,
+) -> str:
     out_path = raw_dir / f"{pmcid}.html"
     if out_path.exists() and not force:
         return out_path.read_text(encoding="utf-8", errors="ignore")
 
-    url = f"{PMC_BASE}/{pmcid}/"
+    url = normalise_pmc_url(pmcid, source_url)
     response = session.get(url, timeout=30)
     response.raise_for_status()
     html = response.text
@@ -558,7 +603,8 @@ def ingest(
             print(f"[warn] Skipping row {idx}: no PMCID detected")
             continue
         try:
-            html = fetch_raw_html(pmcid, raw_dir, session, force=force)
+            csv_url = extract_pmc_url_from_row(row)
+            html = fetch_raw_html(pmcid, raw_dir, session, force=force, source_url=csv_url)
         except Exception as exc:
             print(f"[error] Failed to fetch {pmcid}: {exc}")
             continue
