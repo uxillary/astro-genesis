@@ -22,7 +22,7 @@ import json
 import re
 import time
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import requests
 from bs4 import BeautifulSoup
@@ -71,6 +71,12 @@ SECTION_KEYS = [
     ("abstract", ["abstract"]),
 ]
 
+MAX_SECTION_CHARS = 2000
+MAX_SECTION_SENTENCES = 10
+TRUNCATION_SUFFIX = " …[truncated]"
+SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
+WORD_RE = re.compile(r"\b\w+\b")
+
 def ensure_dirs(base: Path):
     (base / "raw").mkdir(parents=True, exist_ok=True)
     (base / "clean").mkdir(parents=True, exist_ok=True)
@@ -88,7 +94,13 @@ def requests_session() -> requests.Session:
     s.headers.update(HEADERS)
     return s
 
-def fetch_html(pmcid: str, raw_dir: Path, force: bool, session: requests.Session) -> Optional[str]:
+def fetch_html(
+    pmcid: str,
+    raw_dir: Path,
+    force: bool,
+    session: requests.Session,
+    dry_run: bool = False,
+) -> Optional[str]:
     out = raw_dir / f"{pmcid}.html"
     if out.exists() and not force:
         try:
@@ -100,7 +112,8 @@ def fetch_html(pmcid: str, raw_dir: Path, force: bool, session: requests.Session
     if resp.status_code != 200:
         return None
     html = resp.text
-    out.write_text(html, encoding="utf-8")
+    if not dry_run:
+        out.write_text(html, encoding="utf-8")
     time.sleep(0.4)  # be polite
     return html
 
@@ -201,6 +214,65 @@ def extract_sections(html: str) -> Dict[str, str]:
 
     return {"results": results, "conclusion": conclusion, "abstract": abstract}
 
+
+def truncate_section_text(text: str) -> Tuple[str, int, int, int]:
+    """Truncate text to sensible limits and provide length metadata.
+
+    Returns a tuple of (final_text, char_count, word_count, content_length_without_suffix).
+    """
+
+    clean = (text or "").strip()
+    if not clean:
+        return "", 0, 0, 0
+
+    sentences = [s.strip() for s in SENTENCE_SPLIT_RE.split(clean) if s.strip()]
+    if sentences:
+        limited_text = " ".join(sentences[:MAX_SECTION_SENTENCES])
+        sentence_truncated = len(sentences) > MAX_SECTION_SENTENCES
+    else:
+        limited_text = clean
+        sentence_truncated = False
+
+    char_truncated = len(limited_text) > MAX_SECTION_CHARS
+    if char_truncated:
+        limited_text = limited_text[:MAX_SECTION_CHARS].rstrip()
+
+    content_length = len(limited_text)
+    truncated = sentence_truncated or char_truncated
+
+    final_text = limited_text
+    if truncated and final_text:
+        final_text = final_text.rstrip() + TRUNCATION_SUFFIX
+    elif truncated and not final_text:
+        final_text = TRUNCATION_SUFFIX.lstrip()
+
+    char_count = len(final_text)
+    word_count = len(WORD_RE.findall(limited_text))
+    return final_text, char_count, word_count, content_length
+
+
+def prepare_section_payload(
+    sections: Dict[str, str]
+) -> Tuple[Dict[str, str], Dict[str, int], Dict[str, int], bool]:
+    ordered_keys = ["results", "conclusion", "abstract"]
+    processed: Dict[str, str] = {}
+    char_counts: Dict[str, int] = {}
+    word_counts: Dict[str, int] = {}
+    ready = True
+
+    for key in ordered_keys:
+        raw_text = sections.get(key, "") or ""
+        truncated_text, char_count, word_count, content_length = truncate_section_text(
+            raw_text
+        )
+        processed[key] = truncated_text
+        char_counts[key] = char_count
+        word_counts[key] = word_count
+        if content_length < 200:
+            ready = False
+
+    return processed, char_counts, word_counts, ready
+
 def build_record(
     pmcid: str,
     meta: Dict[str, str],
@@ -208,18 +280,18 @@ def build_record(
     status: str,
     error: Optional[str] = None,
 ) -> Dict:
+    processed_sections, char_counts, word_counts, ready = prepare_section_payload(sections)
     record = {
         "pmcid": pmcid,
         "title": meta.get("title") or meta.get("Title") or "",
         "year": _safe_int(meta.get("year") or meta.get("Year")),
         "authors": _split_authors(meta.get("authors") or meta.get("Authors") or ""),
-        "sections": {
-            "results": sections.get("results", ""),
-            "conclusion": sections.get("conclusion", ""),
-            "abstract": sections.get("abstract", ""),
-        },
+        "sections": processed_sections,
+        "char_counts": char_counts,
+        "word_counts": word_counts,
         "links": {"pmc_html": f"https://pmc.ncbi.nlm.nih.gov/{pmcid}/"},
         "status": status,
+        "ready_for_summary": ready,
     }
     if error:
         record["error"] = error
@@ -271,11 +343,20 @@ def iter_pmcids_from_csv(csv_path: Path, limit: Optional[int]) -> List[Dict]:
             break
     return rows
 
-def process_one(item, raw_dir: Path, clean_dir: Path, force: bool, session: requests.Session) -> Dict[str, str]:
+def process_one(
+    item,
+    raw_dir: Path,
+    clean_dir: Path,
+    force: bool,
+    session: requests.Session,
+    dry_run: bool,
+) -> Dict[str, str]:
     pmcid = item["pmcid"]
     meta = item.get("meta", {})
+    raw_path = raw_dir / f"{pmcid}.html"
+    source = "cache" if raw_path.exists() and not force else "remote"
     try:
-        html = fetch_html(pmcid, raw_dir, force, session)
+        html = fetch_html(pmcid, raw_dir, force, session, dry_run=dry_run)
         if not html:
             sections = {"results": "", "conclusion": "", "abstract": ""}
             record = build_record(
@@ -285,7 +366,13 @@ def process_one(item, raw_dir: Path, clean_dir: Path, force: bool, session: requ
                 status="no_html",
                 error="Failed to retrieve article HTML",
             )
-            save_clean(record, clean_dir)
+            if dry_run:
+                print(
+                    f"[DRY-RUN] {pmcid}: failed to fetch HTML (source={source});"
+                    " would skip write"
+                )
+            else:
+                save_clean(record, clean_dir)
             return {"pmcid": pmcid, "status": "no_html"}
 
         sections = extract_sections(html)
@@ -294,7 +381,13 @@ def process_one(item, raw_dir: Path, clean_dir: Path, force: bool, session: requ
         record = build_record(pmcid, meta, sections, status=status)
         if missing:
             record["missing_sections"] = missing
-        save_clean(record, clean_dir)
+        if dry_run:
+            print(
+                f"[DRY-RUN] {pmcid}: status={status}, source={source}, "
+                f"char_counts={record['char_counts']}, ready={record['ready_for_summary']}"
+            )
+        else:
+            save_clean(record, clean_dir)
         return {"pmcid": pmcid, "status": status, "missing": missing}
     except Exception as e:
         sections = {"results": "", "conclusion": "", "abstract": ""}
@@ -305,7 +398,13 @@ def process_one(item, raw_dir: Path, clean_dir: Path, force: bool, session: requ
             status="error",
             error=str(e),
         )
-        save_clean(record, clean_dir)
+        if dry_run:
+            print(
+                f"[DRY-RUN] {pmcid}: encountered error '{e}' (source={source});"
+                " would skip write"
+            )
+        else:
+            save_clean(record, clean_dir)
         return {"pmcid": pmcid, "status": f"error: {e}"}
 
 
@@ -329,8 +428,11 @@ def summarize_results(results: List[Dict[str, str]]) -> Dict[str, List[Dict[str,
     return summary
 
 
-def run_pipeline(items: List[Dict], out_dir: Path, workers: int, force: bool) -> Dict:
-    ensure_dirs(out_dir)
+def run_pipeline(
+    items: List[Dict], out_dir: Path, workers: int, force: bool, dry_run: bool
+) -> Dict:
+    if not dry_run:
+        ensure_dirs(out_dir)
     raw_dir = out_dir / "raw"
     clean_dir = out_dir / "clean"
 
@@ -341,7 +443,15 @@ def run_pipeline(items: List[Dict], out_dir: Path, workers: int, force: bool) ->
 
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
         futures = [
-            ex.submit(process_one, item, raw_dir, clean_dir, force, session)
+            ex.submit(
+                process_one,
+                item,
+                raw_dir,
+                clean_dir,
+                force,
+                session,
+                dry_run,
+            )
             for item in items_list
         ]
         if _TQDM:
@@ -359,7 +469,10 @@ def run_pipeline(items: List[Dict], out_dir: Path, workers: int, force: bool) ->
         "no_html": summary["no_html"],
         "errors": summary["errors"],
     }
-    (out_dir / "run_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    if not dry_run:
+        (out_dir / "run_report.json").write_text(
+            json.dumps(report, indent=2), encoding="utf-8"
+        )
     return report
 
 def main():
@@ -372,13 +485,18 @@ def main():
     ap.add_argument("--limit", type=int, default=None, help="Limit number of rows from CSV")
     ap.add_argument("--workers", type=int, default=6, help="Parallel workers (default 6)")
     ap.add_argument("--force", action="store_true", help="Refetch even if raw HTML exists")
+    ap.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print actions without writing any files",
+    )
     args = ap.parse_args()
 
     if args.csv:
         items = iter_pmcids_from_csv(args.csv, args.limit)
     else:
         items = [{"pmcid": pmc.strip(), "meta": {}} for pmc in args.pmcids]
-    report = run_pipeline(items, args.out, args.workers, args.force)
+    report = run_pipeline(items, args.out, args.workers, args.force, args.dry_run)
     print(json.dumps(report, indent=2))
     print(
         "Summary: processed {total} papers — {ok} succeeded, {missing} with missing sections,"
