@@ -22,7 +22,7 @@ const Filters = ({ organisms, platforms, years }: FilterProps) => {
   }));
 
   return (
-    <aside className="rounded-[28px] border border-[#1a1f24]/70 bg-[#10161d]/80 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
+    <aside className="rounded-[3px] border border-[#1a1f24]/70 bg-[#10161d]/85 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
       <header className="mb-4 flex items-center justify-between">
         <div>
           <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Filters</p>
