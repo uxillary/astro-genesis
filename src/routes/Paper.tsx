@@ -82,9 +82,9 @@ const Paper = () => {
       <header className="relative overflow-hidden rounded-[28px] border border-[#d6e3e0]/12 bg-panel/80 p-6 shadow-panel">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Dossier {id}</p>
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.24em] text-[#d6e3e0]">{title}</h1>
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.28em] text-mid">{authors.join(', ')}</p>
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Dossier {id}</p>
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">{title}</h1>
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[#9fb4bc]">{authors.join(', ')}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <HudBadge label="Confidence" tone="amber" value={<span>{Math.round(confidence * 100)}%</span>} />
@@ -157,21 +157,25 @@ const Paper = () => {
             </Panel>
           </div>
 
-          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-dim">LLM uplink pending</span>}>
-            Synthetic analyst summary channel pending activation. Placeholder text demonstrating panel chrome and typographic hierarchy for future LLM integration.
+          <Panel
+            title="Analyst Summary"
+            sublabel="AI Channel"
+            actions={<span className="text-[#5f6c75]">Uplink offline</span>}
+          >
+            LLM summary feed is offline. This panel will populate once the analyst channel is connected.
           </Panel>
         </div>
 
         <aside className="space-y-6">
-          <div className="rounded-[24px] border border-[#d6e3e0]/12 bg-panel/75 p-5 shadow-panel">
-            <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Meta</header>
+          <div className="rounded-[24px] border border-[#d6e3e0]/14 bg-panel/80 p-5 shadow-panel">
+            <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#9fb4bc]">Meta</header>
             <dl className="space-y-3 text-[0.82rem]">
               <MetaRow label="Year" value={year.toString()} />
               <MetaRow label="Organism" value={organism} />
               <MetaRow label="Platform" value={platform} />
             </dl>
             <div className="mt-4 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Access Flags</p>
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Access Flags</p>
               <div className="flex flex-wrap gap-2">
                 {access.map((flag) => (
                   <HudBadge key={flag} label={flag} tone="red" compact />
@@ -179,7 +183,7 @@ const Paper = () => {
               </div>
             </div>
             <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Keywords</p>
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Keywords</p>
               <div className="flex flex-wrap gap-2">
                 {keywords.map((keyword) => (
                   <span
@@ -192,7 +196,7 @@ const Paper = () => {
               </div>
             </div>
             <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">Entities</p>
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Entities</p>
               <ul className="grid gap-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-mid">
                 {entities.map((entity) => (
                   <li key={entity} className="rounded border border-[#d6e3e0]/10 bg-[#0b0d0f]/30 px-3 py-2">
@@ -202,7 +206,7 @@ const Paper = () => {
               </ul>
             </div>
             <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">External Links</p>
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">External Links</p>
               <ul className="space-y-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-amber">
                 {links.taskbook ? (
                   <li>
@@ -233,8 +237,8 @@ const Paper = () => {
 
 const MetaRow = ({ label, value }: { label: string; value: string }) => (
   <div className="flex items-center justify-between border-b border-[#d6e3e0]/10 pb-2 last:border-none last:pb-0">
-    <span className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-dim">{label}</span>
-    <span className="text-sm text-[#d6e3e0]">{value}</span>
+    <span className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">{label}</span>
+    <span className="text-sm font-medium text-[#f3f8f6]">{value}</span>
   </div>
 );
 

@@ -100,8 +100,8 @@ const Home = () => {
           <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
           <div className="flex items-center gap-3 text-[0.64rem] font-mono uppercase tracking-[0.24em] text-[#7a8b94]">
             <span>Need help?</span>
-            <kbd className="rounded border border-[#d6e3e0]/20 px-2 py-1 text-[#d6e3e0]/80">?</kbd>
-            <span>Open console reference</span>
+            <kbd className="rounded border border-[#d6e3e0]/25 bg-[#0b1116]/70 px-2 py-1 text-[#d6e3e0]/85">?</kbd>
+            <span>Press for console reference</span>
           </div>
         </div>
         <Filters {...filterOptions} />
