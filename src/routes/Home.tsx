@@ -77,11 +77,11 @@ const Home = () => {
 
   return (
     <div className="relative z-10 space-y-10">
-      <section className="grid gap-8 rounded-[3px] border border-[#1a1f24]/60 bg-[#10161d]/85 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
-        <div className="space-y-6">
-          <header className="space-y-4">
-            <p className="font-mono text-[0.64rem] uppercase tracking-[0.28em] text-[#55e6a5]">BioArchive Intelligence</p>
-            <h1 className="text-4xl font-semibold uppercase tracking-[0.18em] text-[#d6e3e0]">
+      <section className="grid gap-8 rounded-[3px] border border-[#1a1f24]/55 bg-[#10161d]/90 p-7 lg:grid-cols-[1.5fr_1fr] lg:p-10">
+        <div className="space-y-7">
+          <header className="space-y-5">
+            <p className="font-mono text-[0.82rem] uppercase tracking-[0.24em] text-[#67f3b5]">BioArchive Intelligence</p>
+            <h1 className="text-[2.75rem] font-semibold uppercase tracking-[0.14em] text-[#f1f7f5] sm:text-[3rem]">
               Classified Ops Console
             </h1>
             <div className="flex flex-wrap items-center gap-3">
@@ -95,14 +95,14 @@ const Home = () => {
               {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
             </div>
           </header>
-          <p className="max-w-2xl font-mono text-[0.74rem] uppercase tracking-[0.22em] text-[#7a8b94]">
+          <p className="max-w-2xl font-mono text-[0.92rem] uppercase tracking-[0.18em] text-[#a8bbb6] leading-relaxed">
             Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
           </p>
-          <div className="space-y-4">
+          <div className="space-y-5">
             <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
             <ActiveFiltersBar />
           </div>
-          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-[#7a8b94]">
+          <div className="flex items-center gap-3 text-[0.78rem] font-mono uppercase tracking-[0.22em] text-[#8fa1ac]">
             <span>Need help?</span>
             <kbd className="rounded border border-[#d6e3e0]/25 bg-[#0b1116]/70 px-2 py-1 text-[#d6e3e0]/85">?</kbd>
             <span>Press for console reference</span>
@@ -111,15 +111,15 @@ const Home = () => {
         <Filters {...filterOptions} />
       </section>
 
-      <section className="space-y-4 rounded-[3px] border border-[#1a1f24]/60 bg-[#10161d]/85 p-6 lg:p-8">
+      <section className="space-y-5 rounded-[3px] border border-[#1a1f24]/55 bg-[#10161d]/90 p-7 lg:p-10">
         <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="font-mono text-[0.64rem] uppercase tracking-[0.24em] text-[#55e6a5]">Results</p>
-            <h2 className="text-xl font-semibold tracking-[0.16em] text-[#d6e3e0]">Stacked Dossiers</h2>
+            <p className="font-mono text-[0.78rem] uppercase tracking-[0.22em] text-[#67f3b5]">Results</p>
+            <h2 className="text-3xl font-semibold tracking-[0.12em] text-[#f1f7f5]">Stacked Dossiers</h2>
           </div>
           <Link
             to="/tactical"
-            className="rounded-full border border-[#1a1f24] bg-[#131d26]/70 px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[#7a8b94] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
+            className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-5 py-2 font-mono text-[0.86rem] uppercase tracking-[0.18em] text-[#8fa1ac] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
           >
             Tactical map
           </Link>
@@ -131,9 +131,9 @@ const Home = () => {
 };
 
 const EmptyState = () => (
-  <div className="flex h-60 flex-col items-center justify-center rounded-[3px] border border-dashed border-[#d6e3e0]/15 bg-[#0b0d0f]/60 text-center">
-    <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-dim">No dossiers match the current filters.</p>
-    <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-mid">
+  <div className="flex h-60 flex-col items-center justify-center rounded-[3px] border border-dashed border-[#d6e3e0]/15 bg-[#0b0d0f]/70 text-center">
+    <p className="font-mono text-[0.86rem] uppercase tracking-[0.2em] text-[#9fb1bc]">No dossiers match the current filters.</p>
+    <p className="mt-3 font-mono text-[0.78rem] uppercase tracking-[0.18em] text-[#7a8b94]">
       Adjust organism, platform, or mission year to widen the search.
     </p>
   </div>

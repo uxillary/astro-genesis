@@ -19,13 +19,13 @@ const HudBadge = ({ label, value, tone = 'amber', compact }: HudBadgeProps) => {
   return (
     <span
       className={clsx(
-        'inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.22em] transition-colors duration-200',
+        'inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-[0.78rem] uppercase tracking-[0.18em] transition-colors duration-200',
         toneClass[tone],
-        compact ? 'text-[0.55rem] px-2.5 py-1' : null
+        compact ? 'text-[0.68rem] px-3 py-1' : null
       )}
     >
-      <span className="opacity-70">{label}</span>
-      {value ? <span className="text-[0.65rem] font-semibold tracking-[0.18em]">{value}</span> : null}
+      <span className="opacity-80">{label}</span>
+      {value ? <span className="text-[0.82rem] font-semibold tracking-[0.14em]">{value}</span> : null}
     </span>
   );
 };
