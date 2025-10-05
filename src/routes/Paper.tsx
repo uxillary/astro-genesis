@@ -166,7 +166,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
         <div className="space-y-6">
           <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
             <div className="relative flex flex-col gap-4">
-              <HudDivider label="BRANCH MAP" accent="cyan" variant="pill" lanePadding={16} elevate />
+              <FuiDivider label="BRANCH MAP" tone="cyan" />
               <div className="relative">
                 <ReticleOverlay
                   mode="fine"
@@ -176,7 +176,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                   showCompass
                   className="pointer-events-none absolute inset-0"
                 />
-                <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+                <BranchMap title={title} activeSection={activeSection} onSectionChange={onSectionChange} />
               </div>
             </div>
           </CornerBracket>
@@ -341,7 +341,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
           </div>
 
           <DossierGlyphs />
-          <HudDivider label="TELEMETRY" align="end" accent="amber" variant="knockout" lanePadding={14} />
+          <FuiDivider label="TELEMETRY" tone="amber" side="right" />
           <TrendMini data={citations_by_year} />
         </aside>
       </div>

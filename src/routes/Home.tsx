@@ -168,7 +168,7 @@ const Home = () => {
           <div className="space-y-6">
             <div className="relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
               <div className="relative z-10 flex justify-center">
-                <HudDivider label="CALIBRATED" accent="mono" variant="pill" lanePadding={18} elevate className="max-w-xs" />
+                <FuiDivider label="CALIBRATED" tone="mono" className="max-w-xs" />
               </div>
               <ReticleOverlay
                 mode="fine"
@@ -245,7 +245,7 @@ const Home = () => {
       <section className="relative">
         <span className="section-anchor">Dossier Grid</span>
         <div className="layered-panel space-y-6 px-6 py-6">
-          <HudDivider label="RESULTS" accent="cyan" variant="pill" lanePadding={16} elevate />
+          <FuiDivider label="RESULTS" tone="cyan" />
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-meta text-[0.78rem] tracking-[0.22em] text-[color:var(--accent-2)]">Results</p>

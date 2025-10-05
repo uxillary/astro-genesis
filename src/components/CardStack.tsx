@@ -38,51 +38,90 @@ const formatAuthors = (authors: string[]) => {
   return truncate(`${authors[0]}, ${authors[1]} +${remaining} more`, 72);
 };
 
-const StackCard = ({ item, index }: StackCardProps) => {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+const StackCard = memo(
+  ({ item, index }: StackCardProps) => {
+    const articleRef = useRef<HTMLElement | null>(null);
+    const backdropRef = useRef<HTMLDivElement | null>(null);
+    const rafRef = useRef<number | null>(null);
+    const currentTiltRef = useRef({ x: 0, y: 0 });
+    const targetTiltRef = useRef({ x: 0, y: 0 });
 
-  const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
-    hoveredRef.current = true;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
-    scheduleTilt(x, y);
-  };
+    const applyTilt = (x: number, y: number) => {
+      currentTiltRef.current = { x, y };
 
-  const handleLeave = () => {
-    hoveredRef.current = false;
-    scheduleTilt(0, 0);
-  };
+      if (articleRef.current) {
+        articleRef.current.style.transform = `rotateX(${y}deg) rotateY(${x}deg) translate3d(0, 0, 0)`;
+      }
 
-  useEffect(() => {
-    applyTilt(0, 0);
-    return () => {
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
+      if (backdropRef.current) {
+        backdropRef.current.style.transform = `translate3d(${x * -2}px, ${y * -2}px, 0)`;
       }
     };
-  }, []);
 
-  const lockLabel = `LOCK ${String(index + 1).padStart(2, '0')}`;
+    const animateTilt = () => {
+      const { x, y } = currentTiltRef.current;
+      const target = targetTiltRef.current;
 
-  return (
-    <Link
-      to={`/paper/${item.id}`}
-      className="group relative block"
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-    >
-      <div
-        ref={backdropRef}
-        className="absolute inset-0 -z-[1] rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
-        style={{ transform: 'translate3d(0, 0, 0)' }}
-      />
-      <article
-        ref={articleRef}
-        className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
-        style={{ transform: 'translate3d(0, 0, 0)' }}
+      const nextX = x + (target.x - x) * 0.18;
+      const nextY = y + (target.y - y) * 0.18;
+
+      applyTilt(nextX, nextY);
+
+      if (Math.abs(nextX - target.x) > 0.01 || Math.abs(nextY - target.y) > 0.01) {
+        rafRef.current = window.requestAnimationFrame(animateTilt);
+      } else {
+        rafRef.current = null;
+      }
+    };
+
+    const scheduleTilt = (x: number, y: number) => {
+      targetTiltRef.current = { x, y };
+
+      if (rafRef.current === null) {
+        rafRef.current = window.requestAnimationFrame(animateTilt);
+      }
+    };
+
+    const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
+      scheduleTilt(x, y);
+    };
+
+    const handleLeave = () => {
+      scheduleTilt(0, 0);
+    };
+
+    useEffect(() => {
+      applyTilt(0, 0);
+
+      return () => {
+        if (rafRef.current !== null) {
+          window.cancelAnimationFrame(rafRef.current);
+        }
+      };
+    }, []);
+
+    const lockLabel = `LOCK ${String(index + 1).padStart(2, '0')}`;
+
+    return (
+      <Link
+        to={`/paper/${item.id}`}
+        className="group relative block"
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
       >
+        <div
+          ref={backdropRef}
+          className="absolute inset-0 -z-[1] rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        />
+        <article
+          ref={articleRef}
+          className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        >
         <header className="mb-6">
           <CornerBracket
             radius={8}
@@ -148,9 +187,11 @@ const StackCard = ({ item, index }: StackCardProps) => {
         </div>
       </article>
       <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
-    </Link>
-  );
-}, (prev, next) => prev.item === next.item && prev.index === next.index);
+      </Link>
+    );
+  },
+  (prev, next) => prev.item === next.item && prev.index === next.index,
+);
 
 StackCard.displayName = 'StackCard';
 
