@@ -15,6 +15,7 @@ import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
 import { withBase } from '../lib/paths';
 import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiDivider } from '@/components/fui';
+import HudDivider from '@/components/fui/HudDivider';
 
 const fetchIndex = async (): Promise<PaperIndex[]> => {
   const response = await fetch(withBase('data/index.json'));

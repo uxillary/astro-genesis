@@ -10,6 +10,7 @@ import ReticleOverlay from '@/components/fui/ReticleOverlay';
 import CornerBracket from '@/components/fui/CornerBracket';
 import VectorGlyph from '@/components/fui/VectorGlyph';
 import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiCorner, FuiDivider, useConnectorLayer } from '@/components/fui';
+import HudDivider from '@/components/fui/HudDivider';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -196,7 +197,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                   showCompass
                   className="pointer-events-none absolute inset-0"
                 />
-                <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+                <BranchMap title={title} activeSection={activeSection} onSectionChange={onSectionChange} />
               </div>
             </div>
           </CornerBracket>

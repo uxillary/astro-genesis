@@ -1,10 +1,11 @@
-import { memo, useEffect, useRef, type MouseEvent } from 'react';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
+
 import type { PaperRecord } from '../lib/db';
-import HudBadge from '@/components/fui/HudBadge';
-import CornerBracket from '@/components/fui/CornerBracket';
-import TargetBadge from '@/components/fui/TargetBadge';
 import { FuiFrame } from '@/components/fui';
+import CornerBracket from '@/components/fui/CornerBracket';
+import HudBadge from '@/components/fui/HudBadge';
+import TargetBadge from '@/components/fui/TargetBadge';
 
 type CardStackProps = {
   items: PaperRecord[];
@@ -38,48 +39,16 @@ const formatAuthors = (authors: string[]) => {
   return truncate(`${authors[0]}, ${authors[1]} +${remaining} more`, 72);
 };
 
-const StackCard = ({ item, index }: StackCardProps) => {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
-    hoveredRef.current = true;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
-    scheduleTilt(x, y);
-  };
-
-  const handleLeave = () => {
-    hoveredRef.current = false;
-    scheduleTilt(0, 0);
-  };
-
-  useEffect(() => {
-    applyTilt(0, 0);
-    return () => {
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
-
+const StackCardComponent = ({ item, index }: StackCardProps) => {
   const lockLabel = `LOCK ${String(index + 1).padStart(2, '0')}`;
 
   return (
-    <Link
-      to={`/paper/${item.id}`}
-      className="group relative block"
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-    >
+    <Link to={`/paper/${item.id}`} className="group relative block">
       <div
-        ref={backdropRef}
         className="absolute inset-0 -z-[1] rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
         style={{ transform: 'translate3d(0, 0, 0)' }}
       />
       <article
-        ref={articleRef}
         className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
         style={{ transform: 'translate3d(0, 0, 0)' }}
       >
@@ -150,7 +119,12 @@ const StackCard = ({ item, index }: StackCardProps) => {
       <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
     </Link>
   );
-}, (prev, next) => prev.item === next.item && prev.index === next.index);
+};
+
+const StackCard = memo(
+  StackCardComponent,
+  (prev, next) => prev.item === next.item && prev.index === next.index,
+);
 
 StackCard.displayName = 'StackCard';
 
@@ -158,9 +132,13 @@ type BatteryProps = {
   confidence: number;
 };
 
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+
 const Battery = ({ confidence }: BatteryProps) => {
   const segments = 5;
-  const active = Math.round(confidence * segments);
+  const active = Math.round(clamp(confidence, 0, 1) * segments);
+  const percentage = Math.round(clamp(confidence, 0, 1) * 100);
+
   return (
     <div className="flex items-center gap-2">
       <span className="font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)] normal-case">Confidence</span>
@@ -169,15 +147,11 @@ const Battery = ({ confidence }: BatteryProps) => {
           {Array.from({ length: segments }).map((_, index) => (
             <span
               key={index}
-              className={`h-3.5 w-2.5 rounded-sm ${
-                index < active
-                  ? 'bg-[color:var(--accent-1)] shadow-[0_0_12px_rgba(85,230,165,0.35)]'
-                  : 'bg-[rgba(214,227,224,0.12)]'
-              }`}
+              className={`h-3.5 w-2.5 rounded-sm ${index < active ? 'bg-[color:var(--accent-1)] shadow-[0_0_12px_rgba(85,230,165,0.35)]' : 'bg-[rgba(214,227,224,0.12)]'}`}
             />
           ))}
         </div>
-        <span className="font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)] normal-case">{Math.round(confidence * 100)}%</span>
+        <span className="font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)] normal-case">{percentage}%</span>
       </div>
     </div>
   );
