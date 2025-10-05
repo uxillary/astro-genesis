@@ -8,7 +8,7 @@ Run the script:
 python scripts/pmc_ingest.py --limit 5
 
 Use --limit 5 for a small test.
-Add --force to re-download articles if needed.
+Add --force to re-download articles and regenerate dossiers if needed.
 
 Check your outputs:
 data/raw_pmc/ → HTML copies
