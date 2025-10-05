@@ -21,6 +21,13 @@ module.exports = {
         dim: 'var(--dim)'
       },
       borderRadius: {
+        DEFAULT: '4px',
+        sm: '2px',
+        md: '5px',
+        lg: '6px',
+        xl: '8px',
+        '2xl': '10px',
+        '3xl': '14px',
         hud: '18px'
       },
       boxShadow: {

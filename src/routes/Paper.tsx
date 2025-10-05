@@ -132,7 +132,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
 
   return (
     <div className="space-y-8 transmission-field">
-      <header className="relative overflow-hidden rounded-[12px] border border-[#d6e3e0]/16 bg-[rgba(12,18,24,0.86)] p-6 shadow-[0_30px_70px_rgba(0,0,0,0.42)]">
+      <header className="relative overflow-hidden rounded-[8px] border border-[#d6e3e0]/16 bg-[rgba(12,18,24,0.86)] p-6 shadow-[0_30px_70px_rgba(0,0,0,0.42)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,179,255,0.18),transparent_55%)] opacity-70 mix-blend-screen" aria-hidden="true" />
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="space-y-3">
