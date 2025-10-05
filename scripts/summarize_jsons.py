@@ -11,6 +11,12 @@ from typing import Dict, Iterable, List
 from openai import OpenAI, OpenAIError
 
 
+def log(message: str) -> None:
+    """Print a consistently formatted status message."""
+
+    print(f"[summarize_jsons] {message}")
+
+
 PROMPT_TEMPLATE = (
     "You are summarizing NASA bioscience experiment data.\n"
     "Write a concise, human-readable summary (100–150 words) combining the abstract, results, and conclusion.\n"
@@ -59,7 +65,10 @@ def append_log(log_path: Path, filenames: Iterable[str]) -> None:
 def ensure_api_key() -> str:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY environment variable is not set.")
+        raise RuntimeError(
+            "OPENAI_API_KEY environment variable is not set. "
+            "Set it before running the summarizer."
+        )
     return api_key
 
 
@@ -116,7 +125,7 @@ def process_file(path: Path, data: Dict, client: OpenAI) -> bool:
     try:
         summary = request_summary(client, payload)
     except Exception as exc:  # pylint: disable=broad-except
-        print(f"Error summarizing {path}: {exc}")
+        log(f"Error summarizing {path}: {exc}")
         return False
 
     keywords = data.get("keywords") or []
@@ -142,18 +151,49 @@ def process_file(path: Path, data: Dict, client: OpenAI) -> bool:
     return True
 
 
+def resolve_data_dir(repo_root: Path) -> Path:
+    """Locate the directory that holds JSON dossiers."""
+
+    candidates = [
+        repo_root / "data" / "papers",
+        repo_root / "data",
+    ]
+
+    for candidate in candidates:
+        if candidate.exists() and any(candidate.glob("*.json")):
+            return candidate
+
+    searched = "\n  - ".join(str(path) for path in candidates)
+    raise FileNotFoundError(
+        "Could not locate a directory containing JSON dossiers.\n"
+        "Searched:\n  - " + searched
+    )
+
+
 def main() -> None:
     repo_root = Path(__file__).resolve().parent.parent
-    data_dir = repo_root / "data" / "papers"
     log_path = repo_root / "summarized.log"
 
-    if not data_dir.exists():
-        raise FileNotFoundError(f"Data directory not found: {data_dir}")
+    log(f"Repository root: {repo_root}")
+
+    try:
+        data_dir = resolve_data_dir(repo_root)
+    except FileNotFoundError as exc:
+        log(str(exc))
+        return
+
+    log(f"Using data directory: {data_dir}")
 
     processed_log = load_log(log_path)
     files = sorted(data_dir.glob("*.json"))
 
+    if not files:
+        log("No JSON files found to summarize. Nothing to do.")
+        return
+
+    log("Checking OPENAI_API_KEY...")
     _ = ensure_api_key()
+    log("OPENAI_API_KEY found. Initializing OpenAI client.")
     client = OpenAI()
 
     processed_files: List[str] = []
@@ -161,30 +201,49 @@ def main() -> None:
 
     for json_path in files:
         if updates >= MAX_BATCH:
+            log(
+                "Reached MAX_BATCH=%d limit; remaining files will be processed in a "
+                "future run." % MAX_BATCH
+            )
             break
         rel_name = json_path.relative_to(repo_root).as_posix()
         if rel_name in processed_log:
+            log(f"Skipping {rel_name} (already listed in summarized.log)")
             continue
 
         if not json_path.is_file():
+            log(f"Skipping {rel_name} (not a regular file)")
             continue
 
         try:
             data = load_json(json_path)
         except Exception as exc:  # pylint: disable=broad-except
-            print(f"Error reading {json_path}: {exc}")
+            log(f"Error reading {json_path}: {exc}")
             continue
 
         if "summary_short" in data or "metrics" in data:
+            log(
+                "Skipping %s (already contains summary_short or metrics)"
+                % rel_name
+            )
             continue
 
-        print(f"Summarizing: {rel_name}")
+        log(f"Summarizing {rel_name}")
         if process_file(json_path, data, client):
             processed_files.append(rel_name)
             updates += 1
 
     append_log(log_path, processed_files)
-    print("✅ Summarization complete. New summaries saved to /data/papers/")
+    if updates:
+        log(
+            "✅ Summarization complete. %d file(s) updated. Latest output in %s"
+            % (updates, data_dir)
+        )
+    else:
+        log(
+            "ℹ️ No files were updated. Check the log above for skip reasons "
+            "or errors."
+        )
 
 
 if __name__ == "__main__":
