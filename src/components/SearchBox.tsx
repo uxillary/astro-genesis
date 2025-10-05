@@ -128,7 +128,7 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
     <div ref={containerRef} className="relative w-full max-w-xl">
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-3 rounded-[28px] border border-[#d6e3e0]/10 bg-[#0b0d0f]/60 px-5 py-3 shadow-panel"
+        className="flex items-center gap-3 rounded-[3px] border border-[#d6e3e0]/10 bg-[#0b0d0f]/70 px-5 py-3 shadow-panel"
       >
         <label className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim" htmlFor="archive-search">
           Query
@@ -172,7 +172,7 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           id={listboxId}
           role="listbox"
           aria-label="Suggested dossiers"
-          className="absolute z-20 mt-2 max-h-72 w-full overflow-auto rounded-[20px] border border-[#d6e3e0]/12 bg-panel/90 backdrop-blur-xl text-left shadow-panel"
+          className="absolute z-20 mt-2 max-h-72 w-full overflow-auto rounded-[3px] border border-[#d6e3e0]/12 bg-panel/95 backdrop-blur-xl text-left shadow-panel"
         >
           {suggestions.map((item, index) => (
             <li

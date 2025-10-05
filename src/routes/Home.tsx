@@ -82,7 +82,7 @@ const Home = () => {
 
   return (
     <div className="relative z-10 space-y-10">
-      <section className="grid gap-8 rounded-[28px] border border-[#1a1f24]/60 bg-[#10161d]/70 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
+      <section className="grid gap-8 rounded-[3px] border border-[#1a1f24]/60 bg-[#10161d]/85 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
         <div className="space-y-6">
           <header className="space-y-4">
             <p className="font-mono text-[0.64rem] uppercase tracking-[0.28em] text-[#55e6a5]">BioArchive Intelligence</p>

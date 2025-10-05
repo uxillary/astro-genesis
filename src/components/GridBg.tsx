@@ -93,7 +93,7 @@ const GridBg = () => {
         className="absolute inset-0 mix-blend-screen opacity-40"
         style={{ backgroundImage: 'repeating-linear-gradient(180deg, rgba(214,227,224,0.05) 0, rgba(214,227,224,0.05) 1px, transparent 1px, transparent 3px)' }}
       />
-      <div className="absolute inset-8 rounded-[28px] border border-[#d6e3e0]/5" />
+      <div className="absolute inset-8 rounded-[4px] border border-[#d6e3e0]/5" />
       <CornerTick position="top-left" />
       <CornerTick position="top-right" />
       <CornerTick position="bottom-left" />
@@ -109,10 +109,10 @@ type CornerTickProps = {
 const CornerTick = ({ position }: CornerTickProps) => {
   const common = 'absolute h-8 w-8 border border-[#d6e3e0]/10';
   const map: Record<CornerTickProps['position'], string> = {
-    'top-left': 'left-6 top-6 border-r-0 border-b-0 rounded-tl-[12px]',
-    'top-right': 'right-6 top-6 border-l-0 border-b-0 rounded-tr-[12px]',
-    'bottom-left': 'left-6 bottom-6 border-r-0 border-t-0 rounded-bl-[12px]',
-    'bottom-right': 'right-6 bottom-6 border-l-0 border-t-0 rounded-br-[12px]'
+    'top-left': 'left-6 top-6 border-r-0 border-b-0 rounded-tl-[3px]',
+    'top-right': 'right-6 top-6 border-l-0 border-b-0 rounded-tr-[3px]',
+    'bottom-left': 'left-6 bottom-6 border-r-0 border-t-0 rounded-bl-[3px]',
+    'bottom-right': 'right-6 bottom-6 border-l-0 border-t-0 rounded-br-[3px]'
   };
   return <span className={`${common} ${map[position]}`} />;
 };

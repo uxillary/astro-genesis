@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 const TargetingHUD = () => {
   return (
-    <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black/70 p-6 text-white/80 shadow-panel">
+    <div className="relative overflow-hidden rounded-[3px] border border-white/10 bg-black/75 p-6 text-white/80 shadow-panel">
       <div className="pointer-events-none absolute inset-0 opacity-40 mix-blend-screen">
         <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-white/20" />
         <div className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-white/20" />
@@ -49,7 +49,7 @@ const TargetingHUD = () => {
 
 const VectorLattice = () => {
   return (
-    <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-black/70 p-6 text-white/80 shadow-panel">
+    <div className="relative overflow-hidden rounded-[3px] border border-white/10 bg-black/75 p-6 text-white/80 shadow-panel">
       <div className="relative flex h-64 flex-col justify-between font-mono text-[0.58rem] uppercase tracking-[0.28em] text-dim">
         <div className="flex justify-between">
           <span>Grid Vec</span>

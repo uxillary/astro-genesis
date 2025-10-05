@@ -26,7 +26,7 @@ const BranchMap = ({ title, activeSection, onSectionChange }: BranchMapProps) =>
   const edges = useMemo<Edge[]>(() => createEdges(layout), [layout]);
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] border border-[#d6e3e0]/10 bg-panel/70 backdrop-blur-sm">
+    <div className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/10 bg-panel/85 backdrop-blur-sm">
       <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between border-b border-[#d6e3e0]/10 bg-[#0b0d0f]/40 px-5 py-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-dim">
         <span>Branch Map // Narrative Threads</span>
         <div className="flex items-center gap-2">

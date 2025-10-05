@@ -46,11 +46,11 @@ const StackCard = ({ item, index }: StackCardProps) => {
       onMouseLeave={handleLeave}
     >
       <div
-        className="absolute inset-0 -z-[1] rounded-[26px] border border-[#1a1f24]/50 bg-[#10161d]/70 backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
+        className="absolute inset-0 -z-[1] rounded-[4px] border border-[#1a1f24]/50 bg-[#10161d]/75 backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       />
       <article
-        className="relative overflow-hidden rounded-[26px] border border-[#1a1f24]/70 bg-[#131d26]/80 p-6 shadow-[0_28px_60px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
+        className="relative overflow-hidden rounded-[4px] border border-[#1a1f24]/70 bg-[#131d26]/85 p-6 shadow-[0_28px_60px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       >
         <header className="mb-4 space-y-3">
@@ -67,17 +67,17 @@ const StackCard = ({ item, index }: StackCardProps) => {
         </header>
 
         <dl className="grid grid-cols-3 gap-2 text-[0.6rem] font-mono uppercase tracking-[0.2em] text-[#7a8b94]">
-          <div className="rounded-md border border-[#1a1f24]/70 bg-[#141c24]/80 px-3 py-2">
+          <div className="rounded-[3px] border border-[#1a1f24]/70 bg-[#141c24]/80 px-3 py-2">
             <dt className="text-[0.55rem] text-[#5d6c75]">Year</dt>
             <dd className="text-[#d6e3e0]">{item.year}</dd>
           </div>
-          <div className="rounded-md border border-[#1a1f24]/70 bg-[#141c24]/80 px-3 py-2">
+          <div className="rounded-[3px] border border-[#1a1f24]/70 bg-[#141c24]/80 px-3 py-2">
             <dt className="text-[0.55rem] text-[#5d6c75]">Organism</dt>
             <dd className="text-[#d6e3e0] truncate" title={item.organism}>
               {item.organism}
             </dd>
           </div>
-          <div className="rounded-md border border-[#1a1f24]/70 bg-[#141c24]/80 px-3 py-2">
+          <div className="rounded-[3px] border border-[#1a1f24]/70 bg-[#141c24]/80 px-3 py-2">
             <dt className="text-[0.55rem] text-[#5d6c75]">Platform</dt>
             <dd className="text-[#d6e3e0] truncate" title={item.platform}>
               {item.platform}
@@ -101,7 +101,7 @@ const StackCard = ({ item, index }: StackCardProps) => {
           <HudBadge label="Entities" tone="cyan" compact value={<span>{item.entities.length}</span>} />
         </div>
       </article>
-      <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-[26px] border border-[#1a1f24]/40 bg-[#141c24]/40 opacity-70" />
+      <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-[4px] border border-[#1a1f24]/40 bg-[#141c24]/45 opacity-70" />
     </Link>
   );
 };
@@ -117,7 +117,7 @@ const Battery = ({ confidence }: BatteryProps) => {
     <div className="flex items-center gap-2">
       <span className="text-[0.55rem] font-mono uppercase tracking-[0.28em] text-[#7a8b94]">Confidence</span>
       <div className="flex items-center gap-1">
-        <div className="flex gap-1 rounded-md border border-[#1a1f24]/60 bg-[#141c24]/70 px-1 py-1">
+        <div className="flex gap-1 rounded-[3px] border border-[#1a1f24]/60 bg-[#141c24]/70 px-1 py-1">
           {Array.from({ length: segments }).map((_, index) => (
             <span
               key={index}

@@ -1,6 +1,6 @@
 const ExclusionMap = () => {
   return (
-    <div className="relative overflow-hidden rounded-[28px] border border-[#d6e3e0]/10 bg-[#0b0d0f]/80 shadow-panel">
+    <div className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/10 bg-[#0b0d0f]/85 shadow-panel">
       <header className="absolute left-6 top-6 z-20 flex items-center gap-3 font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#d6e3e0]">
         <span className="rounded-full border border-red/60 px-3 py-1 text-red">Exclusion Zone</span>
         <span className="text-dim">S-17 Quadrant</span>
