@@ -67,6 +67,8 @@ logs/
 *.out
 *.err
 
+.env
+
 # --- Project specific (astro-genesis) ---
 # any temporary downloads or scraped HTML
 resources/temp/
