@@ -202,7 +202,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                 }
                 variant="dossier"
               >
-                {sections.abstract}
+                <SectionContent text={sections?.abstract} />
               </Panel>
             </div>
             <div id="panel-methods" ref={methodsAnchorRef}>
@@ -226,7 +226,9 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                     color="cyan"
                     className="absolute -right-2 -top-2 hidden md:flex"
                   />
-                  <div className="relative z-10">{sections.methods}</div>
+                  <div className="relative z-10">
+                    <SectionContent text={sections?.methods} />
+                  </div>
                 </div>
               </Panel>
             </div>
@@ -243,7 +245,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                 }
                 variant="dossier"
               >
-                {sections.results}
+                <SectionContent text={sections?.results} />
               </Panel>
             </div>
             <div id="panel-conclusion" ref={conclusionAnchorRef}>
@@ -259,7 +261,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                 }
                 variant="dossier"
               >
-                {sections.conclusion}
+                <SectionContent text={sections?.conclusion} />
               </Panel>
             </div>
           </div>
@@ -353,5 +355,30 @@ const MetaRow = ({ label, value }: { label: string; value: string }) => (
     <dd className="meta-row__value">{value}</dd>
   </div>
 );
+
+const SectionContent = ({ text }: { text?: string | null }) => {
+  if (!text || text.trim().length === 0) {
+    return <p className="text-[color:var(--mid)]">No transmission logged for this module.</p>;
+  }
+
+  const paragraphs = text
+    .split(/\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  if (paragraphs.length === 0) {
+    return <p className="text-[color:var(--mid)]">No transmission logged for this module.</p>;
+  }
+
+  return (
+    <div className="space-y-3 leading-relaxed">
+      {paragraphs.map((paragraph, index) => (
+        <p key={index} className="text-white/75">
+          {paragraph}
+        </p>
+      ))}
+    </div>
+  );
+};
 
 export default Paper;

@@ -25,6 +25,19 @@ type StackCardProps = {
   index: number;
 };
 
+const truncate = (value: string, maxLength: number) => {
+  if (value.length <= maxLength) return value;
+  return `${value.slice(0, maxLength - 1)}…`;
+};
+
+const formatAuthors = (authors: string[]) => {
+  if (authors.length === 0) return 'Classified authorship';
+  if (authors.length === 1) return truncate(authors[0], 72);
+  if (authors.length === 2) return truncate(`${authors[0]}, ${authors[1]}`, 72);
+  const remaining = authors.length - 2;
+  return truncate(`${authors[0]}, ${authors[1]} +${remaining} more`, 72);
+};
+
 const StackCard = ({ item, index }: StackCardProps) => {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -77,9 +90,11 @@ const StackCard = ({ item, index }: StackCardProps) => {
                   </div>
                 </div>
                 <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
-                  {item.title}
+                  {truncate(item.title, 96)}
                 </h2>
-                <p className="font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">{item.authors.join(', ')}</p>
+                <p className="font-body text-[0.9rem] leading-relaxed text-[color:var(--mid)]">
+                  {formatAuthors(item.authors)}
+                </p>
               </div>
             </FuiFrame>
           </CornerBracket>
@@ -105,12 +120,12 @@ const StackCard = ({ item, index }: StackCardProps) => {
         </dl>
 
         <div className="mt-5 flex flex-wrap gap-3">
-          {item.keywords.slice(0, 4).map((keyword) => (
+          {item.keywords.slice(0, 3).map((keyword) => (
             <span
               key={keyword}
               className="rounded-full border border-[rgba(32,42,50,0.65)] bg-[rgba(12,18,24,0.6)] px-3.5 py-1.5 font-body text-[0.78rem] text-[color:var(--mid)] transition-colors group-hover:border-[rgba(0,179,255,0.45)] group-hover:text-[color:var(--white)]"
             >
-              {keyword}
+              {truncate(keyword, 26)}
             </span>
           ))}
         </div>

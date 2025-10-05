@@ -6,6 +6,7 @@ import type { PaperIndex } from '../lib/types';
 import Filters from '../components/Filters';
 import SearchBox from '../components/SearchBox';
 import CardStack from '../components/CardStack';
+import PaginationControls from '../components/PaginationControls';
 import PcbHeader from '@/components/fui/PcbHeader';
 import HudBadge from '@/components/fui/HudBadge';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
@@ -21,6 +22,8 @@ const fetchIndex = async (): Promise<PaperIndex[]> => {
   return response.json();
 };
 
+const PAGE_SIZE = 9;
+
 const Home = () => {
   const queryClient = useQueryClient();
   const { query, filters, setResults, results } = useSearchStore((state) => ({
@@ -32,6 +35,7 @@ const Home = () => {
   const dexieReady = isDexieAvailable();
 
   const [uplinkActive, setUplinkActive] = useState(false);
+  const [page, setPage] = useState(1);
   const [activeYear, setActiveYear] = useState<number | null>(null);
   const [connectionRestored, setConnectionRestored] = useState(false);
 
@@ -95,6 +99,25 @@ const Home = () => {
 
   const totalRecords = papersQuery.data?.length ?? 0;
   const integrity = totalRecords > 0 ? results.length / totalRecords : 0;
+
+  const resultsKey = useMemo(() => results.map((item) => item.id).join('|'), [results]);
+  const pageCount = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+  const paginatedResults = useMemo(() => {
+    if (results.length === 0) return [];
+    const nextPage = Math.min(page, pageCount);
+    const start = (nextPage - 1) * PAGE_SIZE;
+    return results.slice(start, start + PAGE_SIZE);
+  }, [results, page, pageCount]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [resultsKey]);
+
+  useEffect(() => {
+    if (page > pageCount) {
+      setPage(pageCount);
+    }
+  }, [page, pageCount]);
 
   const timeline = useMemo(() => buildTimeline(results), [results]);
   const availableYears = timeline.map((item) => item.year);
@@ -234,7 +257,27 @@ const Home = () => {
               Tactical map
             </Link>
           </header>
-          {results.length > 0 ? <CardStack items={results} /> : <EmptyState restoring={connectionRestored} />}
+          {results.length > 0 ? (
+            <div className="space-y-6">
+              <CardStack items={paginatedResults} />
+              {results.length > PAGE_SIZE ? (
+                <div className="flex flex-col gap-4 border-t border-[rgba(26,31,36,0.35)] pt-4 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)]">
+                    Showing {(page - 1) * PAGE_SIZE + 1}-{Math.min(page * PAGE_SIZE, results.length)} of {results.length} dossiers
+                  </p>
+                  <PaginationControls
+                    page={page}
+                    pageCount={pageCount}
+                    pageSize={PAGE_SIZE}
+                    totalItems={results.length}
+                    onPageChange={setPage}
+                  />
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <EmptyState restoring={connectionRestored} />
+          )}
         </div>
       </section>
 
