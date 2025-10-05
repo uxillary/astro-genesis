@@ -1,87 +1,55 @@
-import { useEffect, useRef } from 'react';
+import TerminalLine from './TerminalLine';
 
-interface Props {
+export type CredentialPaneProps = {
   authing: boolean;
   granted: boolean;
-  reducedMotion?: boolean;
+  reducedMotion: boolean;
   onAuthenticate: () => void;
   titleId: string;
   subtitleId: string;
-}
+};
 
 export default function CredentialPane({
   authing,
   granted,
+  reducedMotion,
   onAuthenticate,
-  reducedMotion = false,
   titleId,
   subtitleId,
-}: Props) {
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    buttonRef.current?.focus({ preventScroll: true });
-  }, []);
-
-  const paneClasses = ['credential-pane'];
-  if (authing) paneClasses.push('is-authing');
-  if (granted) paneClasses.push('is-granted');
-  if (reducedMotion) paneClasses.push('is-reduced');
-
+}: CredentialPaneProps) {
   return (
-    <div className={paneClasses.join(' ')}>
-      <div className="credential-glass" aria-hidden="true" />
-      <div className="credential-overlay" aria-hidden="true" />
-      <div className="credential-frame" aria-hidden="true">
-        <span className="frame-tick frame-tick-tl" />
-        <span className="frame-tick frame-tick-tr" />
-        <span className="frame-tick frame-tick-bl" />
-        <span className="frame-tick frame-tick-br" />
-      </div>
-      <div className={`credential-scan${reducedMotion ? ' is-paused' : ''}`} aria-hidden="true" />
-      <div className="credential-content" aria-live="polite">
-        <header className="credential-header">
-          <span className="credential-eyebrow">SUBMIT SECURITY CREDENTIALS</span>
-          <span className="credential-caption">CLASSIFIED PERSONNEL ONLY</span>
-        </header>
-        <div className="credential-status">
-          {!granted ? (
-            <>
-              <p className="credential-title" id={titleId}>
-                IDENTITY SCAN REQUIRED
-              </p>
-              <p className="credential-sub" id={subtitleId}>
-                ACCESS LEVEL: ALPHA
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="credential-title success" id={titleId}>
-                ACCESS GRANTED
-              </p>
-              <p className="credential-sub success" id={subtitleId}>
-                IDENTITY CONFIRMED // CHANNEL OPEN
-              </p>
-            </>
-          )}
-        </div>
-        <div className="credential-meta" aria-hidden="true">
-          <span>NODE: AG-223</span>
-          <span>QUANT REF: 492-A</span>
-        </div>
+    <section
+      className={`credential-pane${authing ? ' is-authing' : ''}${granted ? ' is-granted' : ''}`}
+      aria-live="polite"
+      aria-labelledby={titleId}
+      aria-describedby={subtitleId}
+    >
+      <div className="credential-pane__frame" />
+      {!reducedMotion && <div className="credential-pane__scan" aria-hidden="true" />}
+      <header className="credential-pane__header">
+        <p className="credential-pane__eyebrow">SUBMIT SECURITY CREDENTIALS // CLASSIFIED PERSONNEL ONLY</p>
+        <h1 className="credential-pane__title" id={titleId}>
+          {granted ? 'ACCESS GRANTED' : 'IDENTITY SCAN REQUIRED'}
+        </h1>
+        <p className="credential-pane__subtitle" id={subtitleId}>
+          {granted ? 'IDENTITY CONFIRMED' : 'CHANNEL: SECNET-03'}
+        </p>
+      </header>
+      <div className="credential-pane__body">
+        <TerminalLine onSubmit={onAuthenticate} disabled={authing || granted} />
         <button
-          ref={buttonRef}
           type="button"
-          className="credential-button"
+          className="credential-pane__button"
           onClick={onAuthenticate}
-          aria-label="Authenticate and enter"
-          aria-describedby={`${titleId} ${subtitleId}`}
-          disabled={authing}
+          disabled={authing || granted}
+          aria-label="Authenticate and proceed"
         >
-          {authing && !granted ? 'VERIFYING…' : granted ? 'AUTHENTICATED' : 'AUTHENTICATE'}
+          AUTHENTICATE
         </button>
-        <p className="credential-hint">Press ENTER</p>
+        <p className="credential-pane__status">
+          ACCESS LEVEL: ALPHA // CHANNEL: SECNET-03 // INTEGRITY: 100%
+        </p>
       </div>
-    </div>
+    </section>
   );
 }
