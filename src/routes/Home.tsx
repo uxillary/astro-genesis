@@ -7,6 +7,7 @@ import Filters from '../components/Filters';
 import SearchBox from '../components/SearchBox';
 import CardStack from '../components/CardStack';
 import HudBadge from '../components/HudBadge';
+import ActiveFiltersBar from '../components/ActiveFiltersBar';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
 import { withBase } from '../lib/paths';
@@ -97,8 +98,11 @@ const Home = () => {
           <p className="max-w-2xl font-mono text-[0.74rem] uppercase tracking-[0.22em] text-[#7a8b94]">
             Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
           </p>
-          <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
-          <div className="flex items-center gap-3 text-[0.64rem] font-mono uppercase tracking-[0.24em] text-[#7a8b94]">
+          <div className="space-y-4">
+            <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
+            <ActiveFiltersBar />
+          </div>
+          <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-[#7a8b94]">
             <span>Need help?</span>
             <kbd className="rounded border border-[#d6e3e0]/25 bg-[#0b1116]/70 px-2 py-1 text-[#d6e3e0]/85">?</kbd>
             <span>Press for console reference</span>
