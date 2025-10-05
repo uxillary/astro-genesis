@@ -747,7 +747,7 @@ const buildTimeline = (records: PaperRecord[]): TimelinePoint[] => {
   const grouped = records.reduce((acc, record) => {
     const bucket = acc.get(record.year) ?? { total: 0, entities: 0, confidence: 0, records: [] as PaperRecord[] };
     bucket.total += 1;
-    bucket.entities += record.entities.length;
+    bucket.entities += record.entities?.length ?? 0;
     bucket.confidence += record.confidence;
     bucket.records.push(record);
     acc.set(record.year, bucket);
@@ -846,6 +846,7 @@ const buildHabitableNodes = (records: PaperRecord[], activeYear: number | null):
 
   const allNodes = [...organismNodes, ...platformNodes, ...yearNodes];
   const links: HabitableLink[] = [];
+  const seen = new Set<string>();
 
   records.forEach((record) => {
     const organismNode = allNodes.find((node) => node.id === `org-${record.organism}`);
@@ -853,25 +854,33 @@ const buildHabitableNodes = (records: PaperRecord[], activeYear: number | null):
     const yearNode = allNodes.find((node) => node.id === `year-${record.year}`);
 
     if (organismNode && platformNode) {
-      links.push({
-        source: organismNode.id,
-        target: platformNode.id,
-        x1: organismNode.x,
-        y1: organismNode.y,
-        x2: platformNode.x,
-        y2: platformNode.y
-      });
+      const key = `${organismNode.id}->${platformNode.id}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        links.push({
+          source: organismNode.id,
+          target: platformNode.id,
+          x1: organismNode.x,
+          y1: organismNode.y,
+          x2: platformNode.x,
+          y2: platformNode.y
+        });
+      }
     }
 
     if (platformNode && yearNode) {
-      links.push({
-        source: platformNode.id,
-        target: yearNode.id,
-        x1: platformNode.x,
-        y1: platformNode.y,
-        x2: yearNode.x,
-        y2: yearNode.y
-      });
+      const key = `${platformNode.id}->${yearNode.id}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        links.push({
+          source: platformNode.id,
+          target: yearNode.id,
+          x1: platformNode.x,
+          y1: platformNode.y,
+          x2: yearNode.x,
+          y2: yearNode.y
+        });
+      }
     }
   });
 
@@ -880,7 +889,8 @@ const buildHabitableNodes = (records: PaperRecord[], activeYear: number | null):
 
 const synthesiseSummary = (record: PaperRecord) => {
   const keywords = record.keywords.slice(0, 3).join(', ');
-  const focus = record.entities.slice(0, 2).join(' & ') || 'mission biomarkers';
+  const entities = record.entities ?? [];
+  const focus = entities.slice(0, 2).join(' & ') || 'mission biomarkers';
   return `LLM synthesis flags ${record.organism} studies on ${record.platform} (${record.year}). Key focus: ${focus}. Signal confidence ${Math.round(record.confidence * 100)}%. Keywords: ${keywords || 'classified'}.`;
 };
 

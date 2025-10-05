@@ -113,7 +113,7 @@ const StackCardComponent = ({ item, index }: StackCardProps) => {
 
         <div className="mt-7 flex items-center justify-between">
           <Battery confidence={item.confidence} />
-          <HudBadge label="Entities" tone="cyan" compact value={<span>{item.entities.length}</span>} />
+          <HudBadge label="Entities" tone="cyan" compact value={<span>{item.entities?.length ?? 0}</span>} />
         </div>
       </article>
       <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
