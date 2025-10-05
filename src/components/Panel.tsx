@@ -42,8 +42,8 @@ const Panel = ({ title, sublabel, actions, children, active, variant = 'default'
         {children}
       </div>
       <div className="pointer-events-none absolute inset-0 border border-dashed border-[#d6e3e0]/5" />
-      <div className="pointer-events-none absolute -left-10 top-10 h-20 w-20 rounded-full border border-[color:var(--panel-accent,rgba(255,59,59,0.35))]/40 opacity-30" />
-      <div className="pointer-events-none absolute right-6 top-6 h-6 w-6 border border-[#d6e3e0]/20" />
+      <div className="pointer-events-none absolute -left-10 top-10 h-20 w-20 rounded-full border border-[color:var(--panel-accent,rgba(255,59,59,0.35))]/30 opacity-[0.18]" />
+      <div className="pointer-events-none absolute right-6 top-6 h-6 w-6 border border-[#d6e3e0]/12" />
     </section>
   );
 };
