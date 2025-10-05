@@ -1,0 +1,38 @@
+{
+  "id": "exp_020",
+  "title": "Author Correction: Multi-omics analysis of multiple missions to space reveal a theme of lipid dysregulation in mouse liver",
+  "authors": [
+    "Afshin Beheshti",
+    "Kaushik Chakravarty",
+    "Homer Fogle",
+    "Hossein Fazelinia",
+    "Willian A da Silveira",
+    "Valery Boyko",
+    "San-Huei Lai Polo",
+    "Amanda M Saravia-Butler",
+    "Gary Hardiman",
+    "Deanne Taylor",
+    "Jonathan M Galazka",
+    "Sylvain V Costes"
+  ],
+  "year": 2020,
+  "organism": null,
+  "platform": null,
+  "keywords": [],
+  "sections": {
+    "abstract": "",
+    "methods": "",
+    "results": "",
+    "conclusion": ""
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6985101/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6985101/pdf/41598_2020_Article_58490.pdf"
+  },
+  "access": [
+    "PEER-REVIEWED"
+  ],
+  "citations_by_year": [],
+  "confidence": 0.5,
+  "entities": []
+}

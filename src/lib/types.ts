@@ -27,6 +27,8 @@ export type PaperDetail = PaperIndex & {
   links: {
     taskbook?: string;
     osdr?: string;
+    pmc_html?: string;
+    pmc_pdf?: string;
   };
 };
 

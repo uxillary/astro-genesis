@@ -1,0 +1,63 @@
+{
+  "id": "exp_026",
+  "title": "Extraterrestrial Gynecology: Could Spaceflight Increase the Risk of Developing Cancer in Female Astronauts? An Updated Review",
+  "authors": [
+    "Rosa Drago-Ferrante",
+    "Riccardo Di Fiore",
+    "Fathi Karouia",
+    "Yashwanth Subbannayya",
+    "Saswati Das",
+    "Begum Aydogan Mathyk",
+    "Shehbeel Arif",
+    "Ana Paula Guevara-Cerdán",
+    "Allen Seylani",
+    "Aman Singh Galsinh",
+    "Weronika Kukulska",
+    "Joseph Borg",
+    "Sherif Suleiman",
+    "David Marshall Porterfield",
+    "Andrea Camera",
+    "Lane K Christenson",
+    "April Elizabeth Ronca",
+    "Jonathan G Steller",
+    "Afshin Beheshti",
+    "Jean Calleja-Agius"
+  ],
+  "year": 0,
+  "organism": "Homo sapiens",
+  "platform": "ISS",
+  "keywords": [
+    "radiation",
+    "female",
+    "cancer",
+    "cancers",
+    "gynecological",
+    "astronauts",
+    "impact",
+    "reproductive"
+  ],
+  "sections": {
+    "abstract": "Outer space is an extremely hostile environment for human life, with ionizing radiation from galactic cosmic rays and microgravity posing the most significant hazards to the health of astronauts. Spaceflight has also been shown to have an impact on established cancer hallmarks, possibly increasing carcinogenic risk. Terrestrially, women have a higher incidence of radiation-induced cancers, largely driven by lung, thyroid, breast, and ovarian cancers, and therefore, historically, they have been permitted to spend significantly less time in space than men. In the present review, we focus on the effects of microgravity and radiation on the female reproductive system, particularly gynecological cancer. The aim is to provide a summary of the research that has been carried out related to the risk of gynecological cancer, highlighting what further studies are needed to pave the way for safer exploration class missions, as well as postflight screening and management of women astronauts following long-duration spaceflight. Keywords: space exploration, microgravity, space radiation, astronaut health, female reproductive system, gynecological cancers",
+    "methods": "",
+    "results": "",
+    "conclusion": "The current data reveal a scarcity of knowledge about the impact of space radiation and microgravity on gynecologic cancer, as there have been insufficient numbers of female astronauts exposed to long-duration, low-dose rate, and proton and heavy ion radiation to reliably determine the impact on the female reproductive system. With the upcoming Artemis missions set to place the first females on the Moon, there will be longer duration of exposures to both microgravity and space radiation; hence, the influence of flight length on risks related to gynecological cancers will demand a larger focus in ensuring astronaut safety during flight and postflight. Indeed, among all body tissues, the male and female gonads are among the most sensitive to radiation. Therefore, these tissues may be one of the best to study to determine space radiation related exposures."
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9267413/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9267413/pdf/ijms-23-07465.pdf"
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "ISS",
+    "SPACE RADIATION BIOLOGY"
+  ],
+  "citations_by_year": [],
+  "confidence": 0.69,
+  "entities": [
+    "radiation",
+    "female",
+    "cancer",
+    "cancers",
+    "gynecological"
+  ]
+}

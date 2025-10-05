@@ -1,63 +1,47 @@
 {
   "id": "exp_008",
-  "title": "Bioadaptive Study 8",
+  "title": "From the bench to exploration medicine: NASA life sciences translational research for human exploration and habitation missions",
   "authors": [
-    "Dr. H. Vega",
-    "Lt. T. Orion"
+    "Joshua S Alwood",
+    "April E Ronca",
+    "Richard C Mains",
+    "Mark J Shelhamer",
+    "Jeffrey D Smith",
+    "Thomas J Goodwin"
   ],
-  "year": 2023,
-  "organism": "Saccharomyces cerevisiae",
-  "platform": "Deep Space Habitat",
+  "year": 2016,
+  "organism": "Homo sapiens",
+  "platform": null,
   "keywords": [
-    "photosynthesis",
-    "circadian rhythm",
-    "gene expression"
+    "research",
+    "nasa",
+    "translational",
+    "human",
+    "entities",
+    "more",
+    "biology",
+    "program"
   ],
   "sections": {
-    "abstract": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics.",
-    "methods": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems.",
-    "results": "Automated imaging payloads captured time-series datasets to quantify phenotypic drift under extended orbital exposure. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems. Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics.",
-    "conclusion": "Crew-operated assays validated ground-based analog simulations, highlighting variance in nutrient uptake kinetics. Microgravity environments alter cellular morphology and biochemical signaling cascades, prompting adaptive responses across multiple organ systems."
+    "abstract": "NASA’s Space Biology and Human Research Program entities have recently spearheaded communications both internally and externally to coordinate the agency’s translational research efforts. In this paper, we strongly advocate for translational research at NASA, provide recent examples of NASA sponsored early-stage translational research, and discuss options for a path forward. Our overall objective is to help in stimulating a collaborative research across multiple disciplines and entities that, working together, will more effectively and more rapidly achieve NASA’s goals for human spaceflight.",
+    "methods": "",
+    "results": "",
+    "conclusion": ""
   },
   "links": {
-    "taskbook": "https://example.com/taskbook/exp_008",
-    "osdr": "https://example.com/osdr/exp_008"
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5460236/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5460236/pdf/41526_2016_Article_2.pdf"
   },
   "access": [
-    "PEER-REVIEWED",
-    "DEEP-SPACE"
+    "PEER-REVIEWED"
   ],
-  "citations_by_year": [
-    {
-      "y": 2018,
-      "c": 5
-    },
-    {
-      "y": 2019,
-      "c": 6
-    },
-    {
-      "y": 2020,
-      "c": 4
-    },
-    {
-      "y": 2021,
-      "c": 7
-    },
-    {
-      "y": 2022,
-      "c": 7
-    },
-    {
-      "y": 2023,
-      "c": 8
-    }
-  ],
-  "confidence": 0.86,
+  "citations_by_year": [],
+  "confidence": 0.67,
   "entities": [
-    "bioluminescence",
-    "quantum yield",
-    "chlorophyll",
-    "habitat deck"
+    "research",
+    "nasa",
+    "translational",
+    "human",
+    "entities"
   ]
 }

@@ -1,536 +1,2045 @@
 [
   {
-    "id": "exp_001",
-    "title": "Bioadaptive Study 1",
-    "authors": [
-      "Dr. A. Vega",
-      "Lt. M. Orion"
-    ],
-    "year": 2016,
-    "organism": "Mus musculus",
-    "platform": "ISS - Kubik",
-    "keywords": [
-      "gene expression",
-      "immune modulation",
-      "cell differentiation"
-    ],
-    "access": [
-      "PEER-REVIEWED",
-      "ISS",
-      "IN-VITRO"
-    ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 2
-      },
-      {
-        "y": 2019,
-        "c": 3
-      },
-      {
-        "y": 2020,
-        "c": 1
-      },
-      {
-        "y": 2021,
-        "c": 4
-      },
-      {
-        "y": 2022,
-        "c": 4
-      },
-      {
-        "y": 2023,
-        "c": 5
-      }
-    ],
-    "confidence": 0.62,
-    "entities": [
-      "gravitropism",
-      "auxin",
-      "root cap",
-      "phototropism"
-    ]
-  },
-  {
-    "id": "exp_002",
-    "title": "Bioadaptive Study 2",
-    "authors": [
-      "Dr. B. Vega",
-      "Lt. N. Orion"
-    ],
-    "year": 2017,
-    "organism": "Arabidopsis thaliana",
-    "platform": "ISS - Veggie",
-    "keywords": [
-      "metabolomics",
-      "cell differentiation",
-      "transcriptomics"
-    ],
-    "access": [
-      "PEER-REVIEWED",
-      "ANIMAL"
-    ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 3
-      },
-      {
-        "y": 2019,
-        "c": 4
-      },
-      {
-        "y": 2020,
-        "c": 2
-      },
-      {
-        "y": 2021,
-        "c": 5
-      },
-      {
-        "y": 2022,
-        "c": 5
-      },
-      {
-        "y": 2023,
-        "c": 6
-      }
-    ],
-    "confidence": 0.66,
-    "entities": [
-      "telomere integrity",
-      "microtubule",
-      "ion gradient",
-      "oxidative load"
-    ]
-  },
-  {
     "id": "exp_003",
-    "title": "Bioadaptive Study 3",
+    "title": "Microgravity and Cellular Biology: Insights into Cellular Responses and Implications for Human Health",
     "authors": [
-      "Dr. C. Vega",
-      "Lt. O. Orion"
+      "Nelson Adolfo López Garzón",
+      "María Virginia Pinzón-Fernández",
+      "Jhan S Saavedra T",
+      "Humberto A Nati-Castillo",
+      "Marlon Arias-Intriago",
+      "Camila Salazar-Santoliva",
+      "Juan S Izquierdo-Condoy"
     ],
-    "year": 2018,
-    "organism": "Arabidopsis thaliana",
-    "platform": "ISS - Kubik",
+    "year": 2024,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
     "keywords": [
-      "transcriptomics",
-      "microgravity",
-      "photosynthesis"
+      "cells",
+      "health",
+      "biological",
+      "immune",
+      "cancer",
+      "tissue",
+      "human",
+      "cell"
     ],
     "access": [
       "PEER-REVIEWED",
       "ISS",
-      "ANIMAL"
+      "MICROGRAVITY RESEARCH"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 4
-      },
-      {
-        "y": 2019,
-        "c": 5
-      },
-      {
-        "y": 2020,
-        "c": 3
-      },
-      {
-        "y": 2021,
-        "c": 6
-      },
-      {
-        "y": 2022,
-        "c": 6
-      },
-      {
-        "y": 2023,
-        "c": 7
-      }
-    ],
-    "confidence": 0.69,
+    "citations_by_year": [],
+    "confidence": 0.71,
     "entities": [
-      "chloroplast",
-      "signal cascade",
-      "gene silencing",
-      "hypergravity"
+      "cells",
+      "health",
+      "biological",
+      "immune",
+      "cancer"
     ]
   },
   {
-    "id": "exp_004",
-    "title": "Bioadaptive Study 4",
+    "id": "exp_029",
+    "title": "A comprehensive SARS-CoV-2 and COVID-19 review, Part 2: host extracellular to systemic effects of SARS-CoV-2 infection",
     "authors": [
-      "Dr. D. Vega",
-      "Lt. P. Orion"
+      "S Anand Narayanan",
+      "David A Jamison, Jr",
+      "Joseph W Guarnieri",
+      "Victoria Zaksas",
+      "Michael Topper",
+      "Andrew P Koutnik",
+      "Jiwoon Park",
+      "Kevin B Clark",
+      "Francisco J Enguita",
+      "Ana Lúcia Leitão",
+      "Saswati Das",
+      "Pedro M Moraes-Vieira",
+      "Diego Galeano",
+      "Christopher E Mason",
+      "Nídia S Trovão",
+      "Robert E Schwartz",
+      "Jonathan C Schisler",
+      "Jordana G A Coelho-dos-Reis",
+      "Eve Syrkin Wurtele",
+      "Afshin Beheshti"
     ],
-    "year": 2019,
-    "organism": "Caenorhabditis elegans",
-    "platform": "ISS - Kubik",
+    "year": 2023,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
     "keywords": [
-      "gene expression",
-      "circadian rhythm",
-      "metabolomics"
-    ],
-    "access": [
-      "PEER-REVIEWED",
-      "IN-VITRO"
-    ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 5
-      },
-      {
-        "y": 2019,
-        "c": 6
-      },
-      {
-        "y": 2020,
-        "c": 4
-      },
-      {
-        "y": 2021,
-        "c": 7
-      },
-      {
-        "y": 2022,
-        "c": 7
-      },
-      {
-        "y": 2023,
-        "c": 8
-      }
-    ],
-    "confidence": 0.72,
-    "entities": [
-      "circadian gate",
-      "metabolic flux",
-      "RNA-seq",
-      "cryoprotection"
-    ]
-  },
-  {
-    "id": "exp_005",
-    "title": "Bioadaptive Study 5",
-    "authors": [
-      "Dr. E. Vega",
-      "Lt. Q. Orion"
-    ],
-    "year": 2020,
-    "organism": "Caenorhabditis elegans",
-    "platform": "ISS - Kubik",
-    "keywords": [
-      "radiation response",
-      "transcriptomics",
-      "cell differentiation"
+      "viral",
+      "covid-",
+      "sars-cov-",
+      "adaptations",
+      "describe",
+      "infection",
+      "factors",
+      "caused"
     ],
     "access": [
       "PEER-REVIEWED",
       "ISS"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 2
-      },
-      {
-        "y": 2019,
-        "c": 3
-      },
-      {
-        "y": 2020,
-        "c": 1
-      },
-      {
-        "y": 2021,
-        "c": 4
-      },
-      {
-        "y": 2022,
-        "c": 4
-      },
-      {
-        "y": 2023,
-        "c": 5
-      }
-    ],
-    "confidence": 0.76,
+    "citations_by_year": [],
+    "confidence": 0.69,
     "entities": [
-      "dosimetry",
-      "stress kinase",
-      "metabolite array",
-      "cytoskeleton"
+      "viral",
+      "covid-",
+      "sars-cov-",
+      "adaptations",
+      "describe"
     ]
   },
   {
-    "id": "exp_006",
-    "title": "Bioadaptive Study 6",
+    "id": "exp_032",
+    "title": "Ethical considerations for the age of non-governmental space exploration",
     "authors": [
-      "Dr. F. Vega",
-      "Lt. R. Orion"
+      "Allen Seylani",
+      "Aman Singh Galsinh",
+      "Alexia Tasoula",
+      "Anu R I",
+      "Andrea Camera",
+      "Jean Calleja-Agius",
+      "Joseph Borg",
+      "Chirag Goel",
+      "JangKeun Kim",
+      "Kevin B Clark",
+      "Saswati Das",
+      "Shehbeel Arif",
+      "Michael Boerrigter",
+      "Caroline Coffey",
+      "Nathaniel Szewczyk",
+      "Christopher E Mason",
+      "Maria Manoli",
+      "Fathi Karouia",
+      "Hansjörg Schwertz",
+      "Afshin Beheshti",
+      "Dana Tulodziecki"
     ],
-    "year": 2021,
-    "organism": "Saccharomyces cerevisiae",
-    "platform": "ISS - Kubik",
+    "year": 2023,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
     "keywords": [
-      "gene expression",
-      "circadian rhythm",
-      "microgravity"
+      "are",
+      "ethical",
+      "research",
+      "medical",
+      "guidelines",
+      "private",
+      "exploration",
+      "travelers"
     ],
     "access": [
       "PEER-REVIEWED",
-      "GROUND-ANALOG"
+      "ISS"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 3
-      },
-      {
-        "y": 2019,
-        "c": 4
-      },
-      {
-        "y": 2020,
-        "c": 2
-      },
-      {
-        "y": 2021,
-        "c": 5
-      },
-      {
-        "y": 2022,
-        "c": 5
-      },
-      {
-        "y": 2023,
-        "c": 6
-      }
-    ],
-    "confidence": 0.8,
+    "citations_by_year": [],
+    "confidence": 0.69,
     "entities": [
-      "yeast colony",
-      "nutrient uptake",
-      "vacoule",
-      "ion channel"
+      "are",
+      "ethical",
+      "research",
+      "medical",
+      "guidelines"
+    ]
+  },
+  {
+    "id": "exp_030",
+    "title": "Aging and putative frailty biomarkers are altered by spaceflight",
+    "authors": [
+      "Andrea Camera",
+      "Marshall Tabetah",
+      "Veronica Castañeda",
+      "JangKeun Kim",
+      "Aman Singh Galsinh",
+      "Alissen Haro-Vinueza",
+      "Ivonne Salinas",
+      "Allen Seylani",
+      "Shehbeel Arif",
+      "Saswati Das",
+      "Marcelo A Mori",
+      "Anthony Carano",
+      "Lorraine Christine de Oliveira",
+      "Masafumi Muratani",
+      "Richard Barker",
+      "Victoria Zaksas",
+      "Chirag Goel",
+      "Eleni Dimokidis",
+      "Deanne M Taylor",
+      "Jisu Jeong",
+      "Eliah Overbey",
+      "Cem Meydan",
+      "D Marshall Porterfield",
+      "Juan Esteban Díaz",
+      "Andrés Caicedo",
+      "Jonathan C Schisler",
+      "Evagelia C Laiakis",
+      "Christopher E Mason",
+      "Man S Kim",
+      "Fathi Karouia",
+      "Nathaniel J Szewczyk",
+      "Afshin Beheshti"
+    ],
+    "year": 2022,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "genes",
+      "frailty",
+      "osd-",
+      "are",
+      "gene",
+      "expression",
+      "ensmusg",
+      "ensg"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "gene",
+      "genes",
+      "frailty",
+      "are",
+      "osd-"
+    ]
+  },
+  {
+    "id": "exp_027",
+    "title": "Muscle atrophy phenotype gene expression during spaceflight is linked to a metabolic crosstalk in both the liver and the muscle in mice",
+    "authors": [
+      "Geraldine Vitry",
+      "Rebecca Finch",
+      "Gavin Mcstay",
+      "Afshin Behesti",
+      "Sébastien Déjean",
+      "Tricia Larose",
+      "Virginia Wotring",
+      "Willian Abraham da Silveira"
+    ],
+    "year": 2021,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "gene",
+      "liver",
+      "mice",
+      "expression",
+      "muscle",
+      "process",
+      "genes",
+      "figure"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MUSCULOSKELETAL ADAPTATION"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "gene",
+      "expression",
+      "liver",
+      "mice",
+      "muscle"
+    ]
+  },
+  {
+    "id": "exp_020",
+    "title": "Author Correction: Multi-omics analysis of multiple missions to space reveal a theme of lipid dysregulation in mouse liver",
+    "authors": [
+      "Afshin Beheshti",
+      "Kaushik Chakravarty",
+      "Homer Fogle",
+      "Hossein Fazelinia",
+      "Willian A da Silveira",
+      "Valery Boyko",
+      "San-Huei Lai Polo",
+      "Amanda M Saravia-Butler",
+      "Gary Hardiman",
+      "Deanne Taylor",
+      "Jonathan M Galazka",
+      "Sylvain V Costes"
+    ],
+    "year": 2020,
+    "organism": null,
+    "platform": null,
+    "keywords": [],
+    "access": [
+      "PEER-REVIEWED"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.5,
+    "entities": []
+  },
+  {
+    "id": "exp_002",
+    "title": "Microgravity Induces Pelvic Bone Loss through Osteoclastic Activity, Osteocytic Osteolysis, and Osteoblastic Cell Cycle Inhibition by CDKN1a/p21",
+    "authors": [
+      "Elizabeth A Blaber",
+      "Natalya Dvorochkin",
+      "Chialing Lee",
+      "Joshua S Alwood",
+      "Rukhsana Yousuf",
+      "Piero Pianetta",
+      "Ruth K Globus",
+      "Brendan P Burns",
+      "Eduardo A C Almeida"
+    ],
+    "year": 2020,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "bone",
+      "was",
+      "ground",
+      "spaceflight",
+      "flight",
+      "fig",
+      "fold",
+      "samples"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "flight",
+      "ground",
+      "bone",
+      "spaceflight",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_031",
+    "title": "Space radiation damage rescued by inhibition of key spaceflight associated miRNAs",
+    "authors": [
+      "J Tyson McDonald",
+      "JangKeun Kim",
+      "Lily Farmerie",
+      "Meghan L Johnson",
+      "Nidia S Trovao",
+      "Shehbeel Arif",
+      "Keith Siew",
+      "Sergey Tsoy",
+      "Yaron Bram",
+      "Jiwoon Park",
+      "Eliah Overbey",
+      "Krista Ryon",
+      "Jeffrey Haltom",
+      "Urminder Singh",
+      "Francisco J Enguita",
+      "Victoria Zaksas",
+      "Joseph W Guarnieri",
+      "Michael Topper",
+      "Douglas C Wallace",
+      "Cem Meydan",
+      "Stephen Baylin",
+      "Robert Meller",
+      "Masafumi Muratani",
+      "D Marshall Porterfield",
+      "Brett Kaufman",
+      "Marcelo A Mori",
+      "Stephen B Walsh",
+      "Dominique Sigaudo-Roussel",
+      "Saida Mebarek",
+      "Massimo Bottini",
+      "Christophe A Marquette",
+      "Eve Syrkin Wurtele",
+      "Robert E Schwartz",
+      "Diego Galeano",
+      "Christopher E Mason",
+      "Peter Grabham",
+      "Afshin Beheshti"
+    ],
+    "year": 2019,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "was",
+      "genes",
+      "fig",
+      "gene",
+      "cell",
+      "all",
+      "mirnas",
+      "antagomir"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "gene",
+      "genes",
+      "cell",
+      "fig",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_033",
+    "title": "Spaceflight and simulated microgravity conditions increase virulence of Serratia marcescens in the Drosophila melanogaster infection model",
+    "authors": [
+      "Rachel Gilbert",
+      "Medaya Torres",
+      "Rachel Clemens",
+      "Shannon Hateley",
+      "Ravikumar Hosamani",
+      "William Wade",
+      "Sharmila Bhattacharya"
+    ],
+    "year": 2019,
+    "organism": "Drosophila melanogaster",
+    "platform": "ISS",
+    "keywords": [
+      "ground",
+      "was",
+      "spaceflight",
+      "bacteria",
+      "flies",
+      "samples",
+      "growth",
+      "host"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "ground",
+      "bacteria",
+      "spaceflight",
+      "flies",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_028",
+    "title": "Chromosomal positioning and epigenetic architecture influence DNA methylation patterns triggered by galactic cosmic radiation",
+    "authors": [
+      "Adrian Perdyan",
+      "Marcin Jąkalski",
+      "Monika Horbacz",
+      "Afshin Beheshti",
+      "Jakub Mieczkowski"
+    ],
+    "year": 2018,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "methylation",
+      "dna",
+      "fig",
+      "dmps",
+      "change",
+      "nucleus",
+      "layers",
+      "regions"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "methylation",
+      "change",
+      "fig",
+      "dna",
+      "dmps"
+    ]
+  },
+  {
+    "id": "exp_037",
+    "title": "ERULUS Is a Plasma Membrane-Localized Receptor-Like Kinase That Specifies Root Hair Growth by Maintaining Tip-Focused Cytoplasmic Calcium Oscillations",
+    "authors": [
+      "Taegun Kwon",
+      "J Alan Sparks",
+      "Fuqi Liao",
+      "Elison B Blancaflor"
+    ],
+    "year": 2018,
+    "organism": null,
+    "platform": null,
+    "keywords": [],
+    "access": [
+      "PEER-REVIEWED"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.5,
+    "entities": []
+  },
+  {
+    "id": "exp_015",
+    "title": "TNO1, a TGN-localized SNARE-interacting protein, modulates root skewing in Arabidopsis thaliana",
+    "authors": [
+      "Rahul Roy",
+      "Diane C Bassham"
+    ],
+    "year": 2017,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "root",
+      "roots",
+      "skewing",
+      "cell",
+      "tno",
+      "microtubule",
+      "arabidopsis",
+      "file"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "root",
+      "tno",
+      "skewing",
+      "cell",
+      "roots"
+    ]
+  },
+  {
+    "id": "exp_017",
+    "title": "TNO1, a TGN-localized SNARE-interacting protein, modulates root skewing in Arabidopsis thaliana",
+    "authors": [
+      "Rahul Roy",
+      "Diane C Bassham"
+    ],
+    "year": 2017,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "root",
+      "roots",
+      "skewing",
+      "cell",
+      "tno",
+      "microtubule",
+      "arabidopsis",
+      "file"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "root",
+      "tno",
+      "skewing",
+      "cell",
+      "roots"
+    ]
+  },
+  {
+    "id": "exp_038",
+    "title": "Brassinosteroids Inhibit Autotropic Root Straightening by Modifying Filamentous-Actin Organization and Dynamics",
+    "authors": [
+      "Louise de Bang",
+      "Ana Paez-Garcia",
+      "Ashley E Cannon",
+      "Sabrina Chin",
+      "Jaydeep Kolape",
+      "Fuqi Liao",
+      "J Alan Sparks",
+      "Qingzhen Jiang",
+      "Elison B Blancaflor"
+    ],
+    "year": 2016,
+    "organism": null,
+    "platform": "ISS",
+    "keywords": [
+      "roots",
+      "f-actin",
+      "was",
+      "ebl",
+      "root",
+      "latb",
+      "truncatula",
+      "cells"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "root",
+      "f-actin",
+      "roots",
+      "ebl",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_039",
+    "title": "Cell Type-Specific Imaging of Calcium Signaling in Arabidopsis thaliana Seedling Roots Using GCaMP3",
+    "authors": [
+      "William Krogman",
+      "J Alan Sparks",
+      "Elison B Blancaflor"
+    ],
+    "year": 2016,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "gcamp",
+      "cyt",
+      "figure",
+      "lines",
+      "atp",
+      "was",
+      "expressing",
+      "time"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "gcamp",
+      "cyt",
+      "figure",
+      "lines",
+      "atp"
+    ]
+  },
+  {
+    "id": "exp_049",
+    "title": "Correction for Boothby et al., Evidence for extensive horizontal gene transfer from the draft genome of a tardigrade",
+    "authors": [],
+    "year": 2016,
+    "organism": null,
+    "platform": null,
+    "keywords": [],
+    "access": [
+      "PEER-REVIEWED"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.5,
+    "entities": []
+  },
+  {
+    "id": "exp_008",
+    "title": "From the bench to exploration medicine: NASA life sciences translational research for human exploration and habitation missions",
+    "authors": [
+      "Joshua S Alwood",
+      "April E Ronca",
+      "Richard C Mains",
+      "Mark J Shelhamer",
+      "Jeffrey D Smith",
+      "Thomas J Goodwin"
+    ],
+    "year": 2016,
+    "organism": "Homo sapiens",
+    "platform": null,
+    "keywords": [
+      "research",
+      "nasa",
+      "translational",
+      "human",
+      "entities",
+      "more",
+      "biology",
+      "program"
+    ],
+    "access": [
+      "PEER-REVIEWED"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.67,
+    "entities": [
+      "research",
+      "nasa",
+      "translational",
+      "human",
+      "entities"
+    ]
+  },
+  {
+    "id": "exp_041",
+    "title": "Impact of microgravity and lunar gravity on murine skeletal and immune systems during space travel",
+    "authors": [
+      "Yui Okamura",
+      "Kei Gochi",
+      "Tatsuya Ishikawa",
+      "Takuto Hayashi",
+      "Sayaka Fuseya",
+      "Riku Suzuki",
+      "Maho Kanai",
+      "Yuri Inoue",
+      "Yuka Murakami",
+      "Shunya Sadaki",
+      "Hyojung Jeon",
+      "Mio Hayama",
+      "Hiroto Ishii",
+      "Yuki Tsunakawa",
+      "Hiroki Ochi",
+      "Shingo Sato",
+      "Michito Hamada",
+      "Chikara Abe",
+      "Hironobu Morita",
+      "Risa Okada",
+      "Dai Shiba",
+      "Masafumi Muratani",
+      "Masahiro Shinohara",
+      "Taishin Akiyama",
+      "Takashi Kudo",
+      "Satoru Takahashi"
+    ],
+    "year": 2016,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "mice",
+      "mhu-",
+      "bone",
+      "expression",
+      "was",
+      "gravity",
+      "gene",
+      "genes"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "mice",
+      "mhu-",
+      "expression",
+      "bone",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_050",
+    "title": "Reply to Bemm et al. and Arakawa: Identifying foreign genes in independent Hypsibius dujardini genome assemblies",
+    "authors": [
+      "Thomas C Boothby",
+      "Bob Goldstein"
+    ],
+    "year": 2016,
+    "organism": null,
+    "platform": null,
+    "keywords": [],
+    "access": [
+      "PEER-REVIEWED"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.5,
+    "entities": []
+  },
+  {
+    "id": "exp_022",
+    "title": "FAIRness and Usability for Open-access Omics Data Systems",
+    "authors": [
+      "Daniel C Berrios",
+      "Afshin Beheshti",
+      "Sylvain V Costes"
+    ],
+    "year": 2015,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "systems",
+      "metadata",
+      "are",
+      "omics",
+      "glds",
+      "metric",
+      "system",
+      "not"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "systems",
+      "metadata",
+      "are",
+      "omics",
+      "glds"
+    ]
+  },
+  {
+    "id": "exp_014",
+    "title": "Identification of a novel Golgi-localized putative glycosyltransferase protein in Arabidopsis thaliana",
+    "authors": [
+      "Natalia Rzepecka",
+      "Yoko Ito",
+      "Kei Yura",
+      "Emi Ito",
+      "Tomohiro Uemura"
+    ],
+    "year": 2014,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "atgtlp",
+      "was",
+      "figure",
+      "atgtlp-mgfp",
+      "used",
+      "sequence",
+      "marker",
+      "protein"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MUSCULOSKELETAL ADAPTATION"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "atgtlp",
+      "figure",
+      "was",
+      "atgtlp-mgfp",
+      "used"
+    ]
+  },
+  {
+    "id": "exp_001",
+    "title": "Mice in Bion-M 1 Space Mission: Training and Selection",
+    "authors": [
+      "Alexander Andreev-Andrievskiy",
+      "Anfisa Popova",
+      "Richard Boyle",
+      "Jeffrey Alberts",
+      "Boris Shenkman",
+      "Olga Vinogradova",
+      "Oleg Dolgov",
+      "Konstantin Anokhin",
+      "Darya Tsvirkun",
+      "Pavel Soldatov",
+      "Tatyana Nemirovskaya",
+      "Eugeniy Ilyin",
+      "Vladimir Sychev"
+    ],
+    "year": 2013,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "mice",
+      "was",
+      "groups",
+      "food",
+      "flight",
+      "control",
+      "group",
+      "experiment"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROGRAVITY RESEARCH"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "mice",
+      "was",
+      "groups",
+      "food",
+      "flight"
+    ]
+  },
+  {
+    "id": "exp_012",
+    "title": "5AtRabD2b and AtRabD2c have overlapping functions in pollen development and pollen tube growth",
+    "authors": [
+      "Jianling Peng",
+      "Hilal Ilarslan",
+      "Eve Syrkin Wurtele",
+      "Diane C Bassham"
+    ],
+    "year": 2011,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "atrabd",
+      "pollen",
+      "was",
+      "plants",
+      "wild-type",
+      "mutants",
+      "growth",
+      "mutant"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "atrabd",
+      "pollen",
+      "plants",
+      "wild-type",
+      "was"
     ]
   },
   {
     "id": "exp_007",
-    "title": "Bioadaptive Study 7",
+    "title": "Dose- and Ion-Dependent Effects in the Oxidative Stress Response to Space-Like Radiation Exposure in the Skeletal System",
     "authors": [
-      "Dr. G. Vega",
-      "Lt. S. Orion"
+      "Joshua S Alwood",
+      "Luan H Tran",
+      "Ann-Sofie Schreurs",
+      "Yasaman Shirazi-Fard",
+      "Akhilesh Kumar",
+      "Diane Hilton",
+      "Candice G T Tahimic",
+      "Ruth K Globus"
     ],
-    "year": 2022,
-    "organism": "Caenorhabditis elegans",
-    "platform": "Deep Space Habitat",
+    "year": 2011,
+    "organism": "Mus musculus",
+    "platform": "ISS",
     "keywords": [
-      "transcriptomics",
-      "photosynthesis",
-      "cell differentiation"
+      "cgy",
+      "figure",
+      "mice",
+      "irradiation",
+      "days",
+      "marrow",
+      "bone",
+      "was"
     ],
     "access": [
       "PEER-REVIEWED",
       "ISS",
-      "ANIMAL"
+      "SPACE RADIATION BIOLOGY"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 4
-      },
-      {
-        "y": 2019,
-        "c": 5
-      },
-      {
-        "y": 2020,
-        "c": 3
-      },
-      {
-        "y": 2021,
-        "c": 6
-      },
-      {
-        "y": 2022,
-        "c": 6
-      },
-      {
-        "y": 2023,
-        "c": 7
-      }
-    ],
-    "confidence": 0.83,
+    "citations_by_year": [],
+    "confidence": 0.71,
     "entities": [
-      "symbiosis",
-      "biofilm",
-      "tissue analog",
-      "mission clock"
+      "cgy",
+      "figure",
+      "irradiation",
+      "mice",
+      "days"
     ]
   },
   {
-    "id": "exp_008",
-    "title": "Bioadaptive Study 8",
+    "id": "exp_016",
+    "title": "Gravitropism and Lateral Root Emergence are Dependent on the Trans-Golgi Network Protein TNO1",
     "authors": [
-      "Dr. H. Vega",
-      "Lt. T. Orion"
+      "Rahul Roy",
+      "Diane C Bassham"
     ],
-    "year": 2023,
-    "organism": "Saccharomyces cerevisiae",
-    "platform": "Deep Space Habitat",
+    "year": 2011,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
     "keywords": [
-      "photosynthesis",
-      "circadian rhythm",
-      "gene expression"
+      "tno",
+      "auxin",
+      "root",
+      "roots",
+      "was",
+      "bending",
+      "seedlings",
+      "mutant"
     ],
     "access": [
       "PEER-REVIEWED",
-      "DEEP-SPACE"
+      "ISS",
+      "SPACE BOTANY"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 5
-      },
-      {
-        "y": 2019,
-        "c": 6
-      },
-      {
-        "y": 2020,
-        "c": 4
-      },
-      {
-        "y": 2021,
-        "c": 7
-      },
-      {
-        "y": 2022,
-        "c": 7
-      },
-      {
-        "y": 2023,
-        "c": 8
-      }
-    ],
-    "confidence": 0.86,
+    "citations_by_year": [],
+    "confidence": 0.71,
     "entities": [
-      "bioluminescence",
-      "quantum yield",
-      "chlorophyll",
-      "habitat deck"
+      "root",
+      "auxin",
+      "tno",
+      "roots",
+      "was"
     ]
   },
   {
     "id": "exp_009",
-    "title": "Bioadaptive Study 9",
+    "title": "High-precision method for cyclic loading of small-animal vertebrae to assess bone quality",
     "authors": [
-      "Dr. I. Vega",
-      "Lt. U. Orion"
+      "Megan M Pendleton",
+      "Saghi Sadoughi",
+      "Alfred Li",
+      "Grace D O'Connell",
+      "Joshua S Alwood",
+      "Tony M Keaveny"
     ],
-    "year": 2024,
+    "year": 2009,
     "organism": "Mus musculus",
-    "platform": "ISS - WetLab-2",
+    "platform": "ISS",
     "keywords": [
-      "root morphology",
-      "photosynthesis"
+      "was",
+      "method",
+      "stiffness",
+      "new",
+      "max",
+      "fatigue",
+      "loading",
+      "specimen"
     ],
     "access": [
       "PEER-REVIEWED",
       "ISS",
-      "IN-VITRO"
+      "MUSCULOSKELETAL ADAPTATION"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 2
-      },
-      {
-        "y": 2019,
-        "c": 3
-      },
-      {
-        "y": 2020,
-        "c": 1
-      },
-      {
-        "y": 2021,
-        "c": 4
-      },
-      {
-        "y": 2022,
-        "c": 4
-      },
-      {
-        "y": 2023,
-        "c": 5
-      }
-    ],
-    "confidence": 0.9,
+    "citations_by_year": [],
+    "confidence": 0.71,
     "entities": [
-      "genome stability",
-      "root sheath",
-      "apical growth",
-      "auxin flow"
+      "method",
+      "was",
+      "new",
+      "max",
+      "stiffness"
+    ]
+  },
+  {
+    "id": "exp_036",
+    "title": "HLB1 Is a Tetratricopeptide Repeat Domain-Containing Protein That Operates at the Intersection of the Exocytic and Endocytic Pathways at the TGN/EE in Arabidopsis",
+    "authors": [
+      "J Alan Sparks",
+      "Taegun Kwon",
+      "Luciana Renna",
+      "Fuqi Liao",
+      "Federica Brandizzi",
+      "Elison B Blancaflor"
+    ],
+    "year": 2009,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "hlb",
+      "root",
+      "gfp",
+      "was",
+      "supplemental",
+      "figure",
+      "ben",
+      "latb"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MUSCULOSKELETAL ADAPTATION"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "hlb",
+      "gfp",
+      "root",
+      "was",
+      "supplemental"
+    ]
+  },
+  {
+    "id": "exp_018",
+    "title": "The Drosophila SUN protein Spag4 cooperates with the coiled-coil protein Yuri Gagarin to maintain association of the basal body and spermatid nucleus",
+    "authors": [
+      "Martin P Kracklauer",
+      "Heather M Wiora",
+      "William J Deery",
+      "Xin Chen",
+      "Benjamin Bolival, Jr",
+      "Dwight Romanowicz",
+      "Rebecca A Simonette",
+      "Margaret T Fuller",
+      "Janice A Fischer",
+      "Kathleen M Beckingham"
+    ],
+    "year": 2004,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "spag",
+      "fig",
+      "yuri",
+      "was",
+      "mutant",
+      "nuclei",
+      "gfp",
+      "localization"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "OMICS & GENOMICS"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "spag",
+      "fig",
+      "yuri",
+      "mutant",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_025",
+    "title": "Machine learning algorithm to characterize antimicrobial resistance associated with the International Space Station surface microbiome",
+    "authors": [
+      "Pedro Madrigal",
+      "Nitin K Singh",
+      "Jason M Wood",
+      "Elena Gaudioso",
+      "Félix Hernández-del-Olmo",
+      "Christopher E Mason",
+      "Kasthuri Venkateswaran",
+      "Afshin Beheshti"
+    ],
+    "year": 2000,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
+    "keywords": [
+      "was",
+      "resistance",
+      "microbial",
+      "sequences",
+      "antibiotic",
+      "used",
+      "genes",
+      "video"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "resistance",
+      "antibiotic",
+      "was",
+      "microbial",
+      "sequences"
+    ]
+  },
+  {
+    "id": "exp_005",
+    "title": "Microgravity validation of a novel system for RNA isolation and multiplex quantitative real time PCR analysis of gene expression on the International Space Station",
+    "authors": [
+      "Macarena Parra",
+      "Jimmy Jung",
+      "Travis D Boone",
+      "Luan Tran",
+      "Elizabeth A Blaber",
+      "Mark Brown",
+      "Matthew Chin",
+      "Tori Chinn",
+      "Jacob Cohen",
+      "Robert Doebler",
+      "Dzung Hoang",
+      "Elizabeth Hyde",
+      "Matthew Lera",
+      "Louie T Luzod",
+      "Mark Mallinson",
+      "Oana Marcu",
+      "Youssef Mohamedaly",
+      "Antonio J Ricco",
+      "Kathleen Rubins",
+      "Gregory D Sgarlato",
+      "Rafael O Talavera",
+      "Peter Tong",
+      "Eddie Uribe",
+      "Jeffrey Williams",
+      "Diana Wu",
+      "Rukhsana Yousuf",
+      "Charles S Richey",
+      "Julie Schonfeld",
+      "Eduardo A C Almeida"
+    ],
+    "year": 2000,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "was",
+      "rna",
+      "coli",
+      "assays",
+      "control",
+      "lyophilized",
+      "mouse",
+      "assay"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROGRAVITY RESEARCH"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "was",
+      "rna",
+      "control",
+      "coli",
+      "assays"
+    ]
+  },
+  {
+    "id": "exp_006",
+    "title": "Spaceflight Modulates the Expression of Key Oxidative Stress and Cell Cycle Related Genes in Heart",
+    "authors": [
+      "Akhilesh Kumar",
+      "Candice G T Tahimic",
+      "Eduardo A C Almeida",
+      "Ruth K Globus"
+    ],
+    "year": 2000,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "genes",
+      "was",
+      "spaceflight",
+      "expression",
+      "pcr",
+      "flt",
+      "oxidative",
+      "grd"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROGRAVITY RESEARCH"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "genes",
+      "expression",
+      "spaceflight",
+      "was",
+      "pcr"
+    ]
+  },
+  {
+    "id": "exp_040",
+    "title": "Spatial and temporal localization of SPIRRIG and WAVE/SCAR reveal roles for these proteins in actin-mediated root hair development",
+    "authors": [
+      "Sabrina Chin",
+      "Taegun Kwon",
+      "Bibi Rafeiza Khan",
+      "J Alan Sparks",
+      "Eileen L Mallery",
+      "Daniel B Szymanski",
+      "Elison B Blancaflor"
+    ],
+    "year": 2000,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "root",
+      "hair",
+      "brk",
+      "was",
+      "hairs",
+      "spi",
+      "figure",
+      "tip"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "root",
+      "hair",
+      "hairs",
+      "brk",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_045",
+    "title": "Three Routes to Modulate the Pore Size of the MscL Channel/Nanovalve",
+    "authors": [
+      "Li-Min Yang",
+      "Robin Wray",
+      "Juandell Parker",
+      "Danyell Wilson",
+      "Randolph S Duran",
+      "Paul Blount"
+    ],
+    "year": 2000,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "mscl",
+      "channel",
+      "was",
+      "conductance",
+      "treatment",
+      "single",
+      "shown",
+      "current"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "PROTEOMICS"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "mscl",
+      "channel",
+      "was",
+      "conductance",
+      "treatment"
+    ]
+  },
+  {
+    "id": "exp_013",
+    "title": "TNO1 Is Involved in Salt Tolerance and Vacuolar Trafficking in Arabidopsis",
+    "authors": [
+      "Sang-Jin Kim",
+      "Diane C Bassham"
+    ],
+    "year": 2000,
+    "organism": "Arabidopsis thaliana",
+    "platform": "ISS",
+    "keywords": [
+      "tno",
+      "was",
+      "mutant",
+      "syp",
+      "bfa",
+      "wild-type",
+      "arabidopsis",
+      "plants"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "tno",
+      "mutant",
+      "was",
+      "syp",
+      "bfa"
+    ]
+  },
+  {
+    "id": "exp_024",
+    "title": "Circulating miRNA Spaceflight Signature Reveals Targets for Countermeasure Development",
+    "authors": [
+      "Sherina Malkani",
+      "Christopher R Chin",
+      "Egle Cekanaviciute",
+      "Marie Mortreux",
+      "Hazeem Okinula",
+      "Marcel Tarbier",
+      "Ann-Sofie Schreurs",
+      "Yasaman Shirazi-Fard",
+      "Candice GT Tahimic",
+      "Deyra N Rodriguez",
+      "Brittany S Sexton",
+      "Daniel Butler",
+      "Akanksha Verma",
+      "Daniela Bezdan",
+      "Ceyda Durmaz",
+      "Matthew MacKay",
+      "Ari Melnick",
+      "Cem Meydan",
+      "Sheng Li",
+      "Francine Garrett-Bakelman",
+      "Bastian Fromm",
+      "Ebrahim Afshinnekoo",
+      "Brad W Langhorst",
+      "Eileen T Dimalanta",
+      "Margareth Cheng-Campbell",
+      "Elizabeth Blaber",
+      "Jonathan C Schisler",
+      "Charles Vanderburg",
+      "Marc R Friedländer",
+      "J Tyson McDonald",
+      "Sylvain V Costes",
+      "Seward Rutkove",
+      "Peter Grabham",
+      "Christopher E Mason",
+      "Afshin Beheshti"
+    ],
+    "year": 1998,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "mirnas",
+      "mirna",
+      "was",
+      "all",
+      "mice",
+      "samples",
+      "cell",
+      "spaceflight"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "mirna",
+      "mirnas",
+      "all",
+      "mice",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_034",
+    "title": "Prolonged Exposure to Microgravity Reduces Cardiac Contractility and Initiates Remodeling in Drosophila",
+    "authors": [
+      "Stanley Walls",
+      "Soda Diop",
+      "Ryan Birse",
+      "Lisa Elmen",
+      "Zhuohui Gan",
+      "Sreehari Kalvakuri",
+      "Santiago Pineda",
+      "Curran Reddy",
+      "Erika Taylor",
+      "Bosco Trinh",
+      "Georg Vogler",
+      "Rachel Zarndt",
+      "Andrew McCulloch",
+      "Peter Lee",
+      "Sharmila Bhattacharya",
+      "Rolf Bodmer",
+      "Karen Ocorr"
+    ],
+    "year": 1997,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "genes",
+      "hearts",
+      "was",
+      "flies",
+      "figure",
+      "sei",
+      "heart",
+      "herg"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROGRAVITY RESEARCH"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "genes",
+      "figure",
+      "hearts",
+      "flies",
+      "was"
+    ]
+  },
+  {
+    "id": "exp_048",
+    "title": "Chimeras reveal a single lipid-interface residue that controls MscL channel kinetics as well as mechanosensitivity",
+    "authors": [
+      "Li-Min Yang",
+      "Dalian Zhong",
+      "Paul Blount"
+    ],
+    "year": 1993,
+    "organism": null,
+    "platform": "ISS",
+    "keywords": [
+      "channel",
+      "open",
+      "dwell",
+      "sa-mscl",
+      "periplasmic",
+      "figure",
+      "eco-mscl",
+      "kinetics"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "PROTEOMICS"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "open",
+      "channel",
+      "dwell",
+      "sa-mscl",
+      "periplasmic"
+    ]
+  },
+  {
+    "id": "exp_011",
+    "title": "Absence of γ-sarcoglycan alters the response of p70S6 kinase to mechanical perturbation in murine skeletal muscle",
+    "authors": [
+      "Catherine Moorwood",
+      "Anastassios Philippou",
+      "Janelle Spinazzola",
+      "Benjamin Keyser",
+      "Edward J Macarak",
+      "Elisabeth R Barton"
+    ],
+    "year": 0,
+    "organism": "Mus musculus",
+    "platform": null,
+    "keywords": [
+      "muscles",
+      "stretch",
+      "was",
+      "sarcoglycan",
+      "isolated",
+      "response",
+      "activation",
+      "phosphorylation"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "MUSCULOSKELETAL ADAPTATION"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "muscles",
+      "stretch",
+      "was",
+      "isolated",
+      "sarcoglycan"
+    ]
+  },
+  {
+    "id": "exp_035",
+    "title": "Bundling up the Role of the Actin Cytoskeleton in Primary Root Growth",
+    "authors": [
+      "Judith García-González",
+      "Kasper van Gelderen"
+    ],
+    "year": 0,
+    "organism": null,
+    "platform": null,
+    "keywords": [
+      "actin",
+      "root",
+      "growth",
+      "elongation",
+      "cell",
+      "auxin",
+      "cytoskeleton",
+      "light"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.67,
+    "entities": [
+      "actin",
+      "root",
+      "growth",
+      "elongation",
+      "cell"
     ]
   },
   {
     "id": "exp_010",
-    "title": "Bioadaptive Study 10",
+    "title": "Effects of ex vivo Ionizing Radiation on Collagen Structure and Whole-Bone Mechanical Properties of Mouse Vertebrae",
     "authors": [
-      "Dr. J. Vega",
-      "Lt. V. Orion"
+      "Megan M Pendleton",
+      "Shannon R Emerzian",
+      "Jennifer Liu",
+      "Simon Y Tang",
+      "Grace D O’Connell",
+      "Joshua S Alwood",
+      "Tony M Keaveny"
     ],
-    "year": 2025,
-    "organism": "Saccharomyces cerevisiae",
-    "platform": "Deep Space Habitat",
+    "year": 0,
+    "organism": "Mus musculus",
+    "platform": "ISS",
     "keywords": [
-      "circadian rhythm",
-      "microgravity",
-      "radiation response"
+      "collagen",
+      "was",
+      "radiation",
+      "fragmentation",
+      "control",
+      "not",
+      "figure",
+      "strength"
     ],
     "access": [
       "PEER-REVIEWED",
-      "DEEP-SPACE",
-      "ANIMAL"
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
     ],
-    "citations_by_year": [
-      {
-        "y": 2018,
-        "c": 3
-      },
-      {
-        "y": 2019,
-        "c": 4
-      },
-      {
-        "y": 2020,
-        "c": 2
-      },
-      {
-        "y": 2021,
-        "c": 5
-      },
-      {
-        "y": 2022,
-        "c": 5
-      },
-      {
-        "y": 2023,
-        "c": 6
-      }
-    ],
-    "confidence": 0.94,
+    "citations_by_year": [],
+    "confidence": 0.71,
     "entities": [
-      "microbiome",
-      "radiation belt",
-      "spore load",
-      "holoenzyme"
+      "collagen",
+      "was",
+      "control",
+      "radiation",
+      "fragmentation"
+    ]
+  },
+  {
+    "id": "exp_026",
+    "title": "Extraterrestrial Gynecology: Could Spaceflight Increase the Risk of Developing Cancer in Female Astronauts? An Updated Review",
+    "authors": [
+      "Rosa Drago-Ferrante",
+      "Riccardo Di Fiore",
+      "Fathi Karouia",
+      "Yashwanth Subbannayya",
+      "Saswati Das",
+      "Begum Aydogan Mathyk",
+      "Shehbeel Arif",
+      "Ana Paula Guevara-Cerdán",
+      "Allen Seylani",
+      "Aman Singh Galsinh",
+      "Weronika Kukulska",
+      "Joseph Borg",
+      "Sherif Suleiman",
+      "David Marshall Porterfield",
+      "Andrea Camera",
+      "Lane K Christenson",
+      "April Elizabeth Ronca",
+      "Jonathan G Steller",
+      "Afshin Beheshti",
+      "Jean Calleja-Agius"
+    ],
+    "year": 0,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
+    "keywords": [
+      "radiation",
+      "female",
+      "cancer",
+      "cancers",
+      "gynecological",
+      "astronauts",
+      "impact",
+      "reproductive"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.69,
+    "entities": [
+      "radiation",
+      "female",
+      "cancer",
+      "cancers",
+      "gynecological"
+    ]
+  },
+  {
+    "id": "exp_021",
+    "title": "GeneLab Database Analyses Suggest Long-Term Impact of Space Radiation on the Cardiovascular System by the Activation of FYN Through Reactive Oxygen Species",
+    "authors": [
+      "Afshin Beheshti",
+      "J Tyson McDonald",
+      "Jack Miller",
+      "Peter Grabham",
+      "Sylvain V Costes"
+    ],
+    "year": 0,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "genes",
+      "key",
+      "samples",
+      "figure",
+      "all",
+      "radiation",
+      "are",
+      "gene"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "all",
+      "genes",
+      "figure",
+      "samples",
+      "key"
+    ]
+  },
+  {
+    "id": "exp_043",
+    "title": "Manipulating the permeation of charged compounds through the MscL nanovalve",
+    "authors": [
+      "Li-Min Yang",
+      "Paul Blount"
+    ],
+    "year": 0,
+    "organism": "Escherichia coli",
+    "platform": "ISS",
+    "keywords": [
+      "mscl",
+      "was",
+      "channel",
+      "mtset",
+      "mtses",
+      "permeation",
+      "spermine",
+      "pore"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROBIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "mscl",
+      "channel",
+      "was",
+      "mtset",
+      "mtses"
+    ]
+  },
+  {
+    "id": "exp_023",
+    "title": "NASA GeneLab Platform Utilized for Biological Response to Space Radiation in Animal Models",
+    "authors": [
+      "J Tyson McDonald",
+      "Robert Stainforth",
+      "Jack Miller",
+      "Thomas Cahill",
+      "Willian A da Silveira",
+      "Komal S Rathi",
+      "Gary Hardiman",
+      "Deanne Taylor",
+      "Sylvain V Costes",
+      "Vinita Chauhan",
+      "Robert Meller",
+      "Afshin Beheshti"
+    ],
+    "year": 0,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "gene",
+      "pathways",
+      "spaceflight",
+      "sets",
+      "figure",
+      "datasets",
+      "dose",
+      "each"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "SPACE RADIATION BIOLOGY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "gene",
+      "sets",
+      "pathways",
+      "figure",
+      "spaceflight"
+    ]
+  },
+  {
+    "id": "exp_042",
+    "title": "S. aureus MscL Is a Pentamer In Vivo but of Variable Stoichiometries In Vitro: Implications for Detergent-Solubilized Membrane Proteins",
+    "authors": [
+      "Michael R Dorwart",
+      "Robin Wray",
+      "Chad A Brautigam",
+      "Youxing Jiang",
+      "Paul Blount"
+    ],
+    "year": 0,
+    "organism": "Mus musculus",
+    "platform": "ISS",
+    "keywords": [
+      "samscl",
+      "was",
+      "protein",
+      "ldao",
+      "detergent",
+      "mass",
+      "oligomeric",
+      "state"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "PROTEOMICS"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "samscl",
+      "ldao",
+      "protein",
+      "was",
+      "detergent"
+    ]
+  },
+  {
+    "id": "exp_004",
+    "title": "Selective Proliferation of Highly Functional Adipose-Derived Stem Cells in Microgravity Culture with Stirred Microspheres",
+    "authors": [
+      "Takanobu Mashiko",
+      "Koji Kanayama",
+      "Natsumi Saito",
+      "Takako Shirado",
+      "Rintaro Asahi",
+      "Masanori Mori",
+      "Kotaro Yoshimura"
+    ],
+    "year": 0,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
+    "keywords": [
+      "cells",
+      "polystyrene",
+      "hascs",
+      "collagen",
+      "microspheres",
+      "cell",
+      "ssea-",
+      "was"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROGRAVITY RESEARCH"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.73,
+    "entities": [
+      "polystyrene",
+      "hascs",
+      "cells",
+      "collagen",
+      "microspheres"
+    ]
+  },
+  {
+    "id": "exp_046",
+    "title": "The dynamics of protein-protein interactions between domains of MscL at the cytoplasmic-lipid interface",
+    "authors": [
+      "Irene Iscla",
+      "Robin Wray",
+      "Paul Blount"
+    ],
+    "year": 0,
+    "organism": null,
+    "platform": "Space Shuttle",
+    "keywords": [
+      "mscl",
+      "channel",
+      "residues",
+      "are",
+      "mutants",
+      "protein",
+      "activity",
+      "was"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "Space Shuttle",
+      "PROTEOMICS"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "mscl",
+      "channel",
+      "are",
+      "residues",
+      "mutants"
+    ]
+  },
+  {
+    "id": "exp_047",
+    "title": "The MscS and MscL Families of Mechanosensitive Channels Act as Microbial Emergency Release Valves",
+    "authors": [
+      "Ian R Booth",
+      "Paul Blount"
+    ],
+    "year": 0,
+    "organism": null,
+    "platform": null,
+    "keywords": [
+      "most",
+      "can",
+      "cell",
+      "one",
+      "families",
+      "mechanosensitive",
+      "mscs",
+      "mscl"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "SPACE BOTANY"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.67,
+    "entities": [
+      "most",
+      "can",
+      "cell",
+      "one",
+      "families"
+    ]
+  },
+  {
+    "id": "exp_044",
+    "title": "The oligomeric state of the truncated mechanosensitive channel of large conductance shows no variance in vivo",
+    "authors": [
+      "Irene Iscla",
+      "Robin Wray",
+      "Paul Blount"
+    ],
+    "year": 0,
+    "organism": "Mus musculus",
+    "platform": "Space Shuttle",
+    "keywords": [
+      "aureus",
+      "mscl",
+      "was",
+      "channel",
+      "protein",
+      "has",
+      "c-terminal",
+      "used"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "Space Shuttle",
+      "PROTEOMICS"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.69,
+    "entities": [
+      "aureus",
+      "mscl",
+      "was",
+      "channel",
+      "protein"
+    ]
+  },
+  {
+    "id": "exp_019",
+    "title": "Toll Mediated Infection Response Is Altered by Gravity and Spaceflight in Drosophila",
+    "authors": [
+      "Katherine Taylor",
+      "Kurt Kleinhesselink",
+      "Michael D George",
+      "Rachel Morgan",
+      "Tangi Smallwood",
+      "Ann S Hammonds",
+      "Patrick M Fuller",
+      "Perot Saelao",
+      "Jeff Alley",
+      "Allen G Gibbs",
+      "Deborah K Hoshizaki",
+      "Laurence von Kalm",
+      "Charles A Fuller",
+      "Kathleen M Beckingham",
+      "Deborah A Kimbrell"
+    ],
+    "year": 0,
+    "organism": "Homo sapiens",
+    "platform": "ISS",
+    "keywords": [
+      "flies",
+      "protein",
+      "response",
+      "genes",
+      "heat",
+      "shock",
+      "toll",
+      "immune"
+    ],
+    "access": [
+      "PEER-REVIEWED",
+      "ISS",
+      "MICROGRAVITY RESEARCH"
+    ],
+    "citations_by_year": [],
+    "confidence": 0.71,
+    "entities": [
+      "protein",
+      "flies",
+      "response",
+      "genes",
+      "heat"
     ]
   }
 ]
