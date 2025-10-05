@@ -54,29 +54,29 @@ const StackCard = ({ item, index }: StackCardProps) => {
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       >
         <header className="mb-6 space-y-4">
-          <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)]">
+          <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
             <span>Dossier {index.toString().padStart(3, '0')}</span>
             <span className="font-mono text-[color:var(--dim)]">ID // {item.id}</span>
           </div>
           <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
             {item.title}
           </h2>
-          <p className="font-meta text-[0.78rem] tracking-[0.24em] text-[color:var(--mid)]">{item.authors.join(', ')}</p>
+          <p className="font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">{item.authors.join(', ')}</p>
         </header>
 
-        <dl className="grid grid-cols-3 gap-3 text-[0.82rem] font-meta tracking-[0.18em] text-[color:var(--mid)]">
+        <dl className="grid grid-cols-3 gap-3 text-[0.88rem] font-body text-[color:var(--mid)]">
           <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
-            <dt className="text-[0.68rem] text-[color:var(--passive)]">Year</dt>
+            <dt className="text-[0.75rem] font-meta normal-case tracking-[0.12em] text-[color:var(--passive)]">Year</dt>
             <dd className="text-[color:var(--white)]">{item.year}</dd>
           </div>
           <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
-            <dt className="text-[0.68rem] text-[color:var(--passive)]">Organism</dt>
+            <dt className="text-[0.75rem] font-meta normal-case tracking-[0.12em] text-[color:var(--passive)]">Organism</dt>
             <dd className="truncate text-[color:var(--white)]" title={item.organism}>
               {item.organism}
             </dd>
           </div>
           <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
-            <dt className="text-[0.68rem] text-[color:var(--passive)]">Platform</dt>
+            <dt className="text-[0.75rem] font-meta normal-case tracking-[0.12em] text-[color:var(--passive)]">Platform</dt>
             <dd className="truncate text-[color:var(--white)]" title={item.platform}>
               {item.platform}
             </dd>
@@ -87,7 +87,7 @@ const StackCard = ({ item, index }: StackCardProps) => {
           {item.keywords.slice(0, 4).map((keyword) => (
             <span
               key={keyword}
-              className="rounded-full border border-[rgba(32,42,50,0.65)] bg-[rgba(12,18,24,0.6)] px-3.5 py-1.5 font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)] transition-colors group-hover:border-[rgba(0,179,255,0.45)] group-hover:text-[color:var(--white)]"
+              className="rounded-full border border-[rgba(32,42,50,0.65)] bg-[rgba(12,18,24,0.6)] px-3.5 py-1.5 font-body text-[0.78rem] text-[color:var(--mid)] transition-colors group-hover:border-[rgba(0,179,255,0.45)] group-hover:text-[color:var(--white)]"
             >
               {keyword}
             </span>
@@ -113,7 +113,7 @@ const Battery = ({ confidence }: BatteryProps) => {
   const active = Math.round(confidence * segments);
   return (
     <div className="flex items-center gap-2">
-      <span className="font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)]">Confidence</span>
+      <span className="font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)] normal-case">Confidence</span>
       <div className="flex items-center gap-2">
         <div className="flex gap-1 rounded-lg border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.6)] px-1.5 py-1.5">
           {Array.from({ length: segments }).map((_, index) => (
@@ -127,7 +127,7 @@ const Battery = ({ confidence }: BatteryProps) => {
             />
           ))}
         </div>
-        <span className="font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)]">{Math.round(confidence * 100)}%</span>
+        <span className="font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)] normal-case">{Math.round(confidence * 100)}%</span>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
-import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation, Link } from 'react-router-dom';
 import GridBg from './components/GridBg';
 import BiosignalPulse from './components/BiosignalPulse';
 import InstallPrompt from './components/InstallPrompt';
@@ -92,14 +92,20 @@ const AppContent = () => {
         <header className="layered-panel mx-6 mt-6 border border-[rgba(26,31,36,0.6)] bg-[rgba(10,15,20,0.92)] px-6 py-5 text-[var(--white)]">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
-              <div className="relative rounded-xl border border-[rgba(32,42,50,0.65)] bg-[rgba(13,20,26,0.95)] px-6 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
-                <div className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_top,_rgba(0,179,255,0.22),_transparent_68%)]" />
+              <Link
+                to="/"
+                className="group relative rounded-xl border border-[rgba(32,42,50,0.65)] bg-[rgba(13,20,26,0.95)] px-6 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-2)]"
+                aria-label="Return to AstroGenesis home"
+              >
+                <div className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_top,_rgba(0,179,255,0.22),_transparent_68%)] transition-opacity group-hover:opacity-90" />
                 <div className="relative flex flex-col gap-1">
-                  <span className="font-meta text-[0.7rem] tracking-[0.32em] text-[color:var(--accent-2)]/75">Mission Control // A.G-01</span>
-                  <span className="text-[1.3rem] leading-tight text-[var(--white)]">Astro Genesis</span>
-                  <span className="font-meta text-[0.72rem] tracking-[0.32em] text-[rgba(255,59,59,0.82)]">Bio-Intelligence Archive</span>
+                  <span className="font-meta text-[0.7rem] tracking-[0.32em] text-[color:var(--accent-2)]/75 normal-case">Mission Control // A.G-01</span>
+                  <span className="font-display text-[1.45rem] tracking-[0.32em] text-[var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
+                    AstroGenesis
+                  </span>
+                  <span className="font-meta text-[0.72rem] tracking-[0.32em] text-[rgba(255,59,59,0.82)] normal-case">Bio-Intelligence Archive</span>
                 </div>
-              </div>
+              </Link>
               <div className="max-w-sm space-y-1">
                 <p className="font-meta text-[0.8rem] tracking-[0.22em] text-[color:var(--accent-1)]">Offline-first classified ops console</p>
                 <p className="font-body text-sm text-[color:var(--mid)]">Reconstruct live transmissions across NASA bioscience missions with layered telemetry, analyst intelligence, and immersive briefing cues.</p>
