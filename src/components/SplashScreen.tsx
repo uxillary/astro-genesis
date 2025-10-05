@@ -109,17 +109,38 @@ export default function SplashScreen({ onProceed }: Props) {
 
   return (
     <div className="splash-wrap" ref={containerRef} role="dialog" aria-modal="true" aria-labelledby="splash-title">
+      <div className="splash-noise" aria-hidden="true" />
+      <div className="splash-grid" aria-hidden="true" />
       <div className="scanlines" aria-hidden="true" />
       <div className="vignette" aria-hidden="true" />
 
-      <div className="ticks tl" aria-hidden="true" />
-      <div className="ticks tr" aria-hidden="true" />
-      <div className="ticks bl" aria-hidden="true" />
-      <div className="ticks br" aria-hidden="true" />
+      <div className="corner corner-tl" aria-hidden="true" />
+      <div className="corner corner-tr" aria-hidden="true" />
+      <div className="corner corner-bl" aria-hidden="true" />
+      <div className="corner corner-br" aria-hidden="true" />
+
+      <div className="crosshair" aria-hidden="true">
+        <span className="crosshair-line horizontal" />
+        <span className="crosshair-line vertical" />
+        <span className="crosshair-ring" />
+        <span className="crosshair-glyph" />
+      </div>
+
+      <div className="frame-bounds" aria-hidden="true">
+        <span className="frame-horizontal top" />
+        <span className="frame-horizontal bottom" />
+        <span className="frame-vertical left" />
+        <span className="frame-vertical right" />
+      </div>
 
       <div className="pane">
         <div className="pane-glow" aria-hidden="true" />
+        <div className="pane-scan" aria-hidden="true" />
         <div className="pane-inner" aria-live="polite">
+          <div className="pane-header" aria-hidden="true">
+            <span className="tag">A.G BIOSCIENCE ARCHIVE</span>
+            <span className="tag id">NODE AG-223</span>
+          </div>
           <p className="eyebrow">SUBMIT SECURITY CREDENTIALS</p>
 
           {!granted ? (
@@ -150,6 +171,11 @@ export default function SplashScreen({ onProceed }: Props) {
               <p className="sub ok">IDENTITY CONFIRMED // ROUTING…</p>
             </>
           )}
+
+          <div className="pane-footer" aria-hidden="true">
+            <span className="footer-label">TRANSMISSION CHANNEL</span>
+            <span className="footer-status">A.G // SECURE-LINK</span>
+          </div>
         </div>
       </div>
     </div>

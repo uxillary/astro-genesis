@@ -107,9 +107,27 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
         onSubmit={handleSubmit}
         className="flex items-center gap-4 rounded-[3px] border border-[#d6e3e0]/18 bg-[#0b0d0f]/75 px-6 py-4 shadow-panel"
       >
-        <label className="font-mono text-[0.78rem] uppercase tracking-[0.22em] text-[#8fa1ac]" htmlFor="archive-search">
-          Query
-        </label>
+        <span className="flex items-center gap-2 text-[#8fa1ac]">
+          <svg
+            aria-hidden="true"
+            className="h-5 w-5 text-[color:var(--accent-2)]"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.5 12.5L18 17"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="8.75" cy="8.75" r="5.75" stroke="currentColor" strokeWidth="1.6" />
+          </svg>
+          <label className="font-mono text-[0.78rem] uppercase tracking-[0.22em]" htmlFor="archive-search">
+            Query
+          </label>
+        </span>
         <input
           id="archive-search"
           type="search"
