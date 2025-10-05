@@ -18,7 +18,7 @@ Each JSON should include all fields for your UI.
 
 --
 
-python scripts/pmc_ingest.py --csv resources/SB_publication_PMC.csv --limit 5 --out data
+python scripts/pmc_ingest.py --csv resources/SB_publication_PMC.csv --limit 5 --json-dir data
 
 python pmc_fetch.py --csv SB_publication_PMC.csv --limit 2 --dry-run
 
@@ -55,3 +55,10 @@ links – URLs to NASA data or publications
 
 summary – short AI-generated overview
 graph / metrics – data for charts (year trends, related studies, etc.) - if necessary for that specific publication
+
+--
+
+
+prompts
+
+suggest and impement UX improvements, keeping within design constraint/ specifications
