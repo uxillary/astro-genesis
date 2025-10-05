@@ -6,7 +6,11 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "lib": ["DOM", "DOM.Iterable", "ES2020", "WebWorker"],
-    "types": ["node"]
+    "types": ["node"],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["vite.config.ts", "scripts"]
 }

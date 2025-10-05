@@ -1,7 +1,7 @@
 import { useRef, useState, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import type { PaperRecord } from '../lib/db';
-import HudBadge from './HudBadge';
+import HudBadge from '@/components/fui/HudBadge';
 
 type CardStackProps = {
   items: PaperRecord[];

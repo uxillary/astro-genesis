@@ -6,7 +6,8 @@ import type { PaperIndex } from '../lib/types';
 import Filters from '../components/Filters';
 import SearchBox from '../components/SearchBox';
 import CardStack from '../components/CardStack';
-import HudBadge from '../components/HudBadge';
+import PcbHeader from '@/components/fui/PcbHeader';
+import HudBadge from '@/components/fui/HudBadge';
 import ActiveFiltersBar from '../components/ActiveFiltersBar';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
@@ -143,13 +144,26 @@ const Home = () => {
               <p className="mt-4 max-w-2xl font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">
                 Coordinate NASA&apos;s bio-intelligence archive. Triangulate organisms, platforms, and temporal signals to decode lost transmissions and brief mission teams with rapid clarity.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <HudBadge label="Dossiers" tone="amber" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
-                <HudBadge label="Cache" tone={dexieReady ? 'cyan' : 'red'} value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>} />
-                {indexQuery.isLoading ? <HudBadge label="Sync" tone="cyan" value={<span>Updating</span>} /> : null}
-                {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
-                <HudBadge label="Integrity" tone="cyan" value={<span>{Math.round(integrity * 100)}%</span>} />
-              </div>
+              <PcbHeader
+                className="mt-6"
+                density={1}
+                traces={[
+                  { from: 'b-dossiers:right', to: 'b-cache:left', style: 'dotted', accent: 'cyan', signal: true },
+                  { from: 'b-cache:bottom', exit: 'bottom', style: 'solid', accent: 'amber' },
+                  { from: 'b-integrity:right', exit: 'right', style: 'solid', accent: 'red' }
+                ]}
+              >
+                <HudBadge id="b-dossiers" tone="cyan" label="Dossiers" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
+                <HudBadge
+                  id="b-cache"
+                  tone={dexieReady ? 'amber' : 'red'}
+                  label="Cache"
+                  value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>}
+                />
+                {indexQuery.isLoading ? <HudBadge id="b-sync" tone="cyan" label="Sync" value={<span>Updating</span>} /> : null}
+                {indexQuery.isError ? <HudBadge id="b-sync-error" tone="red" label="Sync" value={<span>Failed</span>} /> : null}
+                <HudBadge id="b-integrity" tone="cyan" label="Integrity" value={<span>{Math.round(integrity * 100)}%</span>} />
+              </PcbHeader>
             </div>
 
             <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">

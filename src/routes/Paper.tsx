@@ -4,7 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import BranchMap, { BranchKey } from '../components/BranchMap';
 import Panel from '../components/Panel';
 import TrendMini from '../components/TrendMini';
-import HudBadge from '../components/HudBadge';
+import PcbHeader from '@/components/fui/PcbHeader';
+import HudBadge from '@/components/fui/HudBadge';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -86,11 +87,19 @@ const Paper = () => {
             <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">{title}</h1>
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[#9fb4bc]">{authors.join(', ')}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <HudBadge label="Confidence" tone="amber" value={<span>{Math.round(confidence * 100)}%</span>} />
-            <HudBadge label="Keywords" tone="cyan" value={<span>{keywords.length}</span>} />
-            <HudBadge label="Entities" tone="cyan" value={<span>{entities.length}</span>} />
-          </div>
+          <PcbHeader
+            className="ml-auto"
+            density={0.5}
+            traces={[
+              { from: 'p-confidence:right', to: 'p-keywords:left', accent: 'amber', style: 'solid' },
+              { from: 'p-keywords:right', to: 'p-entities:left', accent: 'cyan', style: 'dotted', signal: true },
+              { from: 'p-entities:bottom', exit: 'bottom', accent: 'red', style: 'solid' }
+            ]}
+          >
+            <HudBadge id="p-confidence" tone="amber" label="Confidence" value={<span>{Math.round(confidence * 100)}%</span>} />
+            <HudBadge id="p-keywords" tone="cyan" label="Keywords" value={<span>{keywords.length}</span>} />
+            <HudBadge id="p-entities" tone="cyan" label="Entities" value={<span>{entities.length}</span>} />
+          </PcbHeader>
         </div>
       </header>
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import HudBadge from './HudBadge';
+import HudBadge from '@/components/fui/HudBadge';
 
 type CredentialOverlayProps = {
   open: boolean;
