@@ -80,8 +80,8 @@ const Home = () => {
       <section className="grid gap-8 rounded-[28px] border border-[#1a1f24]/60 bg-[#10161d]/70 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
         <div className="space-y-6">
           <header className="space-y-4">
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.42em] text-[#55e6a5]">BioArchive Intelligence</p>
-            <h1 className="text-4xl font-semibold uppercase tracking-[0.3em] text-[#d6e3e0]">
+            <p className="font-mono text-[0.64rem] uppercase tracking-[0.28em] text-[#55e6a5]">BioArchive Intelligence</p>
+            <h1 className="text-4xl font-semibold uppercase tracking-[0.18em] text-[#d6e3e0]">
               Classified Ops Console
             </h1>
             <div className="flex flex-wrap items-center gap-3">
@@ -95,7 +95,7 @@ const Home = () => {
               {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
             </div>
           </header>
-          <p className="max-w-2xl font-mono text-[0.68rem] uppercase tracking-[0.32em] text-[#7a8b94]">
+          <p className="max-w-2xl font-mono text-[0.74rem] uppercase tracking-[0.22em] text-[#7a8b94]">
             Operate the offline-first NASA bioscience archive. Search across mission dossiers, filter by organism, platform, and year, and pivot into branch maps for rapid briefing delivery.
           </p>
           <div className="space-y-4">
@@ -104,8 +104,8 @@ const Home = () => {
           </div>
           <div className="flex items-center gap-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-[#7a8b94]">
             <span>Need help?</span>
-            <kbd className="rounded border border-[#d6e3e0]/20 px-2 py-1 text-[#d6e3e0]/80">?</kbd>
-            <span>Open console reference</span>
+            <kbd className="rounded border border-[#d6e3e0]/25 bg-[#0b1116]/70 px-2 py-1 text-[#d6e3e0]/85">?</kbd>
+            <span>Press for console reference</span>
           </div>
         </div>
         <Filters {...filterOptions} />
@@ -114,12 +114,12 @@ const Home = () => {
       <section className="space-y-4 rounded-[28px] border border-[#1a1f24]/60 bg-[#10161d]/70 p-6 lg:p-8">
         <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Results</p>
-            <h2 className="text-xl font-semibold tracking-[0.22em] text-[#d6e3e0]">Stacked Dossiers</h2>
+            <p className="font-mono text-[0.64rem] uppercase tracking-[0.24em] text-[#55e6a5]">Results</p>
+            <h2 className="text-xl font-semibold tracking-[0.16em] text-[#d6e3e0]">Stacked Dossiers</h2>
           </div>
           <Link
             to="/tactical"
-            className="rounded-full border border-[#1a1f24] bg-[#131d26]/70 px-4 py-2 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#7a8b94] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
+            className="rounded-full border border-[#1a1f24] bg-[#131d26]/70 px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[#7a8b94] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
           >
             Tactical map
           </Link>
@@ -132,8 +132,8 @@ const Home = () => {
 
 const EmptyState = () => (
   <div className="flex h-60 flex-col items-center justify-center rounded-[26px] border border-dashed border-[#d6e3e0]/15 bg-[#0b0d0f]/50 text-center">
-    <p className="font-mono text-[0.62rem] uppercase tracking-[0.32em] text-dim">No dossiers match the current filters.</p>
-    <p className="mt-2 font-mono text-[0.58rem] uppercase tracking-[0.3em] text-mid">
+    <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-dim">No dossiers match the current filters.</p>
+    <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-mid">
       Adjust organism, platform, or mission year to widen the search.
     </p>
   </div>
