@@ -110,18 +110,19 @@ const Paper = () => {
       <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-6">
           <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
-            <div className="relative">
-              <ReticleOverlay
-                mode="fine"
-                animated={false}
-                padding={18}
-                color="cyan"
-                showCompass
-                className="absolute inset-0"
-              >
-                <span className="text-[0.55rem] tracking-[0.28em] text-[rgba(85,230,165,0.8)]">BRANCH MAP</span>
-              </ReticleOverlay>
-              <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+            <div className="relative flex flex-col gap-4">
+              <HudDivider label="BRANCH MAP" accent="cyan" variant="pill" lanePadding={16} elevate />
+              <div className="relative">
+                <ReticleOverlay
+                  mode="fine"
+                  animated={false}
+                  padding={18}
+                  color="cyan"
+                  showCompass
+                  className="pointer-events-none absolute inset-0"
+                />
+                <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+              </div>
             </div>
           </CornerBracket>
 
