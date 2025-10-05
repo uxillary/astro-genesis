@@ -1,0 +1,159 @@
+:root {
+  --hud-white: #e8f2ef;
+  --hud-dim: #91a39e;
+  --hud-cyan: #55e6a5;
+  --hud-amber: #ffb020;
+  --hud-red: #ff4d4f;
+}
+
+.fui-ruler {
+  position: relative;
+  height: 28px;
+  display: block;
+  color: var(--hud-white);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+}
+
+.fui-ruler--compact {
+  height: 24px;
+}
+
+.fui-ruler__svg {
+  width: 100%;
+  height: 28px;
+  display: block;
+}
+
+.fui-ruler--compact .fui-ruler__svg {
+  height: 24px;
+}
+
+.fui-ruler__ticks {
+  stroke: var(--fui-accent, var(--hud-cyan));
+  stroke-width: 1;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--fui-accent-glow, rgba(85, 230, 165, 0.55)) 100%, transparent));
+}
+
+.fui-ruler--compact .fui-ruler__ticks {
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--fui-accent-glow, rgba(85, 230, 165, 0.55)) 100%, transparent));
+}
+
+.fui-ruler__baseline {
+  stroke: color-mix(in srgb, var(--fui-accent, var(--hud-cyan)) 65%, transparent);
+  opacity: 0.85;
+}
+
+.fui-ruler__tick {
+  stroke: color-mix(in srgb, var(--fui-accent, var(--hud-cyan)) 90%, transparent);
+  opacity: 0.7;
+}
+
+.fui-ruler__tick--major {
+  stroke: color-mix(in srgb, var(--fui-accent, var(--hud-cyan)) 100%, transparent);
+  opacity: 0.95;
+}
+
+.fui-ruler__underbar {
+  fill: var(--fui-accent, var(--hud-cyan));
+  opacity: 0.92;
+}
+
+.fui-pill {
+  position: absolute;
+  top: 4px;
+  height: 20px;
+  padding: 0 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(2px) saturate(120%);
+  border: 1px solid color-mix(in oklab, var(--fui-accent, var(--hud-cyan)) 35%, transparent);
+  background: color-mix(in oklab, var(--fui-accent, var(--hud-cyan)) 10%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fui-accent, var(--hud-cyan)) 22%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fui-pill--elevated {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--fui-accent, var(--hud-cyan)) 28%, transparent),
+    0 4px 18px color-mix(in srgb, var(--fui-accent-glow, rgba(85, 230, 165, 0.55)) 65%, transparent);
+}
+
+.fui-ruler__label-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-inline: var(--lane-padding, 14px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fui-ruler__label-layer--start {
+  justify-content: flex-start;
+}
+
+.fui-ruler__label-layer--center {
+  justify-content: center;
+}
+
+.fui-ruler__label-layer--end {
+  justify-content: flex-end;
+}
+
+.fui-ruler__label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 4px;
+  font-family: var(--font-meta, 'Rajdhani', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--hud-white);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.45);
+  paint-order: stroke fill;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fui-ruler__label::after {
+  content: '';
+  position: absolute;
+  inset-inline: -2px;
+  bottom: 2px;
+  height: 1px;
+  opacity: 0.3;
+  background: color-mix(in srgb, var(--fui-accent, var(--hud-cyan)) 35%, transparent);
+}
+
+.fui-ruler--underbar .fui-ruler__label::after {
+  opacity: 0;
+}
+
+.fui-ruler__label--elevated {
+  text-shadow:
+    0 0 6px rgba(0, 0, 0, 0.45),
+    0 0 12px color-mix(in srgb, var(--fui-accent-glow, rgba(85, 230, 165, 0.55)) 60%, transparent);
+}
+
+.fui-ruler[data-accent='mono'] .fui-ruler__label {
+  color: var(--hud-white);
+}
+
+.fui-ruler[data-variant='pill'] .fui-ruler__label {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fui-pill--elevated,
+  .fui-ruler__label--elevated {
+    box-shadow: none;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .fui-ruler__ticks {
+    filter: none;
+  }
+}

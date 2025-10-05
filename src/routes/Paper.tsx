@@ -263,7 +263,7 @@ const Paper = () => {
           </div>
 
           <DossierGlyphs />
-          <HudDivider label="TELEMETRY" side="right" />
+          <HudDivider label="TELEMETRY" align="end" accent="amber" variant="knockout" lanePadding={14} />
           <TrendMini data={citations_by_year} />
         </aside>
       </div>
