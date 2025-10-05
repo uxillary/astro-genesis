@@ -95,10 +95,10 @@ const AppContent = () => {
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
               <Link
                 to="/"
-                className="group relative rounded-xl border border-[rgba(32,42,50,0.65)] bg-[rgba(13,20,26,0.95)] px-6 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-2)]"
+                className="group relative rounded-[6px] border border-[rgba(32,42,50,0.65)] bg-[rgba(13,20,26,0.95)] px-6 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent-2)]"
                 aria-label="Return to AstroGenesis home"
               >
-                <div className="pointer-events-none absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_top,_rgba(0,179,255,0.22),_transparent_68%)] transition-opacity group-hover:opacity-90" />
+                <div className="pointer-events-none absolute inset-0 rounded-[6px] bg-[radial-gradient(circle_at_top,_rgba(0,179,255,0.22),_transparent_68%)] transition-opacity group-hover:opacity-90" />
                 <div className="relative flex flex-col gap-1">
                   <span className="font-meta text-[0.7rem] tracking-[0.32em] text-[color:var(--accent-2)]/75 normal-case">Mission Control // A.G-01</span>
                   <span className="font-display text-[1.45rem] tracking-[0.32em] text-[var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
@@ -160,7 +160,7 @@ const AppContent = () => {
             </Routes>
           </Suspense>
         </main>
-        <footer className="mx-6 mb-6 rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(9,14,18,0.85)] px-6 py-4 font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)]">
+        <footer className="mx-6 mb-6 rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(9,14,18,0.85)] px-6 py-4 font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)]">
           Signal integrity nominal // Press C for credentials · Press ? for help overlay
         </footer>
       </div>

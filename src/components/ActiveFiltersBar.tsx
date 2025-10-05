@@ -28,7 +28,7 @@ const ActiveFiltersBar = () => {
 
   if (entries.length === 0) {
     return (
-      <div className="flex items-center gap-4 rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] px-5 py-3.5 font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--passive)] shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
+      <div className="flex items-center gap-4 rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] px-5 py-3.5 font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--passive)] shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
         <span className="text-[rgba(85,230,165,0.8)]">Filters nominal</span>
         <span className="text-[color:var(--mid)]">// All dossiers shown</span>
       </div>
@@ -36,7 +36,7 @@ const ActiveFiltersBar = () => {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
+    <div className="flex flex-wrap items-center gap-3 rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
       <span className="font-meta text-[0.74rem] tracking-[0.24em] text-[color:var(--accent-1)]">
         Active Filters
       </span>

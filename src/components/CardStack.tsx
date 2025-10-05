@@ -51,11 +51,11 @@ const StackCard = ({ item, index }: StackCardProps) => {
       onMouseLeave={handleLeave}
     >
       <div
-        className="absolute inset-0 -z-[1] rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
+        className="absolute inset-0 -z-[1] rounded-[6px] border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       />
       <article
-        className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
+        className="scanline-card relative overflow-hidden rounded-[6px] border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       >
         <header className="mb-6">
@@ -65,9 +65,9 @@ const StackCard = ({ item, index }: StackCardProps) => {
             offset={10}
             stroke={0.9}
             color="cyan"
-            className="stack-card-corner -m-4 rounded-lg p-4"
+            className="stack-card-corner -m-4 rounded-[4px] p-4"
           >
-            <FuiFrame grid="soft" tone="cyan" padding={14} className="relative z-[1] overflow-hidden rounded-lg">
+            <FuiFrame grid="soft" tone="cyan" padding={14} className="relative z-[1] overflow-hidden rounded-[4px]">
               <div className="space-y-4">
                 <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
                   <span>Dossier {index.toString().padStart(3, '0')}</span>
@@ -86,17 +86,17 @@ const StackCard = ({ item, index }: StackCardProps) => {
         </header>
 
         <dl className="grid grid-cols-3 gap-3 text-[0.88rem] font-body text-[color:var(--mid)]">
-          <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
+          <div className="rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
             <dt className="text-[0.75rem] font-meta normal-case tracking-[0.12em] text-[color:var(--passive)]">Year</dt>
             <dd className="text-[color:var(--white)]">{item.year}</dd>
           </div>
-          <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
+          <div className="rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
             <dt className="text-[0.75rem] font-meta normal-case tracking-[0.12em] text-[color:var(--passive)]">Organism</dt>
             <dd className="truncate text-[color:var(--white)]" title={item.organism}>
               {item.organism}
             </dd>
           </div>
-          <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
+          <div className="rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
             <dt className="text-[0.75rem] font-meta normal-case tracking-[0.12em] text-[color:var(--passive)]">Platform</dt>
             <dd className="truncate text-[color:var(--white)]" title={item.platform}>
               {item.platform}
@@ -120,7 +120,7 @@ const StackCard = ({ item, index }: StackCardProps) => {
           <HudBadge label="Entities" tone="cyan" compact value={<span>{item.entities.length}</span>} />
         </div>
       </article>
-      <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
+      <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-[6px] border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
     </Link>
   );
 };
@@ -136,7 +136,7 @@ const Battery = ({ confidence }: BatteryProps) => {
     <div className="flex items-center gap-2">
       <span className="font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)] normal-case">Confidence</span>
       <div className="flex items-center gap-2">
-        <div className="flex gap-1 rounded-lg border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.6)] px-1.5 py-1.5">
+        <div className="flex gap-1 rounded-[4px] border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.6)] px-1.5 py-1.5">
           {Array.from({ length: segments }).map((_, index) => (
             <span
               key={index}

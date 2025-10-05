@@ -143,7 +143,7 @@ const Home = () => {
         <span className="section-anchor">Mission Control</span>
         <div className="layered-panel grid gap-6 px-6 py-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <div className="space-y-6">
-            <div className="relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
+            <div className="relative overflow-hidden rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
               <ReticleOverlay
                 mode="fine"
                 animated
@@ -184,7 +184,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">
+            <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">
               <SignalUplinkIndicator
                 active={uplinkActive}
                 restored={connectionRestored}
@@ -212,7 +212,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_18px_48px_rgba(0,0,0,0.4)]">
+          <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_18px_48px_rgba(0,0,0,0.4)]">
             <Filters {...filterOptions} />
           </div>
         </div>
@@ -271,7 +271,7 @@ type MissionTimelineProps = {
 const MissionTimeline = ({ timeline, activeYear, onYearChange }: MissionTimelineProps) => {
   if (timeline.length === 0) {
     return (
-      <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] p-6 text-[color:var(--mid)]">
+      <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] p-6 text-[color:var(--mid)]">
         No mission chronology detected. Adjust filters to rehydrate the transmission.
       </div>
     );
@@ -281,7 +281,7 @@ const MissionTimeline = ({ timeline, activeYear, onYearChange }: MissionTimeline
   const maxYear = timeline[0]?.year ?? 0;
 
   return (
-    <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">
+    <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--accent-1)]">Mission Timeline</p>
@@ -294,7 +294,7 @@ const MissionTimeline = ({ timeline, activeYear, onYearChange }: MissionTimeline
         </div>
       </header>
       <div className="mt-6 space-y-6">
-        <div className="relative h-32 overflow-hidden rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(9,14,18,0.75)] p-6">
+        <div className="relative h-32 overflow-hidden rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(9,14,18,0.75)] p-6">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,179,255,0.15),_transparent_65%)] opacity-60" />
           <div className="relative flex h-full items-center justify-between">
             {timeline.map((point) => (
@@ -356,7 +356,7 @@ type TimelineTooltipProps = {
 
 const TimelineTooltip = ({ point, active }: TimelineTooltipProps) => (
   <div
-    className={`pointer-events-none absolute -top-28 flex w-56 flex-col gap-2 rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.9)] p-4 text-left shadow-[0_18px_48px_rgba(0,0,0,0.45)] transition-all duration-300 ${
+    className={`pointer-events-none absolute -top-28 flex w-56 flex-col gap-2 rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.9)] p-4 text-left shadow-[0_18px_48px_rgba(0,0,0,0.45)] transition-all duration-300 ${
       active ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
     }`}
   >
@@ -388,7 +388,7 @@ const ConfidenceHeatGrid = ({ matrix, activeYear, onYearChange }: ConfidenceHeat
   }
 
   return (
-    <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">
+    <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--accent-1)]">Confidence Heat Grid</p>
@@ -427,7 +427,7 @@ const ConfidenceHeatGrid = ({ matrix, activeYear, onYearChange }: ConfidenceHeat
                 {matrix.values[rowIndex]?.map((value, columnIndex) => (
                   <td key={`${organism}-${matrix.years[columnIndex]}`}>
                     <div
-                      className={`group relative flex h-14 items-center justify-center rounded-lg border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.65)] transition ${
+                      className={`group relative flex h-14 items-center justify-center rounded-[4px] border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.65)] transition ${
                         activeYear === matrix.years[columnIndex]
                           ? 'ring-1 ring-[rgba(0,179,255,0.45)] ring-offset-2 ring-offset-[rgba(8,12,16,0.85)]'
                           : ''
@@ -472,7 +472,7 @@ type HeatTooltipProps = {
 
 const HeatTooltip = ({ organism, year, value, active }: HeatTooltipProps) => (
   <div
-    className={`pointer-events-none absolute -top-32 flex w-48 flex-col gap-2 rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.94)] p-4 text-left transition-all duration-300 ${
+    className={`pointer-events-none absolute -top-32 flex w-48 flex-col gap-2 rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.94)] p-4 text-left transition-all duration-300 ${
       active ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
     }`}
   >
@@ -498,7 +498,7 @@ const HabitableMapVisualizer = ({ records, activeYear }: HabitableMapVisualizerP
   const nodes = buildHabitableNodes(records, activeYear);
 
   return (
-    <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.82)] p-6">
+    <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.82)] p-6">
       <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--accent-2)]">Habitable Map Visualizer</p>
@@ -506,7 +506,7 @@ const HabitableMapVisualizer = ({ records, activeYear }: HabitableMapVisualizerP
         </div>
         <span className="font-meta text-[0.7rem] tracking-[0.22em] text-[color:var(--mid)]">Interconnected organisms · platforms · years</span>
       </header>
-      <div className="relative mt-6 overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.75)] p-6">
+      <div className="relative mt-6 overflow-hidden rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.75)] p-6">
         <svg viewBox="0 0 640 320" className="h-72 w-full">
           <defs>
             <linearGradient id="node-gradient" x1="0" x2="1" y1="0" y2="1">
@@ -567,7 +567,7 @@ type AnalystSummaryProps = {
 
 const AnalystSummary = ({ summaries }: AnalystSummaryProps) => (
   <div className="flex h-full flex-col gap-6">
-    <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.82)] p-6">
+    <div className="rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.82)] p-6">
       <p className="font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--accent-2)]">Analyst Summary</p>
       <h3 className="mt-2 text-2xl text-[color:var(--white)]">LLM brief of prioritized dossiers</h3>
       <p className="mt-3 font-body text-[0.9rem] leading-relaxed text-[color:var(--mid)]">
@@ -578,7 +578,7 @@ const AnalystSummary = ({ summaries }: AnalystSummaryProps) => (
       {summaries.map((item, index) => (
         <article
           key={item.id}
-          className="group relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.9)] p-5 shadow-[0_18px_48px_rgba(0,0,0,0.4)] transition hover:shadow-[0_20px_60px_rgba(0,179,255,0.25)]"
+          className="group relative overflow-hidden rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.9)] p-5 shadow-[0_18px_48px_rgba(0,0,0,0.4)] transition hover:shadow-[0_20px_60px_rgba(0,179,255,0.25)]"
         >
           <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ backgroundImage: 'linear-gradient(135deg, rgba(0,179,255,0.12), rgba(85,230,165,0.1))' }} />
           <div className="relative flex flex-col gap-3">
@@ -615,7 +615,7 @@ const TransmissionIntegrityMeter = ({ integrity, totalRecords, activeYear }: Tra
   const offset = circumference * (1 - normalized);
 
   return (
-    <div className="relative flex flex-col items-center justify-center rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(9,14,18,0.8)] p-6 text-center">
+    <div className="relative flex flex-col items-center justify-center rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(9,14,18,0.8)] p-6 text-center">
       <p className="font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--accent-2)]">Transmission Integrity</p>
       <div className="relative mt-4 h-40 w-40">
         <svg viewBox="0 0 140 140" className="h-full w-full">
@@ -660,7 +660,7 @@ type SignalUplinkIndicatorProps = {
 };
 
 const SignalUplinkIndicator = ({ active, restored, hasError }: SignalUplinkIndicatorProps) => (
-  <div className="flex items-center justify-between rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.85)] px-4 py-3">
+  <div className="flex items-center justify-between rounded-[5px] border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.85)] px-4 py-3">
     <div className="flex items-center gap-3 font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--mid)]">
       <span
         className={`inline-flex h-3 w-3 rounded-full shadow-[0_0_16px_rgba(0,179,255,0.6)] ${
@@ -684,7 +684,7 @@ type EmptyStateProps = {
 };
 
 const EmptyState = ({ restoring }: EmptyStateProps) => (
-  <div className="relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-[rgba(0,179,255,0.25)] bg-[rgba(9,12,15,0.7)] text-center">
+  <div className="relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-[6px] border border-dashed border-[rgba(0,179,255,0.25)] bg-[rgba(9,12,15,0.7)] text-center">
     <div className="absolute inset-0 animate-[signalLost_3s_ease-in-out_infinite] bg-[radial-gradient(circle_at_center,_rgba(0,179,255,0.12),_transparent_65%)]" />
     <div className="relative flex flex-col items-center gap-3">
       <p className="font-meta text-[0.86rem] tracking-[0.24em] text-[color:var(--mid)]">Signal lost</p>

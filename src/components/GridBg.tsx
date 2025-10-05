@@ -81,7 +81,7 @@ const GridBg = () => {
         <rect width="100%" height="100%" fill="url(#diagonal)" />
       </svg>
 
-      <div className="absolute inset-6 rounded-3xl border border-[rgba(255,255,255,0.04)]" />
+      <div className="absolute inset-6 rounded-[8px] border border-[rgba(255,255,255,0.04)]" />
       <CornerTick position="top-left" />
       <CornerTick position="top-right" />
       <CornerTick position="bottom-left" />
@@ -97,10 +97,10 @@ type CornerTickProps = {
 const CornerTick = ({ position }: CornerTickProps) => {
   const common = 'absolute h-10 w-10 border border-[rgba(255,255,255,0.08)]';
   const map: Record<CornerTickProps['position'], string> = {
-    'top-left': 'left-6 top-6 border-r-0 border-b-0 rounded-tl-xl',
-    'top-right': 'right-6 top-6 border-l-0 border-b-0 rounded-tr-xl',
-    'bottom-left': 'left-6 bottom-6 border-r-0 border-t-0 rounded-bl-xl',
-    'bottom-right': 'right-6 bottom-6 border-l-0 border-t-0 rounded-br-xl'
+    'top-left': 'left-6 top-6 border-r-0 border-b-0 rounded-tl-[6px]',
+    'top-right': 'right-6 top-6 border-l-0 border-b-0 rounded-tr-[6px]',
+    'bottom-left': 'left-6 bottom-6 border-r-0 border-t-0 rounded-bl-[6px]',
+    'bottom-right': 'right-6 bottom-6 border-l-0 border-t-0 rounded-br-[6px]'
   };
   return <span className={`${common} ${map[position]}`} />;
 };

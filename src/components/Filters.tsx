@@ -23,7 +23,7 @@ const Filters = ({ organisms, platforms, years }: FilterProps) => {
 
   return (
     <aside className="flex h-full flex-col gap-6">
-      <header className="flex items-center justify-between rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.85)] px-4 py-3">
+      <header className="flex items-center justify-between rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(8,12,16,0.85)] px-4 py-3">
         <div>
           <p className="font-meta text-[0.74rem] tracking-[0.24em] text-[color:var(--accent-1)]">Filters</p>
           <h3 className="text-xl text-[color:var(--white)]">Operational scope</h3>
@@ -36,7 +36,7 @@ const Filters = ({ organisms, platforms, years }: FilterProps) => {
           Reset
         </button>
       </header>
-      <div className="space-y-6 rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-5">
+      <div className="space-y-6 rounded-[6px] border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-5">
         <FilterGroup
           label="Organism"
           options={organisms}
