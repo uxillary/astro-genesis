@@ -37,7 +37,7 @@ PROMPT_TEMPLATE = (
 TEMPERATURE = 0.4
 PRIMARY_MODEL = "gpt-4o-mini"
 FALLBACK_MODEL = "gpt-3.5-turbo"
-MAX_BATCH = 2
+MAX_BATCH = 608
 
 
 AI_SUMMARY_KEY = "ai_summary"
@@ -94,7 +94,32 @@ def word_count(text: str) -> int:
     return len(text.split()) if text else 0
 
 
-def compile_payload(data: Dict) -> Dict[str, str]:
+SECTION_CHAR_LIMIT = 1200
+
+
+def trim_section(text: str, *, section_name: str, limit: int = SECTION_CHAR_LIMIT) -> str:
+    """Trim text to the configured character limit while warning if shortened."""
+
+    if not text:
+        return ""
+
+    stripped = text.strip()
+    if len(stripped) <= limit:
+        return stripped
+
+    truncated = stripped[:limit].rstrip()
+    last_space = truncated.rfind(" ")
+    if last_space > 0:
+        truncated = truncated[:last_space].rstrip()
+
+    log(
+        "Warning: %s section truncated from %d to %d characters."
+        % (section_name, len(stripped), len(truncated))
+    )
+    return f"{truncated}…"
+
+
+def compile_payload(data: Dict, *, log_label: str | None = None) -> Dict[str, str]:
     sections_data = data.get("sections")
     sections = sections_data if isinstance(sections_data, dict) else {}
 
@@ -109,16 +134,64 @@ def compile_payload(data: Dict) -> Dict[str, str]:
     if not authors_text:
         authors_text = collect_section_text(sections, "authors")
 
+    conclusion_raw = collect_section_text(sections, "conclusion")
+    conclusion_fallback = None
+
+    if not conclusion_raw.strip():
+        fallback_sources = [
+            ("discussion", "discussion section"),
+            ("interpretation", "interpretation section"),
+            ("findings", "findings section"),
+            ("summary", "summary section"),
+            ("results", "results section"),
+            ("background", "background section"),
+            ("abstract", "abstract section"),
+        ]
+
+        for key, label in fallback_sources:
+            candidate = collect_section_text(sections, key)
+            if candidate.strip():
+                conclusion_raw = candidate
+                conclusion_fallback = label
+                break
+
+        if not conclusion_raw.strip():
+            summary_text = data.get("summary", "")
+            if isinstance(summary_text, str) and summary_text.strip():
+                conclusion_raw = summary_text
+                conclusion_fallback = "top-level summary"
+
+        if conclusion_fallback and log_label:
+            log(
+                "%s missing conclusion; substituting %s for prompt."
+                % (log_label, conclusion_fallback)
+            )
+
+    conclusion_label = (
+        "conclusion"
+        if not conclusion_fallback
+        else f"{conclusion_fallback} (fallback for conclusion)"
+    )
+
     return {
         "title": data.get("title", ""),
         "authors": authors_text,
-        "abstract": collect_section_text(sections, "abstract"),
-        "background": collect_section_text(sections, "introduction")
-        or collect_section_text(sections, "background")
-        or data.get("summary", ""),
-        "methods": collect_section_text(sections, "methods"),
-        "results": collect_section_text(sections, "results"),
-        "conclusion": collect_section_text(sections, "conclusion"),
+        "abstract": trim_section(
+            collect_section_text(sections, "abstract"), section_name="abstract"
+        ),
+        "background": trim_section(
+            collect_section_text(sections, "introduction")
+            or collect_section_text(sections, "background")
+            or data.get("summary", ""),
+            section_name="background",
+        ),
+        "methods": trim_section(
+            collect_section_text(sections, "methods"), section_name="methods"
+        ),
+        "results": trim_section(
+            collect_section_text(sections, "results"), section_name="results"
+        ),
+        "conclusion": trim_section(conclusion_raw, section_name=conclusion_label),
     }
 
 
@@ -156,7 +229,7 @@ def process_file(path: Path, data: Dict, client: OpenAI) -> bool:
         log(f"Skipping {path.name} (already contains {AI_SUMMARY_KEY})")
         return False
 
-    payload = compile_payload(data)
+    payload = compile_payload(data, log_label=path.name)
 
     missing_sections = [key for key, value in payload.items() if not value]
     if missing_sections:
@@ -244,8 +317,16 @@ def main() -> None:
     processed_files: List[str] = []
     updates = 0
 
+    if MAX_BATCH:
+        log(
+            "Batch cap enabled: up to %d file(s) will be summarized in this run."
+            % MAX_BATCH
+        )
+    else:
+        log("Batch cap disabled: will attempt to summarize all available files this run.")
+
     for json_path in files:
-        if updates >= MAX_BATCH:
+        if MAX_BATCH and updates >= MAX_BATCH:
             log(
                 "Reached MAX_BATCH=%d limit; remaining files will be processed in a "
                 "future run." % MAX_BATCH

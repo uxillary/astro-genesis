@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import BranchMap, { BranchKey } from '../components/BranchMap';
@@ -8,8 +8,8 @@ import PcbHeader from '@/components/fui/PcbHeader';
 import HudBadge from '@/components/fui/HudBadge';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
 import CornerBracket from '@/components/fui/CornerBracket';
-import HudDivider from '@/components/fui/HudDivider';
 import VectorGlyph from '@/components/fui/VectorGlyph';
+import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiCorner, FuiDivider, useConnectorLayer } from '@/components/fui';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -74,8 +74,7 @@ const Paper = () => {
     );
   }
 
-  const { paper, isFallback } = query.data;
-  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
+  const { paper } = query.data;
 
   const handleCopyLink = (section: BranchKey) => {
     const url = `${window.location.origin}/paper/${id}#${section}`;
@@ -83,13 +82,69 @@ const Paper = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <header className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/12 bg-panel/95 p-6 shadow-panel">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2">
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Dossier {id}</p>
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">{title}</h1>
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[#9fb4bc]">{authors.join(', ')}</p>
+    <FuiConnectorLayer>
+      <PaperLayout
+        dossierId={id}
+        data={query.data}
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+        onCopyLink={handleCopyLink}
+      />
+    </FuiConnectorLayer>
+  );
+};
+
+type PaperLayoutProps = {
+  dossierId: string;
+  data: PaperQueryResult;
+  activeSection: BranchKey;
+  onSectionChange: (section: BranchKey) => void;
+  onCopyLink: (section: BranchKey) => void;
+};
+
+const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLink }: PaperLayoutProps) => {
+  const connector = useConnectorLayer();
+  const abstractAnchorRef = useRef<HTMLDivElement>(null);
+  const methodsAnchorRef = useRef<HTMLDivElement>(null);
+  const resultsAnchorRef = useRef<HTMLDivElement>(null);
+  const conclusionAnchorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!connector) return undefined;
+    const anchors: Array<[string, RefObject<HTMLDivElement>]> = [
+      ['panel-abstract', abstractAnchorRef],
+      ['panel-methods', methodsAnchorRef],
+      ['panel-results', resultsAnchorRef],
+      ['panel-conclusion', conclusionAnchorRef],
+    ];
+    anchors.forEach(([id, ref]) => {
+      if (ref.current) {
+        connector.registerAnchor(id, ref.current);
+      }
+    });
+    return () => {
+      anchors.forEach(([id]) => connector.unregisterAnchor(id));
+    };
+  }, [connector]);
+
+  const { paper } = data;
+  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
+
+  return (
+    <div className="space-y-8 transmission-field">
+      <header className="relative overflow-hidden rounded-[12px] border border-[#d6e3e0]/16 bg-[rgba(12,18,24,0.86)] p-6 shadow-[0_30px_70px_rgba(0,0,0,0.42)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,179,255,0.18),transparent_55%)] opacity-70 mix-blend-screen" aria-hidden="true" />
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="space-y-3">
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[rgba(85,230,165,0.8)]">Dossier {dossierId}</p>
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-white">{title}</h1>
+            <p className="font-mono text-[0.62rem] tracking-[0.12em] text-white/70">{authors.join(', ')}</p>
+            {data.isFallback ? (
+              <div className="signal-indicator mt-2 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-[rgba(20,16,16,0.55)] px-4 py-2 text-xs font-mono uppercase tracking-[0.22em] text-amber/80">
+                <span className="signal-indicator__dot" aria-hidden="true" />
+                Signal lost — degraded transmission
+              </div>
+            ) : null}
           </div>
           <PcbHeader
             className="ml-auto"
@@ -97,7 +152,7 @@ const Paper = () => {
             traces={[
               { from: 'p-confidence:right', to: 'p-keywords:left', accent: 'amber', style: 'solid' },
               { from: 'p-keywords:right', to: 'p-entities:left', accent: 'cyan', style: 'dotted', signal: true },
-              { from: 'p-entities:bottom', exit: 'bottom', accent: 'red', style: 'solid' }
+              { from: 'p-entities:bottom', exit: 'bottom', accent: 'red', style: 'solid' },
             ]}
           >
             <HudBadge id="p-confidence" tone="amber" label="Confidence" value={<span>{Math.round(confidence * 100)}%</span>} />
@@ -107,7 +162,7 @@ const Paper = () => {
         </div>
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+      <div className="grid gap-8 lg:grid-cols-[1.65fr_1fr]">
         <div className="space-y-6">
           <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
             <div className="relative flex flex-col gap-4">
@@ -126,135 +181,155 @@ const Paper = () => {
             </div>
           </CornerBracket>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <Panel
-              id="abstract"
-              title="Abstract"
-              sublabel="Module Alpha"
-              active={activeSection === 'abstract'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('abstract')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              {sections.abstract}
-            </Panel>
-            <Panel
-              id="methods"
-              title="Methods"
-              sublabel="Module Beta"
-              active={activeSection === 'methods'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('methods')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              <div className="relative">
-                <VectorGlyph
-                  id="diag-lines"
-                  caption="VEC 223"
-                  size={64}
-                  color="cyan"
-                  className="absolute -right-2 -top-2 hidden md:flex"
-                />
-                <div className="relative z-10">{sections.methods}</div>
-              </div>
-            </Panel>
-            <Panel
-              id="results"
-              title="Results"
-              sublabel="Module Gamma"
-              active={activeSection === 'results'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('results')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              {sections.results}
-            </Panel>
-            <Panel
-              id="conclusion"
-              title="Conclusion"
-              sublabel="Module Delta"
-              active={activeSection === 'conclusion'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('conclusion')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              {sections.conclusion}
-            </Panel>
+          <div className="flex flex-wrap items-center gap-3 text-white/80">
+            <FuiBadge id="b-abs" label="Abstract" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-met" label="Methods" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-res" label="Results" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-con" label="Conclusion" tone="cyan" size="sm" anchors={['bottom']} />
           </div>
 
-          <Panel
-            title="Analyst Summary"
-            sublabel="AI Channel"
-            actions={<span className="text-[#5f6c75]">Uplink offline</span>}
-          >
+          <div className="grid gap-4 md:grid-cols-2">
+            <div id="panel-abstract" ref={abstractAnchorRef}>
+              <Panel
+                id="abstract"
+                title="Abstract"
+                sublabel="Module Alpha"
+                active={activeSection === 'abstract'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('abstract')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                {sections.abstract}
+              </Panel>
+            </div>
+            <div id="panel-methods" ref={methodsAnchorRef}>
+              <Panel
+                id="methods"
+                title="Methods"
+                sublabel="Module Beta"
+                active={activeSection === 'methods'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('methods')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                <div className="relative">
+                  <VectorGlyph
+                    id="diag-lines"
+                    caption="VEC 223"
+                    size={64}
+                    color="cyan"
+                    className="absolute -right-2 -top-2 hidden md:flex"
+                  />
+                  <div className="relative z-10">{sections.methods}</div>
+                </div>
+              </Panel>
+            </div>
+            <div id="panel-results" ref={resultsAnchorRef}>
+              <Panel
+                id="results"
+                title="Results"
+                sublabel="Module Gamma"
+                active={activeSection === 'results'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('results')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                {sections.results}
+              </Panel>
+            </div>
+            <div id="panel-conclusion" ref={conclusionAnchorRef}>
+              <Panel
+                id="conclusion"
+                title="Conclusion"
+                sublabel="Module Delta"
+                active={activeSection === 'conclusion'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('conclusion')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                {sections.conclusion}
+              </Panel>
+            </div>
+          </div>
+
+          <FuiCallout from="b-abs" to="panel-abstract" variant="dotted" tone="cyan" />
+          <FuiCallout from="b-met" to="panel-methods" variant="dotted" tone="cyan" />
+          <FuiCallout from="b-res" to="panel-results" variant="dotted" tone="cyan" />
+          <FuiCallout from="b-con" to="panel-conclusion" variant="dotted" tone="cyan" />
+
+          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-[#5f6c75]">Uplink offline</span>}>
             LLM summary feed is offline. This panel will populate once the analyst channel is connected.
           </Panel>
         </div>
 
-        <aside className="space-y-6">
-          <div className="rounded-[3px] border border-[#d6e3e0]/14 bg-panel/95 p-5 shadow-panel">
-            <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#9fb4bc]">Meta</header>
-            <dl className="space-y-3 text-[0.82rem]">
+        <aside className="dossier-aside space-y-6">
+          <div className="dossier-meta">
+            <header className="meta-heading">Meta</header>
+            <dl className="meta-grid">
               <MetaRow label="Year" value={year.toString()} />
               <MetaRow label="Organism" value={organism} />
               <MetaRow label="Platform" value={platform} />
             </dl>
-            <div className="mt-4 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Access Flags</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="meta-section">
+              <p className="meta-label">Access Flags</p>
+              <div className="meta-tags">
                 {access.map((flag) => (
-                  <HudBadge key={flag} label={flag} tone="red" compact />
+                  <HudBadge
+                    key={flag}
+                    label={flag}
+                    tone="red"
+                    compact
+                    className="!border-[rgba(255,86,86,0.6)] !text-[rgba(255,142,142,0.92)]"
+                    tooltip={`Classification flag: ${flag}`}
+                  />
                 ))}
               </div>
             </div>
-            <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Keywords</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="meta-section">
+              <p className="meta-label">Keywords</p>
+              <div className="meta-tags">
                 {keywords.map((keyword) => (
-                  <span
-                    key={keyword}
-                    className="rounded-full border border-[#d6e3e0]/15 bg-[#0b0d0f]/40 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] text-mid"
-                  >
+                  <span key={keyword} className="meta-tag" title={`Related topic: ${keyword}`}>
                     {keyword}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Entities</p>
-              <ul className="grid gap-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-mid">
+            <div className="meta-section">
+              <p className="meta-label">Entities</p>
+              <ul className="meta-entities">
                 {entities.map((entity) => (
-                  <li key={entity} className="rounded border border-[#d6e3e0]/10 bg-[#0b0d0f]/30 px-3 py-2">
+                  <li key={entity} title={`Referenced entity: ${entity}`}>
                     {entity}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">External Links</p>
-              <ul className="space-y-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-amber">
+            <div className="meta-section">
+              <p className="meta-label">External Links</p>
+              <ul className="meta-links">
                 {links.taskbook ? (
                   <li>
-                    <a className="hover:text-[#d6e3e0]" href={links.taskbook} target="_blank" rel="noreferrer">
+                    <a className="hover:text-white" href={links.taskbook} target="_blank" rel="noreferrer">
                       Taskbook dossier
                     </a>
                   </li>
                 ) : null}
                 {links.osdr ? (
                   <li>
-                    <a className="hover:text-[#d6e3e0]" href={links.osdr} target="_blank" rel="noreferrer">
+                    <a className="hover:text-white" href={links.osdr} target="_blank" rel="noreferrer">
                       OSDR record
                     </a>
                   </li>
@@ -273,9 +348,9 @@ const Paper = () => {
 };
 
 const MetaRow = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex items-center justify-between border-b border-[#d6e3e0]/10 pb-2 last:border-none last:pb-0">
-    <span className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">{label}</span>
-    <span className="text-sm font-medium text-[#f3f8f6]">{value}</span>
+  <div className="meta-row">
+    <dt className="meta-row__label">{label}</dt>
+    <dd className="meta-row__value">{value}</dd>
   </div>
 );
 

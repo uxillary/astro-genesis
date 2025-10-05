@@ -9,11 +9,11 @@ import CardStack from '../components/CardStack';
 import PcbHeader from '@/components/fui/PcbHeader';
 import HudBadge from '@/components/fui/HudBadge';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
-import HudDivider from '@/components/fui/HudDivider';
 import ActiveFiltersBar from '../components/ActiveFiltersBar';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
 import { withBase } from '../lib/paths';
+import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiDivider } from '@/components/fui';
 
 const fetchIndex = async (): Promise<PaperIndex[]> => {
   const response = await fetch(withBase('data/index.json'));
@@ -99,6 +99,8 @@ const Home = () => {
   const timeline = useMemo(() => buildTimeline(results), [results]);
   const availableYears = timeline.map((item) => item.year);
 
+  const activeFilterCount = Number(Boolean(filters.organism)) + Number(Boolean(filters.platform)) + Number(Boolean(filters.year));
+
   useEffect(() => {
     if (!activeYear && availableYears.length > 0) {
       setActiveYear(availableYears[0]);
@@ -135,7 +137,8 @@ const Home = () => {
   const confidenceMatrix = useMemo(() => buildConfidenceMatrix(results), [results]);
 
   return (
-    <div className="relative z-10 space-y-12">
+    <FuiConnectorLayer>
+      <div className="relative z-10 space-y-12">
       <section className="relative">
         <span className="section-anchor">Mission Control</span>
         <div className="layered-panel grid gap-6 px-6 py-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
@@ -192,6 +195,14 @@ const Home = () => {
                 <div className="space-y-4">
                   <SearchBox onSearch={() => setResults(runSearch(query, filters))} />
                   <ActiveFiltersBar />
+                  <FuiBadge
+                    id="filters-badge"
+                    label={`FILTERS // ${activeFilterCount}`}
+                    tone={activeFilterCount > 0 ? 'cyan' : 'mono'}
+                    size="sm"
+                    className="ml-auto"
+                  />
+                  <FuiCallout from="search-execute" to="filters-badge" variant="dotted" tone="cyan" />
                   <div className="flex items-center gap-3 text-[0.78rem] font-meta tracking-[0.22em] text-[color:var(--passive)]">
                     <span>Need help?</span>
                     <kbd className="rounded border border-[rgba(214,227,224,0.25)] bg-[rgba(10,15,20,0.7)] px-2 py-1 text-[rgba(244,252,251,0.8)]">?</kbd>
@@ -240,6 +251,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+    </FuiConnectorLayer>
   );
 };
 

@@ -1,0 +1,35 @@
+{
+  "pmcid": "PMC6048781",
+  "id": "exp_037",
+  "title": "ERULUS Is a Plasma Membrane-Localized Receptor-Like Kinase That Specifies Root Hair Growth by Maintaining Tip-Focused Cytoplasmic Calcium Oscillations",
+  "authors": [
+    "Taegun Kwon",
+    "J Alan Sparks",
+    "Fuqi Liao",
+    "Elison B Blancaflor"
+  ],
+  "year": null,
+  "organism": null,
+  "experiment_type": null,
+  "platform": null,
+  "keywords": [],
+  "sections": {
+    "abstract": "",
+    "methods": "",
+    "results": "",
+    "conclusion": ""
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6048781/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6048781/pdf/TPC_201800316D.pdf"
+  },
+  "summary": "",
+  "metrics": {
+    "section_lengths": {
+      "abstract": 0,
+      "results": 0,
+      "conclusion": 0
+    }
+  },
+  "ai_summary": "This study investigates the role of the receptor-like kinase ERULUS in regulating root hair growth by maintaining tip-focused cytoplasmic calcium oscillations in plants. The researchers aimed to understand how ERULUS influences the spatial distribution of calcium signals, which are crucial for root hair development. Using a combination of genetic, biochemical, and imaging techniques, the team demonstrated that ERULUS localizes to the plasma membrane and is essential for proper calcium signaling in root hairs. They found that mutations in the ERULUS gene resulted in disrupted calcium oscillations, leading to impaired root hair growth. These findings highlight the importance of ERULUS in plant development and suggest that manipulating calcium signaling pathways could enhance root hair formation. This research has significant implications for space biosciences, as understanding plant growth mechanisms in microgravity could inform strategies for sustainable food production during long-duration space missions."
+}

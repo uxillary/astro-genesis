@@ -308,6 +308,20 @@ class ArticleRecord:
         return dataclasses.asdict(self)
 
 
+def normalize_json_dir(json_dir: Path) -> Path:
+    """Ensure dossiers are written inside a ``papers`` directory."""
+
+    if json_dir.name == "papers":
+        return json_dir
+
+    candidate = json_dir / "papers"
+    if json_dir == Path("data"):
+        logger.info("Redirecting JSON output from %s to %s", json_dir, candidate)
+        return candidate
+
+    return json_dir
+
+
 def ensure_directories(raw_dir: Path, json_dir: Path) -> None:
     logger.debug("Ensuring directories exist: raw_dir=%s json_dir=%s", raw_dir, json_dir)
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -631,6 +645,7 @@ def ingest(
     llm_model: str = "gpt-4o-mini",
     llm_enabled: Optional[bool] = None,
 ) -> List[ArticleRecord]:
+    json_dir = normalize_json_dir(json_dir)
     ensure_directories(raw_dir, json_dir)
     session = make_session()
     rows = load_csv_rows(csv_path, limit=limit)
@@ -650,6 +665,16 @@ def ingest(
         pmcid = derive_pmcid(row)
         if not pmcid:
             logger.warning("Skipping row %d: no PMCID detected", idx)
+            continue
+        record_id = f"exp_{idx:03d}"
+        existing_json = json_dir / f"{record_id}.json"
+        if not force and existing_json.exists():
+            logger.info(
+                "Skipping row %d -> %s: dossier %s already exists",
+                idx,
+                pmcid,
+                existing_json.name,
+            )
             continue
         logger.info("Processing row %d -> %s", idx, pmcid)
         try:
@@ -672,7 +697,11 @@ def main() -> None:
     parser.add_argument("--raw-dir", type=Path, default=Path("data/raw_pmc"), help="Directory for cached raw HTML")
     parser.add_argument("--json-dir", type=Path, default=Path("data/papers"), help="Directory for JSON dossiers")
     parser.add_argument("--limit", type=int, default=None, help="Optional row limit for testing")
-    parser.add_argument("--force", action="store_true", help="Refetch HTML even if cached")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Refetch HTML and overwrite dossiers even if cached",
+    )
     parser.add_argument("--llm", choices=["auto", "off"], default="auto", help="Use OpenAI if configured ('auto') or disable ('off')")
     parser.add_argument("--llm-model", default="gpt-4o-mini", help="OpenAI model name when LLM is enabled")
     parser.add_argument("-v", "--verbose", action="count", default=0, help="Increase logging verbosity (use -vv for debug)")
@@ -684,10 +713,11 @@ def main() -> None:
 
     llm_enabled = None if args.llm == "auto" else False
     try:
+        normalized_json_dir = normalize_json_dir(args.json_dir)
         records = ingest(
             csv_path=args.csv,
             raw_dir=args.raw_dir,
-            json_dir=args.json_dir,
+            json_dir=normalized_json_dir,
             limit=args.limit,
             force=args.force,
             llm_model=args.llm_model,
@@ -697,7 +727,7 @@ def main() -> None:
         logger.exception("Fatal error during ingestion")
         raise SystemExit(1) from exc
 
-    logger.info("Ingested %d publications -> %s", len(records), args.json_dir)
+    logger.info("Ingested %d publications -> %s", len(records), normalized_json_dir)
 
 
 if __name__ == "__main__":
