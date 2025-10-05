@@ -37,7 +37,7 @@ PROMPT_TEMPLATE = (
 TEMPERATURE = 0.4
 PRIMARY_MODEL = "gpt-4o-mini"
 FALLBACK_MODEL = "gpt-3.5-turbo"
-MAX_BATCH = 2
+MAX_BATCH = 608
 
 
 AI_SUMMARY_KEY = "ai_summary"
@@ -280,8 +280,16 @@ def main() -> None:
     processed_files: List[str] = []
     updates = 0
 
+    if MAX_BATCH:
+        log(
+            "Batch cap enabled: up to %d file(s) will be summarized in this run."
+            % MAX_BATCH
+        )
+    else:
+        log("Batch cap disabled: will attempt to summarize all available files this run.")
+
     for json_path in files:
-        if updates >= MAX_BATCH:
+        if MAX_BATCH and updates >= MAX_BATCH:
             log(
                 "Reached MAX_BATCH=%d limit; remaining files will be processed in a "
                 "future run." % MAX_BATCH
