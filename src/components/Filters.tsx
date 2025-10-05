@@ -22,14 +22,14 @@ const Filters = ({ organisms, platforms, years }: FilterProps) => {
   }));
 
   return (
-    <aside className="rounded-[28px] border border-[#1a1f24]/70 bg-[#10161d]/80 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
+    <aside className="rounded-[28px] border border-[#1a1f24]/70 bg-[#10161d]/80 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)] min-h-[24rem] lg:min-h-[28rem]">
       <header className="mb-4 flex items-center justify-between">
         <div>
-          <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Filters</p>
-          <h3 className="text-lg font-semibold tracking-[0.18em] text-[#d6e3e0]">Operational Scope</h3>
+          <p className="font-mono text-[0.66rem] uppercase tracking-[0.32em] text-[#55e6a5]">Filters</p>
+          <h3 className="text-xl font-semibold tracking-[0.18em] text-[#d6e3e0]">Operational Scope</h3>
         </div>
         <button
-          className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.3em] text-[#7a8b94] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
+          className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-4 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#7a8b94] transition hover:border-[#55e6a5]/60 hover:text-[#d6e3e0]"
           onClick={() => resetFilters()}
           type="button"
         >
@@ -68,18 +68,18 @@ type FilterGroupProps = {
 };
 
 const FilterGroup = ({ label, options, activeValue, onSelect }: FilterGroupProps) => (
-  <div className="space-y-3">
+  <div className="space-y-4">
     <div className="flex items-center justify-between">
-      <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#7a8b94]">{label}</p>
+      <p className="font-mono text-[0.66rem] uppercase tracking-[0.32em] text-[#7a8b94]">{label}</p>
       <HudBadge label="Count" tone="cyan" compact value={<span>{options.reduce((acc, option) => acc + option.count, 0)}</span>} />
     </div>
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-3">
       {options.map((option) => (
         <button
           key={option.value}
           type="button"
           className={clsx(
-            'group flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] transition-colors duration-200',
+            'group flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.28em] transition-colors duration-200',
             activeValue === option.value
               ? 'border-[#55e6a5]/70 bg-[#142027]/80 text-[#55e6a5] shadow-[0_0_18px_rgba(85,230,165,0.35)]'
               : 'border-[#1a1f24] text-[#7a8b94] hover:border-[#55e6a5]/50 hover:text-[#d6e3e0]'
@@ -87,7 +87,7 @@ const FilterGroup = ({ label, options, activeValue, onSelect }: FilterGroupProps
           onClick={() => onSelect(option.value)}
         >
           <span>{option.label}</span>
-          <span className="rounded-sm bg-[#0b0d0f]/40 px-1.5 py-0.5 text-[0.55rem] text-[#7a8b94] group-hover:text-[#d6e3e0]">{option.count}</span>
+          <span className="rounded-sm bg-[#0b0d0f]/40 px-2 py-0.5 text-[0.6rem] text-[#7a8b94] group-hover:text-[#d6e3e0]">{option.count}</span>
         </button>
       ))}
     </div>
