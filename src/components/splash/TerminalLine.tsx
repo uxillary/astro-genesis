@@ -62,11 +62,7 @@ export default function TerminalLine({
       return;
     }
 
-    if (!isDemoActive) {
-      return;
-    }
-
-    if (event.key.length === 1 || event.key === 'Backspace' || event.key === 'Delete') {
+    if (isDemoActive) {
       setDemoActive(false);
     }
   };

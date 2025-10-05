@@ -18,7 +18,8 @@ const App = () => {
   const [entered, setEntered] = useState(() => {
     if (typeof window === 'undefined') return false;
     try {
-      return window.localStorage.getItem(ENTRY_STORAGE_KEY) === 'true';
+      const stored = window.localStorage.getItem(ENTRY_STORAGE_KEY);
+      return stored === '1' || stored === 'true';
     } catch (error) {
       console.warn('Unable to access localStorage', error);
       return false;
@@ -27,7 +28,7 @@ const App = () => {
 
   const handleProceed = useCallback(() => {
     try {
-      window.localStorage.setItem(ENTRY_STORAGE_KEY, 'true');
+      window.localStorage.setItem(ENTRY_STORAGE_KEY, '1');
     } catch (error) {
       console.warn('Unable to persist entry state', error);
     }
