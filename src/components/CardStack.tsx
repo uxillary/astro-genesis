@@ -1,7 +1,9 @@
 import { useRef, useState, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import type { PaperRecord } from '../lib/db';
-import HudBadge from './HudBadge';
+import HudBadge from '@/components/fui/HudBadge';
+import CornerBracket from '@/components/fui/CornerBracket';
+import TargetBadge from '@/components/fui/TargetBadge';
 
 type CardStackProps = {
   items: PaperRecord[];
@@ -37,6 +39,8 @@ const StackCard = ({ item, index }: StackCardProps) => {
     setTilt({ x: 0, y: 0 });
   };
 
+  const lockLabel = `LOCK ${String(index + 1).padStart(2, '0')}`;
+
   return (
     <Link
       ref={cardRef}
@@ -53,15 +57,29 @@ const StackCard = ({ item, index }: StackCardProps) => {
         className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       >
-        <header className="mb-6 space-y-4">
-          <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
-            <span>Dossier {index.toString().padStart(3, '0')}</span>
-            <span className="font-mono text-[color:var(--dim)]">ID // {item.id}</span>
-          </div>
-          <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
-            {item.title}
-          </h2>
-          <p className="font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">{item.authors.join(', ')}</p>
+        <header className="mb-6">
+          <CornerBracket
+            radius={8}
+            size={22}
+            offset={10}
+            stroke={0.9}
+            color="cyan"
+            className="stack-card-corner -m-4 rounded-lg p-4"
+          >
+            <div className="relative z-[1] space-y-4">
+              <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
+                <span>Dossier {index.toString().padStart(3, '0')}</span>
+                <div className="flex items-center gap-3">
+                  <TargetBadge label={lockLabel} variant="lock" tone="cyan" />
+                  <span className="font-mono text-[color:var(--dim)]">ID // {item.id}</span>
+                </div>
+              </div>
+              <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
+                {item.title}
+              </h2>
+              <p className="font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">{item.authors.join(', ')}</p>
+            </div>
+          </CornerBracket>
         </header>
 
         <dl className="grid grid-cols-3 gap-3 text-[0.88rem] font-body text-[color:var(--mid)]">

@@ -6,7 +6,10 @@ import type { PaperIndex } from '../lib/types';
 import Filters from '../components/Filters';
 import SearchBox from '../components/SearchBox';
 import CardStack from '../components/CardStack';
-import HudBadge from '../components/HudBadge';
+import PcbHeader from '@/components/fui/PcbHeader';
+import HudBadge from '@/components/fui/HudBadge';
+import ReticleOverlay from '@/components/fui/ReticleOverlay';
+import HudDivider from '@/components/fui/HudDivider';
 import ActiveFiltersBar from '../components/ActiveFiltersBar';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
@@ -137,18 +140,44 @@ const Home = () => {
         <span className="section-anchor">Mission Control</span>
         <div className="layered-panel grid gap-6 px-6 py-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <div className="space-y-6">
-            <div className="rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
-              <p className="font-meta text-[0.8rem] tracking-[0.22em] text-[color:var(--accent-1)]">BioArchive Intelligence</p>
-              <h1 className="mt-3 text-[2.6rem] text-[color:var(--white)] sm:text-[3rem]">Classified Ops Console</h1>
-              <p className="mt-4 max-w-2xl font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">
-                Coordinate NASA&apos;s bio-intelligence archive. Triangulate organisms, platforms, and temporal signals to decode lost transmissions and brief mission teams with rapid clarity.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <HudBadge label="Dossiers" tone="amber" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
-                <HudBadge label="Cache" tone={dexieReady ? 'cyan' : 'red'} value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>} />
-                {indexQuery.isLoading ? <HudBadge label="Sync" tone="cyan" value={<span>Updating</span>} /> : null}
-                {indexQuery.isError ? <HudBadge label="Sync" tone="red" value={<span>Failed</span>} /> : null}
-                <HudBadge label="Integrity" tone="cyan" value={<span>{Math.round(integrity * 100)}%</span>} />
+            <div className="relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
+              <ReticleOverlay
+                mode="fine"
+                animated
+                padding={16}
+                showCompass
+                color="mono"
+                crosshair="diamond"
+                className="pointer-events-none absolute inset-0"
+              >
+                <span className="text-xs tracking-[0.3em] text-[rgba(217,226,223,0.78)]">CALIBRATED</span>
+              </ReticleOverlay>
+              <div className="relative mt-12 space-y-3">
+                <p className="font-meta text-[0.8rem] tracking-[0.22em] text-[color:var(--accent-1)]">BioArchive Intelligence</p>
+                <h1 className="text-[2.6rem] text-[color:var(--white)] sm:text-[3rem]">Classified Ops Console</h1>
+                <p className="mt-4 max-w-2xl font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">
+                  Coordinate NASA&apos;s bio-intelligence archive. Triangulate organisms, platforms, and temporal signals to decode lost transmissions and brief mission teams with rapid clarity.
+                </p>
+                <PcbHeader
+                  className="mt-6"
+                  density={1}
+                  traces={[
+                    { from: 'b-dossiers:right', to: 'b-cache:left', style: 'dotted', accent: 'cyan', signal: true },
+                    { from: 'b-cache:bottom', exit: 'bottom', style: 'solid', accent: 'amber' },
+                    { from: 'b-integrity:right', exit: 'right', style: 'solid', accent: 'red' }
+                  ]}
+                >
+                  <HudBadge id="b-dossiers" tone="cyan" label="Dossiers" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
+                  <HudBadge
+                    id="b-cache"
+                    tone={dexieReady ? 'amber' : 'red'}
+                    label="Cache"
+                    value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>}
+                  />
+                  {indexQuery.isLoading ? <HudBadge id="b-sync" tone="cyan" label="Sync" value={<span>Updating</span>} /> : null}
+                  {indexQuery.isError ? <HudBadge id="b-sync-error" tone="red" label="Sync" value={<span>Failed</span>} /> : null}
+                  <HudBadge id="b-integrity" tone="cyan" label="Integrity" value={<span>{Math.round(integrity * 100)}%</span>} />
+                </PcbHeader>
               </div>
             </div>
 
@@ -181,6 +210,7 @@ const Home = () => {
       <section className="relative">
         <span className="section-anchor">Dossier Grid</span>
         <div className="layered-panel space-y-6 px-6 py-6">
+          <HudDivider label="RESULTS" className="text-[color:var(--accent-2)]" />
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-meta text-[0.78rem] tracking-[0.22em] text-[color:var(--accent-2)]">Results</p>

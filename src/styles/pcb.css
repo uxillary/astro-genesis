@@ -1,0 +1,150 @@
+:root {
+  --trace-cyan: #55e6a5;
+  --trace-amber: #00b3ff;
+  --trace-red: #ff3b3b;
+  --trace-mono: #d6e3e0;
+}
+
+.pcb-header {
+  position: relative;
+}
+
+.pcb-header__trace-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+  overflow: visible;
+}
+
+.pcb-header__content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.hud-badge {
+  background: rgba(10, 15, 20, 0.72);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.hud-badge--compact {
+  letter-spacing: 0.2em;
+}
+
+.hud-badge--static {
+  cursor: default;
+}
+
+.hud-badge[aria-pressed='true'] {
+  box-shadow: 0 0 22px rgba(85, 230, 165, 0.32);
+  border-color: rgba(85, 230, 165, 0.6);
+}
+
+.hud-badge__anchor {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+  border-radius: 1px;
+}
+
+.hud-badge__anchor--left {
+  left: -2px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hud-badge__anchor--right {
+  right: -2px;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.hud-badge__anchor--top {
+  top: -2px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hud-badge__anchor--bottom {
+  bottom: -2px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.trace {
+  fill: none;
+  stroke: var(--trace-color, var(--trace-cyan));
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--trace-glow, rgba(85, 230, 165, 0.25)));
+}
+
+.trace--dotted {
+  stroke-dasharray: 3 6;
+}
+
+.trace--micro {
+  stroke-width: 0.6;
+  opacity: 0.38;
+  filter: none;
+}
+
+.trace--signal {
+  stroke-width: 2;
+  stroke-dasharray: 0.06 1;
+  stroke-linecap: round;
+  animation: trace-signal 4s linear infinite;
+}
+
+.trace-group {
+  --trace-color: var(--trace-cyan);
+  --trace-glow: rgba(85, 230, 165, 0.25);
+}
+
+.trace-accent-cyan {
+  --trace-color: var(--trace-cyan);
+  --trace-glow: rgba(85, 230, 165, 0.25);
+}
+
+.trace-accent-amber {
+  --trace-color: var(--trace-amber);
+  --trace-glow: rgba(0, 179, 255, 0.24);
+}
+
+.trace-accent-red {
+  --trace-color: var(--trace-red);
+  --trace-glow: rgba(255, 59, 59, 0.28);
+}
+
+.trace-accent-mono {
+  --trace-color: var(--trace-mono);
+  --trace-glow: rgba(214, 227, 224, 0.18);
+}
+
+@keyframes trace-signal {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace--signal {
+    animation: none;
+  }
+}
+

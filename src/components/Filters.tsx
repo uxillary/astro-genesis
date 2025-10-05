@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import HudBadge from './HudBadge';
+import HudBadge from '@/components/fui/HudBadge';
 import { useSearchStore } from '../lib/state';
 
 export type FilterOption = {

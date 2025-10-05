@@ -4,7 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import BranchMap, { BranchKey } from '../components/BranchMap';
 import Panel from '../components/Panel';
 import TrendMini from '../components/TrendMini';
-import HudBadge from '../components/HudBadge';
+import PcbHeader from '@/components/fui/PcbHeader';
+import HudBadge from '@/components/fui/HudBadge';
+import ReticleOverlay from '@/components/fui/ReticleOverlay';
+import CornerBracket from '@/components/fui/CornerBracket';
+import HudDivider from '@/components/fui/HudDivider';
+import VectorGlyph from '@/components/fui/VectorGlyph';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -86,17 +91,39 @@ const Paper = () => {
             <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">{title}</h1>
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[#9fb4bc]">{authors.join(', ')}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <HudBadge label="Confidence" tone="amber" value={<span>{Math.round(confidence * 100)}%</span>} />
-            <HudBadge label="Keywords" tone="cyan" value={<span>{keywords.length}</span>} />
-            <HudBadge label="Entities" tone="cyan" value={<span>{entities.length}</span>} />
-          </div>
+          <PcbHeader
+            className="ml-auto"
+            density={0.5}
+            traces={[
+              { from: 'p-confidence:right', to: 'p-keywords:left', accent: 'amber', style: 'solid' },
+              { from: 'p-keywords:right', to: 'p-entities:left', accent: 'cyan', style: 'dotted', signal: true },
+              { from: 'p-entities:bottom', exit: 'bottom', accent: 'red', style: 'solid' }
+            ]}
+          >
+            <HudBadge id="p-confidence" tone="amber" label="Confidence" value={<span>{Math.round(confidence * 100)}%</span>} />
+            <HudBadge id="p-keywords" tone="cyan" label="Keywords" value={<span>{keywords.length}</span>} />
+            <HudBadge id="p-entities" tone="cyan" label="Entities" value={<span>{entities.length}</span>} />
+          </PcbHeader>
         </div>
       </header>
 
       <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-6">
-          <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+          <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
+            <div className="relative">
+              <ReticleOverlay
+                mode="fine"
+                animated={false}
+                padding={18}
+                color="cyan"
+                showCompass
+                className="absolute inset-0"
+              >
+                <span className="text-[0.55rem] tracking-[0.28em] text-[rgba(85,230,165,0.8)]">BRANCH MAP</span>
+              </ReticleOverlay>
+              <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+            </div>
+          </CornerBracket>
 
           <div className="grid gap-4 md:grid-cols-2">
             <Panel
@@ -125,7 +152,16 @@ const Paper = () => {
               }
               variant="dossier"
             >
-              {sections.methods}
+              <div className="relative">
+                <VectorGlyph
+                  id="diag-lines"
+                  caption="VEC 223"
+                  size={64}
+                  color="cyan"
+                  className="absolute -right-2 -top-2 hidden md:flex"
+                />
+                <div className="relative z-10">{sections.methods}</div>
+              </div>
             </Panel>
             <Panel
               id="results"
@@ -227,7 +263,7 @@ const Paper = () => {
           </div>
 
           <DossierGlyphs />
-
+          <HudDivider label="TELEMETRY" side="right" />
           <TrendMini data={citations_by_year} />
         </aside>
       </div>
