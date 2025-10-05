@@ -44,7 +44,13 @@ export const useSearchStore = create<SearchStore>((set) => ({
       filters: { ...state.filters, ...filters }
     })),
   resetFilters: () => set({ filters: defaultFilters }),
-  setResults: (records) => set({ results: records }),
+  setResults: (records) =>
+    set((state) => {
+      if (areResultsEqual(state.results, records)) {
+        return state;
+      }
+      return { results: records };
+    }),
   setSuggestions: (items) => set({ suggestions: items })
 }));
 
@@ -61,3 +67,14 @@ export const useUiStore = create<UiStore>((set) => ({
   setCredential: (open) => set({ credentialOpen: open }),
   setBranchLayout: (layout) => set({ branchLayout: layout })
 }));
+
+const areResultsEqual = (current: PaperRecord[], next: PaperRecord[]) => {
+  if (current === next) return true;
+  if (current.length !== next.length) return false;
+  for (let index = 0; index < current.length; index += 1) {
+    if (current[index]?.id !== next[index]?.id) {
+      return false;
+    }
+  }
+  return true;
+};

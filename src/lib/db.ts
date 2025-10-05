@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie';
-import type { PaperDetail, PaperIndex } from './types';
+import type { CitationPoint, PaperDetail, PaperIndex } from './types';
 
 export type PaperRecord = PaperIndex & {
   sections?: PaperDetail['sections'];
@@ -64,16 +64,66 @@ const writeToMemory = (
 export const isDexieAvailable = () => db !== null;
 export const getDexieInitError = () => dbInitError;
 
+const compareCitationPoints = (a: CitationPoint[], b: CitationPoint[]) => {
+  if (a.length !== b.length) return false;
+  return a.every((point, index) => {
+    const other = b[index];
+    return other?.y === point.y && other?.c === point.c;
+  });
+};
+
+const compareArrays = (a: string[], b: string[]) => {
+  if (a.length !== b.length) return false;
+  return a.every((value, index) => value === b[index]);
+};
+
+const hasIndexChanged = (existing: PaperRecord | undefined, next: PaperIndex) => {
+  if (!existing) return true;
+  if (
+    existing.title !== next.title ||
+    existing.year !== next.year ||
+    existing.organism !== next.organism ||
+    existing.platform !== next.platform ||
+    existing.confidence !== next.confidence
+  ) {
+    return true;
+  }
+  if (!compareArrays(existing.authors ?? [], next.authors)) return true;
+  if (!compareArrays(existing.keywords ?? [], next.keywords)) return true;
+  if (!compareArrays(existing.access ?? [], next.access)) return true;
+  if (!compareArrays(existing.entities ?? [], next.entities)) return true;
+  if (!compareCitationPoints(existing.citations_by_year ?? [], next.citations_by_year)) return true;
+  return false;
+};
+
 export const seedIndex = async (items: PaperIndex[]) => {
   if (db) {
     const database = db;
+    if (items.length === 0) {
+      return;
+    }
+
     await database.transaction('rw', database.papers, async () => {
-      await Promise.all(
-        items.map(async (item) => {
-          const existing = await database.papers.get(item.id);
-          await database.papers.put({ ...existing, ...item, cachedAt: existing?.cachedAt ?? Date.now() });
-        })
-      );
+      const ids = items.map((item) => item.id);
+      const existingRecords = await database.papers.bulkGet(ids);
+      const updates: PaperRecord[] = [];
+
+      items.forEach((item, index) => {
+        const existing = existingRecords[index] ?? undefined;
+        const merged: PaperRecord = {
+          ...existing,
+          ...item,
+          cachedAt: existing?.cachedAt ?? Date.now()
+        };
+
+        if (hasIndexChanged(existing ?? undefined, item)) {
+          updates.push(merged);
+        }
+      });
+
+      if (updates.length > 0) {
+        await database.papers.bulkPut(updates);
+      }
     });
     return;
   }
