@@ -1,6 +1,7 @@
 import { FormEvent, KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
 import { useSearchStore } from '../lib/state';
 import { typeahead } from '../lib/search';
+import { useConnectorLayer } from '@/components/fui';
 
 const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
   const { query, setQuery, suggestions, setSuggestions } = useSearchStore((state) => ({
@@ -11,9 +12,11 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
   }));
   const containerRef = useRef<HTMLDivElement>(null);
   const activeItemRef = useRef<HTMLLIElement | null>(null);
+  const executeRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const listboxId = useId();
+  const connector = useConnectorLayer();
 
   useEffect(() => {
     const next = typeahead(query).map((item) => ({
@@ -50,6 +53,13 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
       activeItemRef.current.scrollIntoView({ block: 'nearest' });
     }
   }, [activeIndex]);
+
+  useEffect(() => {
+    const element = executeRef.current;
+    if (!connector || !element) return undefined;
+    connector.registerAnchor('search-execute', element, ['right', 'bottom']);
+    return () => connector.unregisterAnchor('search-execute');
+  }, [connector]);
 
   const handleSuggestionSelect = (title: string) => {
     setQuery(title);
@@ -134,7 +144,7 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           className="search-console__input focus:outline-none"
           placeholder="Title / authors / keywords"
         />
-        <button type="submit" className="search-console__cta">
+        <button ref={executeRef} type="submit" className="search-console__cta">
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M3 10H17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             <path

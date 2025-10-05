@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import BranchMap, { BranchKey } from '../components/BranchMap';
@@ -8,8 +8,8 @@ import PcbHeader from '@/components/fui/PcbHeader';
 import HudBadge from '@/components/fui/HudBadge';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
 import CornerBracket from '@/components/fui/CornerBracket';
-import HudDivider from '@/components/fui/HudDivider';
 import VectorGlyph from '@/components/fui/VectorGlyph';
+import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiCorner, FuiDivider, useConnectorLayer } from '@/components/fui';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -74,8 +74,7 @@ const Paper = () => {
     );
   }
 
-  const { paper, isFallback } = query.data;
-  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
+  const { paper } = query.data;
 
   const handleCopyLink = (section: BranchKey) => {
     const url = `${window.location.origin}/paper/${id}#${section}`;
@@ -83,11 +82,60 @@ const Paper = () => {
   };
 
   return (
+    <FuiConnectorLayer>
+      <PaperLayout
+        dossierId={id}
+        data={query.data}
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+        onCopyLink={handleCopyLink}
+      />
+    </FuiConnectorLayer>
+  );
+};
+
+type PaperLayoutProps = {
+  dossierId: string;
+  data: PaperQueryResult;
+  activeSection: BranchKey;
+  onSectionChange: (section: BranchKey) => void;
+  onCopyLink: (section: BranchKey) => void;
+};
+
+const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLink }: PaperLayoutProps) => {
+  const connector = useConnectorLayer();
+  const abstractAnchorRef = useRef<HTMLDivElement>(null);
+  const methodsAnchorRef = useRef<HTMLDivElement>(null);
+  const resultsAnchorRef = useRef<HTMLDivElement>(null);
+  const conclusionAnchorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!connector) return undefined;
+    const anchors: Array<[string, RefObject<HTMLDivElement>]> = [
+      ['panel-abstract', abstractAnchorRef],
+      ['panel-methods', methodsAnchorRef],
+      ['panel-results', resultsAnchorRef],
+      ['panel-conclusion', conclusionAnchorRef],
+    ];
+    anchors.forEach(([id, ref]) => {
+      if (ref.current) {
+        connector.registerAnchor(id, ref.current);
+      }
+    });
+    return () => {
+      anchors.forEach(([id]) => connector.unregisterAnchor(id));
+    };
+  }, [connector]);
+
+  const { paper } = data;
+  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
+
+  return (
     <div className="space-y-8">
       <header className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/12 bg-panel/95 p-6 shadow-panel">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Dossier {id}</p>
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Dossier {dossierId}</p>
             <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">{title}</h1>
             <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[#9fb4bc]">{authors.join(', ')}</p>
           </div>
@@ -97,7 +145,7 @@ const Paper = () => {
             traces={[
               { from: 'p-confidence:right', to: 'p-keywords:left', accent: 'amber', style: 'solid' },
               { from: 'p-keywords:right', to: 'p-entities:left', accent: 'cyan', style: 'dotted', signal: true },
-              { from: 'p-entities:bottom', exit: 'bottom', accent: 'red', style: 'solid' }
+              { from: 'p-entities:bottom', exit: 'bottom', accent: 'red', style: 'solid' },
             ]}
           >
             <HudBadge id="p-confidence" tone="amber" label="Confidence" value={<span>{Math.round(confidence * 100)}%</span>} />
@@ -111,6 +159,7 @@ const Paper = () => {
         <div className="space-y-6">
           <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
             <div className="relative">
+              <FuiCorner tone="cyan" inset={8} className="pointer-events-none" />
               <ReticleOverlay
                 mode="fine"
                 animated={false}
@@ -121,83 +170,99 @@ const Paper = () => {
               >
                 <span className="text-[0.55rem] tracking-[0.28em] text-[rgba(85,230,165,0.8)]">BRANCH MAP</span>
               </ReticleOverlay>
-              <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+              <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => onSectionChange(key)} />
             </div>
           </CornerBracket>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <Panel
-              id="abstract"
-              title="Abstract"
-              sublabel="Module Alpha"
-              active={activeSection === 'abstract'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('abstract')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              {sections.abstract}
-            </Panel>
-            <Panel
-              id="methods"
-              title="Methods"
-              sublabel="Module Beta"
-              active={activeSection === 'methods'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('methods')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              <div className="relative">
-                <VectorGlyph
-                  id="diag-lines"
-                  caption="VEC 223"
-                  size={64}
-                  color="cyan"
-                  className="absolute -right-2 -top-2 hidden md:flex"
-                />
-                <div className="relative z-10">{sections.methods}</div>
-              </div>
-            </Panel>
-            <Panel
-              id="results"
-              title="Results"
-              sublabel="Module Gamma"
-              active={activeSection === 'results'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('results')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              {sections.results}
-            </Panel>
-            <Panel
-              id="conclusion"
-              title="Conclusion"
-              sublabel="Module Delta"
-              active={activeSection === 'conclusion'}
-              actions={
-                <button type="button" onClick={() => handleCopyLink('conclusion')} className="text-dim hover:text-[#d6e3e0]">
-                  Copy link
-                </button>
-              }
-              variant="dossier"
-            >
-              {sections.conclusion}
-            </Panel>
+          <div className="flex flex-wrap items-center gap-3">
+            <FuiBadge id="b-abs" label="ABSTRACT" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-met" label="METHODS" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-res" label="RESULTS" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-con" label="CONCLUSION" tone="cyan" size="sm" anchors={['bottom']} />
           </div>
 
-          <Panel
-            title="Analyst Summary"
-            sublabel="AI Channel"
-            actions={<span className="text-[#5f6c75]">Uplink offline</span>}
-          >
+          <div className="grid gap-4 md:grid-cols-2">
+            <div id="panel-abstract" ref={abstractAnchorRef}>
+              <Panel
+                id="abstract"
+                title="Abstract"
+                sublabel="Module Alpha"
+                active={activeSection === 'abstract'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('abstract')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                {sections.abstract}
+              </Panel>
+            </div>
+            <div id="panel-methods" ref={methodsAnchorRef}>
+              <Panel
+                id="methods"
+                title="Methods"
+                sublabel="Module Beta"
+                active={activeSection === 'methods'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('methods')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                <div className="relative">
+                  <VectorGlyph
+                    id="diag-lines"
+                    caption="VEC 223"
+                    size={64}
+                    color="cyan"
+                    className="absolute -right-2 -top-2 hidden md:flex"
+                  />
+                  <div className="relative z-10">{sections.methods}</div>
+                </div>
+              </Panel>
+            </div>
+            <div id="panel-results" ref={resultsAnchorRef}>
+              <Panel
+                id="results"
+                title="Results"
+                sublabel="Module Gamma"
+                active={activeSection === 'results'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('results')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                {sections.results}
+              </Panel>
+            </div>
+            <div id="panel-conclusion" ref={conclusionAnchorRef}>
+              <Panel
+                id="conclusion"
+                title="Conclusion"
+                sublabel="Module Delta"
+                active={activeSection === 'conclusion'}
+                actions={
+                  <button type="button" onClick={() => onCopyLink('conclusion')} className="text-dim hover:text-[#d6e3e0]">
+                    Copy link
+                  </button>
+                }
+                variant="dossier"
+              >
+                {sections.conclusion}
+              </Panel>
+            </div>
+          </div>
+
+          <FuiCallout from="b-abs" to="panel-abstract" variant="dotted" tone="cyan" />
+          <FuiCallout from="b-met" to="panel-methods" variant="dotted" tone="cyan" />
+          <FuiCallout from="b-res" to="panel-results" variant="dotted" tone="cyan" />
+          <FuiCallout from="b-con" to="panel-conclusion" variant="dotted" tone="cyan" />
+
+          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-[#5f6c75]">Uplink offline</span>}>
             LLM summary feed is offline. This panel will populate once the analyst channel is connected.
           </Panel>
         </div>
@@ -263,7 +328,7 @@ const Paper = () => {
           </div>
 
           <DossierGlyphs />
-          <HudDivider label="TELEMETRY" side="right" />
+          <FuiDivider label="TELEMETRY" side="right" tone="amber" />
           <TrendMini data={citations_by_year} />
         </aside>
       </div>

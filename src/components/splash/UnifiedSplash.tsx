@@ -4,6 +4,7 @@ import CredentialPane from './CredentialPane';
 import Traces, { Trace } from './Traces';
 import useReducedMotion from '../../hooks/useReducedMotion';
 import '../../styles/splash.css';
+import { FuiCorner, FuiReticle } from '@/components/fui';
 
 type UnifiedSplashProps = {
   onProceed: () => void;
@@ -102,14 +103,18 @@ export default function UnifiedSplash({ onProceed }: UnifiedSplashProps) {
       <div className="unified-splash__content">
         <div className="unified-splash__paneWrap">
           <Traces traces={defaultTraces} reducedMotion={reducedMotion} />
-          <CredentialPane
-            authing={authing}
-            granted={granted}
-            reducedMotion={reducedMotion}
-            onAuthenticate={handleAuthenticate}
-            titleId={titleId}
-            subtitleId={subtitleId}
-          />
+          <div className="relative">
+            <FuiReticle mode="fine" tone="cyan" className="fui-splash-reticle" />
+            <FuiCorner tone="cyan" inset={10} className="fui-splash-corners" />
+            <CredentialPane
+              authing={authing}
+              granted={granted}
+              reducedMotion={reducedMotion}
+              onAuthenticate={handleAuthenticate}
+              titleId={titleId}
+              subtitleId={subtitleId}
+            />
+          </div>
           <div className="unified-splash__ticks" aria-hidden="true" />
         </div>
       </div>
