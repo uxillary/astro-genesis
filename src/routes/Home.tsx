@@ -14,7 +14,7 @@ import ActiveFiltersBar from '../components/ActiveFiltersBar';
 import { useSearchStore } from '../lib/state';
 import { buildIndex, runSearch, getCachedRecords } from '../lib/search';
 import { withBase } from '../lib/paths';
-import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiDivider } from '@/components/fui';
+import { FuiBadge, FuiCallout, FuiConnectorLayer, HudDivider } from '@/components/fui';
 
 const fetchIndex = async (): Promise<PaperIndex[]> => {
   const response = await fetch(withBase('data/index.json'));
@@ -244,7 +244,7 @@ const Home = () => {
       <section className="relative">
         <span className="section-anchor">Dossier Grid</span>
         <div className="layered-panel space-y-6 px-6 py-6">
-          <FuiDivider label="RESULTS" tone="cyan" />
+          <HudDivider label="RESULTS" accent="cyan" variant="pill" lanePadding={16} elevate />
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-meta text-[0.78rem] tracking-[0.22em] text-[color:var(--accent-2)]">Results</p>
