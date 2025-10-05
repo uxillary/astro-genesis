@@ -119,7 +119,7 @@ def trim_section(text: str, *, section_name: str, limit: int = SECTION_CHAR_LIMI
     return f"{truncated}…"
 
 
-def compile_payload(data: Dict) -> Dict[str, str]:
+def compile_payload(data: Dict, *, log_label: str | None = None) -> Dict[str, str]:
     sections_data = data.get("sections")
     sections = sections_data if isinstance(sections_data, dict) else {}
 
@@ -133,6 +133,45 @@ def compile_payload(data: Dict) -> Dict[str, str]:
 
     if not authors_text:
         authors_text = collect_section_text(sections, "authors")
+
+    conclusion_raw = collect_section_text(sections, "conclusion")
+    conclusion_fallback = None
+
+    if not conclusion_raw.strip():
+        fallback_sources = [
+            ("discussion", "discussion section"),
+            ("interpretation", "interpretation section"),
+            ("findings", "findings section"),
+            ("summary", "summary section"),
+            ("results", "results section"),
+            ("background", "background section"),
+            ("abstract", "abstract section"),
+        ]
+
+        for key, label in fallback_sources:
+            candidate = collect_section_text(sections, key)
+            if candidate.strip():
+                conclusion_raw = candidate
+                conclusion_fallback = label
+                break
+
+        if not conclusion_raw.strip():
+            summary_text = data.get("summary", "")
+            if isinstance(summary_text, str) and summary_text.strip():
+                conclusion_raw = summary_text
+                conclusion_fallback = "top-level summary"
+
+        if conclusion_fallback and log_label:
+            log(
+                "%s missing conclusion; substituting %s for prompt."
+                % (log_label, conclusion_fallback)
+            )
+
+    conclusion_label = (
+        "conclusion"
+        if not conclusion_fallback
+        else f"{conclusion_fallback} (fallback for conclusion)"
+    )
 
     return {
         "title": data.get("title", ""),
@@ -152,9 +191,7 @@ def compile_payload(data: Dict) -> Dict[str, str]:
         "results": trim_section(
             collect_section_text(sections, "results"), section_name="results"
         ),
-        "conclusion": trim_section(
-            collect_section_text(sections, "conclusion"), section_name="conclusion"
-        ),
+        "conclusion": trim_section(conclusion_raw, section_name=conclusion_label),
     }
 
 
@@ -192,7 +229,7 @@ def process_file(path: Path, data: Dict, client: OpenAI) -> bool:
         log(f"Skipping {path.name} (already contains {AI_SUMMARY_KEY})")
         return False
 
-    payload = compile_payload(data)
+    payload = compile_payload(data, log_label=path.name)
 
     missing_sections = [key for key, value in payload.items() if not value]
     if missing_sections:
