@@ -9,7 +9,7 @@ import HudBadge from '@/components/fui/HudBadge';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
 import CornerBracket from '@/components/fui/CornerBracket';
 import VectorGlyph from '@/components/fui/VectorGlyph';
-import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiCorner, FuiDivider, useConnectorLayer } from '@/components/fui';
+import { FuiBadge, FuiCallout, FuiConnectorLayer, HudDivider, useConnectorLayer } from '@/components/fui';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -165,19 +165,19 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
       <div className="grid gap-8 lg:grid-cols-[1.65fr_1fr]">
         <div className="space-y-6">
           <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
-            <div className="relative">
-              <FuiCorner tone="cyan" inset={8} className="pointer-events-none" />
-              <ReticleOverlay
-                mode="fine"
-                animated={false}
-                padding={18}
-                color="cyan"
-                showCompass
-                className="absolute inset-0 opacity-60"
-              >
-                <span className="text-[0.55rem] tracking-[0.28em] text-[rgba(85,230,165,0.8)]">BRANCH MAP</span>
-              </ReticleOverlay>
-              <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => onSectionChange(key)} />
+            <div className="relative flex flex-col gap-4">
+              <HudDivider label="BRANCH MAP" accent="cyan" variant="pill" lanePadding={16} elevate />
+              <div className="relative">
+                <ReticleOverlay
+                  mode="fine"
+                  animated={false}
+                  padding={18}
+                  color="cyan"
+                  showCompass
+                  className="pointer-events-none absolute inset-0"
+                />
+                <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => onSectionChange(key)} />
+              </div>
             </div>
           </CornerBracket>
 
@@ -341,7 +341,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
           </div>
 
           <DossierGlyphs />
-          <FuiDivider label="TELEMETRY" side="right" tone="amber" />
+          <HudDivider label="TELEMETRY" accent="amber" side="right" lanePadding={16} elevate />
           <TrendMini data={citations_by_year} />
         </aside>
       </div>
