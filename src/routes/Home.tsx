@@ -144,6 +144,9 @@ const Home = () => {
         <div className="layered-panel grid gap-6 px-6 py-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
           <div className="space-y-6">
             <div className="relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.8)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
+              <div className="relative z-10 flex justify-center">
+                <HudDivider label="CALIBRATED" accent="mono" variant="pill" lanePadding={18} elevate className="max-w-xs" />
+              </div>
               <ReticleOverlay
                 mode="fine"
                 animated
@@ -152,10 +155,8 @@ const Home = () => {
                 color="mono"
                 crosshair="diamond"
                 className="pointer-events-none absolute inset-0"
-              >
-                <span className="text-xs tracking-[0.3em] text-[rgba(217,226,223,0.78)]">CALIBRATED</span>
-              </ReticleOverlay>
-              <div className="relative mt-12 space-y-3">
+              />
+              <div className="relative mt-10 space-y-3">
                 <p className="font-meta text-[0.8rem] tracking-[0.22em] text-[color:var(--accent-1)]">BioArchive Intelligence</p>
                 <h1 className="text-[2.6rem] text-[color:var(--white)] sm:text-[3rem]">Classified Ops Console</h1>
                 <p className="mt-4 max-w-2xl font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">
@@ -221,7 +222,7 @@ const Home = () => {
       <section className="relative">
         <span className="section-anchor">Dossier Grid</span>
         <div className="layered-panel space-y-6 px-6 py-6">
-          <FuiDivider label="RESULTS" tone="cyan" />
+          <HudDivider label="RESULTS" accent="cyan" variant="pill" lanePadding={16} elevate />
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="font-meta text-[0.78rem] tracking-[0.22em] text-[color:var(--accent-2)]">Results</p>
