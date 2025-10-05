@@ -1,0 +1,49 @@
+{
+  "pmcid": "PMC3430326",
+  "id": "exp_047",
+  "title": "The MscS and MscL Families of Mechanosensitive Channels Act as Microbial Emergency Release Valves",
+  "authors": [
+    "Ian R Booth",
+    "Paul Blount"
+  ],
+  "year": null,
+  "organism": null,
+  "experiment_type": "Space Botany",
+  "platform": null,
+  "keywords": [
+    "most",
+    "can",
+    "cell",
+    "one",
+    "families",
+    "mechanosensitive",
+    "mscs",
+    "mscl"
+  ],
+  "sections": {
+    "abstract": "Single-celled organisms must survive exposure to environmental extremes. Perhaps one of the most variable and potentially life-threatening changes that can occur is that of a rapid and acute decrease in external osmolarity. This easily translates into several atmospheres of additional pressure that can build up within the cell. Without a protective mechanism against such pressures, the cell will lyse. Hence, most microbes appear to possess members of one or both families of bacterial mechanosensitive channels, MscS and MscL, which can act as biological emergency release valves that allow cytoplasmic solutes to be jettisoned rapidly from the cell. While this is undoubtedly a function of these proteins, the discovery of the presence of MscS homologues in plant organelles and MscL in fungus and mycoplasma genomes may complicate this simplistic interpretation of the physiology underlying these proteins. Here we compare and contrast these two mechanosensitive channel families, discuss their potential physiological roles, and review some of the most relevant data that underlie the current models for their structure and function.",
+    "methods": "",
+    "results": "",
+    "conclusion": ""
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3430326/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3430326/pdf/zjb4802.pdf"
+  },
+  "summary": "Single-celled organisms must survive exposure to environmental extremes. Perhaps one of the most variable and potentially life-threatening changes that can occur is that of a rapid and acute decrease in external osmolarity. This easily translates into several atmospheres of additional pressure that can build up within the cell.",
+  "metrics": {
+    "keyword_counts": {
+      "most": 0,
+      "can": 0,
+      "cell": 0,
+      "one": 0,
+      "families": 0
+    },
+    "section_lengths": {
+      "abstract": 168,
+      "results": 0,
+      "conclusion": 168
+    }
+  },
+  "ai_summary": "Single-celled organisms face extreme environmental challenges, particularly rapid decreases in external osmolarity, which can lead to dangerous internal pressure build-up. To prevent cell lysis, many microbes utilize mechanosensitive channels, specifically the MscS and MscL families, which function as emergency release valves to expel cytoplasmic solutes. This study explores the roles of these channels, revealing that while they are crucial for microbial survival, their presence in plant organelles and various fungi complicates the understanding of their physiological functions. By comparing MscS and MscL, the research highlights their structural and functional models, emphasizing their significance beyond simple osmotic regulation. These findings are vital for space biosciences, as understanding microbial resilience mechanisms can inform strategies for life support systems in extraterrestrial environments, where organisms may encounter similar osmotic stressors."
+}
