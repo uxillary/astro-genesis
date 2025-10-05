@@ -22,7 +22,7 @@ python scripts/pmc_ingest.py --csv resources/SB_publication_PMC.csv --limit 5 --
 
 python pmc_fetch.py --csv SB_publication_PMC.csv --limit 2 --dry-run
 
-python summarize_jsons.py
+python scripts/summarize_jsons.py
 
 
 .\.venv\Scripts\Activate.ps1 
