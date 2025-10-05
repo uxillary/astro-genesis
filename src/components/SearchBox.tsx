@@ -1,4 +1,4 @@
-import { FormEvent, KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
+import { FormEvent, KeyboardEvent as ReactKeyboardEvent, useEffect, useId, useRef, useState } from 'react';
 import { useSearchStore } from '../lib/state';
 import { typeahead } from '../lib/search';
 
@@ -10,10 +10,12 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
     setSuggestions: state.setSuggestions
   }));
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const activeItemRef = useRef<HTMLLIElement | null>(null);
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const listboxId = useId();
+  const hintId = useId();
 
   useEffect(() => {
     const next = typeahead(query).map((item) => ({
@@ -51,11 +53,32 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
     }
   }, [activeIndex]);
 
+  useEffect(() => {
+    const handleSlash = (event: globalThis.KeyboardEvent) => {
+      if (event.key !== '/' || event.altKey || event.metaKey || event.ctrlKey) {
+        return;
+      }
+      const target = event.target as HTMLElement | null;
+      if (target) {
+        const tagName = target.tagName;
+        const isEditable = tagName === 'INPUT' || tagName === 'TEXTAREA' || target.isContentEditable;
+        if (isEditable) return;
+      }
+      event.preventDefault();
+      inputRef.current?.focus();
+      setOpen(suggestions.length > 0 && query.trim().length > 0);
+    };
+
+    window.addEventListener('keydown', handleSlash);
+    return () => window.removeEventListener('keydown', handleSlash);
+  }, [query, suggestions.length]);
+
   const handleSuggestionSelect = (title: string) => {
     setQuery(title);
     onSearch(title);
     setOpen(false);
     setActiveIndex(-1);
+    inputRef.current?.focus();
   };
 
   const handleSubmit = (event: FormEvent) => {
@@ -64,7 +87,7 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
     setOpen(false);
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: ReactKeyboardEvent<HTMLInputElement>) => {
     if (!open && ['ArrowDown', 'ArrowUp'].includes(event.key) && suggestions.length > 0) {
       setOpen(true);
       setActiveIndex(0);
@@ -122,8 +145,10 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           aria-expanded={open}
           aria-controls={open ? listboxId : undefined}
           aria-activedescendant={open && activeIndex >= 0 ? `${listboxId}-${suggestions[activeIndex]?.id}` : undefined}
+          aria-describedby={hintId}
           className="flex-1 bg-transparent font-mono text-[0.85rem] uppercase tracking-[0.28em] text-[#d6e3e0] placeholder:text-dim focus:outline-none"
           placeholder="Title / authors / keywords"
+          ref={inputRef}
         />
         <button
           type="submit"
@@ -132,6 +157,16 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           Execute
         </button>
       </form>
+      <p
+        id={hintId}
+        className="mt-2 flex items-center gap-2 font-mono text-[0.55rem] uppercase tracking-[0.28em] text-[#3f525c]"
+      >
+        <span className="flex items-center gap-1">
+          <kbd className="rounded border border-[#d6e3e0]/20 bg-[#0b0d0f]/60 px-2 py-1 text-[#d6e3e0]/80">/</kbd>
+          to focus search
+        </span>
+        <span className="hidden sm:inline">// Use ↑ ↓ to navigate suggestions</span>
+      </p>
       {open && suggestions.length > 0 ? (
         <ul
           id={listboxId}

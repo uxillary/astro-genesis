@@ -87,6 +87,12 @@ const AppContent = () => {
       <HelpOverlay open={showHelp} onClose={() => setHelp(false)} />
       <CredentialOverlay open={credentialOpen} onClose={() => setCredential(false)} />
       <div className="relative z-10 flex min-h-screen flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-4 focus:z-50 focus:rounded-full focus:border focus:border-amber/60 focus:bg-[#0b1116]/95 focus:px-5 focus:py-2 focus:font-mono focus:text-[0.7rem] focus:uppercase focus:tracking-[0.32em] focus:text-amber focus:shadow-[0_0_24px_rgba(244,159,66,0.35)]"
+        >
+          Skip to main content
+        </a>
         <header className="px-6 py-4 border-b border-[#1a1f24]/70 bg-[#10161d]/80 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
@@ -146,7 +152,7 @@ const AppContent = () => {
             </div>
           </div>
         </header>
-        <main className="flex-1 px-4 sm:px-8 py-8">
+        <main id="main-content" tabIndex={-1} className="flex-1 px-4 sm:px-8 py-8 focus:outline-none">
           <Suspense fallback={<div className="animate-pulse text-dim">Loading dossier…</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
