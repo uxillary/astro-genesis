@@ -94,6 +94,31 @@ def word_count(text: str) -> int:
     return len(text.split()) if text else 0
 
 
+SECTION_CHAR_LIMIT = 1200
+
+
+def trim_section(text: str, *, section_name: str, limit: int = SECTION_CHAR_LIMIT) -> str:
+    """Trim text to the configured character limit while warning if shortened."""
+
+    if not text:
+        return ""
+
+    stripped = text.strip()
+    if len(stripped) <= limit:
+        return stripped
+
+    truncated = stripped[:limit].rstrip()
+    last_space = truncated.rfind(" ")
+    if last_space > 0:
+        truncated = truncated[:last_space].rstrip()
+
+    log(
+        "Warning: %s section truncated from %d to %d characters."
+        % (section_name, len(stripped), len(truncated))
+    )
+    return f"{truncated}…"
+
+
 def compile_payload(data: Dict) -> Dict[str, str]:
     sections_data = data.get("sections")
     sections = sections_data if isinstance(sections_data, dict) else {}
@@ -112,13 +137,24 @@ def compile_payload(data: Dict) -> Dict[str, str]:
     return {
         "title": data.get("title", ""),
         "authors": authors_text,
-        "abstract": collect_section_text(sections, "abstract"),
-        "background": collect_section_text(sections, "introduction")
-        or collect_section_text(sections, "background")
-        or data.get("summary", ""),
-        "methods": collect_section_text(sections, "methods"),
-        "results": collect_section_text(sections, "results"),
-        "conclusion": collect_section_text(sections, "conclusion"),
+        "abstract": trim_section(
+            collect_section_text(sections, "abstract"), section_name="abstract"
+        ),
+        "background": trim_section(
+            collect_section_text(sections, "introduction")
+            or collect_section_text(sections, "background")
+            or data.get("summary", ""),
+            section_name="background",
+        ),
+        "methods": trim_section(
+            collect_section_text(sections, "methods"), section_name="methods"
+        ),
+        "results": trim_section(
+            collect_section_text(sections, "results"), section_name="results"
+        ),
+        "conclusion": trim_section(
+            collect_section_text(sections, "conclusion"), section_name="conclusion"
+        ),
     }
 
 
