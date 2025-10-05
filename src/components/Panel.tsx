@@ -17,7 +17,7 @@ const Panel = ({ title, sublabel, actions, children, active, variant = 'default'
       id={id}
       data-variant={variant === 'dossier' ? 'dossier' : undefined}
       className={clsx(
-        'relative overflow-hidden rounded-[22px] border border-[#d6e3e0]/10 bg-panel/75 p-5 text-sm shadow-panel transition-all duration-300',
+        'relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/10 bg-panel/80 p-5 text-sm shadow-panel transition-all duration-300',
         active ? 'border-amber/80 shadow-[0_0_32px_rgba(0,179,255,0.25)]' : 'hover:border-amber/40',
         variant === 'dossier' && 'bg-[#0b0d0f]/60 font-mono text-[0.82rem] uppercase tracking-[0.18em] text-mid'
       )}

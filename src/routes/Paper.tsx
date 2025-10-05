@@ -63,7 +63,7 @@ const Paper = () => {
 
   if (query.isError || !query.data) {
     return (
-      <div className="rounded-[22px] border border-red/40 bg-[#0b0d0f]/60 p-6 text-red text-sm">
+      <div className="rounded-[3px] border border-red/40 bg-[#0b0d0f]/70 p-6 text-red text-sm">
         Dossier retrieval failed. <Link className="underline" to="/">Return to archive</Link>
       </div>
     );
@@ -79,7 +79,7 @@ const Paper = () => {
 
   return (
     <div className="space-y-8">
-      <header className="relative overflow-hidden rounded-[28px] border border-[#d6e3e0]/12 bg-panel/80 p-6 shadow-panel">
+      <header className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/12 bg-panel/95 p-6 shadow-panel">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
             <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Dossier {id}</p>
@@ -167,7 +167,7 @@ const Paper = () => {
         </div>
 
         <aside className="space-y-6">
-          <div className="rounded-[24px] border border-[#d6e3e0]/14 bg-panel/80 p-5 shadow-panel">
+          <div className="rounded-[3px] border border-[#d6e3e0]/14 bg-panel/95 p-5 shadow-panel">
             <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#9fb4bc]">Meta</header>
             <dl className="space-y-3 text-[0.82rem]">
               <MetaRow label="Year" value={year.toString()} />

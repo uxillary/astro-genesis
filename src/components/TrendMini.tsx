@@ -5,7 +5,7 @@ const TrendMini = ({ data }: { data: CitationPoint[] }) => {
   const chartData = data.map((entry) => ({ year: entry.y, count: entry.c }));
 
   return (
-    <div className="relative overflow-hidden rounded-[22px] border border-[#d6e3e0]/12 bg-panel/70 p-5 shadow-panel">
+    <div className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/12 bg-panel/85 p-5 shadow-panel">
       <header className="mb-3 flex items-center justify-between text-[0.58rem] font-mono uppercase tracking-[0.32em] text-dim">
         <span>Telemetry // Citations</span>
         <span className="text-amber">Live Feed</span>

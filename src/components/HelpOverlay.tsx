@@ -10,7 +10,7 @@ const HelpOverlay = ({ open, onClose }: HelpOverlayProps) => {
 
   return createPortal(
     <div className="fixed inset-0 z-30 flex items-center justify-center bg-[#0b0d0f]/80 backdrop-blur-sm">
-      <div className="relative w-[min(640px,90vw)] rounded-[28px] border border-[#d6e3e0]/15 bg-panel/85 p-8 font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[#d6e3e0] shadow-panel">
+      <div className="relative w-[min(640px,90vw)] rounded-[4px] border border-[#d6e3e0]/15 bg-panel/95 p-8 font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[#d6e3e0] shadow-panel">
         <h2 className="mb-6 text-center text-xl font-semibold tracking-[0.36em] text-amber">Console Reference</h2>
         <div className="grid gap-4 text-left text-[0.65rem] uppercase tracking-[0.28em] text-mid">
           <p>Press <span className="text-[#d6e3e0]">C</span> for credentials overlay.</p>

@@ -77,7 +77,7 @@ const Home = () => {
 
   return (
     <div className="relative z-10 space-y-10">
-      <section className="grid gap-8 rounded-[28px] border border-[#1a1f24]/60 bg-[#10161d]/70 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
+      <section className="grid gap-8 rounded-[3px] border border-[#1a1f24]/60 bg-[#10161d]/85 p-6 lg:grid-cols-[1.5fr_1fr] lg:p-8">
         <div className="space-y-6">
           <header className="space-y-4">
             <p className="font-mono text-[0.64rem] uppercase tracking-[0.28em] text-[#55e6a5]">BioArchive Intelligence</p>
@@ -111,7 +111,7 @@ const Home = () => {
         <Filters {...filterOptions} />
       </section>
 
-      <section className="space-y-4 rounded-[28px] border border-[#1a1f24]/60 bg-[#10161d]/70 p-6 lg:p-8">
+      <section className="space-y-4 rounded-[3px] border border-[#1a1f24]/60 bg-[#10161d]/85 p-6 lg:p-8">
         <header className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-mono text-[0.64rem] uppercase tracking-[0.24em] text-[#55e6a5]">Results</p>
@@ -131,7 +131,7 @@ const Home = () => {
 };
 
 const EmptyState = () => (
-  <div className="flex h-60 flex-col items-center justify-center rounded-[26px] border border-dashed border-[#d6e3e0]/15 bg-[#0b0d0f]/50 text-center">
+  <div className="flex h-60 flex-col items-center justify-center rounded-[3px] border border-dashed border-[#d6e3e0]/15 bg-[#0b0d0f]/60 text-center">
     <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-dim">No dossiers match the current filters.</p>
     <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-mid">
       Adjust organism, platform, or mission year to widen the search.
