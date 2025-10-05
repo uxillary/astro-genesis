@@ -4,6 +4,7 @@ import type { PaperRecord } from '../lib/db';
 import HudBadge from '@/components/fui/HudBadge';
 import CornerBracket from '@/components/fui/CornerBracket';
 import TargetBadge from '@/components/fui/TargetBadge';
+import { FuiFrame } from '@/components/fui';
 
 type CardStackProps = {
   items: PaperRecord[];
@@ -66,19 +67,21 @@ const StackCard = ({ item, index }: StackCardProps) => {
             color="cyan"
             className="stack-card-corner -m-4 rounded-lg p-4"
           >
-            <div className="relative z-[1] space-y-4">
-              <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
-                <span>Dossier {index.toString().padStart(3, '0')}</span>
-                <div className="flex items-center gap-3">
-                  <TargetBadge label={lockLabel} variant="lock" tone="cyan" />
-                  <span className="font-mono text-[color:var(--dim)]">ID // {item.id}</span>
+            <FuiFrame grid="soft" tone="cyan" padding={14} className="relative z-[1] overflow-hidden rounded-lg">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
+                  <span>Dossier {index.toString().padStart(3, '0')}</span>
+                  <div className="flex items-center gap-3">
+                    <TargetBadge label={lockLabel} variant="lock" tone="cyan" />
+                    <span className="font-mono text-[color:var(--dim)]">ID // {item.id}</span>
+                  </div>
                 </div>
+                <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
+                  {item.title}
+                </h2>
+                <p className="font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">{item.authors.join(', ')}</p>
               </div>
-              <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
-                {item.title}
-              </h2>
-              <p className="font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">{item.authors.join(', ')}</p>
-            </div>
+            </FuiFrame>
           </CornerBracket>
         </header>
 
