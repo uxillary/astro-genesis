@@ -26,31 +26,40 @@ const BranchMap = ({ title, activeSection, onSectionChange }: BranchMapProps) =>
   const edges = useMemo<Edge[]>(() => createEdges(layout), [layout]);
 
   return (
-    <div className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/10 bg-panel/85 backdrop-blur-sm">
-      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between border-b border-[#d6e3e0]/10 bg-[#0b0d0f]/40 px-5 py-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-dim">
+    <div className="branch-map-shell">
+      <div className="branch-map-head absolute inset-x-0 top-0 z-10 flex items-center justify-between border-b border-[#d6e3e0]/15 bg-[#0b0d0f]/60 px-5 py-3 text-[0.58rem] font-mono uppercase tracking-[0.32em] text-white/70">
         <span>Branch Map // Narrative Threads</span>
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className={`rounded-full border px-3 py-1 ${layout === 'layered' ? 'border-amber/70 text-amber' : 'border-[#d6e3e0]/20 text-dim hover:text-[#d6e3e0]'}`}
+            className={`rounded-full border px-3 py-1 transition-colors ${
+              layout === 'layered'
+                ? 'border-cyan/60 text-[color:var(--accent-2)] shadow-[0_0_18px_rgba(0,179,255,0.3)]'
+                : 'border-[#d6e3e0]/20 text-white/60 hover:border-cyan/40 hover:text-white/80'
+            }`}
             onClick={() => setLayout('layered')}
           >
             Layered
           </button>
           <button
             type="button"
-            className={`rounded-full border px-3 py-1 ${layout === 'radial' ? 'border-amber/70 text-amber' : 'border-[#d6e3e0]/20 text-dim hover:text-[#d6e3e0]'}`}
+            className={`rounded-full border px-3 py-1 transition-colors ${
+              layout === 'radial'
+                ? 'border-cyan/60 text-[color:var(--accent-2)] shadow-[0_0_18px_rgba(0,179,255,0.3)]'
+                : 'border-[#d6e3e0]/20 text-white/60 hover:border-cyan/40 hover:text-white/80'
+            }`}
             onClick={() => setLayout('radial')}
           >
             Radial
           </button>
         </div>
       </div>
-      <div className="h-[360px] w-full">
+      <div className="branch-map-grid h-[360px] w-full">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           fitView
+          fitViewOptions={{ padding: 0.18 }}
           nodesDraggable={false}
           nodesConnectable={false}
           zoomOnScroll={false}
@@ -64,28 +73,36 @@ const BranchMap = ({ title, activeSection, onSectionChange }: BranchMapProps) =>
               window.location.hash = `#${node.id}`;
             }
           }}
+          className="branch-map-flow"
         >
-          <MiniMap maskColor="rgba(11,13,15,0.85)" nodeColor={() => 'rgba(255,59,59,0.45)'} />
-          <Background color="rgba(214,227,224,0.08)" gap={16} />
-          <Controls showInteractive={false} className="!bg-[#0b0d0f]/70 !border-[#d6e3e0]/10 !text-[#d6e3e0]" />
+          <MiniMap
+            maskColor="rgba(11,13,15,0.82)"
+            nodeColor={() => 'rgba(0,179,255,0.55)'}
+            nodeStrokeColor={() => 'rgba(0,179,255,0.55)'}
+          />
+          <Background color="rgba(85,230,165,0.18)" gap={28} size={1} />
+          <Controls showInteractive={false} className="!bg-[#0b0d0f]/80 !border-[#d6e3e0]/18 !text-[#d6e3e0]" />
         </ReactFlow>
       </div>
+      <div className="branch-map-vignette" aria-hidden="true" />
     </div>
   );
 };
 
 const createNodes = (title: string, activeSection: BranchKey, layout: 'layered' | 'radial'): Node[] => {
   const baseStyle = (active: boolean): React.CSSProperties => ({
-    border: `1px solid ${active ? 'rgba(0,179,255,0.75)' : 'rgba(214,227,224,0.18)'}`,
+    border: `1px solid ${active ? 'rgba(0,179,255,0.9)' : 'rgba(214,227,224,0.22)'}`,
     borderRadius: 18,
-    padding: '10px 14px',
+    padding: '12px 16px',
     fontSize: 11,
     letterSpacing: '0.26em',
     textTransform: 'uppercase',
-    background: active ? 'rgba(16,22,29,0.92)' : 'rgba(11,15,19,0.7)',
-    color: active ? 'var(--amber)' : 'var(--mid)',
-    boxShadow: active ? '0 0 24px rgba(0,179,255,0.3)' : '0 0 12px rgba(0,0,0,0.35)',
-    backdropFilter: 'blur(6px)',
+    background: active ? 'linear-gradient(180deg, rgba(14,22,30,0.95), rgba(10,14,20,0.7))' : 'rgba(11,15,19,0.65)',
+    color: active ? 'rgba(244,252,251,0.95)' : 'rgba(214,227,224,0.78)',
+    boxShadow: active
+      ? '0 0 28px rgba(0,179,255,0.35), inset 0 0 16px rgba(0,179,255,0.25)'
+      : '0 0 18px rgba(0,0,0,0.4)',
+    backdropFilter: 'blur(10px)',
     cursor: 'pointer'
   });
 
@@ -99,15 +116,15 @@ const createNodes = (title: string, activeSection: BranchKey, layout: 'layered' 
       draggable: false,
       type: 'default',
       style: {
-        border: '1px solid rgba(255,59,59,0.65)',
+        border: '1px solid rgba(255,59,59,0.55)',
         borderRadius: 22,
-        padding: '14px 20px',
-        background: 'rgba(16,22,29,0.92)',
-        color: 'var(--white)',
+        padding: '16px 22px',
+        background: 'linear-gradient(180deg, rgba(16,22,29,0.96), rgba(10,14,20,0.75))',
+        color: 'rgba(244,252,251,0.98)',
         fontSize: 13,
         letterSpacing: '0.18em',
         textTransform: 'uppercase',
-        boxShadow: '0 0 32px rgba(255,59,59,0.25)',
+        boxShadow: '0 0 38px rgba(255,59,59,0.35)',
         textAlign: 'center',
         maxWidth: 280
       }
@@ -156,7 +173,7 @@ const radialPositions = {
 };
 
 const createEdges = (layout: 'layered' | 'radial'): Edge[] => {
-  const stroke = layout === 'radial' ? 'rgba(255,59,59,0.7)' : 'rgba(0,179,255,0.7)';
+  const stroke = layout === 'radial' ? 'rgba(255,86,86,0.7)' : 'rgba(0,179,255,0.75)';
   return [
     edge('root', 'abstract', stroke),
     edge('root', 'methods', stroke),
@@ -170,12 +187,14 @@ const edge = (source: string, target: string, stroke: string): Edge => ({
   source,
   target,
   animated: true,
+  type: 'smoothstep',
   style: {
     stroke,
-    strokeWidth: 1.5,
-    strokeDasharray: '6 6'
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    filter: 'drop-shadow(0 0 12px rgba(0,179,255,0.35))'
   },
-  className: 'animated-edge'
+  className: 'branch-map-edge'
 });
 
 const isBranch = (id: string): id is BranchKey =>

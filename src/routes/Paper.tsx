@@ -131,13 +131,20 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
   const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
 
   return (
-    <div className="space-y-8">
-      <header className="relative overflow-hidden rounded-[3px] border border-[#d6e3e0]/12 bg-panel/95 p-6 shadow-panel">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2">
-            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[#55e6a5]">Dossier {dossierId}</p>
-            <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-[#f3f8f6]">{title}</h1>
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-[#9fb4bc]">{authors.join(', ')}</p>
+    <div className="space-y-8 transmission-field">
+      <header className="relative overflow-hidden rounded-[12px] border border-[#d6e3e0]/16 bg-[rgba(12,18,24,0.86)] p-6 shadow-[0_30px_70px_rgba(0,0,0,0.42)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,179,255,0.18),transparent_55%)] opacity-70 mix-blend-screen" aria-hidden="true" />
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="space-y-3">
+            <p className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-[rgba(85,230,165,0.8)]">Dossier {dossierId}</p>
+            <h1 className="text-3xl font-semibold uppercase tracking-[0.22em] text-white">{title}</h1>
+            <p className="font-mono text-[0.62rem] tracking-[0.12em] text-white/70">{authors.join(', ')}</p>
+            {data.isFallback ? (
+              <div className="signal-indicator mt-2 inline-flex items-center gap-3 rounded-full border border-amber/40 bg-[rgba(20,16,16,0.55)] px-4 py-2 text-xs font-mono uppercase tracking-[0.22em] text-amber/80">
+                <span className="signal-indicator__dot" aria-hidden="true" />
+                Signal lost — degraded transmission
+              </div>
+            ) : null}
           </div>
           <PcbHeader
             className="ml-auto"
@@ -155,7 +162,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
         </div>
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+      <div className="grid gap-8 lg:grid-cols-[1.65fr_1fr]">
         <div className="space-y-6">
           <CornerBracket radius={10} size={24} offset={12} color="cyan" glow>
             <div className="relative">
@@ -166,7 +173,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                 padding={18}
                 color="cyan"
                 showCompass
-                className="absolute inset-0"
+                className="absolute inset-0 opacity-60"
               >
                 <span className="text-[0.55rem] tracking-[0.28em] text-[rgba(85,230,165,0.8)]">BRANCH MAP</span>
               </ReticleOverlay>
@@ -174,11 +181,11 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
             </div>
           </CornerBracket>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <FuiBadge id="b-abs" label="ABSTRACT" tone="cyan" size="sm" anchors={['bottom']} />
-            <FuiBadge id="b-met" label="METHODS" tone="cyan" size="sm" anchors={['bottom']} />
-            <FuiBadge id="b-res" label="RESULTS" tone="cyan" size="sm" anchors={['bottom']} />
-            <FuiBadge id="b-con" label="CONCLUSION" tone="cyan" size="sm" anchors={['bottom']} />
+          <div className="flex flex-wrap items-center gap-3 text-white/80">
+            <FuiBadge id="b-abs" label="Abstract" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-met" label="Methods" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-res" label="Results" tone="cyan" size="sm" anchors={['bottom']} />
+            <FuiBadge id="b-con" label="Conclusion" tone="cyan" size="sm" anchors={['bottom']} />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -267,58 +274,62 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
           </Panel>
         </div>
 
-        <aside className="space-y-6">
-          <div className="rounded-[3px] border border-[#d6e3e0]/14 bg-panel/95 p-5 shadow-panel">
-            <header className="mb-4 font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#9fb4bc]">Meta</header>
-            <dl className="space-y-3 text-[0.82rem]">
+        <aside className="dossier-aside space-y-6">
+          <div className="dossier-meta">
+            <header className="meta-heading">Meta</header>
+            <dl className="meta-grid">
               <MetaRow label="Year" value={year.toString()} />
               <MetaRow label="Organism" value={organism} />
               <MetaRow label="Platform" value={platform} />
             </dl>
-            <div className="mt-4 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Access Flags</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="meta-section">
+              <p className="meta-label">Access Flags</p>
+              <div className="meta-tags">
                 {access.map((flag) => (
-                  <HudBadge key={flag} label={flag} tone="red" compact />
+                  <HudBadge
+                    key={flag}
+                    label={flag}
+                    tone="red"
+                    compact
+                    className="!border-[rgba(255,86,86,0.6)] !text-[rgba(255,142,142,0.92)]"
+                    tooltip={`Classification flag: ${flag}`}
+                  />
                 ))}
               </div>
             </div>
-            <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Keywords</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="meta-section">
+              <p className="meta-label">Keywords</p>
+              <div className="meta-tags">
                 {keywords.map((keyword) => (
-                  <span
-                    key={keyword}
-                    className="rounded-full border border-[#d6e3e0]/15 bg-[#0b0d0f]/40 px-3 py-1 font-mono text-[0.55rem] uppercase tracking-[0.28em] text-mid"
-                  >
+                  <span key={keyword} className="meta-tag" title={`Related topic: ${keyword}`}>
                     {keyword}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">Entities</p>
-              <ul className="grid gap-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-mid">
+            <div className="meta-section">
+              <p className="meta-label">Entities</p>
+              <ul className="meta-entities">
                 {entities.map((entity) => (
-                  <li key={entity} className="rounded border border-[#d6e3e0]/10 bg-[#0b0d0f]/30 px-3 py-2">
+                  <li key={entity} title={`Referenced entity: ${entity}`}>
                     {entity}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="mt-5 space-y-2">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">External Links</p>
-              <ul className="space-y-2 text-[0.62rem] font-mono uppercase tracking-[0.28em] text-amber">
+            <div className="meta-section">
+              <p className="meta-label">External Links</p>
+              <ul className="meta-links">
                 {links.taskbook ? (
                   <li>
-                    <a className="hover:text-[#d6e3e0]" href={links.taskbook} target="_blank" rel="noreferrer">
+                    <a className="hover:text-white" href={links.taskbook} target="_blank" rel="noreferrer">
                       Taskbook dossier
                     </a>
                   </li>
                 ) : null}
                 {links.osdr ? (
                   <li>
-                    <a className="hover:text-[#d6e3e0]" href={links.osdr} target="_blank" rel="noreferrer">
+                    <a className="hover:text-white" href={links.osdr} target="_blank" rel="noreferrer">
                       OSDR record
                     </a>
                   </li>
@@ -337,9 +348,9 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
 };
 
 const MetaRow = ({ label, value }: { label: string; value: string }) => (
-  <div className="flex items-center justify-between border-b border-[#d6e3e0]/10 pb-2 last:border-none last:pb-0">
-    <span className="font-mono text-[0.58rem] uppercase tracking-[0.28em] text-[#5f6c75]">{label}</span>
-    <span className="text-sm font-medium text-[#f3f8f6]">{value}</span>
+  <div className="meta-row">
+    <dt className="meta-row__label">{label}</dt>
+    <dd className="meta-row__value">{value}</dd>
   </div>
 );
 
