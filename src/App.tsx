@@ -83,7 +83,7 @@ const AppContent = () => {
   }, [location.pathname]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-bg text-[var(--white)]">
+    <div className="relative min-h-screen overflow-x-hidden bg-bg text-[var(--white)]">
       <GridBg />
       <InstallPrompt />
       <HelpOverlay open={showHelp} onClose={() => setHelp(false)} />
