@@ -9,6 +9,7 @@ import CardStack from '../components/CardStack';
 import PaginationControls from '../components/PaginationControls';
 import PcbHeader from '@/components/fui/PcbHeader';
 import HudBadge from '@/components/fui/HudBadge';
+import HudDivider from '@/components/fui/HudDivider';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
 import ActiveFiltersBar from '../components/ActiveFiltersBar';
 import { useSearchStore } from '../lib/state';

@@ -38,9 +38,33 @@ const formatAuthors = (authors: string[]) => {
   return truncate(`${authors[0]}, ${authors[1]} +${remaining} more`, 72);
 };
 
-const StackCard = ({ item, index }: StackCardProps) => {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+const StackCard = memo(({ item, index }: StackCardProps) => {
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const nextTiltRef = useRef({ x: 0, y: 0 });
+  const hoveredRef = useRef(false);
+
+  const applyTilt = (x: number, y: number) => {
+    const backdropOffset = hoveredRef.current ? -8 : 0;
+    const articleOffset = hoveredRef.current ? -12 : 0;
+    if (backdropRef.current) {
+      backdropRef.current.style.transform = `translate3d(${x}px, ${y + backdropOffset}px, 0)`;
+    }
+    if (articleRef.current) {
+      articleRef.current.style.transform = `translate3d(${x}px, ${y + articleOffset}px, 0)`;
+    }
+  };
+
+  const scheduleTilt = (x: number, y: number) => {
+    nextTiltRef.current = { x, y };
+    if (rafRef.current !== null) return;
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = null;
+      const { x: nextX, y: nextY } = nextTiltRef.current;
+      applyTilt(nextX, nextY);
+    });
+  };
 
   const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
     hoveredRef.current = true;
