@@ -1,4 +1,4 @@
-import { useRef, useState, type MouseEvent } from 'react';
+import { memo, useEffect, useRef, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import type { PaperRecord } from '../lib/db';
 import HudBadge from '@/components/fui/HudBadge';
@@ -25,38 +25,74 @@ type StackCardProps = {
   index: number;
 };
 
-const StackCard = ({ item, index }: StackCardProps) => {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+const StackCard = memo(({ item, index }: StackCardProps) => {
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const nextTiltRef = useRef({ x: 0, y: 0 });
+  const hoveredRef = useRef(false);
+
+  const applyTilt = (x: number, y: number) => {
+    const backdropOffset = hoveredRef.current ? -8 : 0;
+    const articleOffset = hoveredRef.current ? -12 : 0;
+    if (backdropRef.current) {
+      backdropRef.current.style.transform = `translate3d(${x}px, ${y + backdropOffset}px, 0)`;
+    }
+    if (articleRef.current) {
+      articleRef.current.style.transform = `translate3d(${x}px, ${y + articleOffset}px, 0)`;
+    }
+  };
+
+  const scheduleTilt = (x: number, y: number) => {
+    nextTiltRef.current = { x, y };
+    if (rafRef.current !== null) return;
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = null;
+      const { x: nextX, y: nextY } = nextTiltRef.current;
+      applyTilt(nextX, nextY);
+    });
+  };
 
   const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
+    hoveredRef.current = true;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
     const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
-    setTilt({ x, y });
+    scheduleTilt(x, y);
   };
 
   const handleLeave = () => {
-    setTilt({ x: 0, y: 0 });
+    hoveredRef.current = false;
+    scheduleTilt(0, 0);
   };
+
+  useEffect(() => {
+    applyTilt(0, 0);
+    return () => {
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
 
   const lockLabel = `LOCK ${String(index + 1).padStart(2, '0')}`;
 
   return (
     <Link
-      ref={cardRef}
       to={`/paper/${item.id}`}
       className="group relative block"
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
       <div
+        ref={backdropRef}
         className="absolute inset-0 -z-[1] rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
-        style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
+        style={{ transform: 'translate3d(0, 0, 0)' }}
       />
       <article
+        ref={articleRef}
         className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
-        style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
+        style={{ transform: 'translate3d(0, 0, 0)' }}
       >
         <header className="mb-6">
           <CornerBracket
@@ -123,7 +159,9 @@ const StackCard = ({ item, index }: StackCardProps) => {
       <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
     </Link>
   );
-};
+}, (prev, next) => prev.item === next.item && prev.index === next.index);
+
+StackCard.displayName = 'StackCard';
 
 type BatteryProps = {
   confidence: number;
