@@ -24,7 +24,7 @@ const CredentialOverlay = ({ open, onClose }: CredentialOverlayProps) => {
 
   return createPortal(
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-[#0b0d0f]/80 backdrop-blur-sm">
-      <div className="relative w-full max-w-md overflow-hidden rounded-[30px] border border-[#d6e3e0]/15 bg-panel/90 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.65)]">
+      <div className="relative w-full max-w-md overflow-hidden rounded-[4px] border border-[#d6e3e0]/15 bg-panel/95 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.65)]">
         <div className="absolute inset-0 scanlines" />
         <header className="relative mb-6 space-y-3 text-center">
           <HudBadge label="Level 7" tone="red" value={<span>SECURE</span>} />
@@ -46,7 +46,7 @@ const CredentialOverlay = ({ open, onClose }: CredentialOverlayProps) => {
             <input
               ref={inputRef}
               type="password"
-              className="mt-2 w-full rounded-[16px] border border-[#d6e3e0]/15 bg-[#0b0d0f]/60 px-4 py-3 font-mono text-[0.8rem] tracking-[0.28em] text-[#d6e3e0] focus:border-amber focus:outline-none"
+              className="mt-2 w-full rounded-[3px] border border-[#d6e3e0]/20 bg-[#0b0d0f]/70 px-4 py-3 font-mono text-[0.8rem] tracking-[0.28em] text-[#d6e3e0] focus:border-amber focus:outline-none"
               placeholder="••••-••••-••••"
               required
             />
@@ -55,14 +55,14 @@ const CredentialOverlay = ({ open, onClose }: CredentialOverlayProps) => {
             Operator Call Sign
             <input
               type="text"
-              className="mt-2 w-full rounded-[16px] border border-[#d6e3e0]/15 bg-[#0b0d0f]/60 px-4 py-3 font-mono text-[0.8rem] tracking-[0.28em] text-[#d6e3e0] focus:border-amber focus:outline-none"
+              className="mt-2 w-full rounded-[3px] border border-[#d6e3e0]/20 bg-[#0b0d0f]/70 px-4 py-3 font-mono text-[0.8rem] tracking-[0.28em] text-[#d6e3e0] focus:border-amber focus:outline-none"
               placeholder="e.g. ORION-12"
               required
             />
           </label>
           <button
             type="submit"
-            className="hud-glow relative w-full rounded-[18px] border border-red/60 bg-gradient-to-r from-red/80 to-amber/70 py-3 font-mono text-[0.75rem] uppercase tracking-[0.32em] text-[#d6e3e0]"
+            className="hud-glow relative w-full rounded-[4px] border border-red/60 bg-gradient-to-r from-red/85 to-amber/75 py-3 font-mono text-[0.75rem] uppercase tracking-[0.32em] text-[#d6e3e0]"
           >
             Authenticate
           </button>
