@@ -8,7 +8,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx",
-    "make:dummy": "tsx scripts/make-dummy.ts"
+    "make:dummy": "tsx scripts/make-dummy.ts",
+    "build:nasa-data": "tsx scripts/build-nasa-data.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.36.1",

@@ -1,0 +1,45 @@
+{
+  "id": "exp_015",
+  "title": "TNO1, a TGN-localized SNARE-interacting protein, modulates root skewing in Arabidopsis thaliana",
+  "authors": [
+    "Rahul Roy",
+    "Diane C Bassham"
+  ],
+  "year": 2017,
+  "organism": "Arabidopsis thaliana",
+  "platform": "ISS",
+  "keywords": [
+    "root",
+    "roots",
+    "skewing",
+    "cell",
+    "tno",
+    "microtubule",
+    "arabidopsis",
+    "file"
+  ],
+  "sections": {
+    "abstract": "Background The movement of plant roots within the soil is key to their ability to interact with the environment and maximize anchorage and nutrient acquisition. Directional growth of roots occurs by a combination of sensing external cues, hormonal signaling and cytoskeletal changes in the root cells. Roots growing on slanted, impenetrable growth medium display a characteristic waving and skewing, and mutants with deviations in these phenotypes assist in identifying genes required for root movement. Our study identifies a role for a trans -Golgi network-localized protein in root skewing. Results We found that Arabidopsis thaliana TNO1 (TGN-localized SYP41-interacting protein), a putative tethering factor localized at the trans -Golgi network, affects root skewing. tno1 knockout mutants display enhanced root skewing and epidermal cell file rotation. Skewing of tno1 roots increases upon microtubule stabilization, but is insensitive to microtubule destabilization. Microtubule destabilization leads to severe defects in cell morphology in tno1 seedlings. Microtubule array orientation is unaffected in the mutant roots, suggesting that the increase in cell file rotation is independent of the orientation of microtubule arrays. Conclusions We conclude that TNO1 modulates root skewing in a mechanism that is dependent on microtubules but is not linked to disruption of the orientation of microtubule arrays. In addition, TNO1 is required for maintenance of cell morphology in mature regions of roots and the base of hypocotyls. The TGN-localized SNARE machinery might therefore be important for appropriate epidermal cell file rotation and cell expansion during root growth. Keywords: t rans-Golgi network, Root movement, Cell file rotation, Tethering factor, Microtubules",
+    "methods": "Plant material and growth conditions Arabidopsis thaliana Col-0 (wild-type, WT) and tno1 knockout mutant (SALK_112503) were obtained from the Arabidopsis Biological Resource Center; the complemented tno1 mutant was generated previously in our laboratory [ 35 ]. Arabidopsis seeds were surface-sterilized in 33% bleach, 0.1% ( v /v) Triton X-100 for 20 min, rinsed 5 times with sterile water and kept in the dark at 4 °C for at least 2 days before being subjected to the root skewing and waving assays or drug sensitivity assays described below. Arabidopsis hypocotyls were analyzed by plating sterilized seeds on 0.5X solid Murashige-Skoog (MS) medium [(Murashige-Skoog vitamin and salt mixture, Caisson, MSPA0910] with 1% sucrose, 2.4 mM MES (pH 5.7), and 0.8% ( w / v ) Phytoblend agar (Caisson, PTP01) and growing vertically at 22 °C in the dark. Root skewing and waving assays Skewing and waving assays were performed as described [ 7 , 37 ]. Arabidopsis plants were grown at 22 °C in long-day conditions (16 h light) on 0.5X solid Murashige-Skoog (MS) medium (Murashige-Skoog vitamin and salt mixture, Caisson, MSPA0910) with 1% sucrose, 2.4 mM MES (pH 5.7), and 1.5% ( w / v ) Phytoblend agar (Caisson, PTP01). Seedlings were grown vertically for 3 days after which the root tip position was marked. The plates were then slanted backwards, 30 o to the vertical, and grown for another 4 days. Images of the roots were acquired from the back of the plate using a Nikon SMZ1000 light microscope equipped with a Nikon S10 CoolPix camera. Analysis of root parameters was performed using Image J [ 38 ]. Root tip deviations to the right from the back of the plate were considered positive while deviations to the left were considered negative. Root morphometric analyses were performed as described [ 39 ]. Images of skewing/waving roots were analyzed with the ImageJ software [ 38 ] for measuring root tip abscissa (Lx) and length of the root (L) followed by calculation of horizontal growth indices (Lx/L). Drug sensitivity assays Seedlings were grown vertically on plates containing either taxol (Paclitaxel, Sigma Cat #T7191) or propyzamide (Sigma-Aldrich, Cat #45645) at the indicated concentrations for 5 days and skewing angles of roots were determined. Dark grown hypocotyl cell phenotypes were analyzed by placing 7-day-old hypocotyls on the surface of warm 3% low melting point agarose on a slide [ 40 ] and then imaging the imprints with a Zeiss Axioplan II light microscope. Cell file rotation analysis and propidium iodide staining The root surface of Arabidopsis seedlings was visualized using a Zeiss macro-zoom microscope at the Microscopy and NanoImaging facility, Iowa State University. Alternatively, roots were stained with propidium iodide (ThermoFisher Scientific Cat #P3566). Seedlings were dipped in a working aqueous solution (10 μg/ml) of propidium iodide for 1 min and then washed twice by dipping in petri dishes filled with water for 30 s. The roots were mounted in water and visualized using a Leica confocal laser scanning microscope (Leica SP5; Leica Microsystems) at the Iowa State University Confocal and Multiphoton Facility. Excitation and emission wavelengths were 488 nm and 617 nm respectively. Laser power, scan frequency and line averaging were optimized and kept constant between samples and replicates. CFR angles of the roots were calculated as described [ 7 , 41 ] using ImageJ [ 38 ]. Immunostaining and analysis of microtubules Five-day-old Arabidopsis seedlings grown on slanted medium were fixed and immunostained as described [ 42 ]. Mouse anti-α - tubulin antibodies (Sigma-Aldrich, Cat #T6074), diluted 1:100, were used for immunolabeling of MTs followed by AlexaFluor 488-conjugated goat anti-mouse IgG (ThermoFisher Scientific, Cat #A11029) as a secondary antibody, diluted 1:500. Cells within the elongation zone were imaged by confocal microscopy with a Leica confocal laser scanning microscope (Leica SP5; Leica Microsystems) at the Iowa State University Confocal and Multiphoton Facility, using a 40X (1.25 NA) or 63X (1.4 NA) Leica oil immersion objective. Excitation and emission wavelengths were 488 nm and 507 nm. Laser power, scan frequency and line averaging were optimized and kept constant between samples and replicates. Confocal images were analyzed with the freely available software package MicroFilament Analyzer (MFA) [ 43 ], and data was displayed as circular plots as generated by the software. MT angles generated by the software were classified into three classes, 0 to 10, 11 to 30 and 31 to 90 degrees using Microsoft Excel and used for subsequent analysis.",
+    "results": "We found that Arabidopsis thaliana TNO1 (TGN-localized SYP41-interacting protein), a putative tethering factor localized at the trans -Golgi network, affects root skewing. tno1 knockout mutants display enhanced root skewing and epidermal cell file rotation. Skewing of tno1 roots increases upon microtubule stabilization, but is insensitive to microtubule destabilization. Microtubule destabilization leads to severe defects in cell morphology in tno1 seedlings. Microtubule array orientation is unaffected in the mutant roots, suggesting that the increase in cell file rotation is independent of the orientation of microtubule arrays.",
+    "conclusion": "We conclude that TNO1 modulates root skewing in a mechanism that is dependent on microtubules but is not linked to disruption of the orientation of microtubule arrays. In addition, TNO1 is required for maintenance of cell morphology in mature regions of roots and the base of hypocotyls. The TGN-localized SNARE machinery might therefore be important for appropriate epidermal cell file rotation and cell expansion during root growth."
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5387210/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5387210/pdf/12870_2017_Article_1024.pdf"
+  },
+  "access": [
+    "PEER-REVIEWED",
+    "ISS",
+    "SPACE BOTANY"
+  ],
+  "citations_by_year": [],
+  "confidence": 0.73,
+  "entities": [
+    "root",
+    "tno",
+    "skewing",
+    "cell",
+    "roots"
+  ]
+}
