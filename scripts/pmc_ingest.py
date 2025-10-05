@@ -666,6 +666,16 @@ def ingest(
         if not pmcid:
             logger.warning("Skipping row %d: no PMCID detected", idx)
             continue
+        record_id = f"exp_{idx:03d}"
+        existing_json = json_dir / f"{record_id}.json"
+        if not force and existing_json.exists():
+            logger.info(
+                "Skipping row %d -> %s: dossier %s already exists",
+                idx,
+                pmcid,
+                existing_json.name,
+            )
+            continue
         logger.info("Processing row %d -> %s", idx, pmcid)
         try:
             csv_url = extract_pmc_url_from_row(row)
@@ -687,7 +697,11 @@ def main() -> None:
     parser.add_argument("--raw-dir", type=Path, default=Path("data/raw_pmc"), help="Directory for cached raw HTML")
     parser.add_argument("--json-dir", type=Path, default=Path("data/papers"), help="Directory for JSON dossiers")
     parser.add_argument("--limit", type=int, default=None, help="Optional row limit for testing")
-    parser.add_argument("--force", action="store_true", help="Refetch HTML even if cached")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Refetch HTML and overwrite dossiers even if cached",
+    )
     parser.add_argument("--llm", choices=["auto", "off"], default="auto", help="Use OpenAI if configured ('auto') or disable ('off')")
     parser.add_argument("--llm-model", default="gpt-4o-mini", help="OpenAI model name when LLM is enabled")
     parser.add_argument("-v", "--verbose", action="count", default=0, help="Increase logging verbosity (use -vv for debug)")
