@@ -46,40 +46,38 @@ const StackCard = ({ item, index }: StackCardProps) => {
       onMouseLeave={handleLeave}
     >
       <div
-        className="absolute inset-0 -z-[1] rounded-[4px] border border-[#1a1f24]/45 bg-[#10161d]/80 backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
+        className="absolute inset-0 -z-[1] rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(12,18,24,0.72)] backdrop-blur-sm transition-transform duration-500 group-hover:-translate-y-2"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       />
       <article
-        className="relative overflow-hidden rounded-[4px] border border-[#1a1f24]/65 bg-[#131d26]/90 p-7 shadow-[0_28px_60px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
+        className="scanline-card relative overflow-hidden rounded-2xl border border-[rgba(26,31,36,0.65)] bg-[rgba(10,15,20,0.88)] p-7 shadow-[0_28px_70px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:-translate-y-3"
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       >
         <header className="mb-6 space-y-4">
-          <div className="flex items-center justify-between text-[0.78rem] uppercase tracking-[0.2em] text-[#8fa1ac]">
+          <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)]">
             <span>Dossier {index.toString().padStart(3, '0')}</span>
-            <span className="font-mono text-[#7a8b94]">ID // {item.id}</span>
+            <span className="font-mono text-[color:var(--dim)]">ID // {item.id}</span>
           </div>
-          <h2 className="text-2xl font-semibold tracking-[0.08em] text-[#f1f7f5] transition-colors group-hover:text-cyan">
+          <h2 className="text-2xl text-[color:var(--white)] transition-colors group-hover:text-[color:var(--accent-2)]">
             {item.title}
           </h2>
-          <p className="font-mono text-[0.82rem] uppercase tracking-[0.2em] text-[#8fa1ac]">
-            {item.authors.join(', ')}
-          </p>
+          <p className="font-meta text-[0.78rem] tracking-[0.24em] text-[color:var(--mid)]">{item.authors.join(', ')}</p>
         </header>
 
-        <dl className="grid grid-cols-3 gap-3 text-[0.82rem] font-mono uppercase tracking-[0.18em] text-[#8fa1ac]">
-          <div className="rounded-[3px] border border-[#1a1f24]/60 bg-[#141c24]/85 px-4 py-3">
-            <dt className="text-[0.72rem] text-[#6c7d87]">Year</dt>
-            <dd className="text-[#f1f7f5]">{item.year}</dd>
+        <dl className="grid grid-cols-3 gap-3 text-[0.82rem] font-meta tracking-[0.18em] text-[color:var(--mid)]">
+          <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
+            <dt className="text-[0.68rem] text-[color:var(--passive)]">Year</dt>
+            <dd className="text-[color:var(--white)]">{item.year}</dd>
           </div>
-          <div className="rounded-[3px] border border-[#1a1f24]/60 bg-[#141c24]/85 px-4 py-3">
-            <dt className="text-[0.72rem] text-[#6c7d87]">Organism</dt>
-            <dd className="text-[#f1f7f5] truncate" title={item.organism}>
+          <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
+            <dt className="text-[0.68rem] text-[color:var(--passive)]">Organism</dt>
+            <dd className="truncate text-[color:var(--white)]" title={item.organism}>
               {item.organism}
             </dd>
           </div>
-          <div className="rounded-[3px] border border-[#1a1f24]/60 bg-[#141c24]/85 px-4 py-3">
-            <dt className="text-[0.72rem] text-[#6c7d87]">Platform</dt>
-            <dd className="text-[#f1f7f5] truncate" title={item.platform}>
+          <div className="rounded-xl border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.7)] px-4 py-3">
+            <dt className="text-[0.68rem] text-[color:var(--passive)]">Platform</dt>
+            <dd className="truncate text-[color:var(--white)]" title={item.platform}>
               {item.platform}
             </dd>
           </div>
@@ -89,7 +87,7 @@ const StackCard = ({ item, index }: StackCardProps) => {
           {item.keywords.slice(0, 4).map((keyword) => (
             <span
               key={keyword}
-              className="rounded-full border border-[#1a1f24] bg-[#141c24]/75 px-3.5 py-1.5 text-[0.78rem] font-mono uppercase tracking-[0.18em] text-[#8fa1ac] transition-colors group-hover:border-[#55e6a5]/60 group-hover:text-[#d6e3e0]"
+              className="rounded-full border border-[rgba(32,42,50,0.65)] bg-[rgba(12,18,24,0.6)] px-3.5 py-1.5 font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)] transition-colors group-hover:border-[rgba(0,179,255,0.45)] group-hover:text-[color:var(--white)]"
             >
               {keyword}
             </span>
@@ -101,7 +99,7 @@ const StackCard = ({ item, index }: StackCardProps) => {
           <HudBadge label="Entities" tone="cyan" compact value={<span>{item.entities.length}</span>} />
         </div>
       </article>
-      <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-[4px] border border-[#1a1f24]/40 bg-[#141c24]/45 opacity-70" />
+      <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
     </Link>
   );
 };
@@ -115,17 +113,21 @@ const Battery = ({ confidence }: BatteryProps) => {
   const active = Math.round(confidence * segments);
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[0.78rem] font-mono uppercase tracking-[0.2em] text-[#8fa1ac]">Confidence</span>
+      <span className="font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--passive)]">Confidence</span>
       <div className="flex items-center gap-2">
-        <div className="flex gap-1 rounded-[3px] border border-[#1a1f24]/60 bg-[#141c24]/70 px-1.5 py-1.5">
+        <div className="flex gap-1 rounded-lg border border-[rgba(26,31,36,0.55)] bg-[rgba(12,18,24,0.6)] px-1.5 py-1.5">
           {Array.from({ length: segments }).map((_, index) => (
             <span
               key={index}
-              className={`h-3.5 w-2.5 rounded-sm ${index < active ? 'bg-cyan shadow-[0_0_12px_rgba(85,230,165,0.35)]' : 'bg-[#d6e3e0]/10'}`}
+              className={`h-3.5 w-2.5 rounded-sm ${
+                index < active
+                  ? 'bg-[color:var(--accent-1)] shadow-[0_0_12px_rgba(85,230,165,0.35)]'
+                  : 'bg-[rgba(214,227,224,0.12)]'
+              }`}
             />
           ))}
         </div>
-        <span className="font-mono text-[0.82rem] text-[#8fa1ac]">{Math.round(confidence * 100)}%</span>
+        <span className="font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--mid)]">{Math.round(confidence * 100)}%</span>
       </div>
     </div>
   );

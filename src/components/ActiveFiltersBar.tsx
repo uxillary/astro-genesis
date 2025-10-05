@@ -28,16 +28,16 @@ const ActiveFiltersBar = () => {
 
   if (entries.length === 0) {
     return (
-      <div className="flex items-center gap-4 rounded-[3px] border border-[#1a1f24]/60 bg-[#0b0d0f]/75 px-5 py-3.5 font-mono text-[0.78rem] uppercase tracking-[0.24em] text-[#4d606a] shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
-        <span className="text-[#67f3b5]/80">Filters nominal</span>
-        <span className="text-[#8fa1ac]">// All dossiers shown</span>
+      <div className="flex items-center gap-4 rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] px-5 py-3.5 font-meta text-[0.74rem] tracking-[0.22em] text-[color:var(--passive)] shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
+        <span className="text-[rgba(85,230,165,0.8)]">Filters nominal</span>
+        <span className="text-[color:var(--mid)]">// All dossiers shown</span>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-[3px] border border-[#1a1f24]/60 bg-[#0b0d0f]/75 px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
-      <span className="font-mono text-[0.78rem] uppercase tracking-[0.24em] text-[#67f3b5]">
+    <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[rgba(26,31,36,0.55)] bg-[rgba(10,15,20,0.75)] px-5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
+      <span className="font-meta text-[0.74rem] tracking-[0.24em] text-[color:var(--accent-1)]">
         Active Filters
       </span>
       <ul className="flex flex-wrap gap-2">
@@ -46,13 +46,13 @@ const ActiveFiltersBar = () => {
             <button
               type="button"
               onClick={() => handleRemove(entry.key)}
-              className="group flex items-center gap-2 rounded-full border border-amber/50 bg-[#131d26]/75 px-4 py-1.5 font-mono text-[0.78rem] uppercase tracking-[0.2em] text-amber transition-colors hover:border-amber/80 hover:bg-amber/10 hover:text-[#f1f7f5]"
+              className="group flex items-center gap-2 rounded-full border border-[rgba(0,179,255,0.35)] bg-[rgba(12,18,24,0.65)] px-4 py-1.5 font-meta text-[0.72rem] tracking-[0.2em] text-[color:var(--accent-2)] transition-colors hover:border-[rgba(0,179,255,0.55)] hover:bg-[rgba(0,179,255,0.15)] hover:text-[color:var(--white)]"
             >
               <span>{entry.label}</span>
-              <span className="rounded-sm bg-[#0b0d0f]/70 px-2 py-0.5 text-[0.72rem] text-[#8fa1ac] group-hover:bg-amber/20 group-hover:text-[#f1f7f5]">
+              <span className="rounded-sm bg-[rgba(8,12,16,0.7)] px-2 py-0.5 text-[0.7rem] text-[color:var(--mid)] group-hover:bg-[rgba(0,179,255,0.2)] group-hover:text-[color:var(--white)]">
                 {entry.value}
               </span>
-              <span className="text-[#d6e3e0]/70 group-hover:text-[#d6e3e0]">×</span>
+              <span className="text-[rgba(244,252,251,0.75)] group-hover:text-[color:var(--white)]">×</span>
             </button>
           </li>
         ))}
@@ -60,7 +60,7 @@ const ActiveFiltersBar = () => {
       <button
         type="button"
         onClick={() => resetFilters()}
-        className="ml-auto rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-4 py-1.5 font-mono text-[0.78rem] uppercase tracking-[0.2em] text-[#8fa1ac] transition hover:border-[#55e6a5]/60 hover:text-[#f1f7f5]"
+        className="ml-auto rounded-full border border-[rgba(32,42,50,0.6)] bg-[rgba(13,20,26,0.82)] px-4 py-1.5 font-meta text-[0.72rem] tracking-[0.22em] text-[color:var(--mid)] transition hover:border-[rgba(0,179,255,0.45)] hover:text-[color:var(--white)]"
       >
         Clear All
       </button>
