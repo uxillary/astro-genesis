@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Summarize NASA bioscience experiment JSON files."""
+"""Summarize NASA bioscience experiment JSON files with AI-generated synopses."""
 
 from __future__ import annotations
 
@@ -19,12 +19,16 @@ def log(message: str) -> None:
 
 PROMPT_TEMPLATE = (
     "You are summarizing NASA bioscience experiment data.\n"
-    "Write a concise, human-readable summary (100–150 words) combining the abstract, results, and conclusion.\n"
-    "Focus on what was studied, the main finding, and why it matters.\n"
-    "Do not repeat the title.\n"
-    "Return only the summary text, no formatting or commentary.\n\n"
+    "Write a concise, digestible, descriptive summary (120–170 words) that captures the full study.\n"
+    "Blend details from the abstract, introduction/background, methods, results, and conclusion where available.\n"
+    "Highlight the scientific question, key findings, and why they matter for space biosciences.\n"
+    "Avoid repeating the title verbatim and keep the tone informative yet approachable.\n"
+    "Return only the summary text, no extra commentary.\n\n"
     "Title: {title}\n"
+    "Authors: {authors}\n"
     "Abstract: {abstract}\n\n"
+    "Background: {background}\n\n"
+    "Methods: {methods}\n\n"
     "Results: {results}\n\n"
     "Conclusion: {conclusion}"
 )
@@ -34,6 +38,9 @@ TEMPERATURE = 0.4
 PRIMARY_MODEL = "gpt-4o-mini"
 FALLBACK_MODEL = "gpt-3.5-turbo"
 MAX_BATCH = 2
+
+
+AI_SUMMARY_KEY = "ai_summary"
 
 
 def load_json(path: Path) -> Dict:
@@ -76,6 +83,8 @@ def collect_section_text(sections: Dict, key: str) -> str:
     value = sections.get(key, "") if isinstance(sections, dict) else ""
     if value is None:
         return ""
+    if isinstance(value, list):
+        return "\n".join(str(item) for item in value if item)
     if isinstance(value, str):
         return value
     return str(value)
@@ -83,6 +92,34 @@ def collect_section_text(sections: Dict, key: str) -> str:
 
 def word_count(text: str) -> int:
     return len(text.split()) if text else 0
+
+
+def compile_payload(data: Dict) -> Dict[str, str]:
+    sections_data = data.get("sections")
+    sections = sections_data if isinstance(sections_data, dict) else {}
+
+    authors_value = data.get("authors", "")
+    if isinstance(authors_value, list):
+        authors_text = ", ".join(str(item) for item in authors_value if item)
+    elif authors_value is None:
+        authors_text = ""
+    else:
+        authors_text = str(authors_value)
+
+    if not authors_text:
+        authors_text = collect_section_text(sections, "authors")
+
+    return {
+        "title": data.get("title", ""),
+        "authors": authors_text,
+        "abstract": collect_section_text(sections, "abstract"),
+        "background": collect_section_text(sections, "introduction")
+        or collect_section_text(sections, "background")
+        or data.get("summary", ""),
+        "methods": collect_section_text(sections, "methods"),
+        "results": collect_section_text(sections, "results"),
+        "conclusion": collect_section_text(sections, "conclusion"),
+    }
 
 
 def request_summary(client: OpenAI, payload: Dict[str, str]) -> str:
@@ -93,14 +130,20 @@ def request_summary(client: OpenAI, payload: Dict[str, str]) -> str:
             temperature=TEMPERATURE,
             messages=[{"role": "user", "content": prompt}],
         )
+        log(f"Primary model {PRIMARY_MODEL} succeeded.")
         return response.choices[0].message.content.strip()
     except OpenAIError as primary_error:
+        log(
+            "Primary model %s failed with %s. Attempting fallback %s."
+            % (PRIMARY_MODEL, primary_error, FALLBACK_MODEL)
+        )
         try:
             response = client.chat.completions.create(
                 model=FALLBACK_MODEL,
                 temperature=TEMPERATURE,
                 messages=[{"role": "user", "content": prompt}],
             )
+            log(f"Fallback model {FALLBACK_MODEL} succeeded.")
             return response.choices[0].message.content.strip()
         except OpenAIError as fallback_error:
             raise RuntimeError(
@@ -109,18 +152,18 @@ def request_summary(client: OpenAI, payload: Dict[str, str]) -> str:
 
 
 def process_file(path: Path, data: Dict, client: OpenAI) -> bool:
-    if "summary_short" in data or "metrics" in data:
+    if AI_SUMMARY_KEY in data:
+        log(f"Skipping {path.name} (already contains {AI_SUMMARY_KEY})")
         return False
 
-    sections_data = data.get("sections")
-    sections = sections_data if isinstance(sections_data, dict) else {}
+    payload = compile_payload(data)
 
-    payload = {
-        "title": data.get("title", ""),
-        "abstract": collect_section_text(sections, "abstract"),
-        "results": collect_section_text(sections, "results"),
-        "conclusion": collect_section_text(sections, "conclusion"),
-    }
+    missing_sections = [key for key, value in payload.items() if not value]
+    if missing_sections:
+        log(
+            "Warning: %s missing sections for prompt: %s"
+            % (path.name, ", ".join(sorted(missing_sections)))
+        )
 
     try:
         summary = request_summary(client, payload)
@@ -128,24 +171,26 @@ def process_file(path: Path, data: Dict, client: OpenAI) -> bool:
         log(f"Error summarizing {path}: {exc}")
         return False
 
-    keywords = data.get("keywords") or []
-    if isinstance(keywords, list):
-        keyword_count = len(keywords)
-    else:
-        keyword_count = 1 if keywords else 0
+    summary_words = word_count(summary)
+    data[AI_SUMMARY_KEY] = summary
 
-    metrics = {
-        "year": data.get("year"),
-        "keyword_count": keyword_count,
-        "section_lengths": {
+    data.setdefault("metrics", {}).setdefault(
+        "section_lengths",
+        {},
+    )
+    section_lengths = data["metrics"]["section_lengths"]
+    section_lengths.update(
+        {
             "abstract": word_count(payload["abstract"]),
             "results": word_count(payload["results"]),
             "conclusion": word_count(payload["conclusion"]),
-        },
-    }
+        }
+    )
 
-    data["summary_short"] = summary
-    data["metrics"] = metrics
+    log(
+        "Saved %s with %s (%d words)."
+        % (path.name, AI_SUMMARY_KEY, summary_words)
+    )
 
     save_json(path, data)
     return True
@@ -219,13 +264,6 @@ def main() -> None:
             data = load_json(json_path)
         except Exception as exc:  # pylint: disable=broad-except
             log(f"Error reading {json_path}: {exc}")
-            continue
-
-        if "summary_short" in data or "metrics" in data:
-            log(
-                "Skipping %s (already contains summary_short or metrics)"
-                % rel_name
-            )
             continue
 
         log(f"Summarizing {rel_name}")
