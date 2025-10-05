@@ -25,6 +25,7 @@
     "results": "",
     "conclusion": "There is quite some variability in FAIRness among the omics data systems we assessed using the 14 metrics. The range of Pass ratings was 29-79% of metrics, Partial Pass 0-21%, and Fail 7-50%. The range of overall FAIRness scores was 6-12, with average of 10.1 and standard deviation, 2.4. All the systems were rated best in the areas of data accessibility and reusability, slightly worse in data findability, and far worse in data interoperability."
   },
+  "ai_summary": "Omics data sharing is crucial to the biological research community, and the last decade or two has seen a huge rise in collaborative analysis systems, databases, and knowledge bases for omics and other systems biology data. We assessed the “FAIRness” of NASA’s GeneLab Data Systems (GLDS) along with four similar kinds of systems in the research omics data domain, using 14 FAIRness metrics. The range of overall FAIRness scores was 6-12 (out of 14), average 10.1, and standard deviation 2.4.",
   "links": {
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6371294/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6371294/pdf/2975810.pdf"

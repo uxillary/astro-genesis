@@ -53,6 +53,7 @@ type PaperDetail = PaperIndex & {
     results: string;
     conclusion: string;
   };
+  ai_summary: string | null;
   links: {
     taskbook?: string;
     osdr?: string;
@@ -180,6 +181,7 @@ const toDetail = (paper: RawPaper): PaperDetail => {
     platform: paper.platform,
     keywords,
     sections: ensureSections(paper.sections),
+    ai_summary: paper.summary?.trim() ? paper.summary.trim() : null,
     links: mapLinks(paper.links),
     access: deriveAccessTags(paper),
     citations_by_year: [],
@@ -193,7 +195,7 @@ const writeDetail = async (detail: PaperDetail) => {
   await writeFile(join(OUT_PAPERS_DIR, `${detail.id}.json`), JSON.stringify(detail, null, 2));
 };
 
-const toIndexEntry = ({ sections, links, ...rest }: PaperDetail): PaperIndex => rest;
+const toIndexEntry = ({ sections, links, ai_summary, ...rest }: PaperDetail): PaperIndex => rest;
 
 const run = async () => {
   await mkdir(OUT_PAPERS_DIR, { recursive: true });

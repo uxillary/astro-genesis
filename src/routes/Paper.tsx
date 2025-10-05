@@ -128,7 +128,27 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
   }, [connector]);
 
   const { paper } = data;
-  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
+  const {
+    title,
+    sections,
+    authors,
+    year,
+    organism,
+    platform,
+    keywords,
+    links,
+    access,
+    citations_by_year,
+    confidence,
+    entities,
+    ai_summary
+  } = paper;
+  const summaryText = ai_summary?.trim() ?? '';
+
+  const handleCopySummary = () => {
+    if (!summaryText) return;
+    navigator.clipboard.writeText(summaryText).catch(() => undefined);
+  };
 
   return (
     <div className="space-y-8 transmission-field">
@@ -271,8 +291,26 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
           <FuiCallout from="b-res" to="panel-results" variant="dotted" tone="cyan" />
           <FuiCallout from="b-con" to="panel-conclusion" variant="dotted" tone="cyan" />
 
-          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-[#5f6c75]">Uplink offline</span>}>
-            LLM summary feed is offline. This panel will populate once the analyst channel is connected.
+          <Panel
+            title="Analyst Summary"
+            sublabel="AI Channel"
+            actions=
+              {summaryText ? (
+                <button type="button" onClick={handleCopySummary} className="text-dim hover:text-[#d6e3e0]">
+                  Copy summary
+                </button>
+              ) : (
+                <span className="text-[#5f6c75]">Uplink offline</span>
+              )}
+            variant="dossier"
+          >
+            {summaryText ? (
+              <SectionContent text={summaryText} />
+            ) : (
+              <p className="text-[color:var(--mid)]">
+                LLM summary feed is offline. This panel will populate once the analyst channel is connected.
+              </p>
+            )}
           </Panel>
         </div>
 

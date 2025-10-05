@@ -25,6 +25,7 @@
     "results": "",
     "conclusion": ""
   },
+  "ai_summary": "The mechanosensitive channel of large conductance (MscL) from E. coli serves as an emergency release valve allowing the cell to survive acute osmotic downshock. It is one of the best studied mechanosensitive channels and serves as a paradigm for how a protein can sense and respond to membrane tension.",
   "links": {
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3190158/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3190158/pdf/pro0020-1638.pdf"

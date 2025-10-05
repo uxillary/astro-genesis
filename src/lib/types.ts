@@ -24,6 +24,7 @@ export type PaperDetail = PaperIndex & {
     results: string;
     conclusion: string;
   };
+  ai_summary: string | null;
   links: {
     taskbook?: string;
     osdr?: string;

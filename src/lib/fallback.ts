@@ -22,5 +22,7 @@ export const createFallbackPaper = (id: string): PaperDetail => ({
     conclusion:
       'Continue monitoring archive health dashboards. The fallback shell confirms UI integrity while the system awaits a verified dossier payload.'
   },
+  ai_summary:
+    'Analyst uplink offline. Awaiting secure channel handshake before projecting synthesized mission briefing.',
   links: {}
 });
