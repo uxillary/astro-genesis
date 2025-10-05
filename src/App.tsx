@@ -87,29 +87,29 @@ const AppContent = () => {
       <HelpOverlay open={showHelp} onClose={() => setHelp(false)} />
       <CredentialOverlay open={credentialOpen} onClose={() => setCredential(false)} />
       <div className="relative z-10 flex min-h-screen flex-col">
-        <header className="px-6 py-4 border-b border-[#1a1f24]/70 bg-[#10161d]/80 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-sm">
+        <header className="px-6 py-5 border-b border-[#1a1f24]/70 bg-[#10161d]/85 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-              <div className="relative overflow-hidden rounded-lg border border-[#1f2a33] bg-[#0b1118]/90 px-5 py-3 text-left shadow-[0_0_32px_rgba(9,15,22,0.55)]">
+              <div className="relative overflow-hidden rounded-lg border border-[#26313a] bg-[#0b1118]/95 px-5 py-4 text-left shadow-[0_0_32px_rgba(9,15,22,0.55)]">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(85,230,165,0.28),_transparent_65%)]" />
-                <div className="relative flex flex-col leading-tight">
-                  <span className="font-mono text-[0.52rem] uppercase tracking-[0.5em] text-[#55e6a5]/70">
+                <div className="relative flex flex-col gap-0.5 leading-tight">
+                  <span className="font-mono text-[0.68rem] uppercase tracking-[0.42em] text-[#55e6a5]/70">
                     Mission Control // A.G-01
                   </span>
-                  <span className="font-semibold uppercase tracking-[0.44em] text-[#f5fbfa] sm:text-[0.95rem]">
+                  <span className="font-semibold uppercase tracking-[0.36em] text-[#f5fbfa] text-[1.05rem] sm:text-[1.15rem]">
                     Astro Genesis
                   </span>
-                  <span className="font-mono text-[0.5rem] uppercase tracking-[0.42em] text-[#f66a4d]">
+                  <span className="font-mono text-[0.66rem] uppercase tracking-[0.38em] text-[#f66a4d]">
                     Bio Intelligence Archive
                   </span>
                 </div>
               </div>
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[#55e6a5]">
+              <span className="font-mono text-[0.82rem] uppercase tracking-[0.2em] text-[#6ff0b7]">
                 Offline-first classified ops console
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <nav className="flex gap-4 text-[0.68rem] font-mono uppercase tracking-[0.2em] text-[#7a8b94]">
+              <nav className="flex gap-4 text-[0.82rem] font-mono uppercase tracking-[0.18em] text-[#8fa1ac]">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
@@ -138,7 +138,7 @@ const AppContent = () => {
               </nav>
               <button
                 type="button"
-                className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-4 py-1 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[#7a8b94] shadow-[0_0_22px_rgba(0,0,0,0.45)] transition-colors hover:text-[#d6e3e0]"
+                className="rounded-full border border-[#1a1f24] bg-[#131d26]/85 px-5 py-1.5 font-mono text-[0.82rem] uppercase tracking-[0.18em] text-[#8fa1ac] shadow-[0_0_22px_rgba(0,0,0,0.45)] transition-colors hover:text-[#d6e3e0]"
                 onClick={() => toggleMode()}
               >
                 {mode === 'hud' ? 'Switch to MONO' : 'Switch to HUD'}
@@ -155,7 +155,7 @@ const AppContent = () => {
             </Routes>
           </Suspense>
         </main>
-        <footer className="px-6 py-4 border-t border-[#1a1f24]/70 bg-[#0f141a]/80 text-[0.6rem] font-mono uppercase tracking-[0.22em] text-[#7a8b94]">
+        <footer className="px-6 py-5 border-t border-[#1a1f24]/70 bg-[#0f141a]/85 text-[0.75rem] font-mono uppercase tracking-[0.18em] text-[#90a2ad]">
           Signal integrity nominal // Press C for credentials · Press ? for help overlay
         </footer>
       </div>

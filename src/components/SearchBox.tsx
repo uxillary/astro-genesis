@@ -105,9 +105,9 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
     <div ref={containerRef} className="relative w-full max-w-xl">
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-3 rounded-[3px] border border-[#d6e3e0]/10 bg-[#0b0d0f]/70 px-5 py-3 shadow-panel"
+        className="flex items-center gap-4 rounded-[3px] border border-[#d6e3e0]/18 bg-[#0b0d0f]/75 px-6 py-4 shadow-panel"
       >
-        <label className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-dim" htmlFor="archive-search">
+        <label className="font-mono text-[0.78rem] uppercase tracking-[0.22em] text-[#8fa1ac]" htmlFor="archive-search">
           Query
         </label>
         <input
@@ -122,12 +122,12 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           aria-expanded={open}
           aria-controls={open ? listboxId : undefined}
           aria-activedescendant={open && activeIndex >= 0 ? `${listboxId}-${suggestions[activeIndex]?.id}` : undefined}
-          className="flex-1 bg-transparent font-mono text-[0.85rem] uppercase tracking-[0.28em] text-[#d6e3e0] placeholder:text-dim focus:outline-none"
+          className="flex-1 bg-transparent font-mono text-[1rem] uppercase tracking-[0.18em] text-[#f1f7f5] placeholder:text-[#8fa1ac] focus:outline-none"
           placeholder="Title / authors / keywords"
         />
         <button
           type="submit"
-          className="rounded-full border border-amber/60 px-4 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-amber hover:bg-amber/10"
+          className="rounded-full border border-amber/60 px-5 py-2 font-mono text-[0.82rem] uppercase tracking-[0.2em] text-amber hover:bg-amber/10"
         >
           Execute
         </button>
@@ -150,16 +150,16 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
                 role="option"
                 aria-selected={index === activeIndex}
                 className={
-                  'flex w-full items-center justify-between gap-3 px-4 py-3 font-mono text-[0.62rem] uppercase tracking-[0.26em] transition-colors ' +
+                  'flex w-full items-center justify-between gap-4 px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.2em] transition-colors ' +
                   (index === activeIndex
-                    ? 'bg-amber/10 text-[#d6e3e0] shadow-[0_0_18px_rgba(244,159,66,0.22)]'
-                    : 'text-mid hover:bg-amber/10 hover:text-[#d6e3e0]')
+                    ? 'bg-amber/10 text-[#f1f7f5] shadow-[0_0_18px_rgba(244,159,66,0.22)]'
+                    : 'text-[#8fa1ac] hover:bg-amber/10 hover:text-[#f1f7f5]')
                 }
                 onClick={() => handleSuggestionSelect(item.title)}
                 onMouseEnter={() => setActiveIndex(index)}
               >
                 <span className="truncate text-left">{item.title}</span>
-                <span className="text-dim">{item.year || '—'}</span>
+                <span className="text-[#7a8b94]">{item.year || '—'}</span>
               </button>
             </li>
           ))}
