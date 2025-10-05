@@ -308,6 +308,20 @@ class ArticleRecord:
         return dataclasses.asdict(self)
 
 
+def normalize_json_dir(json_dir: Path) -> Path:
+    """Ensure dossiers are written inside a ``papers`` directory."""
+
+    if json_dir.name == "papers":
+        return json_dir
+
+    candidate = json_dir / "papers"
+    if json_dir == Path("data"):
+        logger.info("Redirecting JSON output from %s to %s", json_dir, candidate)
+        return candidate
+
+    return json_dir
+
+
 def ensure_directories(raw_dir: Path, json_dir: Path) -> None:
     logger.debug("Ensuring directories exist: raw_dir=%s json_dir=%s", raw_dir, json_dir)
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -631,6 +645,7 @@ def ingest(
     llm_model: str = "gpt-4o-mini",
     llm_enabled: Optional[bool] = None,
 ) -> List[ArticleRecord]:
+    json_dir = normalize_json_dir(json_dir)
     ensure_directories(raw_dir, json_dir)
     session = make_session()
     rows = load_csv_rows(csv_path, limit=limit)
@@ -684,10 +699,11 @@ def main() -> None:
 
     llm_enabled = None if args.llm == "auto" else False
     try:
+        normalized_json_dir = normalize_json_dir(args.json_dir)
         records = ingest(
             csv_path=args.csv,
             raw_dir=args.raw_dir,
-            json_dir=args.json_dir,
+            json_dir=normalized_json_dir,
             limit=args.limit,
             force=args.force,
             llm_model=args.llm_model,
@@ -697,7 +713,7 @@ def main() -> None:
         logger.exception("Fatal error during ingestion")
         raise SystemExit(1) from exc
 
-    logger.info("Ingested %d publications -> %s", len(records), args.json_dir)
+    logger.info("Ingested %d publications -> %s", len(records), normalized_json_dir)
 
 
 if __name__ == "__main__":
