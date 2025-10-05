@@ -58,8 +58,15 @@ const StackCard = ({ item, index }: StackCardProps) => {
         style={{ transform: `translate3d(${tilt.x}px, ${tilt.y}px, 0)` }}
       >
         <header className="mb-6">
-          <CornerBracket radius={6} size={18} offset={6} color="cyan" glow>
-            <div className="space-y-4">
+          <CornerBracket
+            radius={8}
+            size={22}
+            offset={10}
+            stroke={0.9}
+            color="cyan"
+            className="stack-card-corner -m-4 rounded-lg p-4"
+          >
+            <div className="relative z-[1] space-y-4">
               <div className="flex items-center justify-between font-meta text-[0.72rem] tracking-[0.24em] text-[color:var(--passive)] normal-case">
                 <span>Dossier {index.toString().padStart(3, '0')}</span>
                 <div className="flex items-center gap-3">

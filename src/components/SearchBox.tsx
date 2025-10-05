@@ -103,31 +103,22 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
 
   return (
     <div ref={containerRef} className="relative w-full max-w-xl">
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center gap-4 rounded-[3px] border border-[#d6e3e0]/18 bg-[#0b0d0f]/75 px-6 py-4 shadow-panel"
-      >
-        <span className="flex items-center gap-2 text-[#8fa1ac]">
-          <svg
-            aria-hidden="true"
-            className="h-5 w-5 text-[color:var(--accent-2)]"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+      <form onSubmit={handleSubmit} className="search-console">
+        <label className="search-console__label" htmlFor="archive-search">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path
-              d="M13.5 12.5L18 17"
+              d="M12.5 12.5L17.5 17.5"
               stroke="currentColor"
-              strokeWidth="1.6"
+              strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            <circle cx="8.75" cy="8.75" r="5.75" stroke="currentColor" strokeWidth="1.6" />
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M8.5 3V1.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M8.5 15V16.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
-          <label className="font-mono text-[0.78rem] uppercase tracking-[0.22em]" htmlFor="archive-search">
-            Query
-          </label>
-        </span>
+          <span>Query title / authors</span>
+        </label>
         <input
           id="archive-search"
           type="search"
@@ -140,14 +131,21 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           aria-expanded={open}
           aria-controls={open ? listboxId : undefined}
           aria-activedescendant={open && activeIndex >= 0 ? `${listboxId}-${suggestions[activeIndex]?.id}` : undefined}
-          className="flex-1 bg-transparent font-mono text-[1rem] uppercase tracking-[0.18em] text-[#f1f7f5] placeholder:text-[#8fa1ac] focus:outline-none"
+          className="search-console__input focus:outline-none"
           placeholder="Title / authors / keywords"
         />
-        <button
-          type="submit"
-          className="rounded-full border border-amber/60 px-5 py-2 font-mono text-[0.82rem] uppercase tracking-[0.2em] text-amber hover:bg-amber/10"
-        >
-          Execute
+        <button type="submit" className="search-console__cta">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 10H17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            <path
+              d="M11.5 5.5L17 10L11.5 14.5"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span>Execute</span>
         </button>
       </form>
       {open && suggestions.length > 0 ? (
@@ -155,7 +153,7 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
           id={listboxId}
           role="listbox"
           aria-label="Suggested dossiers"
-          className="absolute z-20 mt-2 max-h-72 w-full overflow-auto rounded-[3px] border border-[#d6e3e0]/12 bg-panel/95 backdrop-blur-xl text-left shadow-panel"
+          className="absolute z-20 mt-3 max-h-72 w-full overflow-auto border border-[#d6e3e0]/18 bg-[#05090d]/95 backdrop-blur-xl text-left shadow-[0_18px_44px_rgba(0,0,0,0.45)]"
         >
           {suggestions.map((item, index) => (
             <li
@@ -168,16 +166,16 @@ const SearchBox = ({ onSearch }: { onSearch: (term: string) => void }) => {
                 role="option"
                 aria-selected={index === activeIndex}
                 className={
-                  'flex w-full items-center justify-between gap-4 px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.2em] transition-colors ' +
+                  'flex w-full items-center justify-between gap-4 border-b border-[#0f161d] px-6 py-3 font-mono text-[0.78rem] uppercase tracking-[0.2em] transition-colors last:border-b-0 ' +
                   (index === activeIndex
-                    ? 'bg-amber/10 text-[#f1f7f5] shadow-[0_0_18px_rgba(244,159,66,0.22)]'
-                    : 'text-[#8fa1ac] hover:bg-amber/10 hover:text-[#f1f7f5]')
+                    ? 'bg-[rgba(0,179,255,0.12)] text-[#f1f7f5] shadow-[0_0_18px_rgba(0,179,255,0.18)]'
+                    : 'text-[#8fa1ac] hover:bg-[rgba(0,179,255,0.08)] hover:text-[#f1f7f5]')
                 }
                 onClick={() => handleSuggestionSelect(item.title)}
                 onMouseEnter={() => setActiveIndex(index)}
               >
                 <span className="truncate text-left">{item.title}</span>
-                <span className="text-[#7a8b94]">{item.year || '—'}</span>
+                <span className="text-[#6f828d]">{item.year || '—'}</span>
               </button>
             </li>
           ))}

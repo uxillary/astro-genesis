@@ -148,36 +148,36 @@ const Home = () => {
                 showCompass
                 color="mono"
                 crosshair="diamond"
-                className="absolute inset-0"
+                className="pointer-events-none absolute inset-0"
               >
                 <span className="text-xs tracking-[0.3em] text-[rgba(217,226,223,0.78)]">CALIBRATED</span>
               </ReticleOverlay>
-              <div className="relative">
+              <div className="relative mt-12 space-y-3">
                 <p className="font-meta text-[0.8rem] tracking-[0.22em] text-[color:var(--accent-1)]">BioArchive Intelligence</p>
-                <h1 className="mt-3 text-[2.6rem] text-[color:var(--white)] sm:text-[3rem]">Classified Ops Console</h1>
+                <h1 className="text-[2.6rem] text-[color:var(--white)] sm:text-[3rem]">Classified Ops Console</h1>
                 <p className="mt-4 max-w-2xl font-body text-[0.95rem] leading-relaxed text-[color:var(--mid)]">
                   Coordinate NASA&apos;s bio-intelligence archive. Triangulate organisms, platforms, and temporal signals to decode lost transmissions and brief mission teams with rapid clarity.
                 </p>
-              <PcbHeader
-                className="mt-6"
-                density={1}
-                traces={[
-                  { from: 'b-dossiers:right', to: 'b-cache:left', style: 'dotted', accent: 'cyan', signal: true },
-                  { from: 'b-cache:bottom', exit: 'bottom', style: 'solid', accent: 'amber' },
-                  { from: 'b-integrity:right', exit: 'right', style: 'solid', accent: 'red' }
-                ]}
-              >
-                <HudBadge id="b-dossiers" tone="cyan" label="Dossiers" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
-                <HudBadge
-                  id="b-cache"
-                  tone={dexieReady ? 'amber' : 'red'}
-                  label="Cache"
-                  value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>}
-                />
-                {indexQuery.isLoading ? <HudBadge id="b-sync" tone="cyan" label="Sync" value={<span>Updating</span>} /> : null}
-                {indexQuery.isError ? <HudBadge id="b-sync-error" tone="red" label="Sync" value={<span>Failed</span>} /> : null}
-                <HudBadge id="b-integrity" tone="cyan" label="Integrity" value={<span>{Math.round(integrity * 100)}%</span>} />
-              </PcbHeader>
+                <PcbHeader
+                  className="mt-6"
+                  density={1}
+                  traces={[
+                    { from: 'b-dossiers:right', to: 'b-cache:left', style: 'dotted', accent: 'cyan', signal: true },
+                    { from: 'b-cache:bottom', exit: 'bottom', style: 'solid', accent: 'amber' },
+                    { from: 'b-integrity:right', exit: 'right', style: 'solid', accent: 'red' }
+                  ]}
+                >
+                  <HudBadge id="b-dossiers" tone="cyan" label="Dossiers" value={<span>{results.length.toString().padStart(2, '0')}</span>} />
+                  <HudBadge
+                    id="b-cache"
+                    tone={dexieReady ? 'amber' : 'red'}
+                    label="Cache"
+                    value={<span>{dexieReady ? 'Dexie cache' : 'Memory only'}</span>}
+                  />
+                  {indexQuery.isLoading ? <HudBadge id="b-sync" tone="cyan" label="Sync" value={<span>Updating</span>} /> : null}
+                  {indexQuery.isError ? <HudBadge id="b-sync-error" tone="red" label="Sync" value={<span>Failed</span>} /> : null}
+                  <HudBadge id="b-integrity" tone="cyan" label="Integrity" value={<span>{Math.round(integrity * 100)}%</span>} />
+                </PcbHeader>
               </div>
             </div>
 

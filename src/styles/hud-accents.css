@@ -130,6 +130,18 @@
   filter: drop-shadow(0 0 3px rgba(85, 230, 165, 0.35));
 }
 
+.stack-card-corner {
+  position: relative;
+}
+
+.stack-card-corner .corner-bracket__svg path {
+  opacity: 0.32;
+}
+
+.stack-card-corner .corner-bracket__svg {
+  mix-blend-mode: screen;
+}
+
 .tick-ruler {
   position: relative;
   display: inline-flex;
