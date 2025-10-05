@@ -41,6 +41,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3901686/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3901686/pdf/pone.0086485.pdf"
   },
+  "ai_summary": "This study investigates how gravity and spaceflight affect immune responses in Drosophila, focusing on the Toll signaling pathway, which is crucial for fighting infections. Given that human immune function deteriorates in microgravity, understanding these mechanisms is vital for astronaut health. The researchers exposed Drosophila to hypergravity conditions and assessed their survival after infection with the pathogenic fungus Beauveria bassiana. Results showed that hypergravity significantly enhanced survival rates across various fly strains, suggesting that increased gravitational forces may bolster immune responses. Conversely, spaceflight altered gene transcription related to immune function, indicating that microgravity may impair these responses. These findings highlight the complex interplay between gravity and immune function, underscoring the need for further research to develop effective countermeasures for maintaining astronaut health during long-duration space missions. Understanding these biological responses is critical for ensuring the safety and well-being of future space explorers.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

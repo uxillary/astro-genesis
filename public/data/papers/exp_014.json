@@ -31,6 +31,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11500582/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11500582/pdf/plantbiotechnology-41-1-23.1214a.pdf"
   },
+  "ai_summary": "This study investigates a novel protein in *Arabidopsis thaliana*, named AtGTLP (Arabidopsis thaliana Glycosyl Transferase-Like Protein), which is predicted to function as a glycosyltransferase. The research focused on the protein's subcellular localization, particularly its interaction with the trans-Golgi network-localized Qa-SNARE, SYNTAXIN OF PLANTS 43. Using fluorescence microscopy, the authors established that AtGTLP predominantly localizes to the Golgi apparatus, featuring a type II membrane topology with a single transmembrane helix and a globular C-terminal domain. Despite the absence of observable phenotypic differences in atgtlp−/− mutants, the findings suggest that AtGTLP may belong to an uncharacterized family of fucosyltransferases in plants. Understanding the role of AtGTLP enhances our knowledge of membrane trafficking and glycosylation processes, which are crucial for plant development and could have implications for biotechnological applications and space biosciences, where plant resilience and adaptation in extraterrestrial environments are of interest.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

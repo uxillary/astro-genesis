@@ -32,6 +32,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4095884/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4095884/pdf/2044-5040-4-13.pdf"
   },
+  "ai_summary": "This study investigates the role of γ-sarcoglycan in mechanotransduction signaling within skeletal muscle, particularly focusing on p70S6 kinase (p70S6K) responses to mechanical stretch. The research highlights that the absence of γ-sarcoglycan, a component of the dystrophin glycoprotein complex, leads to significant alterations in signaling pathways that are crucial for muscle function. Using C2C12 myotubes and muscle samples from both wild-type and γ-sarcoglycan-null mice, the authors found that stretching induced a robust activation of p70S6K in normal muscle, whereas this response was absent in γ-sarcoglycan-null samples. Notably, while p70S6K activation was calcium-independent in γ-sarcoglycan-null muscles, it remained elevated even under conditions that typically reduce its activation. These findings suggest that γ-sarcoglycan is essential for the normal mechanotransduction response, and its absence disrupts load-sensing mechanisms, potentially contributing to the pathophysiology of muscular dystrophies. This research has implications for understanding muscle degeneration and developing targeted therapies in space biosciences and beyond.",
   "access": [
     "PEER-REVIEWED",
     "MUSCULOSKELETAL ADAPTATION"

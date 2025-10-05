@@ -32,6 +32,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3289768/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3289768/pdf/nihms347401.pdf"
   },
+  "ai_summary": "This study investigates the modulation of the MscL mechanosensitive channel, a bacterial protein that protects cells from lysis during osmotic stress. MscL's ability to be genetically modified positions it as a potential nanovalve for applications in microelectronics and targeted drug delivery. The researchers explored three methods to adjust the channel's conductance: shortening the linker between the transmembrane and cytoplasmic domains, cross-linking, and heavy metal coordination. Their findings reveal that these modifications effectively reduce channel conductance, with some changes being reversible. Notably, the stability of the cytoplasmic bundle remains intact during channel gating, suggesting that the MscL can be engineered to create smaller pore sizes. This research not only enhances our understanding of mechanosensitive channels but also opens avenues for developing more adaptable biosensors and nanotechnology devices, which could have significant implications for space biosciences and other fields requiring precise control of molecular transport.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

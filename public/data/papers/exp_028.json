@@ -31,6 +31,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10789781/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10789781/pdf/41598_2024_Article_51756.pdf"
   },
+  "ai_summary": "This study investigates the effects of galactic cosmic radiation (GCR) on DNA methylation patterns, focusing on how chromosomal positioning and epigenetic architecture influence cellular responses. Utilizing human bronchial epithelial cell data, researchers exposed cells to high-LET (56Fe, 28Si) and low-LET (X-ray) radiation. The results revealed that 56Fe significantly increases DNA methylation levels, while 28Si and X-ray radiation lead to transient decreases in methylation. Specifically, the study identified over 24,000 differentially methylated probes for various radiation types, highlighting the distinct epigenetic responses elicited by different radiation energies. The findings underscore the importance of nuclear chromatin architecture in mediating these responses, providing critical insights into the biological impacts of prolonged GCR exposure. This research is vital for understanding potential health risks associated with long-duration space missions, informing protective measures for astronauts and advancing the field of space biosciences.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

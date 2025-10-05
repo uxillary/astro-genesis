@@ -43,6 +43,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7787258/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7787258/pdf/nihms-1653536.pdf"
   },
+  "ai_summary": "This study investigates the impact of microgravity on cardiac function using Drosophila as a model organism, given the conservation of heart structure between flies and humans. Researchers exposed flies to microgravity aboard the International Space Station and observed significant cardiac constriction, myofibrillar remodeling, and reduced heart output. RNA sequencing of isolated hearts revealed decreased expression of sarcomeric and extracellular matrix genes alongside increased proteasomal gene expression, indicating disrupted proteostasis. Further analysis showed elevated proteasome aggregates associated with amyloid and polyglutamine deposits. Notably, in long-QT syndrome mutants, proteasomal gene expression increased in microgravity, albeit at lower levels than in wild-type flies. These findings highlight that prolonged microgravity induces cardiac remodeling and proteostatic stress, which are critical for understanding potential health risks for astronauts during long-duration space missions. This research provides insights into the fundamental biological responses of heart muscle in microgravity, informing future space bioscience studies and human health in space exploration.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

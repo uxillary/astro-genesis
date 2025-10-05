@@ -28,6 +28,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3177255/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3177255/pdf/514.pdf"
   },
+  "ai_summary": "This study investigates the role of TNO1, a protein interacting with the soluble N-ethylmaleimide-sensitive factor attachment protein receptor SYP41, in Arabidopsis thaliana. Researchers aimed to understand how TNO1 contributes to salt tolerance and vacuolar trafficking. Utilizing coimmunoprecipitation and immunofluorescence microscopy, TNO1 was localized to the trans-Golgi network (TGN). The tno1 mutant exhibited heightened sensitivity to various salts and osmotic stress, indicating a compromised stress response. Notably, the localization of SYP61, which plays a critical role in salt stress, was disrupted in the mutant. Additionally, the tno1 mutant showed impaired vacuolar protein trafficking, as evidenced by the secretion of vacuolar proteins to the apoplast and delayed formation of the brefeldin A compartment. These findings highlight TNO1's essential function in vesicle fusion and stress tolerance, providing insights that could inform strategies for enhancing plant resilience in extreme environments, including those encountered in space exploration.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

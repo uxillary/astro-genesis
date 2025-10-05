@@ -55,6 +55,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5587110/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5587110/pdf/pone.0183480.pdf"
   },
+  "ai_summary": "The International Space Station (ISS) National Laboratory is dedicated to studying the effects of space on life and physical systems, and to developing new science and technologies for space exploration. A key aspect of achieving these goals is to operate the ISS National Lab more like an Earth-based laboratory, conducting complex end-to-end experimentation, not limited to simple microgravity exposure. Towards that end NASA developed a novel suite of molecular biology laboratory tools, reagents, and methods, named WetLab-2, uniquely designed to operate in microgravity, and to process biological samples for real-time gene expression analysis on-orbit.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

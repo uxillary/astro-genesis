@@ -30,6 +30,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8396460/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8396460/pdf/ijms-22-09088.pdf"
   },
+  "ai_summary": "This study investigates how spaceflight affects the expression of genes related to oxidative stress and cell cycle regulation in the heart, addressing a critical gap in understanding cardiovascular changes during extended space missions. Mice were flown on the Space Shuttle Discovery for 15 days, with their cardiac tissue analyzed post-flight. The results revealed that spaceflight significantly altered the expression of 37 out of 168 examined genes. Notably, the transcription factor Nfe2l2 (Nrf2) was downregulated, while genes associated with oxidative stress, such as Nox1 and Ptgs2, showed increased expression. Additionally, cell cycle-related genes, including Cdkn1a (p21) and Myc, were upregulated. These molecular changes suggest a persistent state of oxidative stress and may contribute to cardiac dysfunction observed in astronauts. Understanding these mechanisms is crucial for developing countermeasures to protect cardiovascular health during long-duration spaceflight, ultimately aiding future exploration missions and enhancing astronaut safety.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

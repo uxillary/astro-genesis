@@ -34,6 +34,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9400218/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9400218/pdf/40168_2022_Article_1332.pdf"
   },
+  "ai_summary": "This study investigates antimicrobial resistance (AMR) within the microbiome of the International Space Station (ISS), a critical concern for long-duration space missions. Utilizing shotgun metagenomics data from the Microbial Tracking–1 project, researchers analyzed samples from various ISS locations over 12 months, focusing on 226 cultivable strains and metagenome-assembled genomes (MAGs). By employing a deep learning model, the study identified a broader range of AMR genes than traditional methods, revealing a significant presence of AMR in the bacterium Kalamiella piersonii during the last flight. Notably, strains of Enterobacter bugandensis and Bacillus cereus exhibited high resistance to beta-lactam antibiotics, confirmed through experimental validation. These findings underscore the potential risks posed by AMR in space environments, emphasizing the need for ongoing monitoring and strategies to mitigate microbial threats during future space exploration. The research enhances our understanding of the ISS microbiome and its implications for human health in extraterrestrial settings.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

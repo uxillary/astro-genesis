@@ -31,6 +31,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2998437/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2998437/pdf/pbio.1000555.pdf"
   },
+  "ai_summary": "This study investigates the oligomeric state of the mechanosensitive channel MscL from Staphylococcus aureus (SaMscL), a critical protein that senses membrane tension. Previous research indicated conflicting models, suggesting SaMscL could exist as a tetramer or a pentamer. Using a novel disulfide-trapping technique, the researchers determined that SaMscL predominantly forms pentamers in vivo, establishing this configuration as the physiologically relevant state. In vitro analyses revealed that detergent solubilization could alter the oligomeric state, shifting from pentamers to tetramers. These findings underscore the importance of environmental conditions on protein structure and function, which is crucial for understanding mechanosensation in bacteria and potentially in higher organisms. This research not only clarifies the structural biology of MscL but also highlights the implications for studying membrane proteins in various contexts, including space biosciences, where understanding cellular responses to mechanical forces is vital for long-duration missions.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

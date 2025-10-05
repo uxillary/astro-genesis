@@ -28,6 +28,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8716943/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8716943/pdf/fpls-12-777119.pdf"
   },
+  "ai_summary": "This review explores the critical role of the actin cytoskeleton in the growth of primary roots, which are essential for plant stability and nutrient acquisition. The authors highlight how efficient root elongation and bending rely on a complex interplay of environmental sensing, hormonal signaling, and growth responses, all mediated by the actin network. They discuss the influence of actin-binding proteins and plant hormones on root development, as well as the effects of actin-disrupting drugs. A key finding is the identification of longitudinally oriented actin bundles as vital for cell elongation, along with the actin cytoskeleton's involvement in protein trafficking and vacuolar reshaping. The review also emphasizes the feedback mechanisms between actin organization and root responses to light and gravity. Understanding these processes is crucial for advancing space biosciences, as it can inform strategies for optimizing plant growth in extraterrestrial environments, where resource availability and environmental conditions differ significantly from Earth.",
   "access": [
     "PEER-REVIEWED",
     "SPACE BOTANY"

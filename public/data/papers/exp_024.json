@@ -61,6 +61,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8441986/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8441986/pdf/nihms-1653539.pdf"
   },
+  "ai_summary": "This study investigates a microRNA (miRNA) signature linked to spaceflight, revealing critical insights for countermeasure development in space biosciences. Researchers identified a shared miRNA response in rodents and humans exposed to simulated short- and long-duration spaceflight conditions. Utilizing data from the NASA Twins Study, they confirmed the expression of specific miRNAs through advanced sequencing techniques. Notably, miR-125, miR-16, and let-7a were found to mitigate vascular damage induced by simulated deep space radiation. The study employed antagomirs to inhibit these miRNAs, demonstrating their physiological relevance by successfully rescuing damage in human 3D vascular constructs. These findings underscore the potential of targeting miRNA pathways to develop therapeutic strategies for protecting astronauts from the adverse effects of spaceflight, enhancing human health during long-duration missions. This research paves the way for future investigations into miRNA-based countermeasures, contributing significantly to the field of space biosciences.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

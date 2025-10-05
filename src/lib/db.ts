@@ -4,6 +4,7 @@ import type { CitationPoint, PaperDetail, PaperIndex } from './types';
 export type PaperRecord = PaperIndex & {
   sections?: PaperDetail['sections'];
   links?: PaperDetail['links'];
+  ai_summary?: string;
   cachedAt?: number;
 };
 
