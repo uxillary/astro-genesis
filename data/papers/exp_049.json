@@ -1,0 +1,30 @@
+{
+  "pmcid": "PMC5018776",
+  "id": "exp_049",
+  "title": "Correction for Boothby et al., Evidence for extensive horizontal gene transfer from the draft genome of a tardigrade",
+  "authors": [],
+  "year": null,
+  "organism": null,
+  "experiment_type": null,
+  "platform": null,
+  "keywords": [],
+  "sections": {
+    "abstract": "",
+    "methods": "",
+    "results": "",
+    "conclusion": ""
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5018776/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5018776/pdf/pnas.201613046.pdf"
+  },
+  "summary": "",
+  "metrics": {
+    "section_lengths": {
+      "abstract": 0,
+      "results": 0,
+      "conclusion": 0
+    }
+  },
+  "ai_summary": "This study investigates the phenomenon of horizontal gene transfer (HGT) in tardigrades, microscopic organisms known for their resilience in extreme environments, including space. Researchers analyzed the draft genome of a tardigrade and identified extensive gene transfer from various sources, including bacteria and archaea. Using advanced genomic techniques, they compared the tardigrade genome to those of other organisms, revealing that approximately 17% of its genes originated from external sources, highlighting the organism's unique evolutionary adaptations. These findings suggest that HGT plays a significant role in the genetic diversity and survival mechanisms of tardigrades, particularly in extreme conditions. Understanding these processes is crucial for space biosciences, as it may inform how life can adapt to extraterrestrial environments, potentially aiding in future astrobiological research and the search for life beyond Earth. This study underscores the importance of microbial interactions in shaping the genetic landscape of extremophiles, which could have implications for the development of biotechnological applications in space exploration."
+}

@@ -1,0 +1,50 @@
+{
+  "pmcid": "PMC3190158",
+  "id": "exp_044",
+  "title": "The oligomeric state of the truncated mechanosensitive channel of large conductance shows no variance in vivo",
+  "authors": [
+    "Irene Iscla",
+    "Robin Wray",
+    "Paul Blount"
+  ],
+  "year": null,
+  "organism": "Mus musculus",
+  "experiment_type": "Proteomics",
+  "platform": "Space Shuttle",
+  "keywords": [
+    "aureus",
+    "mscl",
+    "was",
+    "channel",
+    "protein",
+    "has",
+    "c-terminal",
+    "used"
+  ],
+  "sections": {
+    "abstract": "The mechanosensitive channel of large conductance (MscL) from E. coli serves as an emergency release valve allowing the cell to survive acute osmotic downshock. It is one of the best studied mechanosensitive channels and serves as a paradigm for how a protein can sense and respond to membrane tension. Two MscL crystal structures of the orthologs M. tuberculosis and S. aureus have been solved showing pentameric and tetrameric structures, respectively. Several studies followed to understand whether the discrepancy in their stoichiometry was a species difference or a consequence of the protein manipulation for crystallization. Two independent studies now agree that the full-length S. aureus MscL is actually a pentamer, not tetramer. While detergents appear to play a role in modifying the oligomeric state of the protein, a cytoplasmic helical bundle has also been implicated. Here, we evaluate the role of the C-terminal region of S. aureus MscL in the oligomerization of the channel in native membranes by using an in vivo disulfide-trapping technique. We find that the oligomeric state of S. aureus MscLs with different C-terminal truncations, including the one used to obtain the tetrameric S. aureus MscL crystal structure, are pentamers in vivo . Thus, the C-terminal domain of the S. aureus protein only plays a critical role in the oligomeric state of the SaMscL protein when it is solubilized in detergent. Keywords: mechanosensitive channel, oligomerization, detergent solubilization, stoichiometry, disulfide trapping",
+    "methods": "Molecular biology FL S. aureus MscL and the FL L10C/M91C S. aureus MscL mutant were cloned into pET21a vector, which has a His-tag at the c-terminal end. Truncated S. aureus MscL mutants were produced by polymerase chain reaction (PCR) by adding stop codons at residues A96 (Δ95), A100 (Δ99), E104 (Δ103), and L108 (Δ107). Constructs were cloned into pet15b vector at NdeI/BamHI and transformed into PB116s. 14 All constructs from the pet15b vector have a his-tag at the N-terminal. In vivo disulfide trapping Overnight cultures were diluted 1:100 and grown 1 h at 37°C in Luria-Bertani (LB) media (∼410 mOsmolar). LB with 1 M NaCl was then added for a final concentration of 0.5 M . Cultures were then induced with 1 m M isopropyl-beta-D-thiogalactopyranoside (IPTG) for 1 h when an optical density (OD) 600 of 0.2 was reached. Cultures were either Mock shocked (0.5 M NaCl LB) or shocked (water with 1.5 μ M copper phenanthroline) at a 1:20 dilution for 15 min at 37°C. Samples were spun down at 4000 g for 20 min and immediately resuspended in nonreducing sample buffer, adjusted for final OD, and run on a 4–20% gel (Bio-Rad) for western blot analysis. 14 Note that in less than 5 min, the samples are collected and loaded on the gel. The primary antibody anti-Penta His (Qiagen) was used at 1:4000 and the secondary Goat anti-Mouse horseradish peroxidase (HRP) (Bio-Rad) at 1:100,000. Blots were developed using HRP substrate (Millipore) and exposed to film. Electrophysiology E. coli giant spheroplasts were generated and used in patch-clamp experiments as described previously. 15 Excised, inside-out patches were examined at room temperature under symmetrical conditions using a buffer containing 200 m M KCl, 90 m M MgCl 2 , 10 m M CaCl 2 , and 5 m M HEPES pH 6 (Sigma, St. Louis, MO). To study redox effects in channel activity H 2 O 2 1–3% v/v or DTT 1-10 m M (Sigma, St. Louis, MO) were added to the bath. A previous study has demonstrated that this treatment has no detrimental effect on channel function; in fact, one cysteine mutant was shown to increase activity. 16 Recordings were performed at −20 mV (positive pipette). Data were acquired at a sampling rate of 20 kHz with a 5-kHz filter using an AxoPatch 200B amplifier in conjunction with Axoscope software (Axon Instruments, Union City, CA). A piezoelectric pressure transducer (World Precision Instruments, Sarasota, FL) was used to monitor the pressure throughout the experiments. Data analysis was performed using Clampfit9 from Pclamp9 (Axon Instruments).",
+    "results": "",
+    "conclusion": ""
+  },
+  "links": {
+    "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3190158/",
+    "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3190158/pdf/pro0020-1638.pdf"
+  },
+  "summary": "The mechanosensitive channel of large conductance (MscL) from E. coli serves as an emergency release valve allowing the cell to survive acute osmotic downshock. It is one of the best studied mechanosensitive channels and serves as a paradigm for how a protein can sense and respond to membrane tension.",
+  "metrics": {
+    "keyword_counts": {
+      "aureus": 0,
+      "mscl": 0,
+      "was": 0,
+      "channel": 0,
+      "protein": 0
+    },
+    "section_lengths": {
+      "abstract": 184,
+      "results": 0,
+      "conclusion": 184
+    }
+  },
+  "ai_summary": "This study investigates the oligomeric state of the mechanosensitive channel of large conductance (MscL) from Staphylococcus aureus, a protein crucial for cell survival during osmotic stress. Previous research indicated conflicting oligomeric structures—pentameric and tetrameric—based on crystallization methods. To clarify this, the authors employed an in vivo disulfide-trapping technique to analyze various C-terminal truncations of MscL. The findings confirm that the full-length S. aureus MscL exists as a pentamer in native membranes, aligning with recent studies that challenge earlier interpretations of its tetrameric form. This research highlights the influence of protein manipulation on oligomeric state determinations and underscores the importance of studying proteins in their native environments. Understanding the structural dynamics of MscL is vital for advancing space biosciences, as it may inform strategies for engineering resilient microbial life for long-duration space missions, where osmotic challenges are prevalent."
+}
