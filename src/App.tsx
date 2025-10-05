@@ -89,9 +89,20 @@ const AppContent = () => {
       <div className="relative z-10 flex min-h-screen flex-col">
         <header className="px-6 py-4 border-b border-[#1a1f24]/70 bg-[#10161d]/80 shadow-[0_24px_60px_rgba(0,0,0,0.55)] backdrop-blur-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="rounded-full border border-red/50 bg-red/10 px-4 py-1 text-[0.55rem] font-mono uppercase tracking-[0.32em] text-red shadow-[0_0_14px_rgba(255,86,72,0.25)]">
-                BioArchive Intelligence
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <div className="relative overflow-hidden rounded-lg border border-[#1f2a33] bg-[#0b1118]/90 px-5 py-3 text-left shadow-[0_0_32px_rgba(9,15,22,0.55)]">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(85,230,165,0.28),_transparent_65%)]" />
+                <div className="relative flex flex-col leading-tight">
+                  <span className="font-mono text-[0.52rem] uppercase tracking-[0.5em] text-[#55e6a5]/70">
+                    Mission Control // A.G-01
+                  </span>
+                  <span className="font-semibold uppercase tracking-[0.44em] text-[#f5fbfa] sm:text-[0.95rem]">
+                    Astro Genesis
+                  </span>
+                  <span className="font-mono text-[0.5rem] uppercase tracking-[0.42em] text-[#f66a4d]">
+                    Bio Intelligence Archive
+                  </span>
+                </div>
               </div>
               <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#55e6a5]">
                 Offline-first classified ops console
