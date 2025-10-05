@@ -174,7 +174,7 @@ const Home = () => {
                 showCompass
                 color="mono"
                 crosshair="diamond"
-                className="pointer-events-none absolute inset-0"
+                className="pointer-events-none absolute inset-x-0 top-0 h-[220px]"
               >
                 <span className="text-xs tracking-[0.3em] text-[rgba(217,226,223,0.78)]">CALIBRATED</span>
               </ReticleOverlay>
