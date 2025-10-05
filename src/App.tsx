@@ -5,7 +5,7 @@ import BiosignalPulse from './components/BiosignalPulse';
 import InstallPrompt from './components/InstallPrompt';
 import HelpOverlay from './components/HelpOverlay';
 import CredentialOverlay from './components/CredentialOverlay';
-import SplashScreen from './components/SplashScreen';
+import UnifiedSplash from './components/splash/UnifiedSplash';
 import { useUiStore } from './lib/state';
 
 const Home = lazy(() => import('./routes/Home'));
@@ -35,7 +35,7 @@ const App = () => {
   }, []);
 
   if (!entered) {
-    return <SplashScreen onProceed={handleProceed} />;
+    return <UnifiedSplash onProceed={handleProceed} />;
   }
 
   return <AppContent />;
