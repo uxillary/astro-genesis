@@ -618,12 +618,12 @@ a:focus-visible {
     gap: 1.5rem;
     padding: 1.15rem 1.75rem;
     border-radius: 0;
-    border: 1px solid rgba(0, 179, 255, 0.45);
+    border: 1px solid rgba(0, 199, 255, 0.58);
     background:
-      linear-gradient(180deg, rgba(3, 12, 18, 0.92), rgba(7, 16, 22, 0.82))
+      linear-gradient(180deg, rgba(8, 22, 30, 0.95), rgba(10, 30, 40, 0.88))
       padding-box,
-      linear-gradient(135deg, rgba(0, 179, 255, 0.6), rgba(85, 230, 165, 0.32)) border-box;
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(12, 28, 36, 0.45);
+      linear-gradient(135deg, rgba(0, 199, 255, 0.72), rgba(85, 230, 165, 0.42)) border-box;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(18, 40, 52, 0.55);
     text-transform: uppercase;
   }
 
@@ -631,7 +631,7 @@ a:focus-visible {
     content: '';
     position: absolute;
     inset: 8px;
-    border: 1px dashed rgba(0, 179, 255, 0.18);
+    border: 1px dashed rgba(0, 179, 255, 0.1);
     pointer-events: none;
   }
 
@@ -640,15 +640,15 @@ a:focus-visible {
     align-items: center;
     gap: 0.65rem;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.24em;
-    color: rgba(217, 226, 223, 0.78);
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    color: rgba(223, 236, 232, 0.9);
   }
 
   .search-console__label svg {
     width: 18px;
     height: 18px;
-    color: rgba(0, 179, 255, 0.9);
+    color: rgba(0, 214, 255, 0.9);
   }
 
   .search-console__input {
@@ -656,13 +656,13 @@ a:focus-visible {
     background: transparent;
     font-family: var(--font-mono);
     font-size: 1rem;
-    letter-spacing: 0.22em;
-    color: rgba(241, 247, 245, 0.94);
+    letter-spacing: 0.2em;
+    color: rgba(252, 255, 254, 0.98);
     text-transform: uppercase;
   }
 
   .search-console__input::placeholder {
-    color: rgba(135, 164, 176, 0.78);
+    color: rgba(163, 194, 206, 0.85);
   }
 
   .search-console__cta {
