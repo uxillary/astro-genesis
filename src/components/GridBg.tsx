@@ -33,7 +33,14 @@ const GridBg = () => {
         viewBox="0 0 960 180"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <text x="12" y="28" fill="#55e6a5" fontFamily="'IBM Plex Mono', monospace" fontSize="16" letterSpacing={6}>
+        <text
+          x="12"
+          y="28"
+          fill="rgba(85, 230, 165, 0.6)"
+          fontFamily="'IBM Plex Mono', monospace"
+          fontSize="14"
+          letterSpacing={5}
+        >
           POINTERS
         </text>
         <g transform="translate(0 48)" fill="none" stroke="#d6e3e0" strokeWidth="2">
@@ -54,7 +61,14 @@ const GridBg = () => {
         viewBox="0 0 1040 220"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <text x="18" y="26" fill="#55e6a5" fontFamily="'IBM Plex Mono', monospace" fontSize="16" letterSpacing={6}>
+        <text
+          x="18"
+          y="26"
+          fill="rgba(85, 230, 165, 0.58)"
+          fontFamily="'IBM Plex Mono', monospace"
+          fontSize="14"
+          letterSpacing={5}
+        >
           LINE CALLOUT
         </text>
         <CalloutPanel x={60} y={60} width={260} label="ACCESS DENIED" />
@@ -67,7 +81,14 @@ const GridBg = () => {
         viewBox="0 0 1040 240"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <text x="18" y="30" fill="#55e6a5" fontFamily="'IBM Plex Mono', monospace" fontSize="16" letterSpacing={6}>
+        <text
+          x="18"
+          y="30"
+          fill="rgba(85, 230, 165, 0.55)"
+          fontFamily="'IBM Plex Mono', monospace"
+          fontSize="14"
+          letterSpacing={5}
+        >
           GRID
         </text>
         <g transform="translate(60 52)" stroke="#d6e3e0" strokeOpacity="0.25" strokeWidth="1" fill="none">
@@ -276,10 +297,10 @@ const CalloutPanel = ({ x, y, width, label, flip, skew }: CalloutPanelProps) => 
         x={x + width / 2}
         y={y + 48}
         textAnchor="middle"
-        fill="#d6e3e0"
+        fill="rgba(214, 227, 224, 0.65)"
         fontFamily="'IBM Plex Mono', monospace"
-        fontSize="20"
-        letterSpacing="10"
+        fontSize="16"
+        letterSpacing="7"
       >
         {label}
       </text>
