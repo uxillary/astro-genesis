@@ -13,6 +13,7 @@ type HudBadgeProps = {
   pressed?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  tooltip?: string;
 };
 
 const toneClass: Record<Tone, string> = {
@@ -27,7 +28,7 @@ const toneClass: Record<Tone, string> = {
 };
 
 const HudBadge = forwardRef<HTMLButtonElement, HudBadgeProps>(
-  ({ id, label, value, tone = 'amber', compact, pressed, onClick, className }, ref) => {
+  ({ id, label, value, tone = 'amber', compact, pressed, onClick, className, tooltip }, ref) => {
     const interactive = typeof onClick === 'function';
     return (
       <button
@@ -43,6 +44,7 @@ const HudBadge = forwardRef<HTMLButtonElement, HudBadgeProps>(
           className
         )}
         onClick={onClick}
+        title={tooltip}
         aria-pressed={typeof pressed === 'boolean' ? pressed : undefined}
         aria-disabled={interactive ? undefined : true}
         tabIndex={interactive ? undefined : -1}
