@@ -104,12 +104,12 @@ const AppContent = () => {
                   </span>
                 </div>
               </div>
-              <span className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#55e6a5]">
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-[#55e6a5]">
                 Offline-first classified ops console
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <nav className="flex gap-4 text-[0.6rem] font-mono uppercase tracking-[0.28em] text-[#7a8b94]">
+              <nav className="flex gap-4 text-[0.68rem] font-mono uppercase tracking-[0.2em] text-[#7a8b94]">
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
@@ -138,7 +138,7 @@ const AppContent = () => {
               </nav>
               <button
                 type="button"
-                className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-4 py-1 font-mono text-[0.6rem] uppercase tracking-[0.3em] text-[#7a8b94] shadow-[0_0_22px_rgba(0,0,0,0.45)] transition-colors hover:text-[#d6e3e0]"
+                className="rounded-full border border-[#1a1f24] bg-[#131d26]/80 px-4 py-1 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[#7a8b94] shadow-[0_0_22px_rgba(0,0,0,0.45)] transition-colors hover:text-[#d6e3e0]"
                 onClick={() => toggleMode()}
               >
                 {mode === 'hud' ? 'Switch to MONO' : 'Switch to HUD'}
@@ -155,7 +155,7 @@ const AppContent = () => {
             </Routes>
           </Suspense>
         </main>
-        <footer className="px-6 py-4 border-t border-[#1a1f24]/70 bg-[#0f141a]/80 text-[0.55rem] font-mono uppercase tracking-[0.3em] text-[#7a8b94]">
+        <footer className="px-6 py-4 border-t border-[#1a1f24]/70 bg-[#0f141a]/80 text-[0.6rem] font-mono uppercase tracking-[0.22em] text-[#7a8b94]">
           Signal integrity nominal // Press C for credentials · Press ? for help overlay
         </footer>
       </div>
