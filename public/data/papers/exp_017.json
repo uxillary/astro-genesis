@@ -28,6 +28,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5387210/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5387210/pdf/12870_2017_Article_1024.pdf"
   },
+  "ai_summary": "This study investigates the role of the TNO1 protein, localized at the trans-Golgi network, in regulating root skewing in *Arabidopsis thaliana*. The researchers aimed to understand how this protein influences root movement, which is crucial for plants to optimize nutrient acquisition and anchorage. They utilized knockout mutants of the TNO1 gene and observed that these mutants exhibited increased root skewing and altered epidermal cell file rotation. Notably, while the skewing intensified with microtubule stabilization, it remained unaffected by microtubule destabilization, indicating a complex relationship between TNO1 and microtubule dynamics. Furthermore, the study revealed that TNO1 is essential for maintaining cell morphology in mature root regions. These findings underscore the importance of TNO1 and the trans-Golgi network in root development, providing insights that could enhance our understanding of plant adaptability in varying environments, which is particularly relevant for space biosciences as we explore plant growth beyond Earth.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

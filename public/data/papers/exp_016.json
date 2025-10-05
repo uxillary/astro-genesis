@@ -28,6 +28,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4642138/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4642138/pdf/fpls-06-00969.pdf"
   },
+  "ai_summary": "This study investigates the role of the trans-Golgi network protein TNO1 in auxin transport and root development in Arabidopsis thaliana. Researchers found that the tno1 mutant exhibited significant defects in lateral root emergence and gravitropic responses, indicating that TNO1 is crucial for these processes. Specifically, the mutant roots showed delayed auxin transport during gravistimulation and reduced auxin asymmetry at the tips of elongating lateral roots. Despite these defects, endocytosis to the trans-Golgi network was unaffected, suggesting that TNO1's role is specific to auxin-related signaling rather than general trafficking issues. The findings highlight TNO1's importance in mediating auxin-dependent root architecture, which is vital for plant adaptation and growth. Understanding these mechanisms is essential for advancing space biosciences, particularly in developing strategies for plant growth in microgravity environments, where efficient root development and nutrient transport are critical for sustaining life.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

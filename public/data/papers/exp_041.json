@@ -52,6 +52,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11579474/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11579474/pdf/41598_2024_Article_79315.pdf"
   },
+  "ai_summary": "This study explored the effects of varying gravitational conditions—microgravity, lunar gravity (1/6 g), and Earth gravity (1 g)—on the skeletal and immune systems of C57BL/6J mice during a 25-35 day mission aboard the International Space Station. Researchers aimed to understand how these environments impact bone density, thymus health, and immune function. Key findings revealed that while microgravity led to significant bone density loss and thymus atrophy, recovery was observed when mice were subjected to 1 g, with partial recovery under lunar gravity. Gene expression related to bone health and immune response showed alterations, indicating that lunar gravity can mitigate some adverse effects of microgravity. Notably, while histological changes were absent in the spleen, gene expression variations were detected. These results highlight the importance of gravitational conditions in space travel, providing insights that could inform future human space missions and the development of countermeasures to protect astronaut health in long-duration spaceflights.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

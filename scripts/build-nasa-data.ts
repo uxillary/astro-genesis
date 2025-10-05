@@ -25,6 +25,7 @@ type RawPaper = {
   };
   links?: Record<string, string>;
   summary?: string;
+  ai_summary?: string;
   metrics?: {
     keyword_counts?: KeywordCounts;
   };
@@ -53,6 +54,7 @@ type PaperDetail = PaperIndex & {
     results: string;
     conclusion: string;
   };
+  ai_summary: string;
   links: {
     taskbook?: string;
     osdr?: string;
@@ -181,6 +183,7 @@ const toDetail = (paper: RawPaper): PaperDetail => {
     keywords,
     sections: ensureSections(paper.sections),
     links: mapLinks(paper.links),
+    ai_summary: paper.ai_summary ?? paper.summary ?? '',
     access: deriveAccessTags(paper),
     citations_by_year: [],
     confidence: computeConfidence(paper),

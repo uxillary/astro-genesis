@@ -34,6 +34,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5666799/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5666799/pdf/ijms-18-02117.pdf"
   },
+  "ai_summary": "This study investigates the impact of space-like radiation on bone health, specifically focusing on how different types and doses of ionizing radiation affect osteoblastogenesis in mice. Researchers hypothesized that exposure to radiation would impair the formation of bone cells (osteoblasts) in a manner dependent on the type of ionizing radiation and its dose. Male C57BL6/J mice were exposed to low-linear-energy-transfer (LET) protons and high-LET iron ions at varying doses. Results indicated that high doses (200 cGy) of both radiation types significantly impaired osteoblastogenesis and altered bone microarchitecture, while lower doses had a modulating effect on redox-related gene expression. These findings highlight the potential risks of space radiation on skeletal health, particularly as it relates to aging in astronauts. Understanding these mechanisms is crucial for developing countermeasures to protect bone health during long-duration space missions, thereby enhancing astronaut safety and mission success.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

@@ -34,6 +34,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9576569/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9576569/pdf/main.pdf"
   },
+  "ai_summary": "This study investigates the effects of spaceflight on muscle and liver tissues in mice, focusing on gene expression related to muscle atrophy and metabolic processes. Researchers analyzed the transcriptomes of liver and quadriceps from mice exposed to 37 days of microgravity during the NASA Rodent Research 1 mission. They discovered that lipid metabolism was significantly disrupted in both organs, with specific gene expression patterns in the liver linked to energy conservation mechanisms that influenced muscle gene expression related to atrophy. Notably, the study identified a correlation between impaired lipid metabolism and muscle atrophy, suggesting that these processes are interconnected during spaceflight. The findings highlight the physiological challenges posed by microgravity and suggest that dietary interventions could mitigate these effects, which is crucial for long-term human space exploration. Understanding these metabolic interactions is essential for developing strategies to preserve astronaut health in future missions.",
   "access": [
     "PEER-REVIEWED",
     "ISS",
