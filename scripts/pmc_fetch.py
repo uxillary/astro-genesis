@@ -1,12 +1,37 @@
 """Utilities for downloading PMC articles listed in CSV files."""
 from __future__ import annotations
 
+import argparse
 import csv
+import logging
 import re
+import sys
 from pathlib import Path
 from typing import Iterator, Union
 
 PMC_PATTERN = re.compile(r"PMC\d+", re.IGNORECASE)
+
+
+logger = logging.getLogger(__name__)
+
+
+def configure_logging(verbosity: int = 0, quiet: bool = False) -> None:
+    """Configure logging for CLI usage."""
+
+    if quiet:
+        level = logging.WARNING
+    else:
+        level = logging.INFO
+        if verbosity >= 1:
+            level = logging.DEBUG
+
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter("%(levelname)s %(name)s: %(message)s"))
+
+    root_logger = logging.getLogger()
+    root_logger.handlers.clear()
+    root_logger.setLevel(level)
+    root_logger.addHandler(handler)
 
 
 def iter_pmcids_from_csv(csv_path: Union[str, Path]) -> Iterator[str]:
@@ -19,7 +44,17 @@ def iter_pmcids_from_csv(csv_path: Union[str, Path]) -> Iterator[str]:
     """
 
     path = Path(csv_path)
-    with path.open(newline="", encoding="utf-8") as handle:
+    logger.info("Scanning CSV for PMCIDs: %s", path)
+    try:
+        handle = path.open(newline="", encoding="utf-8")
+    except FileNotFoundError:
+        logger.error("CSV file %s not found", path)
+        raise
+    except OSError as exc:
+        logger.error("Unable to open %s: %s", path, exc)
+        raise
+
+    with handle:
         reader = csv.DictReader(handle)
         fieldnames = reader.fieldnames or []
 
@@ -44,9 +79,10 @@ def iter_pmcids_from_csv(csv_path: Union[str, Path]) -> Iterator[str]:
                 pmcid = _extract_pmcid_from_fallback(row, idx)
 
             if pmcid:
+                logger.debug("Row %d yielded PMCID %s", idx, pmcid)
                 yield pmcid
             else:
-                print(f"[warn] Skipping row {idx}: no PMCID detected")
+                logger.warning("Skipping row %d: no PMCID detected", idx)
 
 
 def _extract_pmcid_from_fallback(row: dict[str, object], idx: int) -> str | None:
@@ -62,10 +98,39 @@ def _extract_pmcid_from_fallback(row: dict[str, object], idx: int) -> str | None
             match = PMC_PATTERN.search(text)
             if match:
                 column_label = column_name.strip() or "link"
-                print(f"[info] Extracted PMCID from {column_label} column for row {idx}")
+                logger.info("Extracted PMCID from %s column for row %d", column_label, idx)
                 return match.group(0).upper()
 
     return None
 
 
 __all__ = ["iter_pmcids_from_csv"]
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="List PMCIDs discovered in a CSV file")
+    parser.add_argument("csv", type=Path, help="Path to the CSV file containing PMC references")
+    parser.add_argument("--limit", type=int, default=None, help="Limit the number of PMCIDs emitted")
+    parser.add_argument("-v", "--verbose", action="count", default=0, help="Increase logging verbosity (use -vv for debug)")
+    parser.add_argument("--quiet", action="store_true", help="Only show warnings and errors")
+    args = parser.parse_args()
+
+    configure_logging(args.verbose, args.quiet)
+    logger.debug("CLI arguments: %s", args)
+
+    emitted = 0
+    try:
+        for pmcid in iter_pmcids_from_csv(args.csv):
+            print(pmcid)
+            emitted += 1
+            if args.limit and emitted >= args.limit:
+                break
+    except Exception as exc:
+        logger.exception("Failed to extract PMCIDs from %s", args.csv)
+        raise SystemExit(1) from exc
+
+    logger.info("Emitted %d PMCIDs from %s", emitted, args.csv)
+
+
+if __name__ == "__main__":
+    main()

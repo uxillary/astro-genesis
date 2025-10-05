@@ -22,8 +22,10 @@ from __future__ import annotations
 import argparse
 import dataclasses
 import json
+import logging
 import os
 import re
+import sys
 from collections import Counter
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -34,6 +36,9 @@ import requests
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter, Retry
 from urllib.parse import urljoin
+
+
+logger = logging.getLogger(__name__)
 
 try:  # Optional dependency for CSV parsing
     import pandas as pd
@@ -84,6 +89,25 @@ def _load_local_env() -> None:
 
 
 _load_local_env()
+
+
+def configure_logging(verbosity: int = 0, quiet: bool = False) -> None:
+    """Configure root logging for CLI usage."""
+
+    if quiet:
+        level = logging.WARNING
+    else:
+        level = logging.INFO
+        if verbosity >= 1:
+            level = logging.DEBUG
+
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter("%(levelname)s %(name)s: %(message)s"))
+
+    root_logger = logging.getLogger()
+    root_logger.handlers.clear()
+    root_logger.setLevel(level)
+    root_logger.addHandler(handler)
 
 
 PMC_BASE = "https://pmc.ncbi.nlm.nih.gov"
@@ -285,6 +309,7 @@ class ArticleRecord:
 
 
 def ensure_directories(raw_dir: Path, json_dir: Path) -> None:
+    logger.debug("Ensuring directories exist: raw_dir=%s json_dir=%s", raw_dir, json_dir)
     raw_dir.mkdir(parents=True, exist_ok=True)
     json_dir.mkdir(parents=True, exist_ok=True)
 
@@ -475,12 +500,22 @@ def load_csv_rows(csv_path: Path, limit: Optional[int] = None) -> List[Dict[str,
             "pandas is required to parse CSV files. Install with `pip install pandas`"
             f" (import error: {_PANDAS_IMPORT_ERROR})"
         )
-    df = pd.read_csv(csv_path)
+    logger.info("Loading CSV rows from %s", csv_path)
+    try:
+        df = pd.read_csv(csv_path)
+    except FileNotFoundError:
+        logger.error("CSV file %s was not found", csv_path)
+        raise
+    except Exception as exc:  # pragma: no cover - unexpected parsing error
+        logger.error("Failed to read %s: %s", csv_path, exc)
+        raise
     if limit:
         df = df.head(limit)
+        logger.debug("Limiting CSV rows to %d entries", limit)
     rows: List[Dict[str, object]] = []
     for _, row in df.iterrows():
         rows.append(row.to_dict())
+    logger.info("Loaded %d rows from %s", len(rows), csv_path)
     return rows
 
 
@@ -505,13 +540,20 @@ def fetch_raw_html(
 ) -> str:
     out_path = raw_dir / f"{pmcid}.html"
     if out_path.exists() and not force:
+        logger.info("Using cached HTML for %s", pmcid)
         return out_path.read_text(encoding="utf-8", errors="ignore")
 
     url = normalise_pmc_url(pmcid, source_url)
-    response = session.get(url, timeout=30)
-    response.raise_for_status()
+    logger.info("Fetching HTML for %s from %s", pmcid, url)
+    try:
+        response = session.get(url, timeout=30)
+        response.raise_for_status()
+    except Exception as exc:
+        logger.error("Network error while fetching %s: %s", pmcid, exc)
+        raise
     html = response.text
     out_path.write_text(html, encoding="utf-8")
+    logger.debug("Wrote raw HTML for %s to %s", pmcid, out_path)
     return html
 
 
@@ -576,6 +618,7 @@ def synthesize_record(
 def write_record(record: ArticleRecord, out_dir: Path) -> Path:
     out_path = out_dir / f"{record.id}.json"
     out_path.write_text(json.dumps(record.as_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
+    logger.debug("Persisted JSON dossier for %s to %s", record.pmcid, out_path)
     return out_path
 
 
@@ -594,23 +637,32 @@ def ingest(
     llm = OptionalLLM(model=llm_model, enabled=llm_enabled)
 
     if llm.reason:
-        print(f"[info] {llm.reason}")
+        logger.info(llm.reason)
 
     records: List[ArticleRecord] = []
+    logger.info(
+        "Beginning ingestion of %d rows from %s (force=%s)",
+        len(rows),
+        csv_path,
+        force,
+    )
     for idx, row in enumerate(rows, start=1):
         pmcid = derive_pmcid(row)
         if not pmcid:
-            print(f"[warn] Skipping row {idx}: no PMCID detected")
+            logger.warning("Skipping row %d: no PMCID detected", idx)
             continue
+        logger.info("Processing row %d -> %s", idx, pmcid)
         try:
             csv_url = extract_pmc_url_from_row(row)
             html = fetch_raw_html(pmcid, raw_dir, session, force=force, source_url=csv_url)
         except Exception as exc:
-            print(f"[error] Failed to fetch {pmcid}: {exc}")
+            logger.error("Failed to fetch %s: %s", pmcid, exc)
             continue
         record = synthesize_record(pmcid, idx, html, row, llm)
         write_record(record, json_dir)
+        logger.info("Wrote dossier %s for %s", record.id, pmcid)
         records.append(record)
+    logger.info("Finished ingestion: %d successful records", len(records))
     return records
 
 
@@ -623,20 +675,29 @@ def main() -> None:
     parser.add_argument("--force", action="store_true", help="Refetch HTML even if cached")
     parser.add_argument("--llm", choices=["auto", "off"], default="auto", help="Use OpenAI if configured ('auto') or disable ('off')")
     parser.add_argument("--llm-model", default="gpt-4o-mini", help="OpenAI model name when LLM is enabled")
+    parser.add_argument("-v", "--verbose", action="count", default=0, help="Increase logging verbosity (use -vv for debug)")
+    parser.add_argument("--quiet", action="store_true", help="Only show warnings and errors")
     args = parser.parse_args()
 
-    llm_enabled = None if args.llm == "auto" else False
-    records = ingest(
-        csv_path=args.csv,
-        raw_dir=args.raw_dir,
-        json_dir=args.json_dir,
-        limit=args.limit,
-        force=args.force,
-        llm_model=args.llm_model,
-        llm_enabled=llm_enabled,
-    )
+    configure_logging(args.verbose, args.quiet)
+    logger.debug("CLI arguments: %s", args)
 
-    print(f"Ingested {len(records)} publications -> {args.json_dir}")
+    llm_enabled = None if args.llm == "auto" else False
+    try:
+        records = ingest(
+            csv_path=args.csv,
+            raw_dir=args.raw_dir,
+            json_dir=args.json_dir,
+            limit=args.limit,
+            force=args.force,
+            llm_model=args.llm_model,
+            llm_enabled=llm_enabled,
+        )
+    except Exception as exc:
+        logger.exception("Fatal error during ingestion")
+        raise SystemExit(1) from exc
+
+    logger.info("Ingested %d publications -> %s", len(records), args.json_dir)
 
 
 if __name__ == "__main__":
