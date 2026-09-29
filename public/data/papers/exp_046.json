@@ -29,6 +29,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3508904/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3508904/pdf/chan-6-255.pdf"
   },
+  "ai_summary": "This study investigates the protein-protein interactions between the S1 region and the cytoplasmic interface of TM2 in the mechanosensitive channel MscL, which plays a crucial role in bacterial osmoregulation. Using an in vivo disulfide trapping assay on 143 double-cysteine mutants of E. coli MscL, researchers mapped interactions that occur as the channel transitions from a closed to an open state. The results revealed that the S1 and TM2 ci domains interact very efficiently, requiring minimal oxidizing agent to facilitate disulfide bond formation, indicating strong coupling between these regions during gating. This work enhances our understanding of how MscL senses mechanical stimuli and opens in response to osmotic changes, providing insights into the fundamental mechanisms of mechanotransduction in cells. Such knowledge is vital for advancing space biosciences, where understanding protein behavior under altered gravitational and osmotic conditions can inform the development of life-support systems and biotechnological applications in space exploration.",
   "access": [
     "PEER-REVIEWED",
     "Space Shuttle",

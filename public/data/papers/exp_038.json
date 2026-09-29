@@ -35,6 +35,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7010715/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7010715/pdf/fpls-11-00005.pdf"
   },
+  "ai_summary": "This study investigates how brassinosteroids, specifically epi-brassinolide (eBL), influence root gravitropism in maize (Zea mays) by altering filamentous-actin (F-actin) dynamics. Gravitropism is the process where roots grow downward in response to gravity, and the researchers hypothesized that eBL enhances this response similarly to the actin inhibitor latrunculin B (LatB). Using a two-dimensional clinostat to simulate microgravity, the team treated maize roots with either eBL or LatB and observed their growth patterns. Both treatments resulted in enhanced downward growth and persistent curvature under clinorotation, indicating that eBL affects root directionality by modifying F-actin organization, albeit less dramatically than LatB. These findings are significant for space biosciences, as understanding plant responses to altered gravitational conditions is crucial for future space agriculture and the sustainability of long-term human missions beyond Earth.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

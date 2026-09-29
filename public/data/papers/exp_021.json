@@ -31,6 +31,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6387434/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6387434/pdf/ijms-20-00661.pdf"
   },
+  "ai_summary": "This study investigates the long-term effects of space radiation on cardiovascular health, a growing concern for astronauts. Utilizing data from NASA's GeneLab database, researchers employed a systems biology approach to identify key molecular pathways influenced by space radiation. They compared microarray data from cardiomyocytes of male C57BL/6 mice exposed to simulated space radiation with human endothelial cells cultured on the International Space Station (ISS). The findings revealed that the FYN gene plays a pivotal role in the cardiovascular response to radiation, suggesting that initial oxidative stress is transient and leads to FYN upregulation, which subsequently reduces reactive oxygen species (ROS) levels. This protective mechanism highlights potential strategies for mitigating cardiovascular risks in astronauts. Understanding these molecular responses is crucial for developing countermeasures to safeguard astronaut health during long-duration space missions, ultimately enhancing the safety and success of future explorations beyond Earth.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

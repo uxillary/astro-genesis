@@ -29,24 +29,11 @@
 }
 
 .hud-badge {
-  background: rgba(8, 12, 16, 0.82);
+  background: rgba(10, 15, 20, 0.72);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   cursor: pointer;
-  color: rgba(214, 227, 224, 0.96);
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
   transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-}
-
-.hud-badge__label {
-  opacity: 0.92;
-  color: inherit;
-}
-
-.hud-badge__value {
-  color: rgba(244, 252, 251, 0.96);
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
 }
 
 .hud-badge--compact {

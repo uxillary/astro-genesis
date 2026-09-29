@@ -33,6 +33,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7000411/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7000411/pdf/41526_2019_Article_91.pdf"
   },
+  "ai_summary": "This study investigates how spaceflight and simulated microgravity conditions affect the virulence of the bacterium Serratia marcescens using the Drosophila melanogaster model. Researchers found that bacteria grown aboard the International Space Station exhibited significantly increased lethality compared to ground-based controls, with Drosophila survival rates markedly lower when infected with spaceflight-exposed strains. Notably, this heightened virulence did not persist once the bacteria were returned to Earth, indicating that the changes were likely temporary rather than genetic. Additionally, similar increases in virulence were observed in bacteria cultured under simulated microgravity conditions on Earth. The findings underscore the complex interplay between host immune responses and pathogen behavior in space environments, highlighting potential risks for astronaut health during long-duration missions. Understanding these dynamics is critical for developing effective countermeasures to protect astronauts from infections in space, thereby advancing the field of space biosciences.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

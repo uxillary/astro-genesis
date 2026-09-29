@@ -38,6 +38,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7072278/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7072278/pdf/cancers-12-00381.pdf"
   },
+  "ai_summary": "This study investigates the biological responses of animal models to space radiation, particularly focusing on the effects of galactic cosmic rays (GCR) on astronaut health during extended missions. Utilizing the extensive NASA GeneLab database, researchers analyzed multiple omics datasets from both ground-based and spaceflight experiments, examining radiation exposure across various ion types and doses. Key findings revealed distinct biological signatures linked to specific ions, highlighting dose-dependent changes in mitochondrial function, ribosomal assembly, and immune pathways. The analysis encompassed data from diverse tissues, providing insights into the cellular mechanisms affected by radiation. This research underscores the potential risks posed by ionizing radiation in space environments and demonstrates how GeneLab's comprehensive resources can enhance our understanding of these effects, ultimately informing strategies to safeguard astronaut health during long-duration space missions. The findings are crucial for advancing space biosciences and developing effective countermeasures against radiation exposure.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

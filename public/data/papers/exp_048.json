@@ -29,6 +29,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3593973/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3593973/pdf/nihms438457.pdf"
   },
+  "ai_summary": "This study investigates the mechanosensitive channel MscL, a critical protein in bacterial osmoregulation, by examining chimeras derived from E. coli and S. aureus. The research focuses on a specific residue at the periplasmic lipid-aqueous interface, notably E. coli I49 and its S. aureus equivalent F47, which significantly impacts channel kinetics and mechanosensitivity. Using electrophysiological techniques, the authors demonstrated that variations in this region alter the open dwell time and the threshold for channel activation. One mutant exhibited pronounced hysteresis, underscoring the residue's role in channel gating dynamics. The findings suggest that this lipid-interface residue functions like a spring, modulating the energy barriers for channel opening and closure. Understanding these mechanisms is crucial for advancing our knowledge of how cells sense and respond to mechanical stimuli, which has implications for developing biosensors and therapeutic strategies in space biosciences, where microbial behavior under altered gravitational conditions is of particular interest.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

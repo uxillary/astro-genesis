@@ -29,6 +29,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6371294/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6371294/pdf/2975810.pdf"
   },
+  "ai_summary": "This study evaluates the \"FAIRness\" of NASA's GeneLab Data Systems (GLDS) and four comparable omics data systems, focusing on their ability to share and integrate biological data effectively. Using 14 FAIRness metrics, the researchers found that the systems scored between 6 and 12, with an average score of 10.1, indicating moderate performance in data sharing. Notably, while data findability and accessibility were rated relatively high, interoperability was a significant weakness, with many systems failing to support the reusability of metadata. These findings highlight critical gaps in data integration capabilities, which are essential for advancing research in space biosciences. The study emphasizes the need for improved interoperability and proposes two new principles for developers to enhance data accessibility. By addressing these issues, the research aims to foster collaborative investigations that can better support biomedical research relevant to both space exploration and terrestrial applications.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

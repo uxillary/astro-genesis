@@ -176,11 +176,11 @@ const HudDivider = ({
     const segments = Math.ceil(containerWidth / tickSpacing) + 2;
     const lines = [] as JSX.Element[];
 
-    for (let index = 0; index < segments; index++) {
+    for (let index = 0; index < segments; index += 1) {
       const x = index * tickSpacing;
       const length = index % majorEvery === 0 ? 12 : 6;
-      const y1 = (viewHeight / 2) - length;
-      const y2 = (viewHeight / 2) + length;
+      const y1 = viewHeight / 2 - length;
+      const y2 = viewHeight / 2 + length;
 
       lines.push(
         <line
@@ -240,21 +240,12 @@ const HudDivider = ({
           <defs>
             <mask id={maskId}>
               <rect x={0} y={0} width="100%" height="100%" fill="white" />
-              <rect
-                x={laneStart}
-                y={maskRectY}
-                width={maskedLaneWidth}
-                height={maskRectHeight}
-                fill="black"
-              />
+              <rect x={laneStart} y={maskRectY} width={maskedLaneWidth} height={maskRectHeight} fill="black" />
             </mask>
           </defs>
         ) : null}
 
-        <g
-          className="fui-ruler__ticks"
-          mask={variant !== 'pill' && maskedLaneWidth > 0 ? `url(#${maskId})` : undefined}
-        >
+        <g className="fui-ruler__ticks" mask={variant !== 'pill' && maskedLaneWidth > 0 ? `url(#${maskId})` : undefined}>
           <line x1={0} y1={viewHeight / 2} x2={viewWidth} y2={viewHeight / 2} className="fui-ruler__baseline" />
           {ticksMarkup}
         </g>
@@ -298,3 +289,4 @@ const HudDivider = ({
 };
 
 export default HudDivider;
+

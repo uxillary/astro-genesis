@@ -29,6 +29,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7503278/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7503278/pdf/ijms-21-06385.pdf"
   },
+  "ai_summary": "This study investigates the dynamics of cytoplasmic calcium ([Ca²⁺] cyt) signaling in different cell types of Arabidopsis thaliana seedling roots using genetically-encoded calcium indicators (GCaMP3). Recognizing that various root cell types may respond differently to environmental stimuli, the researchers developed lines expressing GCaMP3 in five specific cell types: columella, endodermis, cortex, epidermis, and trichoblasts. Through confocal microscopy, they observed distinct [Ca²⁺] cyt responses to treatments with ATP, glutamate, aluminum, and salt, revealing both similarities and differences in calcium signaling patterns among the cell types. Notably, the study found that the responses could be influenced by growth conditions, suggesting that methodological adjustments can enhance the reliability of calcium signaling measurements. These findings enhance our understanding of plant cellular responses to environmental changes, which is crucial for advancing space biosciences, particularly in developing resilient crops for long-duration space missions where environmental conditions can be unpredictable.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

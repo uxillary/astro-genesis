@@ -12,6 +12,8 @@ export const createFallbackPaper = (id: string): PaperDetail => ({
   access: ['ARCHIVE-STUB', 'PROVISIONAL'],
   citations_by_year: [],
   entities: ['ARCHIVE PLACEHOLDER'],
+  ai_summary:
+    'Analyst uplink unavailable. This synthetic summary placeholder confirms UI integrity until the classified channel resumes transmission.',
   sections: {
     abstract:
       'The uplink to the classified dossier degraded mid-transfer. A synthetic summary shell is on display until the secure channel stabilises.',

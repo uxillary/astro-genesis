@@ -9,7 +9,7 @@ import HudBadge from '@/components/fui/HudBadge';
 import ReticleOverlay from '@/components/fui/ReticleOverlay';
 import CornerBracket from '@/components/fui/CornerBracket';
 import VectorGlyph from '@/components/fui/VectorGlyph';
-import { FuiBadge, FuiCallout, FuiConnectorLayer, FuiCorner, FuiDivider, useConnectorLayer } from '@/components/fui';
+import { FuiBadge, FuiCallout, FuiConnectorLayer, HudDivider, useConnectorLayer } from '@/components/fui';
 import DossierGlyphs from '../components/DossierGlyphs';
 import { getPaperFromCache, upsertPaperDetail } from '../lib/db';
 import type { PaperDetail } from '../lib/types';
@@ -128,7 +128,21 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
   }, [connector]);
 
   const { paper } = data;
-  const { title, sections, authors, year, organism, platform, keywords, links, access, citations_by_year, confidence, entities } = paper;
+  const {
+    title,
+    sections,
+    authors,
+    year,
+    organism,
+    platform,
+    keywords,
+    links,
+    access,
+    citations_by_year,
+    confidence,
+    entities,
+    ai_summary,
+  } = paper;
 
   return (
     <div className="space-y-8 transmission-field">
@@ -176,7 +190,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
                   showCompass
                   className="pointer-events-none absolute inset-0"
                 />
-                <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => setActiveSection(key)} />
+                <BranchMap title={title} activeSection={activeSection} onSectionChange={(key) => onSectionChange(key)} />
               </div>
             </div>
           </CornerBracket>
@@ -271,8 +285,16 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
           <FuiCallout from="b-res" to="panel-results" variant="dotted" tone="cyan" />
           <FuiCallout from="b-con" to="panel-conclusion" variant="dotted" tone="cyan" />
 
-          <Panel title="Analyst Summary" sublabel="AI Channel" actions={<span className="text-[#5f6c75]">Uplink offline</span>}>
-            LLM summary feed is offline. This panel will populate once the analyst channel is connected.
+          <Panel
+            title="Analyst Summary"
+            sublabel="AI Channel"
+            actions={
+              <span className="text-[#5f6c75]">
+                {ai_summary && ai_summary.trim().length > 0 ? 'Uplink stable' : 'Awaiting uplink'}
+              </span>
+            }
+          >
+            <SectionContent text={ai_summary} />
           </Panel>
         </div>
 
@@ -341,7 +363,7 @@ const PaperLayout = ({ dossierId, data, activeSection, onSectionChange, onCopyLi
           </div>
 
           <DossierGlyphs />
-          <HudDivider label="TELEMETRY" align="end" accent="amber" variant="knockout" lanePadding={14} />
+          <HudDivider label="TELEMETRY" accent="amber" side="right" lanePadding={16} elevate />
           <TrendMini data={citations_by_year} />
         </aside>
       </div>

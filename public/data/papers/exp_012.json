@@ -30,6 +30,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3040128/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3040128/pdf/1471-2229-11-25.pdf"
   },
+  "ai_summary": "The study investigates the roles of AtRabD2b and AtRabD2c, two Rab GTPases, in pollen development and tube growth in Arabidopsis thaliana. While single mutants of each gene show no significant morphological differences from wild-type plants, the double mutant (AtrabD2b/2c) exhibits shorter siliques and produces deformed pollen with swollen, branched tube tips. These defects in pollen morphology lead to reduced fertility, highlighting the critical role of these proteins in pollen function. Both AtRabD2b and AtRabD2c are highly expressed in pollen and localize to Golgi bodies, suggesting their involvement in vesicle trafficking essential for pollen tube growth. The findings indicate that AtRabD2b and AtRabD2c have overlapping functions, emphasizing the importance of Rab GTPases in plant reproduction. Understanding these mechanisms is vital for advancing space biosciences, particularly in developing plants for long-duration space missions where successful reproduction is crucial for sustainability.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

@@ -38,30 +38,34 @@ const formatAuthors = (authors: string[]) => {
   return truncate(`${authors[0]}, ${authors[1]} +${remaining} more`, 72);
 };
 
-const StackCard = ({ item, index }: StackCardProps) => {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+const StackCard = memo(({ item, index }: StackCardProps) => {
+  const articleRef = useRef<HTMLElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+
+  const applyTilt = (rotateX: number, rotateY: number) => {
+    if (articleRef.current) {
+      articleRef.current.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(0, 0, 0)`;
+    }
+    if (backdropRef.current) {
+      const offsetX = rotateY * -1.5;
+      const offsetY = rotateX * 1.5;
+      backdropRef.current.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+    }
+  };
 
   const handleMove = (event: MouseEvent<HTMLAnchorElement>) => {
-    hoveredRef.current = true;
     const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
-    scheduleTilt(x, y);
+    const rotateY = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
+    const rotateX = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
+    applyTilt(rotateX, rotateY);
   };
 
   const handleLeave = () => {
-    hoveredRef.current = false;
-    scheduleTilt(0, 0);
+    applyTilt(0, 0);
   };
 
   useEffect(() => {
     applyTilt(0, 0);
-    return () => {
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-      }
-    };
   }, []);
 
   const lockLabel = `LOCK ${String(index + 1).padStart(2, '0')}`;
@@ -150,7 +154,7 @@ const StackCard = ({ item, index }: StackCardProps) => {
       <div className="pointer-events-none absolute inset-0 -z-[2] translate-x-2 translate-y-2 rounded-2xl border border-[rgba(26,31,36,0.45)] bg-[rgba(9,13,17,0.55)] opacity-70" />
     </Link>
   );
-}, (prev, next) => prev.item === next.item && prev.index === next.index);
+  }, (prev, next) => prev.item === next.item && prev.index === next.index);
 
 StackCard.displayName = 'StackCard';
 

@@ -28,6 +28,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3430326/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3430326/pdf/zjb4802.pdf"
   },
+  "ai_summary": "Single-celled organisms face extreme environmental challenges, particularly rapid decreases in external osmolarity, which can lead to dangerous internal pressure build-up. To prevent cell lysis, many microbes utilize mechanosensitive channels, specifically the MscS and MscL families, which function as emergency release valves to expel cytoplasmic solutes. This study explores the roles of these channels, revealing that while they are crucial for microbial survival, their presence in plant organelles and various fungi complicates the understanding of their physiological functions. By comparing MscS and MscL, the research highlights their structural and functional models, emphasizing their significance beyond simple osmotic regulation. These findings are vital for space biosciences, as understanding microbial resilience mechanisms can inform strategies for life support systems in extraterrestrial environments, where organisms may encounter similar osmotic stressors.",
   "access": [
     "PEER-REVIEWED",
     "SPACE BOTANY"

@@ -33,6 +33,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6813909/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6813909/pdf/nihms-1538854.pdf"
   },
+  "ai_summary": "This study investigates the impact of ionizing radiation on the structural integrity and mechanical properties of mouse vertebrae, focusing on the roles of collagen fragmentation and non-enzymatic crosslinking. Using ex vivo x-ray radiation on lumbar vertebrae from female C57BL/6J mice, researchers exposed samples to doses ranging from 0 to 35,000 Gy. Key findings revealed that vertebral strength, ultimate strain, and work-to-fracture significantly decreased at higher radiation doses (17,000 and 35,000 Gy), with strength reduced by 50% and 73%, respectively, compared to controls. In contrast, collagen fragmentation was more closely associated with these mechanical changes than non-enzymatic crosslinking. These results underscore the detrimental effects of high radiation exposure on bone quality, highlighting potential risks for astronauts during long-duration space missions. Understanding these mechanisms is crucial for developing strategies to mitigate bone loss and maintain skeletal health in space environments.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

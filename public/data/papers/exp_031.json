@@ -63,6 +63,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166944/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11166944/pdf/41467_2024_Article_48920.pdf"
   },
+  "ai_summary": "This study investigates the potential of targeting specific microRNAs (miRNAs) to mitigate the damaging effects of space radiation on human cells, a critical concern for long-duration space missions. Researchers focused on three miRNAs—miR-16-5p, miR-125b-5p, and let-7a-5p—using RNA sequencing and transcriptomic analysis on 3D microvessel cell cultures exposed to simulated Galactic Cosmic Radiation. The application of antagomirs, which inhibit these miRNAs, resulted in significant reductions in inflammation and DNA double strand breaks, alongside the restoration of mitochondrial function. Notably, the combination of all three antagomirs proved more effective than individual treatments. The findings were further supported by data from astronauts involved in NASA's Twin Study and other missions, demonstrating that the genes and pathways affected by these miRNAs are also altered in humans. This research offers a promising countermeasure strategy to protect astronauts from radiation damage, enhancing the safety and viability of future space exploration.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

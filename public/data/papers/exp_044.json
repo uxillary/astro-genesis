@@ -29,6 +29,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3190158/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3190158/pdf/pro0020-1638.pdf"
   },
+  "ai_summary": "This study investigates the oligomeric state of the mechanosensitive channel of large conductance (MscL) from Staphylococcus aureus, a protein crucial for cell survival during osmotic stress. Previous research indicated conflicting oligomeric structures—pentameric and tetrameric—based on crystallization methods. To clarify this, the authors employed an in vivo disulfide-trapping technique to analyze various C-terminal truncations of MscL. The findings confirm that the full-length S. aureus MscL exists as a pentamer in native membranes, aligning with recent studies that challenge earlier interpretations of its tetrameric form. This research highlights the influence of protein manipulation on oligomeric state determinations and underscores the importance of studying proteins in their native environments. Understanding the structural dynamics of MscL is vital for advancing space biosciences, as it may inform strategies for engineering resilient microbial life for long-duration space missions, where osmotic challenges are prevalent.",
   "access": [
     "PEER-REVIEWED",
     "Space Shuttle",

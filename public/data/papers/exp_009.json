@@ -32,6 +32,7 @@
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6222041/",
     "pmc_pdf": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6222041/pdf/main.pdf"
   },
+  "ai_summary": "This study addresses the challenge of assessing bone quality in small animals, specifically the response of mouse vertebrae to cyclic mechanical loading. The researchers developed a high-precision method for ex vivo cyclic compressive loading of isolated mouse vertebral bodies, utilizing 3D-printed support jigs, pivotable loading platens, and micro-CT-based finite element analysis to ensure consistent strain across specimens. Testing the new method against two established techniques, the results indicated that the new approach (K FEA method) significantly reduced variability in fatigue life, with an 8-fold lower standard deviation compared to the existing methods. This precision led to a uniform fatigue life across specimens, contrasting with the negative correlation observed in the literature methods. These findings are crucial for space biosciences, as understanding bone behavior under mechanical stress is vital for assessing the impacts of microgravity on skeletal health during long-duration space missions.",
   "access": [
     "PEER-REVIEWED",
     "ISS",

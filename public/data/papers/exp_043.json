@@ -27,6 +27,7 @@
   "links": {
     "pmc_html": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3005423/"
   },
+  "ai_summary": "This study investigates the MscL channel, a bacterial mechanosensor that acts as a biological valve for solute release during osmotic downshock, to explore its potential as a nanovalve for targeted drug delivery. Researchers introduced charged compounds into the MscL pore lumen to assess their impact on the permeation of large charged molecules. Using in vivo assays and electrophysiological techniques, they discovered that the presence of a charge significantly influences the channel's permeability, revealing an unexpected anionic preference in wild-type MscL. The findings indicate that MscL can be engineered to function as a controllable nanoswitch, responding to external stimuli like light or pH. This research has critical implications for space biosciences, as it enhances the understanding of how to manipulate biological systems for drug delivery in microgravity environments, potentially improving therapeutic strategies for astronauts and advancing biotechnological applications.",
   "access": [
     "PEER-REVIEWED",
     "ISS",
